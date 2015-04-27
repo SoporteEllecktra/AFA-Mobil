@@ -1,0 +1,561 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
+
+body
+{
+    font-size: 16px; /*font-family: OpenSansRegular;*/
+    font-family: 'Open Sans' , sans-serif;
+}
+.container
+{
+    width: 100%;
+    padding: 0px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.container .col
+{
+    height: 100%;
+}
+.row
+{
+    margin: 0px;
+}
+#divCotizacionesDestacada
+{
+    background-color: #FFF;
+    overflow-y: auto; /*overflow-x: hidden;*/
+}
+#divBarraAbajo
+{
+}
+
+header
+{
+    background-color: #606966;
+    height: 2.8em;
+}
+.cssCalendario
+{
+    width: 1.5em;
+    height: 1.5em;
+}
+.cssDivColCalendario
+{
+    margin-top: 0.5em;
+    margin-left: 0.4em;
+}
+#headerFecha
+{
+    color: #FFF;
+    text-align: left;
+    margin-top: 0.5em;
+}
+.cssLogoAfa
+{
+    width: 3.6324em; /*height: 2.8em;*/
+}
+.cssBordeDiagonal
+{
+    border-left: 5.6em solid transparent;
+    border-bottom: 2.8em solid #FFF;
+}
+.cssDivColImgLogo
+{
+    text-align: right;
+    background-color: #FFF;
+    float: right; /*border-radius: 12.5em 0px 0px 0px; -moz-border-radius: 12.5em 0px 0px 0px; -webkit-border-radius: 12.5em 0px 0px 0px;*/
+}
+
+.cssDivImgLogo
+{
+}
+
+/* Cotizacion destacado */
+.cssAccordion-heading
+{
+}
+
+.cssAccordion-headingActivo
+{
+}
+
+.cssDestacadoEncabezado
+{
+    font-size: 0.875em;
+    padding-top: 0.9em;
+    padding-bottom: 0.9em;
+    border-bottom: 0.125em solid #D6D6D6;
+}
+.cssDestacado
+{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.cssDestacadoDescripcionProducto
+{
+    font-size: 1.75em;
+}
+.cssDestacadoDescripcionProductoMargenes
+{
+    padding-left: 0.5em;
+}
+.cssDestacadoDescripcionPuerto
+{
+    font-size: 1.25em;
+}
+.cssDestacadoPrecio
+{
+    font-size: 1.5625em;
+    font-weight: 600;
+}
+.colVerMas
+{
+    height: 3.438em;
+    font-size: 1.625em;
+    background-color: #EBEBEB;
+    color: #777;
+    text-align: center;
+    padding-top: 0.9065em;
+    cursor:pointer;
+}
+.colRectanguloPrecio
+{
+    max-width: 7em;
+    padding: 0.2em;
+    border-radius: 0.32em 0.32em 0.32em 0.32em;
+    -moz-border-radius: 0.32em 0.32em 0.32em 0.32em;
+    -webkit-border-radius: 0.32em 0.32em 0.32em 0.32em;
+    border: 0px solid #000000;
+}
+.colRectanguloPrecioVerde
+{
+    background-color: #4CD98A;
+    color: #FEFEFE;
+}
+.colRectanguloPrecioRojo
+{
+    background-color: #FF393A;
+    color: #FEFEFE;
+}
+.colRectanguloPrecioGris
+{
+    background-color: #EFEFEF;
+    color: #2D2D2D;
+}
+/* Fin Cotizacion destacado */
+
+/* Cotizacion Detalle */
+
+.cssDetalleEncabezado
+{
+    background-color: #C2C8C8;
+    font-size: 0.875em;
+    color: #FFF;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+.cssDetalle
+{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: #E7E7E7;
+}
+.cssDetalleImpar
+{
+    background-color: #EFEFEF;
+}
+.colDetalleDescripcionPuerto
+{
+    font-size: 1.125em;
+}
+.colDetallePrecio
+{
+    font-weight: 700;
+    font-size: 1.125em;
+}
+.colDetalleObservacion
+{
+    font-size: 0.875em;
+}
+/* Fin Cotizacion Detalle */
+
+/* Cotizacion Historica */
+.colHistoricoTitulo
+{
+    font-size: 1.75em;
+    text-align: center;
+    font-weight: 700;
+    padding-top: 1.1em;
+    padding-bottom: 1.1em;
+}
+.cssHistoricoEncabezado
+{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 0.125em solid #C6C6C6;
+    border-top: 0.125em solid #C6C6C6;
+}
+.cssHistorico
+{
+    background-color: transparent;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.cssHistoricoImpar
+{
+    background-color: rgba(0,0,0,.1);
+}
+
+.colHistoricoEncabezadoFecha
+{
+    font-size: 0.875em;
+    text-align: right;
+}
+.colHistoricoEncabezadoPrecio
+{
+    font-size: 0.875em;
+    text-align: left;
+}
+.colHistoricoFecha
+{
+    font-size: 1.25em;
+    text-align: right;
+}
+.colHistoricoPrecio
+{
+    font-size: 1.25em;
+    text-align: left;
+    font-weight: 600;
+}
+#divParteScrollCotizacionHistorica
+{
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+}
+/* Fin Cotizacion Historica */
+/* Cotizacion Historica pantalla completa */
+.cssDivResultadoTodasCotizacionesHistorica
+{
+    /*overflow-y: auto; */
+    color: #FFF; /*Fondo color*/
+    background: url(../../img/material/fondo2.jpg) no-repeat bottom;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; /*background: rgba(149,149,149,1); background: -moz-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(149,149,149,1)), color-stop(3%, rgba(149,149,149,1)), color-stop(43%, rgba(149,149,149,1)), color-stop(65%, rgba(149,149,149,1)), color-stop(76%, rgba(123,135,120,1)), color-stop(100%, rgba(67,106,58,1))); background: -webkit-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: -o-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: -ms-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: linear-gradient(to bottom, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#436a3a', GradientType=0 ); */ /*Fin fondo color*/
+}
+#divRowParteScrollTodosHistoricoCotizaciones
+{
+    overflow-y: auto;
+    width: 100%;
+}
+/* Fin Cotizacion Historica pantalla completa */
+#divFondoBloqueo
+{
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1000;
+    position: absolute;
+    background-color: #ABB69C;
+    opacity: 0.5;
+}
+.imgFondoBloqueo
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8em;
+    height: 8em;
+    margin-top: -4em;
+    margin-left: -4em;
+}
+
+.row-xs-12
+{
+    height: 100%;
+}
+.row-xs-11
+{
+    height: 91.66666666666666%;
+}
+.row-xs-10
+{
+    height: 83.33333333333334%;
+}
+.row-xs-9
+{
+    height: 75%;
+}
+.row-xs-8
+{
+    height: 66.66666666666666%;
+}
+.row-xs-7
+{
+    height: 58.333333333333336%;
+}
+.row-xs-6
+{
+    height: 50%;
+}
+.row-xs-5
+{
+    height: 41.66666666666667%;
+}
+.row-xs-4
+{
+    height: 33.33333333333333%;
+}
+.row-xs-3
+{
+    height: 25%;
+}
+.row-xs-2
+{
+    height: 16.666666666666664%;
+}
+.row-xs-1
+{
+    height: 8.333333333333332%;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9
+{
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+.cssDestacado .col-xs-4
+{
+    padding-right: 0em;
+    padding-left: 0em;
+}
+/* Todas cotizaciones */
+.cssDivResultadoTodasCotizaciones
+{
+    width: 100%;
+    /*overflow-y: auto;  */
+    color: #FFF; /*Fondo color*/
+    /*background: url(../../img/material/fondo2.jpg) no-repeat fixed bottom;*/
+    background: url(../../img/material/fondo2.jpg) no-repeat bottom;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; /*Fin Fondo color*/
+}
+.cssColTodasCotizacionesTitulo
+{
+    font-weight: 700;
+    font-size: 1.75em;
+    padding-top: 1.1em;
+    padding-bottom: 1.1em;
+}
+.cssTodasCotizacionesEncabezado
+{
+    font-size: 0.875em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 0.125em solid #C6C6C6;
+    border-top: 0.125em solid #C6C6C6;
+}
+.cssTodasCotizacionesProducto
+{
+    font-size: 1.125em;
+    font-weight: 600;
+}
+.cssTodasCotizacionesPuerto
+{
+    font-size: 1.125em;
+}
+.cssTodasCotizacionesPrecio
+{
+    font-size: 1.125em;
+    font-weight: 700;
+}
+.cssTodasCotizacionesObservacion
+{
+    font-size: 0.875em;
+}
+.cssTodasCotizaciones
+{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: transparent;
+}
+.cssTodasCotizacionesImpar
+{
+    background-color: rgba(0,0,0,.1);
+}
+#divParteScrollTodasCotizaciones
+{
+    overflow-y: auto;
+    width: 100%;
+}
+/* FIn todas cotizaciones */
+
+.swiper-container
+{
+    position: static;
+}
+.swiper-container
+{
+    /*Fondo color*/
+    background: url(../../img/material/fondo2.jpg) no-repeat bottom;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; /*Fin fondo color*/
+}
+.swiper-slide
+{
+    /*overflow-y:auto; overflow-x:hidden; */
+    color: #FFF; /*Fondo color*/ /*background: url(../../img/material/fondo2.jpg) no-repeat fixed bottom ; -webkit-background-size: contain; -moz-background-size: contain; -o-background-size: contain; background-size: contain;*/ /*background: rgba(149,149,149,1); background: -moz-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(149,149,149,1)), color-stop(3%, rgba(149,149,149,1)), color-stop(43%, rgba(149,149,149,1)), color-stop(65%, rgba(149,149,149,1)), color-stop(76%, rgba(123,135,120,1)), color-stop(100%, rgba(67,106,58,1))); background: -webkit-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: -o-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: -ms-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: linear-gradient(to bottom, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#436a3a', GradientType=0 );  */ /*Fin fondo color*/
+}
+
+/* Novedades */
+.cssColImgAmpliar
+{
+    text-align: right;
+}
+.cssImgAmpliar
+{
+    width: 1.875em;
+    height: 2.25em;
+    margin-top: 1.5em;
+}
+.cssColImgNovedades
+{
+    padding-top: 3em;
+}
+.cssImgNovedades
+{
+    width: 2em;
+    height: 2.5em;
+}
+.cssNovedades
+{
+    width: 2em;
+    height: 2.5em;
+}
+.cssNovedadesTitulo
+{
+    font-size: 1.25em;
+    font-weight: 700;
+    padding-top: 2em;
+}
+.cssNovedadesFecha
+{
+    font-size: 1.25em;
+    font-weight: 600;
+}
+.cssNovedadesCategoria
+{
+    font-size: 0.75em;
+    font-weight: 700;
+    margin-top: 0.5em;
+}
+.cssNovedadesDescripcion
+{
+    padding-top: 1em;
+    font-size: 1.25em;
+}
+#divRowParteScrollNovedades{
+    overflow-y: auto;
+    width: 100%;
+}
+/* Fin Novedades */
+/* Novedades pantalla completa */
+.cssDivResultadoNovedades
+{
+    overflow-y: auto;
+    color: #FFF; /*Fondo color*/
+    background: url(../../img/material/fondo2.jpg) no-repeat bottom;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; /*background: rgba(149,149,149,1); background: -moz-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(149,149,149,1)), color-stop(3%, rgba(149,149,149,1)), color-stop(43%, rgba(149,149,149,1)), color-stop(65%, rgba(149,149,149,1)), color-stop(76%, rgba(123,135,120,1)), color-stop(100%, rgba(67,106,58,1))); background: -webkit-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: -o-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: -ms-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); background: linear-gradient(to bottom, rgba(149,149,149,1) 0%, rgba(149,149,149,1) 3%, rgba(149,149,149,1) 43%, rgba(149,149,149,1) 65%, rgba(123,135,120,1) 76%, rgba(67,106,58,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#436a3a', GradientType=0 );*/ /*Fin fondo color*/
+}
+/* Fin Novedades pantalla completa */
+
+.swiper-pagination-bullet
+{
+    width: 1em;
+    height: 1em;
+}
+.swiper-pagination-bullet-active
+{
+    background: #FFF;
+}
+@media (min-width: 1170px)
+{
+    body
+    {
+        font-size: 20px;
+    }
+}
+@media (max-width: 1170px)
+{
+    body
+    {
+        font-size: 18px;
+    }
+}
+@media (max-width: 940px)
+{
+    body
+    {
+        font-size: 16px;
+    }
+}
+@media (max-width: 728px)
+{
+    body
+    {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 500px)
+{
+    body
+    {
+        font-size: 10px;
+    }
+}
+.cssAmpliarAchicar
+{
+    text-align: center;  
+}
+.cssImgImputButtonAmpliar
+{ 
+   /* background:url(../../img/material/ampliar.svg) no-repeat;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain; */
+    cursor:pointer;
+  /*  border: none;*/
+    width: 1.875em;
+    height: 2.25em;
+    margin-top: 1.5em;
+}
+.cssImgImputButtonAchicar
+{
+  /*  background:url(../../img/material/ampliarAbajo.svg) no-repeat;
+    -webkit-background-size:contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size:contain; */
+    cursor:pointer;
+   /* border: none;*/
+    width: 1.875em;
+    height: 2.25em;
+    margin-top: 1.5em;
+}
+ 
