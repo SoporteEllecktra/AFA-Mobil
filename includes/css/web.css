@@ -534,26 +534,26 @@ header
 }
 .cssImgImputButtonAmpliar
 { 
-   /* background:url(../../img/material/ampliar.svg) no-repeat;
+    background:url(../../img/material/ampliar.svg) no-repeat;
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
-    background-size: contain; */
+    background-size: contain; 
     cursor:pointer;
-    /*border: none;*/
+    border: none;
     width: 1.875em;
     height: 2.25em;
     margin-top: 1.5em;
 }
 .cssImgImputButtonAchicar
 {
-  /*  background:url(../../img/material/ampliarAbajo.svg) no-repeat;
+    background:url(../../img/material/ampliarAbajo.svg) no-repeat;
     -webkit-background-size:contain;
     -moz-background-size: contain;
     -o-background-size: contain;
-    background-size:contain; */
+    background-size:contain; 
     cursor:pointer;
-   /* border: none;*/
+    border: none;
     width: 1.875em;
     height: 2.25em;
     margin-top: 1.5em;
