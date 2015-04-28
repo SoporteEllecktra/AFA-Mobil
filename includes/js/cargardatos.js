@@ -82,7 +82,7 @@ function CargarParametroEntradaAuditoria_Prueba( ) {
 function CargaDatosInicio() {
     //localStorage.removeItem("storageListaCotizacionesDestacada");
     //localStorage.removeItem("storageListaNovedades");
-    //CargarAuditoria_Prueba();
+    CargarAuditoria_Prueba();
     if (!(localStorage.getItem("storageListaCotizacionesDestacada") == null)) {
        // alert(2);
         var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
