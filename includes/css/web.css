@@ -540,7 +540,7 @@ header
     -o-background-size: contain;
     background-size: contain; */
     cursor:pointer;
-  /*  border: none;*/
+    /*border: none;*/
     width: 1.875em;
     height: 2.25em;
     margin-top: 1.5em;
