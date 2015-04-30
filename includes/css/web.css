@@ -88,8 +88,44 @@ border-color: #606966 transparent transparent transparent;}
 .cssTdHeaderDerecha_btn_rs_one_center_Activo { background-color: #4F5857 !important;;}
 .cssTdHeaderDerecha_btn_rs_two_right_Activo { border-color: #4F5857 transparent transparent transparent !important;;}
 /*Fin Menu compartir click1*/
+.divMenuCompartir{
+    background-color: #FFF;
+display: none;
+position: absolute;
+right: 4.64em;
+ -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+    z-index: 1000;
+}
+.cssLogoFacebook{
+    width: 1em;
+    height: 1em;
+    margin: 0.5em;
+}
+.cssLogoTwitter{
+  width: 2.09em;
+  height: 0.82em;
+  margin: 0.5em;
+  margin-left: 0.1em;    
+  margin-right: 0.05em;   
+}
+.spanFacebook{
+    cursor: pointer;
+    padding-right: 1em;
+}
+.spanTwitter{
+        cursor: pointer;
+padding-right: 1em;
+}
+.linkTwitter{
 
-
+}
+.linkTwitter{
+    border-top-style: solid;
+    border-top-color: #000;
+    border-top-width:0.0625em;
+}
 header
 {
     background-color: #606966;
