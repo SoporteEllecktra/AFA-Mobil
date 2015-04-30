@@ -1,12 +1,14 @@
 var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
+var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
 
 var cotizacionesDestacada = null;
 var indexCotizacionesDestacada = null;
 var listaTodasCotizaciones = null;
 var listaNovedades = null;
 var listaTablaModificaciones = null;
+var listaInformes = null;
 //
 var isCargarCotizaciones = false;
 var isCargarNotificaciones = false;
@@ -44,7 +46,12 @@ function modificacionesTabla() {
     this.fecha = '';
     this.hora = '';
 }
-
+function informes(){
+    this.codigoInforme = 0;
+    this.fecha = '';
+    this.titulo = '';
+    this.texto = '';
+}
 function FuncionInicio() {
     CargarAuditoria();
 
@@ -163,7 +170,14 @@ function processSuccessAuditoria(data, status, req) {
                 listaNovedades = eval('(' + listaNovedadesGuardada + ')');
             }
         }
-
+        if (!isCargarInformes) {
+            if (localStorage.getItem("storageListaInformes") == null) {
+                isCargarInformes = true;
+            } else {
+                var listaInformesGuardada = localStorage.getItem("storageListaInformes");
+               listaInformes = eval('(' + listaInformesGuardada + ')');
+            }
+        }
         if (isCargarCotizaciones) {
             CargaCotizacionDestacada();
         } else if (isCargarNotificaciones) {
@@ -173,11 +187,12 @@ function processSuccessAuditoria(data, status, req) {
             //
             CargarCotizacionesDestacadaHtml();
             CargarNovedadesHtml();
-            OcultarDivBloqueo();
+            CargaUltimoInforme();           
             //
         } else {
             CargarCotizacionesDestacadaHtml();
             CargarNovedadesHtml();
+            CargarInformeHtml();
             OcultarDivBloqueo();
         }
     }
@@ -418,16 +433,10 @@ function processSuccessTodasCotizaciones(data, status, req) {
         if (isCargarNotificaciones) {
             CargaNovedades();
         } else if (isCargarInformes) {
-
+            CargaUltimoInforme();
+        }else{
+          OcultarDivBloqueo();
         }
-        //        if (!(localStorage.getItem("storageListaNovedades") === null)) {
-        //            var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-        //            listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-        //            CargarNovedadesHtml();
-        //            OcultarDivBloqueo();
-        //        } else {
-        //            CargaNovedades();
-        //        }
         CargarCotizacionesDestacadaHtml();
     }
 }
@@ -503,9 +512,13 @@ function processSuccessNovedades(data, status, req) {
             localStorage.setItem('storageListaNovedades', listaNovedadesAGuardar);
         } else {
 
+        }              
+        if (isCargarInformes) {
+            CargaUltimoInforme();
+        }else{
+         OcultarDivBloqueo();
         }
         CargarNovedadesHtml();
-        OcultarDivBloqueo();
     }
 }
 function ObtenerNovedades(pXML) {
@@ -522,4 +535,69 @@ function ObtenerNovedades(pXML) {
         listaNovedadesAux.push(obj);
     });
     return listaNovedadesAux;
+}
+function CargaUltimoInforme() {
+    $.ajax({
+        type: "POST",
+        url: wsUrlInforme,
+        contentType: "application/xml; charset=utf-8", //"text/xml",
+        dataType: "xml",
+        crossDomain: true,
+        xhrFields: {
+            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+            // This can be used to set the 'withCredentials' property.
+            // Set the value to 'true' if you'd like to pass cookies to the server.
+            // If this is enabled, your server must respond with the header
+            // 'Access-Control-Allow-Credentials: true'.
+            withCredentials: true
+        },
+        data: CargarParametroEntradaInforme('', '', 1),
+        success: processSuccessInforme,
+        error: processError
+    });
+}
+function CargarParametroEntradaInforme(pFechaDesde,pFechaHasta,pTipoConsulta){
+    var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
+    soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
+    soapRequest += '<soapenv:Header/>';
+    soapRequest += '<soapenv:Body>';
+    soapRequest += '<ser:consultaInformes>';
+    if (pFechaDesde != '') {
+        soapRequest += '<fechaDesde>' + pFechaDesde + '</fechaDesde>';
+    }
+    if (pFechaHasta != '') {
+        soapRequest += '<fechaHasta>' + pFechaHasta + '</fechaHasta>';
+    }
+    if (pTipoConsulta != '') {
+        soapRequest += '<tipoConsulta>' + pTipoConsulta + '</tipoConsulta>';
+    }
+    soapRequest += '</ser:consultaInformes>';
+    soapRequest += '</soapenv:Body>';
+    soapRequest += '</soapenv:Envelope>';
+    return soapRequest;
+}
+function processSuccessInforme(data, status, req) {
+    if (status == "success") {
+        listaInformes =  ObtenerImforme(req.responseText);
+        if (window.localStorage) {
+            var listaInformesAGuardar = JSON.stringify(listaInformes);
+            localStorage.setItem('storageListaInformes', listaInformesAGuardar);
+        } else {
+
+        }                
+        CargarInformeHtml();
+        OcultarDivBloqueo();
+    }
+}
+function ObtenerImforme(pXML) {
+    var listaInformesAUX = [];
+    $(pXML).find('informes').each(function () {
+        var obj = new informes();
+        obj.codigoInforme = parseInt($(this).find('codigoInforme').text());
+        obj.fecha = $(this).find('fecha').text();
+        obj.titulo = $(this).find('titulo').text();
+        obj.texto = $(this).find('texto ').text();
+        listaInformesAUX.push(obj);
+    });
+    return listaInformesAUX;
 }

@@ -9,14 +9,14 @@ $(document).ready(function () {
     });
     onresizeBody();
 });
-function onclickFacebook(){
-var u='www.rosario3.com';
-var t='title';
-window.open('http://facebook.com/sharer/sharer.php?u='+u+'&t='+encodeURIComponent(t),'sharer');
-//  m.facebook.com
-//https://m.facebook.com/
-//window.open('http://facebook.com/sharer/sharer.php?u='+u+'&t='+encodeURIComponent(t),'sharer');    
-return false;
+function onclickFacebook() {
+    var u = 'www.rosario3.com';
+    var t = 'title';
+    window.open('http://facebook.com/sharer/sharer.php?u=' + u + '&t=' + encodeURIComponent(t), 'sharer');
+    //  m.facebook.com
+    //https://m.facebook.com/
+    //window.open('http://facebook.com/sharer/sharer.php?u='+u+'&t='+encodeURIComponent(t),'sharer');    
+    return false;
 }
 function onresizeBody() {
     //
@@ -28,10 +28,10 @@ function onresizeBody() {
     $('#divBarraAbajo').css('height', alturaParteAbajo);
     //
     $('.swiper-slide').css('height', $('#divBarraAbajo').height());
-    
+
     $('#divRowParteScrollNovedades').css('height', $('#divBarraAbajo').height());
-    $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').height() -  $('#divParteFijaCotizacionHistorica').height());
-     
+    $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').height() - $('#divParteFijaCotizacionHistorica').height());
+
     //$('.swiper-wrapper').css('height', $('#divBarraAbajo').height());
 }
 
@@ -145,9 +145,9 @@ function CargarCotizacionesDestacadaHtml() {
         var index = parseInt(e.target.id.replace('collapse', ''));
         grabarStorageIndexCotizacionDestacadaSeleccionda(index);
         CargarCotizacionesHistoricaHtml(index);
-   
+
         swiper.slideTo(1);
-             onresizeBody();//////////////////
+        onresizeBody(); //////////////////
         $('#swiper-slide2').scrollTop(0);
         if (swiper.slides.length == 2) {
             swiper.appendSlide('<div class="swiper-slide">Slide 10"</div>');
@@ -173,16 +173,16 @@ function onclickVerMas() {
 function CargarCotizacionesHistoricaHtml(pIndex) {
     var resultadoDiv = '';
     if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
-//        resultadoDiv += '<div class="containerCotizacionHistorica">'; //container
-//        resultadoDiv +='<br/>';
-//        resultadoDiv += '<div class="containerCotizacionHistoricaHijo">'; //container hijo
-        resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >';// div parte fija
+        //        resultadoDiv += '<div class="containerCotizacionHistorica">'; //container
+        //        resultadoDiv +='<br/>';
+        //        resultadoDiv += '<div class="containerCotizacionHistoricaHijo">'; //container hijo
+        resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
         resultadoDiv += '<div class="row">';
         resultadoDiv += '<div class="col-xs-10 colHistoricoTitulo">';
         resultadoDiv += 'Cotizaci&#243;n hist&#243;rica: ' + cotizacionesDestacada[pIndex].descripcionProducto.toUpperCase();
         resultadoDiv += '</div>';
         //
-        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >';// onclick="onclickFullScreenCotizacionesHistorica()"
+        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
         //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar"  />';
         resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenCotizacionesHistorica(); return false;"/>';
         resultadoDiv += '</div>';
@@ -196,10 +196,10 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         resultadoDiv += 'PRECIO P/TN';
         resultadoDiv += '</div>';
         resultadoDiv += '</div>';
-        
-         resultadoDiv += '</div>';// fin div parte fija
-        
-        resultadoDiv += '<div id="divParteScrollCotizacionHistorica" >';// div scroll
+
+        resultadoDiv += '</div>'; // fin div parte fija
+
+        resultadoDiv += '<div id="divParteScrollCotizacionHistorica" >'; // div scroll
         var indexHistorico = -1;
         $(cotizacionesDestacada[pIndex].listaHistorico).each(function () {
             indexHistorico++;
@@ -216,12 +216,12 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });
-        resultadoDiv += '</div>';// fin div scroll
-        
-        
-//        resultadoDiv +='</div>'; //container hijo
-//        //resultadoDiv +='<br/>';
-//        resultadoDiv += '</div>';// fin container
+        resultadoDiv += '</div>'; // fin div scroll
+
+
+        //        resultadoDiv +='</div>'; //container hijo
+        //        //resultadoDiv +='<br/>';
+        //        resultadoDiv += '</div>';// fin container
     }
     $('#swiper-slide2').html(resultadoDiv);
 }
@@ -241,7 +241,7 @@ function CargarNovedadesHtml() {
         var indiceNovedades = -1;
         $(listaNovedades).each(function () {
             indiceNovedades++;
-            resultadoDiv += '<div class="row">'; 
+            resultadoDiv += '<div class="row">';
             resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
             resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
             resultadoDiv += '</div>';
@@ -254,7 +254,7 @@ function CargarNovedadesHtml() {
                 resultadoDiv += '<div class="col-xs-10 cssNovedadesTitulo">';
                 resultadoDiv += this.titulo;
                 resultadoDiv += '</div>';
-                resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >';//onclick="onclickFullScreenNovedades()"
+                resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenNovedades()"
                 //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar" />';
                 resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenNovedades(); return false;"/>';
                 resultadoDiv += '</div>';
@@ -282,15 +282,19 @@ function CargarNovedadesHtml() {
             resultadoDiv += '</div>';
             //
         });
-         resultadoDiv += '</div>';   // fin parte scroll   
+        resultadoDiv += '</div>';   // fin parte scroll   
     }
     $('#swiper-slide1').html(resultadoDiv);
 }
+function CargarInformeHtml() {
+    //listaInformes
+    for (var i = 0; i < listaInformes.length; i++) {
+        alert(listaInformes[i].titulo);
+    }
+}
 function onclickFullScreenNovedades() {
     window.location.href = "novedades.html";
-
 }
-function onclickFullScreenCotizacionesHistorica()
-{
- window.location.href = "todascotizacioneshistorica.html";
+function onclickFullScreenCotizacionesHistorica() {
+    window.location.href = "todascotizacioneshistorica.html";
 }
