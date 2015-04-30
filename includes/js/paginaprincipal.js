@@ -1,18 +1,13 @@
 var swiper = null;
 $(document).ready(function () {
     MostrarDivBloqueo();
-    //CargaCotizacionDestacada();
-    CargaDatosInicio();
+    //CargaDatosInicio();
+    FuncionInicio();
     swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true
     });
     onresizeBody();
-    // novedades
-    // CargarEjemploNovedades();
-    // CargarNovedades();
-    // CargaNovedades();
-    // fin novedades
 });
 function onclickFacebook(){
 var u='www.rosario3.com';

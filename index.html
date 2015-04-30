@@ -11,27 +11,56 @@
 <body onresize="onresizeBody()">
     <div class="container">
         <header id="header">
-            <div class="row">
-                <div class="col-xs-2 ">
-                               <div class="cssDivColCalendario">
+            <table class="cssTablaHeader">
+                <tr>
+                    <td>
+                        <img src="img/material/icono-calendario.svg" alt="calendario" class="cssCalendario" />
+                    </td>
+                    <td>
+                        <div id="headerFecha">
+                        </div>
+                    </td>
+                    <td class="cssTdHeaderDerecha">
+                        <a class="btn_rs" href="#">
+                            <div class="one">
+                                <div class="left">
+                                </div>
+                                <div class="center">
+                                    <img src="img/material/icono-compartir.svg" alt="calendario" class="cssIconoCompartir" />
+                                </div>
+                            </div>
+                            <div class="two">
+                                <div class="right">
+                                </div>
+                                <img src="img/material/logo.png" alt="afa" class="cssLogoAfa" />
+                            </div>
+                        </a>
+                        <!--
+                    <img id="imgCompartir" src="img/material/boton-compartir.svg" alt="compartir" class="cssCompartir" onclick="onclickCompartir()" />
+                    <img src="img/material/logo.png" alt="afa" class="cssLogoAfa"/>
+-->
+                    </td>
+                </tr>
+            </table>
+            <!--
+     <div class="row">
+                    <div class="cssDivColCalendario row-xs-2">
                     <img src="img/material/icono-calendario.svg" alt="calendario" class="cssCalendario" />
                                      </div>
-                </div>
-                <div  class="col-xs-8">
-                        <div id="headerFecha">
+               
+                <div class="row-xs-4">
+  <div id="headerFecha">
                                    </div>
                 </div>
-               <div class="col-xs-1 ">
-                        <div class="cssBordeDiagonal" onclick="onclickFacebook()">
-                   
-                        </div>
-                </div>		                
-                <div class="col-xs-1 cssDivColImgLogo">
-                        <div class="cssDivImgLogo">
+
+                <div class="row-xs-5 cssDivColImgLogo">
+
+                    <img id="imgCompartir" src="img/material/boton-compartir.svg" alt="compartir" class="cssCompartir" onclick="onclickCompartir()" />
                     <img src="img/material/logo.png" alt="afa" class="cssLogoAfa"/>
-                        </div>
+
                 </div>
-            </div>
+         </div>
+-->
         </header>
         <div id="divCotizacionesDestacada" class="row-xs-6">
         </div>

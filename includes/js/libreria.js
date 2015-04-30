@@ -4,6 +4,14 @@ function toString00(pNro) {
     }
     return pNro;
 }
+function onclickCompartir() {
+    if ($('#imgCompartir').attr("src") == 'img/material/boton-compartir-hover.svg') {
+        $('#imgCompartir').attr("src", 'img/material/boton-compartir.svg');
+    } else {
+        $('#imgCompartir').attr("src", 'img/material/boton-compartir-hover.svg');
+    }
+}
+
 function obtenerFechaParametroEntrada(pDia) {
     var milisegundos = parseInt(pDia * 24 * 60 * 60 * 1000);
     var fecha = new Date();
@@ -15,6 +23,19 @@ function obtenerFechaParametroEntrada(pDia) {
     var anio = fecha.getFullYear();
     return toString00(dia) + toString00(mes) + anio.toString();
 }
+function obtenerFechaUTC(pFecha, pHora) {
+    var fechaSplit = pFecha.split('/');
+    var anio = parseInt(fechaSplit[0]);
+    var mes = parseInt(fechaSplit[1]) - 1;
+    var dia = parseInt(fechaSplit[2]);
+    var horaSplit = pHora.split(':');
+    var hora = parseInt(horaSplit[0]);
+    var minuto = parseInt(horaSplit[1]);
+    var segundo = parseInt(horaSplit[2]);
+    var fechaGmt = Date.UTC(anio, mes, dia, hora, minuto, segundo, 0);
+    return fechaGmt;
+}
+
 function grabarStorageIndexCotizacionDestacadaSeleccionda(pValor) {
     if (window.localStorage) {
         localStorage.setItem('storageIndexCotizacionDestacadaSeleccionda', pValor);
@@ -22,10 +43,10 @@ function grabarStorageIndexCotizacionDestacadaSeleccionda(pValor) {
 
     }
 }
-function  obtenerStorageIndexCotizacionDestacadaSeleccionda() {
+function obtenerStorageIndexCotizacionDestacadaSeleccionda() {
     var resultado = -1;
     if (window.localStorage) {
-        resultado = parseInt( localStorage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
+        resultado = parseInt(localStorage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
     } else {
 
     }
