@@ -35,15 +35,15 @@ $(document).ready(function () {
     });
     onresizeBody();
 });
-function onclickFacebook() {
-    var u = 'www.rosario3.com';
-    var t = 'title';
-    window.open('http://facebook.com/sharer/sharer.php?u=' + u + '&t=' + encodeURIComponent(t), 'sharer');
-    //  m.facebook.com
-    //https://m.facebook.com/
-    //window.open('http://facebook.com/sharer/sharer.php?u='+u+'&t='+encodeURIComponent(t),'sharer');    
-    return false;
-}
+//function onclickFacebook() {
+//    var u = 'www.rosario3.com';
+//    var t = 'title';
+//    window.open('http://facebook.com/sharer/sharer.php?u=' + u + '&t=' + encodeURIComponent(t), 'sharer');
+//    //  m.facebook.com
+//    //https://m.facebook.com/
+//    //window.open('http://facebook.com/sharer/sharer.php?u='+u+'&t='+encodeURIComponent(t),'sharer');    
+//    return false;
+//}
 function onresizeBody() {
     //
     var altura = ($(document).height() - $('#header').height());

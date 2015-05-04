@@ -211,5 +211,8 @@ function share(expr){
 }
 
 function onclickFacebook(){
-
+ share('Facebook');
+}
+function onclickTwitter(){
+ share('Twitter');
 }
