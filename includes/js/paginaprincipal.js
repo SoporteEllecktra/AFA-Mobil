@@ -20,7 +20,6 @@ function onclickFacebook() {
 }
 function onresizeBody() {
     //
-
     var altura = ($(document).height() - $('#header').height());
     var alturaCotizacionesDestacada = altura * 0.55;
     var alturaParteAbajo = altura * 0.45;
@@ -32,9 +31,8 @@ function onresizeBody() {
     $('#divRowParteScrollNovedades').css('height', $('#divBarraAbajo').height());
     $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').height() - $('#divParteFijaCotizacionHistorica').height());
 
-    //$('.swiper-wrapper').css('height', $('#divBarraAbajo').height());
+    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
 }
-
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
     resultadoDiv += '<div class="row cssDestacadoEncabezado ">';
@@ -117,7 +115,6 @@ function CargarCotizacionesDestacadaHtml() {
             resultadoDiv += '</div>';
             resultadoDiv += '</div>'; // '<div class="row">';
         }
-
         resultadoDiv += '</div>'; // '<div class="container">';
         // fin detallle
         resultadoDiv += '</div>'; //'<div class="accordion-inner">';
@@ -150,14 +147,15 @@ function CargarCotizacionesDestacadaHtml() {
         onresizeBody(); //////////////////
         $('#swiper-slide2').scrollTop(0);
         if (swiper.slides.length == 2) {
-            swiper.appendSlide('<div class="swiper-slide">Slide 10"</div>');
+            swiper.appendSlide('<div class="swiper-slide">' + CargarInformeHtml() + '</div>');
             onresizeBody();
         }
     });
     $('.collapse').on('hide.bs.collapse', function (e) {
         //$(e.target).prev('.accordion-heading').removeClass('cssAccordion-headingActivo');
-        $('#swiper-slide2').html('');
+        //$('#swiper-slide2').html('');
         swiper.removeSlide(2);
+        swiper.removeSlide(1);
         swiper.slideTo(0);
         $('#swiper-slide1').scrollTop(0);
 
@@ -178,14 +176,14 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         //        resultadoDiv += '<div class="containerCotizacionHistoricaHijo">'; //container hijo
         resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
         resultadoDiv += '<div class="row">';
-        resultadoDiv += '<div class="col-xs-10 colHistoricoTitulo">';
+        resultadoDiv += '<div class="col-xs-12 colHistoricoTitulo">';
         resultadoDiv += 'Cotizaci&#243;n hist&#243;rica: ' + cotizacionesDestacada[pIndex].descripcionProducto.toUpperCase();
         resultadoDiv += '</div>';
         //
-        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
-        //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar"  />';
-        resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenCotizacionesHistorica(); return false;"/>';
-        resultadoDiv += '</div>';
+//        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
+//        //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar"  />';
+//        resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenCotizacionesHistorica(); return false;"/>';
+//        resultadoDiv += '</div>';
         //
         resultadoDiv += '</div>';
         resultadoDiv += '<div class="row cssHistoricoEncabezado">';
@@ -223,7 +221,12 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         //        //resultadoDiv +='<br/>';
         //        resultadoDiv += '</div>';// fin container
     }
-    $('#swiper-slide2').html(resultadoDiv);
+    //$('#swiper-slide2').html(resultadoDiv);
+    if (swiper.slides.length == 1) {
+    swiper.appendSlide('<div id="swiper-slide2" class="swiper-slide">' + resultadoDiv + '</div>');
+    }else{
+     $('#swiper-slide2').html(resultadoDiv);
+    }
 }
 
 function CargarNovedadesHtml() {
@@ -250,19 +253,22 @@ function CargarNovedadesHtml() {
             //
             // Primer fila novedades
             resultadoDiv += '<div class="row">';
-            if (indiceNovedades == 0) {
-                resultadoDiv += '<div class="col-xs-10 cssNovedadesTitulo">';
-                resultadoDiv += this.titulo;
-                resultadoDiv += '</div>';
-                resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenNovedades()"
-                //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar" />';
-                resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenNovedades(); return false;"/>';
-                resultadoDiv += '</div>';
-            } else {
-                resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
-                resultadoDiv += this.titulo;
-                resultadoDiv += '</div>';
-            }
+//            if (indiceNovedades == 0) {
+//                resultadoDiv += '<div class="col-xs-10 cssNovedadesTitulo">';
+//                resultadoDiv += this.titulo;
+//                resultadoDiv += '</div>';
+//                resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenNovedades()"
+//                //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar" />';
+//                resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenNovedades(); return false;"/>';
+//                resultadoDiv += '</div>';
+//            } else {
+//                resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
+//                resultadoDiv += this.titulo;
+//                resultadoDiv += '</div>';
+//            }
+            resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
+            resultadoDiv += this.titulo;
+            resultadoDiv += '</div>';
             resultadoDiv += '</div>';
             // fin  Primer fila novedades
             resultadoDiv += '<div class="row ">';
@@ -287,14 +293,29 @@ function CargarNovedadesHtml() {
     $('#swiper-slide1').html(resultadoDiv);
 }
 function CargarInformeHtml() {
-    //listaInformes
+    var informesHtml = '';
     for (var i = 0; i < listaInformes.length; i++) {
-        alert(listaInformes[i].titulo);
+        //alert(listaInformes[i].titulo);
+        informesHtml += '<div id="divInformeTitulo" class="cssInformeTitulo">'+ listaInformes[i].titulo +'</div>'; 
+        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' +  obtenerFechaMostrar(listaInformes[i].fecha)  + listaInformes[i].texto +'</div>'; 
+        break;
     }
+    return informesHtml;
 }
 function onclickFullScreenNovedades() {
     window.location.href = "novedades.html";
 }
 function onclickFullScreenCotizacionesHistorica() {
     window.location.href = "todascotizacioneshistorica.html";
+}
+function onclickFullScreenButtonAmpliar(){
+//alert (swiper.activeIndex);
+if (swiper.activeIndex == 0 )
+{
+    window.location.href = "novedades.html";
+}else if (swiper.activeIndex == 1){
+ window.location.href = "todascotizacioneshistorica.html";
+}else if (swiper.activeIndex == 2){
+
+}
 }
