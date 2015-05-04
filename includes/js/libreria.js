@@ -11,14 +11,14 @@ function onclickCompartir() {
         $('.cssTdHeaderDerecha .btn_rs .one .left').removeClass('cssTdHeaderDerecha_btn_rs_one_left_Activo');
         $('.cssTdHeaderDerecha .btn_rs .one .center').removeClass('cssTdHeaderDerecha_btn_rs_one_center_Activo');
         $('.cssTdHeaderDerecha .btn_rs .two .right').removeClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
-        $('.divMenuCompartir').css('display','none');
+        $('.divMenuCompartir').css('display', 'none');
     } else {
         $('.cssTdHeaderDerecha .btn_rs').addClass('cssTdHeaderDerecha_btn_rs_Activo');
         $('.cssTdHeaderDerecha .btn_rs .center').addClass('cssTdHeaderDerecha_btn_rs_center_Activo');
         $('.cssTdHeaderDerecha .btn_rs .one .left').addClass('cssTdHeaderDerecha_btn_rs_one_left_Activo');
         $('.cssTdHeaderDerecha .btn_rs .one .center').addClass('cssTdHeaderDerecha_btn_rs_one_center_Activo');
         $('.cssTdHeaderDerecha .btn_rs .two .right').addClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
-        $('.divMenuCompartir').css('display','block');
+        $('.divMenuCompartir').css('display', 'block');
     }
 }
 function obtenerFechaParametroEntrada(pDia) {
@@ -160,4 +160,31 @@ function OcultarDivBloqueo() {
 function ActualizarAltoFondoBloqueo() {
     var height = $(document).height();
     document.getElementById("divFondoBloqueo").style.height = parseInt(height) + "px";
+}
+function obtenerParametroGetHtml(param) {//$_GET(param)
+    /* Obtener la url completa */
+    url = document.URL;
+    /* Buscar a partir del signo de interrogación ? */
+    url = String(url.match(/\?+.+/));
+    /* limpiar la cadena quitándole el signo ? */
+    url = url.replace("?", "");
+    /* Crear un array con parametro=valor */
+    url = url.split("&");
+
+    /* 
+    Recorrer el array url
+    obtener el valor y dividirlo en dos partes a través del signo = 
+    0 = parametro
+    1 = valor
+    Si el parámetro existe devolver su valor
+    */
+    x = 0;
+    while (x < url.length) {
+        p = url[x].split("=");
+        if (p[0] == param) {
+            return decodeURIComponent(p[1]);
+        }
+        x++;
+    }
+    return '';
 }

@@ -98,6 +98,28 @@ right: 4.64em;
 box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     z-index: 1000;
 }
+/*.cssDivLogoFacebook{
+    width: 1em;
+    height: 1em;
+
+    background: url(../../img/material/F_icon_reversed.svg) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    float: left;
+ 
+}
+.cssDivLogoTwitter{
+  width: 1em;
+  height: 0.39234449760765550239234449760766em;
+   background: url(../../img/material/Twitter_bird_logo_2012.svg) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+float: left; 
+}*/
 .cssLogoFacebook{
     width: 1em;
     height: 1em;

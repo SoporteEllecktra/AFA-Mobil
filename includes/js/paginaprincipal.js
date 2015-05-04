@@ -1,8 +1,34 @@
 var swiper = null;
 $(document).ready(function () {
-    MostrarDivBloqueo();
+
     //CargaDatosInicio();
-    FuncionInicio();
+    var varParametroUrl = obtenerParametroGetHtml('r');
+    if (varParametroUrl == '') {
+        MostrarDivBloqueo();
+        FuncionInicio();
+    } else {
+        if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
+
+        } else {
+            var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+            cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+        }
+        if (localStorage.getItem("storageListaNovedades") == null) {
+
+        } else {
+            var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
+            listaNovedades = eval('(' + listaNovedadesGuardada + ')');
+        }
+        if (localStorage.getItem("storageListaInformes") == null) {
+
+        } else {
+            var listaInformesGuardada = localStorage.getItem("storageListaInformes");
+            listaInformes = eval('(' + listaInformesGuardada + ')');
+        }
+
+        CargarCotizacionesDestacadaHtml();
+        CargarNovedadesHtml();
+    }
     swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true
@@ -31,8 +57,8 @@ function onresizeBody() {
     $('#divRowParteScrollNovedades').css('height', $('#divBarraAbajo').height());
     $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').height() - $('#divParteFijaCotizacionHistorica').height());
 
-   // $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
-    $('#divInformeDescripcion').css('height',  $('#divBarraAbajo').height() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() ));// 
+    // $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
+    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight())); // 
 }
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
@@ -180,9 +206,9 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         resultadoDiv += '</div>';
         //
         resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
-//        //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar"  />';
-//        resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenCotizacionesHistorica(); return false;"/>';
-       resultadoDiv += '</div>';
+        //        //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar"  />';
+        //        resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenCotizacionesHistorica(); return false;"/>';
+        resultadoDiv += '</div>';
         //
         resultadoDiv += '</div>';
         resultadoDiv += '<div class="row cssHistoricoEncabezado">';
@@ -222,9 +248,9 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
     }
     //$('#swiper-slide2').html(resultadoDiv);
     if (swiper.slides.length == 1) {
-    swiper.appendSlide('<div id="swiper-slide2" class="swiper-slide">' + resultadoDiv + '</div>');
-    }else{
-     $('#swiper-slide2').html(resultadoDiv);
+        swiper.appendSlide('<div id="swiper-slide2" class="swiper-slide">' + resultadoDiv + '</div>');
+    } else {
+        $('#swiper-slide2').html(resultadoDiv);
     }
 }
 
@@ -252,19 +278,19 @@ function CargarNovedadesHtml() {
             //
             // Primer fila novedades
             resultadoDiv += '<div class="row">';
-//            if (indiceNovedades == 0) {
-//                resultadoDiv += '<div class="col-xs-10 cssNovedadesTitulo">';
-//                resultadoDiv += this.titulo;
-//                resultadoDiv += '</div>';
-//                resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenNovedades()"
-//                //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar" />';
-//                resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenNovedades(); return false;"/>';
-//                resultadoDiv += '</div>';
-//            } else {
-//                resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
-//                resultadoDiv += this.titulo;
-//                resultadoDiv += '</div>';
-//            }
+            //            if (indiceNovedades == 0) {
+            //                resultadoDiv += '<div class="col-xs-10 cssNovedadesTitulo">';
+            //                resultadoDiv += this.titulo;
+            //                resultadoDiv += '</div>';
+            //                resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenNovedades()"
+            //                //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar" />';
+            //                resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenNovedades(); return false;"/>';
+            //                resultadoDiv += '</div>';
+            //            } else {
+            //                resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
+            //                resultadoDiv += this.titulo;
+            //                resultadoDiv += '</div>';
+            //            }
             resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
             resultadoDiv += this.titulo;
             resultadoDiv += '</div>';
@@ -295,9 +321,9 @@ function CargarInformeHtml() {
     var informesHtml = '';
     for (var i = 0; i < listaInformes.length; i++) {
         //alert(listaInformes[i].titulo);
-        informesHtml += '<div id="divInformeTitulo" class="cssInformeTitulo">'+ listaInformes[i].titulo +'</div>'; 
-        informesHtml += '<div id="divInformeFecha" class="cssInformeFecha">'+ obtenerFechaMostrar(listaInformes[i].fecha) +'</div>';
-        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' +   listaInformes[i].texto +'</div>'; 
+        informesHtml += '<div id="divInformeTitulo" class="cssInformeTitulo">' + listaInformes[i].titulo + '</div>';
+        informesHtml += '<div id="divInformeFecha" class="cssInformeFecha">' + obtenerFechaMostrar(listaInformes[i].fecha) + '</div>';
+        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto + '</div>';
         break;
     }
     return informesHtml;
@@ -308,14 +334,13 @@ function onclickFullScreenNovedades() {
 function onclickFullScreenCotizacionesHistorica() {
     window.location.href = "todascotizacioneshistorica.html";
 }
-function onclickFullScreenButtonAmpliar(){
-//alert (swiper.activeIndex);
-if (swiper.activeIndex == 0 )
-{
-    window.location.href = "novedades.html";
-}else if (swiper.activeIndex == 1){
- window.location.href = "todascotizacioneshistorica.html";
-}else if (swiper.activeIndex == 2){
- window.location.href = "informe.html";
-}
+function onclickFullScreenButtonAmpliar() {
+    //alert (swiper.activeIndex);
+    if (swiper.activeIndex == 0) {
+        window.location.href = "novedades.html";
+    } else if (swiper.activeIndex == 1) {
+        window.location.href = "todascotizacioneshistorica.html";
+    } else if (swiper.activeIndex == 2) {
+        window.location.href = "informe.html";
+    }
 }
