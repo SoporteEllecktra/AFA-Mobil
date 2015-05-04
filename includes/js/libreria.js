@@ -188,3 +188,28 @@ function obtenerParametroGetHtml(param) {//$_GET(param)
     }
     return '';
 }
+function share(expr){ 
+ 
+    switch (expr) { 
+      case "Twitter": 
+        window.plugins.socialsharing.shareViaTwitter('AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'); 
+       // closeOptions(); 
+        break; 
+      case "Facebook": 
+	  //alert('Pasa Facebook');
+        //window.plugins.socialsharing.shareViaFacebook('Message via Facebook', 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
+		window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
+       // closeOptions(); 
+        break; 
+      case "WhatsApp": 
+            window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp', null /* img */, null /* url */, function() {console.log('share ok')}, function(errormsg){console.log(errormsg)}); 
+         //   closeOptions(); 
+        break; 
+      default: 
+       // console.log(""); 
+    } 
+}
+
+function onclickFacebook(){
+
+}
