@@ -655,24 +655,64 @@ header
     height: 2.25em;
     margin-top: 1.5em;
 }
+/* Inicio informe */
 .cssInformeTitulo{
 font-size: 1.5em;
-font-weight: 800;    
+font-weight: 800;   
+   
 } 
+.cssInformeFecha
+{
+  
+}
+.cssInformeDescripcion
+{
+    overflow-y: auto; 
+    padding-right: 1em; 
+}
+
+/* Fin informe */
+
+/* Inicio informe Pantalla completa */
+.cssImgAmpliarPantallaCompletaInforme
+{
+    width: 1.875em;
+    height: 2.25em;
+    margin-top: 0.8em;
+}
+#divButtonInformePantallaCompletaAbajo{
+display: block;
+position: absolute;
+right: 1.5em;
+cursor:pointer;
+z-index: 1000;
+}
+.cssDivResultadoInforme
+{
+    /*overflow-y: auto;*/
+    color: #FFF;
+    background: url(../../img/material/fondo2.jpg) no-repeat bottom;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-left: 1em; 
+}
+/* Fin informe Pantalla completa */
 #divButtonAmpliar{
 /*background-color: #F0F;*/
 display: block;
 position: absolute;
-right: 1.6em;
+right: 1.5em;
 /*-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);*/
 cursor:pointer;
-    z-index: 1000;
+ z-index: 1000;
 }
 .cssImgAmpliarParteAbajo
 {
     width: 1.875em;
     height: 2.25em;
-    margin-top: 1em;
+    margin-top: 1.5em;
 }

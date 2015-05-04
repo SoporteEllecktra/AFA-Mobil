@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AFA</title>
+    <link rel="stylesheet" href="includes/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="includes/css/swiper.min.css" />
+    <link rel="stylesheet" href="includes/css/web.css" />
+</head>
+<body onresize="onresizeBody()">
+    <div class="container">
+        <header id="header">
+            <table class="cssTablaHeader">
+                <tr>
+                    <td>
+                        <img src="img/material/icono-calendario.svg" alt="calendario" class="cssCalendario" />
+                    </td>
+                    <td>
+                        <div id="headerFecha">
+                        </div>
+                    </td>
+                    <td class="cssTdHeaderDerecha">
+                        <a class="btn_rs" href="#"  onclick="onclickCompartir()">
+                            <div class="one">
+                                <div class="left">
+                                </div>
+                                <div class="center">
+                                    <img src="img/material/icono-compartir.svg" alt="calendario" class="cssIconoCompartir" />
+                                </div>
+                            </div>
+                            <div class="two">
+                                <div class="right">
+                                </div>
+                                <img src="img/material/logo.png" alt="afa" class="cssLogoAfa" />
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </header>
+        <div class="divMenuCompartir">
+            <div class="linkFacebook">
+                <img src="img/material/F_icon_reversed.svg" alt="Facebook" class="cssLogoFacebook" />
+                <span class="spanFacebook">Compartir en Facebook</span></div>
+            <div class="linkTwitter">
+                <img src="img/material/Twitter_bird_logo_2012.svg" alt="Twitter" class="cssLogoTwitter" /><span
+                    class="spanTwitter">Compartir en Twitter</span></div>
+        </div>
+        <div id="divButtonInformePantallaCompletaAbajo" onclick="onclickFullScreenInformesAbajo()"><img src="img/material/ampliarAbajo.svg" alt="ampliar" class="cssImgAmpliarPantallaCompletaInforme"  /></div>
+        <div id="divResultadoInforme" class="cssDivResultadoInforme">
+        </div>
+    </div>
+    <div id="divFondoBloqueo">
+        <img class="imgFondoBloqueo" src="img/load_fondo_transparente.gif" alt="Cargando"
+            title="Cargando" />
+    </div>
+    <script type="text/javascript" src="includes/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="includes/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="includes/js/swiper.min.js"></script>
+    <script type="text/javascript" src="includes/js/libreria.js"></script>
+    <script type="text/javascript" src="includes/js/cargardatos.js"></script>
+    <script type="text/javascript" src="includes/js/informe.js"></script>
+</body>
+</html>

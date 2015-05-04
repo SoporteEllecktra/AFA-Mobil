@@ -31,7 +31,8 @@ function onresizeBody() {
     $('#divRowParteScrollNovedades').css('height', $('#divBarraAbajo').height());
     $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').height() - $('#divParteFijaCotizacionHistorica').height());
 
-    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
+   // $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
+    $('#divInformeDescripcion').css('height',  $('#divBarraAbajo').height() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() ));// 
 }
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
@@ -160,9 +161,7 @@ function CargarCotizacionesDestacadaHtml() {
         $('#swiper-slide1').scrollTop(0);
 
     });
-
     onresizeBody();
-
 }
 function onclickVerMas() {
     window.location.href = "todascotizaciones.html";
@@ -176,14 +175,14 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         //        resultadoDiv += '<div class="containerCotizacionHistoricaHijo">'; //container hijo
         resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
         resultadoDiv += '<div class="row">';
-        resultadoDiv += '<div class="col-xs-12 colHistoricoTitulo">';
+        resultadoDiv += '<div class="col-xs-10 colHistoricoTitulo">';
         resultadoDiv += 'Cotizaci&#243;n hist&#243;rica: ' + cotizacionesDestacada[pIndex].descripcionProducto.toUpperCase();
         resultadoDiv += '</div>';
         //
-//        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
+        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
 //        //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar"  />';
 //        resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenCotizacionesHistorica(); return false;"/>';
-//        resultadoDiv += '</div>';
+       resultadoDiv += '</div>';
         //
         resultadoDiv += '</div>';
         resultadoDiv += '<div class="row cssHistoricoEncabezado">';
@@ -297,7 +296,8 @@ function CargarInformeHtml() {
     for (var i = 0; i < listaInformes.length; i++) {
         //alert(listaInformes[i].titulo);
         informesHtml += '<div id="divInformeTitulo" class="cssInformeTitulo">'+ listaInformes[i].titulo +'</div>'; 
-        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' +  obtenerFechaMostrar(listaInformes[i].fecha)  + listaInformes[i].texto +'</div>'; 
+        informesHtml += '<div id="divInformeFecha" class="cssInformeFecha">'+ obtenerFechaMostrar(listaInformes[i].fecha) +'</div>';
+        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' +   listaInformes[i].texto +'</div>'; 
         break;
     }
     return informesHtml;
@@ -316,6 +316,6 @@ if (swiper.activeIndex == 0 )
 }else if (swiper.activeIndex == 1){
  window.location.href = "todascotizacioneshistorica.html";
 }else if (swiper.activeIndex == 2){
-
+ window.location.href = "informe.html";
 }
 }

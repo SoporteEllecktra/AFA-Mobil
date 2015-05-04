@@ -57,6 +57,7 @@ function informes(){
 }
 function FuncionInicio() {
     CargarAuditoria();
+
 }
 //function CargaDatosInicio() {
 //    //localStorage.removeItem("storageListaCotizacionesDestacada");
