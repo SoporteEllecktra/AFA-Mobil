@@ -59,29 +59,6 @@ function FuncionInicio() {
     CargarAuditoria();
 
 }
-//function CargaDatosInicio() {
-//    //localStorage.removeItem("storageListaCotizacionesDestacada");
-//    //localStorage.removeItem("storageListaNovedades");
-//    //CargarAuditoria();
-//    if (!(localStorage.getItem("storageListaCotizacionesDestacada") == null)) {
-//        // alert(2);
-//        var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-//        cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
-//        CargarCotizacionesDestacadaHtml();
-//        if (!(localStorage.getItem("storageListaNovedades") == null)) {
-//            var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-//            listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-//            CargarNovedadesHtml();
-//            OcultarDivBloqueo();
-//        } else {
-//            CargaNovedades();
-//        }
-//    } else {
-//        // alert(3);
-//        CargaCotizacionDestacada();
-//    }
-//
-//}
 function CargarAuditoria() {
     listaTablaModificaciones = null;
     $.ajax({
