@@ -172,9 +172,8 @@ function processSuccessAuditoria(data, status, req) {
             //
         } else {
             CargarCotizacionesDestacadaHtml();
-            CargarNovedadesHtml();
-            CargarHtmlFechaMenuPrincipal();
-            OcultarDivBloqueo();
+            CargarNovedadesHtml();            
+            finCargarInicial();
         }
     }
 }
