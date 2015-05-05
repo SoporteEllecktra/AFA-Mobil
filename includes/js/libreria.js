@@ -144,12 +144,19 @@ function obtenerNombreMes(pValor) {
     return resultado;
 }
 function obtenerFechaMostrarMenuInicio(pValor) {
-    //2015-03-27T00:00:00-03:00
+    //05/05/2015
     var resultado = '';
-    var listaFecha = pValor.substring(0, 10).split('-');
-    resultado = listaFecha[2] + ' de ' + obtenerNombreMes(listaFecha[1]) + ' del ' + listaFecha[0];
+    var listaFecha = pValor.split('/');
+    resultado = listaFecha[0] + ' de ' + obtenerNombreMes(listaFecha[1]) + ' del ' + listaFecha[2];
     return resultado;
 }
+//function obtenerFechaMostrarMenuInicio(pValor) {
+//    //2015-03-27T00:00:00-03:00
+//    var resultado = '';
+//    var listaFecha = pValor.substring(0, 10).split('-');
+//    resultado = listaFecha[2] + ' de ' + obtenerNombreMes(listaFecha[1]) + ' del ' + listaFecha[0];
+//    return resultado;
+//}
 function MostrarDivBloqueo() {
     ActualizarAltoFondoBloqueo();
     $('#divFondoBloqueo').css('display', 'block');

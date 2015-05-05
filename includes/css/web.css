@@ -118,9 +118,9 @@ header
 }
 .cssCalendario
 {
-    width: 1.5em;
-    height: 1.5em;
-    padding-left: 0.1em
+    width: 2.1em;
+    height: 2.1em;
+    padding-left: 0.5em
 }
 .cssDivColCalendario
 {
@@ -639,6 +639,9 @@ header
     margin-top: 1.5em;
 }
 /* Inicio informe */
+#swiper-slide3{
+    padding-left: 1em; 
+}
 .cssInformeTitulo{
 font-size: 1.5em;
 font-weight: 800;   

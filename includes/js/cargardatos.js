@@ -90,7 +90,8 @@ function processSuccessAuditoria(data, status, req) {
         if (listaTablaModificaciones != null) {
             for (var i = 0; i < listaTablaModificaciones.length; i++) {
                 if (listaTablaModificaciones[i].codigoTabla == 1) {//Cotizaciones
-                    if (localStorage.getItem("storageTablaModificaciones1") == null) {
+                   grabarStorageFechaCotizacion(listaTablaModificaciones[i].fecha);            
+                   if (localStorage.getItem("storageTablaModificaciones1") == null) {
                         isCargarCotizaciones = true;
                     } else {
                         var fechaCotizacionesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
@@ -172,7 +173,7 @@ function processSuccessAuditoria(data, status, req) {
         } else {
             CargarCotizacionesDestacadaHtml();
             CargarNovedadesHtml();
-            //CargarInformeHtml();
+            CargarHtmlFechaMenuPrincipal();
             OcultarDivBloqueo();
         }
     }
@@ -415,7 +416,7 @@ function processSuccessTodasCotizaciones(data, status, req) {
         } else if (isCargarInformes) {
             CargaUltimoInforme();
         }else{
-          OcultarDivBloqueo();
+         finCargarInicial();
         }
         CargarCotizacionesDestacadaHtml();
     }
@@ -496,7 +497,7 @@ function processSuccessNovedades(data, status, req) {
         if (isCargarInformes) {
             CargaUltimoInforme();
         }else{
-         OcultarDivBloqueo();
+         finCargarInicial();
         }
         CargarNovedadesHtml();
     }
@@ -565,8 +566,7 @@ function processSuccessInforme(data, status, req) {
         } else {
 
         }                
-        //CargarInformeHtml();
-        OcultarDivBloqueo();
+        finCargarInicial();
     }
 }
 function ObtenerImforme(pXML) {
@@ -580,4 +580,8 @@ function ObtenerImforme(pXML) {
         listaInformesAUX.push(obj);
     });
     return listaInformesAUX;
+}
+function finCargarInicial(){
+  CargarHtmlFechaMenuPrincipal();
+  OcultarDivBloqueo();
 }

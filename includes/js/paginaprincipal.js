@@ -25,7 +25,7 @@ $(document).ready(function () {
             var listaInformesGuardada = localStorage.getItem("storageListaInformes");
             listaInformes = eval('(' + listaInformesGuardada + ')');
         }
-
+        CargarHtmlFechaMenuPrincipal();
         CargarCotizacionesDestacadaHtml();
         CargarNovedadesHtml();
     }
@@ -77,13 +77,7 @@ function CargarCotizacionesDestacadaHtml() {
     var index = -1;
     $(cotizacionesDestacada).each(function () {
         index++;
-        // Fecha
-        if (index == 0) {
-            //$('#headerFecha').html(obtenerFechaMostrarMenuInicio(this.fechaCotizacion));
-            grabarStorageFechaCotizacion(this.fechaCotizacion);
-            CargarHtmlFechaMenuPrincipal();
-        }
-        // Fin Fecha
+     
 
         resultadoDiv += '<div class="accordion-group">';
         resultadoDiv += '<div class="accordion-heading cssAccordion-heading ">';
@@ -174,7 +168,7 @@ function CargarCotizacionesDestacadaHtml() {
         onresizeBody(); //////////////////
         $('#swiper-slide2').scrollTop(0);
         if (swiper.slides.length == 2) {
-            swiper.appendSlide('<div class="swiper-slide">' + CargarInformeHtml() + '</div>');
+            swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
             onresizeBody();
         }
     });
