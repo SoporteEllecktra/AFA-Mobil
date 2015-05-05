@@ -198,7 +198,7 @@ function share(expr){
       case "Facebook": 
 	  //alert('Pasa Facebook');
         //window.plugins.socialsharing.shareViaFacebook('Message via Facebook', 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
-		window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
+		window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
        // closeOptions(); 
         break; 
       case "WhatsApp": 
