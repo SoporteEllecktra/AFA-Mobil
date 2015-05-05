@@ -14,9 +14,8 @@ $(document).ready(function () {
 
 function onresizeBody() {
     var altura = ($(document).height() - $('#header').height());
-    $('#divResultadoTodasCotizacionesHistorica').css('height', altura);
-    
-     $('#divRowParteScrollTodosHistoricoCotizaciones').css('height', altura - ($('#divRowTodosHistoricoCotizacionesTitulo').height() +  $('#divRowTodosHistoricoCotizacionesEncabezado').height()));
+    $('#divResultadoTodasCotizacionesHistorica').css('height', altura);    
+    $('#divRowParteScrollTodosHistoricoCotizaciones').css('height', altura - ($('#divRowTodosHistoricoCotizacionesTitulo').height() +  $('#divRowTodosHistoricoCotizacionesEncabezado').height()));
 }
 
 function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {

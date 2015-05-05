@@ -30,7 +30,7 @@ function CargarTodasNovedadesHtml() {
                 resultadoDiv += '<div class="col-xs-11 cssNovedadesTitulo">';
                 resultadoDiv += this.titulo;
                 resultadoDiv += '</div>';
-                resultadoDiv += '<div class="col-xs-1 " >';//onclick="onclickFullScreenNovedadesAbajo()"
+                resultadoDiv += '<div class="col-xs-1 " onclick="onclickFullScreenNovedadesAbajo()">';//onclick="onclickFullScreenNovedadesAbajo()"
                 //resultadoDiv += '<img src="img/material/ampliarAbajo.svg" alt="ampliar bajo" class="cssImgAmpliar" />';
                 resultadoDiv += '<input type="button" class="cssImgImputButtonAchicar"  onclick="onclickFullScreenNovedadesAbajo(); return false;"/>';
                 resultadoDiv += '</div>';
