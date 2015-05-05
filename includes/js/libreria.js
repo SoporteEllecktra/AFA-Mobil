@@ -208,6 +208,7 @@ function share(expr){
       default: 
        // console.log(""); 
     } 
+    onclickCompartir();
 }
 
 function onclickFacebook(){
