@@ -3,8 +3,7 @@ $(document).ready(function () {
     CargarHtmlFechaMenuPrincipal();
     var listaInformesGuardada = localStorage.getItem("storageListaInformes");
     listaInformes = eval('(' + listaInformesGuardada + ')');
-  CargarPantallaCompletaInformeHtml();
-
+    CargarPantallaCompletaInformeHtml();
     OcultarDivBloqueo();
     onresizeBody();
 });

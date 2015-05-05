@@ -56,6 +56,12 @@ function informes(){
     this.texto = '';
 }
 function FuncionInicio() {
+//    localStorage.setItem("storageTablaModificaciones1",null);
+//        localStorage.setItem("storageTablaModificaciones2",null);
+//        localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
+    localStorage.clear();
+
+
     CargarAuditoria();
 
 }
