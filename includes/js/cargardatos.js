@@ -295,6 +295,7 @@ function CargarParametroEntradaCotizaciones(pCodigoTipoCotizacion, pCodigoTipoCl
 
 }
 function CargaConIndiceDetalleCotizacion(pIndex) {
+    alert('CargaConIndiceDetalleCotizacion');
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
@@ -343,6 +344,7 @@ function ObtenerResultadoCotizacionDetalleJavascript(pXML) {
     return cotizacionesDetalle;
 }
 function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
+    alert('CargaCotizacionHistoricaConIndiceDetacado');
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
