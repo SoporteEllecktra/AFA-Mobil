@@ -233,8 +233,8 @@ function processSuccessCotizacionDestacada(data, status, req) {
     }
 }
 function processError(data, status, req) {
-    //OcultarDivBloqueo();
-    alert('Error');
+    OcultarDivBloqueo();
+    //alert('Error');
 }
 
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
@@ -397,6 +397,7 @@ function processSuccessCotizacionHistorica(data, status, req) {
 }
 
 function CargaTodasCotizaciones() {
+    alert('CargaTodasCotizaciones');
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
@@ -420,6 +421,7 @@ function processSuccessTodasCotizaciones(data, status, req) {
         } else {
 
         }
+        alert('processSuccessTodasCotizaciones');
         if (isCargarNotificaciones) {
             CargaNovedades();
         } else if (isCargarInformes) {
