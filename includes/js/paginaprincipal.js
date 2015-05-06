@@ -1,7 +1,13 @@
 var swiper = null;
+var porcentajeArriba = 0.55;
+var porcentajeAbajo = 0.45;
 $(document).ready(function () {
 
     //CargaDatosInicio();
+    swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true
+    });
     var varParametroUrl = obtenerParametroGetHtml('r');
     if (varParametroUrl == '') {
         MostrarDivBloqueo();
@@ -29,10 +35,15 @@ $(document).ready(function () {
         CargarCotizacionesDestacadaHtml();
         CargarNovedadesHtml();
     }
-    swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true
-    });
+
+    if (listaNovedades == null) {
+        porcentajeArriba = 1;
+        porcentajeAbajo = 0;
+    } else if (listaNovedades.length == 0) {
+        porcentajeArriba = 1;
+        porcentajeAbajo = 0;
+    }
+
     onresizeBody();
 });
 //function onclickFacebook() {
@@ -47,8 +58,8 @@ $(document).ready(function () {
 function onresizeBody() {
     //
     var altura = ($(document).height() - $('#header').height());
-    var alturaCotizacionesDestacada = altura * 0.55;
-    var alturaParteAbajo = altura * 0.45;
+    var alturaCotizacionesDestacada = altura * porcentajeArriba; //0.55;
+    var alturaParteAbajo = altura * porcentajeAbajo; // 0.45;
     $('#divCotizacionesDestacada').css('height', alturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', alturaParteAbajo);
     //
@@ -77,7 +88,7 @@ function CargarCotizacionesDestacadaHtml() {
     var index = -1;
     $(cotizacionesDestacada).each(function () {
         index++;
-     
+
 
         resultadoDiv += '<div class="accordion-group">';
         resultadoDiv += '<div class="accordion-heading cssAccordion-heading ">';
@@ -157,29 +168,56 @@ function CargarCotizacionesDestacadaHtml() {
         $('.collapse', $otherPanels).removeClass('in');
     });
     $('.collapse').on('show.bs.collapse', function (e) {
-        //$('.accordion-heading').removeClass('cssAccordion-headingActivo');
-        //$(e.target).prev('.accordion-heading').addClass('cssAccordion-headingActivo');
-        //alert(e.target);
         var index = parseInt(e.target.id.replace('collapse', ''));
         grabarStorageIndexCotizacionDestacadaSeleccionda(index);
         CargarCotizacionesHistoricaHtml(index);
-
-        swiper.slideTo(1);
+        var indexSlide2 = -1;
+        for (var i = 0; i < swiper.slides.length; i++) {
+            if (swiper.slides[i].id == 'swiper-slide2') {
+                indexSlide2 = i;
+            }
+        }
+        if (indexSlide2 != -1) {
+            swiper.slideTo(indexSlide2);
+        }
         onresizeBody(); //////////////////
         $('#swiper-slide2').scrollTop(0);
-        if (swiper.slides.length == 2) {
-            swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
-            onresizeBody();
+        //if (swiper.slides.length == 2) {
+        if (listaInformes != null) {
+            if (listaInformes.length > 0) {
+                swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
+            }
         }
+        onresizeBody();
+        //}
     });
     $('.collapse').on('hide.bs.collapse', function (e) {
-        //$(e.target).prev('.accordion-heading').removeClass('cssAccordion-headingActivo');
-        //$('#swiper-slide2').html('');
-        swiper.removeSlide(2);
-        swiper.removeSlide(1);
-        swiper.slideTo(0);
-        $('#swiper-slide1').scrollTop(0);
-
+        var indexSlide3 = -1;
+        var indexSlide2 = -1;
+        var indexSlide1 = -1;
+        for (var i = 0; i < swiper.slides.length; i++) {
+            if (swiper.slides[i].id == 'swiper-slide2') {
+                indexSlide2 = i;
+            } else if (swiper.slides[i].id == 'swiper-slide3') {
+                indexSlide3 = i;
+            } else if (swiper.slides[i].id == 'swiper-slide1') {
+                indexSlide1 = i;
+            }
+        }
+        if (indexSlide3 != -1) {
+            swiper.removeSlide(indexSlide3);
+        }
+        if (indexSlide2 != -1) {
+            swiper.removeSlide(indexSlide2);
+        }
+        if (indexSlide1 != -1) {
+            swiper.slideTo(indexSlide1);
+            $('#swiper-slide1').scrollTop(0);
+        } else {
+            porcentajeArriba = 1;
+            porcentajeAbajo = 0;
+            onresizeBody();
+        }
     });
     onresizeBody();
 }
@@ -234,17 +272,29 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
             resultadoDiv += '</div>';
         });
         resultadoDiv += '</div>'; // fin div scroll
-
-
         //        resultadoDiv +='</div>'; //container hijo
         //        //resultadoDiv +='<br/>';
         //        resultadoDiv += '</div>';// fin container
     }
     //$('#swiper-slide2').html(resultadoDiv);
-    if (swiper.slides.length == 1) {
+
+    //swiper.slides[swiper.activeIndex].id
+    var isAgregarSlides2 = true;
+    for (var i = 0; i < swiper.slides.length; i++) {
+        if (swiper.slides[i].id == 'swiper-slide2') {
+            isAgregarSlides2 = false;
+            break;
+        }
+    }
+    if (isAgregarSlides2) {
         swiper.appendSlide('<div id="swiper-slide2" class="swiper-slide">' + resultadoDiv + '</div>');
     } else {
         $('#swiper-slide2').html(resultadoDiv);
+    }
+    if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
+        porcentajeArriba = 0.55;
+        porcentajeAbajo = 0.45;
+        onresizeBody();
     }
 }
 
@@ -309,7 +359,12 @@ function CargarNovedadesHtml() {
         });
         resultadoDiv += '</div>';   // fin parte scroll   
     }
-    $('#swiper-slide1').html(resultadoDiv);
+    // $('#swiper-slide1').html(resultadoDiv);
+    if (listaNovedades != null) {
+        if (listaNovedades.length > 0) {
+            swiper.appendSlide('<div id="swiper-slide1" class="swiper-slide">' + resultadoDiv + '</div>');
+        }
+    }
 }
 function CargarInformeHtml() {
     var informesHtml = '';
@@ -330,11 +385,11 @@ function onclickFullScreenCotizacionesHistorica() {
 }
 function onclickFullScreenButtonAmpliar() {
     //alert (swiper.activeIndex);
-    if (swiper.activeIndex == 0) {
+    if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
         window.location.href = "novedades.html";
-    } else if (swiper.activeIndex == 1) {
+    } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide2') {
         window.location.href = "todascotizacioneshistorica.html";
-    } else if (swiper.activeIndex == 2) {
+    } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide3') {
         window.location.href = "informe.html";
     }
 }

@@ -59,7 +59,7 @@ function FuncionInicio() {
 //    localStorage.setItem("storageTablaModificaciones1",null);
 //        localStorage.setItem("storageTablaModificaciones2",null);
 //        localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
-    //localStorage.clear();
+   // localStorage.clear();
 
 
     CargarAuditoria();
@@ -344,7 +344,7 @@ function ObtenerResultadoCotizacionDetalleJavascript(pXML) {
     return cotizacionesDetalle;
 }
 function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
-    alert('CargaCotizacionHistoricaConIndiceDetacado');
+    //alert('CargaCotizacionHistoricaConIndiceDetacado');
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
@@ -397,7 +397,7 @@ function processSuccessCotizacionHistorica(data, status, req) {
 }
 
 function CargaTodasCotizaciones() {
-    alert('CargaTodasCotizaciones');
+    //alert('CargaTodasCotizaciones');
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
@@ -421,7 +421,7 @@ function processSuccessTodasCotizaciones(data, status, req) {
         } else {
 
         }
-        alert('processSuccessTodasCotizaciones');
+        //alert('processSuccessTodasCotizaciones');
         if (isCargarNotificaciones) {
             CargaNovedades();
         } else if (isCargarInformes) {
@@ -491,7 +491,7 @@ function CargaNovedades() {
         xhrFields: {
             withCredentials: true
         },
-        data: CargarParametroEntradaNovedades(obtenerFechaParametroEntrada(-49), obtenerFechaParametroEntrada(0), ''),
+        data: CargarParametroEntradaNovedades(obtenerFechaParametroEntrada(-69), obtenerFechaParametroEntrada(0), ''),
         success: processSuccessNovedades,
         error: processError
     });
