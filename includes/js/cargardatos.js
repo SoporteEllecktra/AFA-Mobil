@@ -10,9 +10,9 @@ var listaNovedades = null;
 var listaTablaModificaciones = null;
 var listaInformes = null;
 //
-var isCargarCotizaciones = false;
-var isCargarNotificaciones = false;
-var isCargarInformes = false;
+var isCargarCotizaciones = true;
+var isCargarNotificaciones = true;
+var isCargarInformes = true;
 //
 
 //CargarParametroEntradaAuditoria()
@@ -59,13 +59,14 @@ function FuncionInicio() {
 //    localStorage.setItem("storageTablaModificaciones1",null);
 //        localStorage.setItem("storageTablaModificaciones2",null);
 //        localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
-    localStorage.clear();
+    //localStorage.clear();
 
 
     CargarAuditoria();
 
 }
 function CargarAuditoria() {
+    alert('CargarAuditoria');
     listaTablaModificaciones = null;
     $.ajax({
         type: "POST",
@@ -206,6 +207,7 @@ function CargarResultadoAuditoriaJavascript(pXML) {
 
 
 function CargaCotizacionDestacada() {
+    alert('CargaCotizacionDestacada');
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
