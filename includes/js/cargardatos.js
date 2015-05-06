@@ -66,7 +66,7 @@ function FuncionInicio() {
 
 }
 function CargarAuditoria() {
-    alert('CargarAuditoria');
+    //alert('CargarAuditoria');
     listaTablaModificaciones = null;
     $.ajax({
         type: "POST",
@@ -207,7 +207,7 @@ function CargarResultadoAuditoriaJavascript(pXML) {
 
 
 function CargaCotizacionDestacada() {
-    alert('CargaCotizacionDestacada');
+    //alert('CargaCotizacionDestacada');
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
@@ -233,8 +233,8 @@ function processSuccessCotizacionDestacada(data, status, req) {
     }
 }
 function processError(data, status, req) {
-    OcultarDivBloqueo();
-    //alert('Error');
+    //OcultarDivBloqueo();
+    alert('Error');
 }
 
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
@@ -295,7 +295,7 @@ function CargarParametroEntradaCotizaciones(pCodigoTipoCotizacion, pCodigoTipoCl
 
 }
 function CargaConIndiceDetalleCotizacion(pIndex) {
-    alert('CargaConIndiceDetalleCotizacion');
+    //alert('CargaConIndiceDetalleCotizacion');
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
