@@ -34,18 +34,59 @@ $(document).ready(function () {
         CargarHtmlFechaMenuPrincipal();
         CargarCotizacionesDestacadaHtml();
         CargarNovedadesHtml();
+        if (listaNovedades == null) {
+            porcentajeArriba = 1;
+            porcentajeAbajo = 0;
+        } else if (listaNovedades.length == 0) {
+            porcentajeArriba = 1;
+            porcentajeAbajo = 0;
+        }
+
+        onresizeBody();
     }
 
-    if (listaNovedades == null) {
-        porcentajeArriba = 1;
-        porcentajeAbajo = 0;
-    } else if (listaNovedades.length == 0) {
-        porcentajeArriba = 1;
-        porcentajeAbajo = 0;
-    }
 
-    onresizeBody();
+    
 });
+
+
+
+//var varClientY = -1;
+//document.getElementById('divButtonAmpliar').onmousedown = function () {
+//    //this.style.position = 'absolute'
+//
+//    // var self = this
+//
+//    document.onmousemove = function (e) {
+//        e = e || event
+//        //    fixPageXY(e) 
+//        //   
+//        //    self.style.left = e.pageX-25+'px' 
+//        //    self.style.top = e.pageY-25+'px'
+//        if (varClientY == -1) {
+//            varClientY = e.clientY;
+//        } else {
+//            if (varClientY > e.clientY) {
+//                porcentajeArriba = 0.4;
+//                porcentajeAbajo = 0.6;
+//                onresizeBody();
+//            } else {
+//
+//                porcentajeArriba = 0.7;
+//                porcentajeAbajo = 0.3;
+//                onresizeBody();
+//            }
+//        }
+//
+//
+//    }
+//    this.onmouseup = function () {
+//        document.onmousemove = null
+//    }
+//}
+//
+//document.getElementById('divButtonAmpliar').ondragstart = function () { return false }
+
 //function onclickFacebook() {
 //    var u = 'www.rosario3.com';
 //    var t = 'title';
@@ -185,7 +226,18 @@ function CargarCotizacionesDestacadaHtml() {
         //if (swiper.slides.length == 2) {
         if (listaInformes != null) {
             if (listaInformes.length > 0) {
-                swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
+                var indexSlide3 = -1;
+                for (var i = 0; i < swiper.slides.length; i++) {
+                    if (swiper.slides[i].id == 'swiper-slide3') {
+                        indexSlide3 = i;
+                    }
+                }
+                if (indexSlide3 == -1) {
+                    swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
+                } else {
+                    $('#swiper-slide3').html(CargarInformeHtml());
+                }
+                //swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
             }
         }
         onresizeBody();
@@ -362,7 +414,18 @@ function CargarNovedadesHtml() {
     // $('#swiper-slide1').html(resultadoDiv);
     if (listaNovedades != null) {
         if (listaNovedades.length > 0) {
-            swiper.appendSlide('<div id="swiper-slide1" class="swiper-slide">' + resultadoDiv + '</div>');
+
+            var indexSlide1 = -1;
+            for (var i = 0; i < swiper.slides.length; i++) {
+                if (swiper.slides[i].id == 'swiper-slide1') {
+                    indexSlide1 = i;
+                }
+            }
+            if (indexSlide1 == -1) {
+                swiper.appendSlide('<div id="swiper-slide1" class="swiper-slide">' + resultadoDiv + '</div>');
+            } else {
+                $('#swiper-slide1').html(resultadoDiv);
+            }
         }
     }
 }
@@ -384,12 +447,12 @@ function onclickFullScreenCotizacionesHistorica() {
     window.location.href = "todascotizacioneshistorica.html";
 }
 function onclickFullScreenButtonAmpliar() {
-    //alert (swiper.activeIndex);
-    if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
-        window.location.href = "novedades.html";
-    } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide2') {
-        window.location.href = "todascotizacioneshistorica.html";
-    } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide3') {
-        window.location.href = "informe.html";
-    }
+
+        if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
+            window.location.href = "novedades.html";
+        } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide2') {
+            window.location.href = "todascotizacioneshistorica.html";
+        } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide3') {
+            window.location.href = "informe.html";
+        }
 }

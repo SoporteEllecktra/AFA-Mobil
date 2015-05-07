@@ -1,5 +1,6 @@
 var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
-var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
+//var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
+var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
 
@@ -166,6 +167,8 @@ function processSuccessAuditoria(data, status, req) {
                listaInformes = eval('(' + listaInformesGuardada + ')');
             }
         }
+        //$.when( CargaCotizacionDestacada(), CargaNovedades() ).done(armarPagina,o);
+        
         if (isCargarCotizaciones) {
             CargaCotizacionDestacada();
         } else if (isCargarNotificaciones) {
@@ -595,4 +598,13 @@ function ObtenerImforme(pXML) {
 function finCargarInicial(){
   CargarHtmlFechaMenuPrincipal();
   OcultarDivBloqueo();
+              if (listaNovedades == null) {
+        porcentajeArriba = 1;
+        porcentajeAbajo = 0;
+    } else if (listaNovedades.length == 0) {
+        porcentajeArriba = 1;
+        porcentajeAbajo = 0;
+    }
+
+    onresizeBody();  
 }
