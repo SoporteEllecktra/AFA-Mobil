@@ -60,7 +60,7 @@ function FuncionInicio() {
 //    localStorage.setItem("storageTablaModificaciones1",null);
 //        localStorage.setItem("storageTablaModificaciones2",null);
 //        localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
-   // localStorage.clear();
+    localStorage.clear();
 
 
     CargarAuditoria();
@@ -167,26 +167,46 @@ function processSuccessAuditoria(data, status, req) {
                listaInformes = eval('(' + listaInformesGuardada + ')');
             }
         }
-        //$.when( CargaCotizacionDestacada(), CargaNovedades() ).done(armarPagina,o);
+        $.when( CargaCotizacionDestacada(), CargaNovedades(),CargaTodasCotizaciones(),CargaUltimoInforme() ).done(armarPagina);
         
-        if (isCargarCotizaciones) {
-            CargaCotizacionDestacada();
-        } else if (isCargarNotificaciones) {
-            CargarCotizacionesDestacadaHtml();
-            CargaNovedades();
-        } else if (isCargarInformes) {
-            //
-            CargarCotizacionesDestacadaHtml();
-            CargarNovedadesHtml();
-            CargaUltimoInforme();           
-            //
-        } else {
-            CargarCotizacionesDestacadaHtml();
-            CargarNovedadesHtml();            
-            finCargarInicial();
-        }
+//        if (isCargarCotizaciones) {
+//            CargaCotizacionDestacada();
+//        } else if (isCargarNotificaciones) {
+//            CargarCotizacionesDestacadaHtml();
+//            CargaNovedades();
+//        } else if (isCargarInformes) {
+//            //
+//            CargarCotizacionesDestacadaHtml();
+//            CargarNovedadesHtml();
+//            CargaUltimoInforme();           
+//            //
+//        } else {
+//            CargarCotizacionesDestacadaHtml();
+//            CargarNovedadesHtml();            
+//            finCargarInicial();
+//        }
     }
 }
+
+$(document).ajaxStop(function () {finCargarInicial(); });
+
+//armarPagina se ejecuta solo si se obtienen las respuestas exitosas
+// a las dos requests.
+
+ 
+function armarPagina(a, b,c,d){
+// a es un array con los argumentos que recibiria de la primer request,
+// b lo mismo pero para la segunda request.
+    //console.log(a[2].responseText);
+    //console.log(b[2].responseText);
+    
+    //alert(a);
+   // alert(b);
+  //finCargarInicial();
+}
+
+
+
 function CargarParametroEntradaAuditoria() {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
@@ -394,7 +414,8 @@ function processSuccessCotizacionHistorica(data, status, req) {
             } else {
 
             }
-            CargaTodasCotizaciones();
+            CargarCotizacionesDestacadaHtml();
+            //CargaTodasCotizaciones();
         }
     }
 }
@@ -424,15 +445,15 @@ function processSuccessTodasCotizaciones(data, status, req) {
         } else {
 
         }
-        //alert('processSuccessTodasCotizaciones');
-        if (isCargarNotificaciones) {
-            CargaNovedades();
-        } else if (isCargarInformes) {
-            CargaUltimoInforme();
-        }else{
-         finCargarInicial();
-        }
-        CargarCotizacionesDestacadaHtml();
+ 
+//        if (isCargarNotificaciones) {
+//            CargaNovedades();
+//        } else if (isCargarInformes) {
+//            CargaUltimoInforme();
+//        }else{
+//         finCargarInicial();
+//        }
+        //
     }
 }
 function ObtenerTodasCotizaciones(pXML) {
@@ -508,11 +529,11 @@ function processSuccessNovedades(data, status, req) {
         } else {
 
         }              
-        if (isCargarInformes) {
-            CargaUltimoInforme();
-        }else{
-         finCargarInicial();
-        }
+//        if (isCargarInformes) {
+//            CargaUltimoInforme();
+//        }else{
+//         finCargarInicial();
+//        }
         CargarNovedadesHtml();
     }
 }
@@ -580,7 +601,7 @@ function processSuccessInforme(data, status, req) {
         } else {
 
         }                
-        finCargarInicial();
+        //finCargarInicial();
     }
 }
 function ObtenerImforme(pXML) {
