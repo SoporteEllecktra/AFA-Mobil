@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="includes/css/swiper.min.css" />
     <link rel="stylesheet" href="includes/css/web.css" />
 </head>
-<body onresize="onresizeBody()">
+<body onresize="onresizeBody()" >
     <div class="container">
         <header id="header">
             <table class="cssTablaHeader">
@@ -52,7 +52,7 @@
         </div>
         <div id="divCotizacionesDestacada" class="row-xs-6">
         </div>
-          <div id="divButtonAmpliar" onclick="onclickFullScreenButtonAmpliar()" ><img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliarParteAbajo"  /></div>
+          <div id="divButtonAmpliar" onclick="onclickFullScreenButtonAmpliar()" onmouseover="onmouseoverAmpliar(event)" onmousemove="onmousemoveAmpliar(event)" onmousedown="onmousedownAmpliar(event)" onmouseup="onmouseupAmpliar(event)" ><img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliarParteAbajo"  /></div>
         <div id="divBarraAbajo" class="row-xs-6">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
