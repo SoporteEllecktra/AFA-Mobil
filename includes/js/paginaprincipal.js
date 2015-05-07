@@ -435,12 +435,12 @@ function onclickFullScreenCotizacionesHistorica() {
     window.location.href = "todascotizacioneshistorica.html";
 }
 function onclickFullScreenButtonAmpliar() {
-//
-//        if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
-//            window.location.href = "novedades.html";
-//        } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide2') {
-//            window.location.href = "todascotizacioneshistorica.html";
-//        } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide3') {
-//            window.location.href = "informe.html";
-//        }
+
+        if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
+            window.location.href = "novedades.html";
+        } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide2') {
+            window.location.href = "todascotizacioneshistorica.html";
+        } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide3') {
+            window.location.href = "informe.html";
+        }
 }
