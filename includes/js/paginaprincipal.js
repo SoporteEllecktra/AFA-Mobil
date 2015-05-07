@@ -49,41 +49,38 @@ $(document).ready(function () {
 var isMoverAmpliar = false;
 var cantNN = 0;
 function onmousedownAmpliar(e) {
-  isMoverAmpliar = true;
-            //return false;
-        }
-function  onmouseoverAmpliar(e){
-isMoverAmpliar = false;
+    isMoverAmpliar = true;
+    //return false;
+}
+function onmouseoverAmpliar(e) {
+    isMoverAmpliar = false;
     cantNN = 0;
 }
-function onmousemoveAmpliar(e){
-if (isMoverAmpliar)
-{
-if ( cantNN == 0)
-{
-cantNN = e.clientY;
-}else{
-    if (cantNN < e.clientY)
-    {
-    porcentajeArriba = porcentajeArriba + 0.001;
-porcentajeAbajo = porcentajeAbajo - 0.001;
-    }else{
-        porcentajeArriba = porcentajeArriba - 0.001;
-porcentajeAbajo = porcentajeAbajo + 0.001;
+function onmousemoveAmpliar(e) {
+    if (isMoverAmpliar) {
+        if (cantNN == 0) {
+            cantNN = e.clientY;
+        } else {
+            if (cantNN < e.clientY) {
+                porcentajeArriba = porcentajeArriba + 0.001;
+                porcentajeAbajo = porcentajeAbajo - 0.001;
+            } else {
+                porcentajeArriba = porcentajeArriba - 0.001;
+                porcentajeAbajo = porcentajeAbajo + 0.001;
+            }
+            cantNN = e.clientY;
+            onresizeBody();
+        }
+        //cantNN++;
+        //$('#divButtonAmpliar').html(cantNN);
     }
-    cantNN = e.clientY;
-    onresizeBody();
-}
-    //cantNN++;
-    //$('#divButtonAmpliar').html(cantNN);
-}
-    
+
 }
 function onmouseupAmpliar(e) {
-  isMoverAmpliar = false;
+    isMoverAmpliar = false;
     cantNN = 0;
-            //return false;
-        }
+    //return false;
+}
 function onresizeBody() {
     //
     var altura = ($(document).height() - $('#header').height());
@@ -436,11 +433,11 @@ function onclickFullScreenCotizacionesHistorica() {
 }
 function onclickFullScreenButtonAmpliar() {
 
-        if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
-            window.location.href = "novedades.html";
-        } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide2') {
-            window.location.href = "todascotizacioneshistorica.html";
-        } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide3') {
-            window.location.href = "informe.html";
-        }
+    if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
+        window.location.href = "novedades.html";
+    } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide2') {
+        window.location.href = "todascotizacioneshistorica.html";
+    } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide3') {
+        window.location.href = "informe.html";
+    }
 }

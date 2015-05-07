@@ -3,6 +3,7 @@ var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webserv
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
 
 var cotizacionesDestacada = null;
 var indexCotizacionesDestacada = null;
@@ -50,22 +51,61 @@ function modificacionesTabla() {
     this.fecha = '';
     this.hora = '';
 }
-function informes(){
+function informes() {
     this.codigoInforme = 0;
     this.fecha = '';
     this.titulo = '';
     this.texto = '';
 }
 function FuncionInicio() {
-//    localStorage.setItem("storageTablaModificaciones1",null);
-//        localStorage.setItem("storageTablaModificaciones2",null);
-//        localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
-    //localStorage.clear();
+    //    localStorage.setItem("storageTablaModificaciones1",null);
+    //        localStorage.setItem("storageTablaModificaciones2",null);
+    //        localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
+    // localStorage.clear();
 
 
     CargarAuditoria();
 
 }
+function CargarParametroEntradaGuardarTelefono(pTelefono) {
+    var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
+    soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
+    soapRequest += '<soapenv:Header/>';
+    soapRequest += '<soapenv:Body>';
+    soapRequest += '<ser:guardarTelefono>';
+    if (pTelefono != '') {
+        soapRequest += '<telefono>' + pTelefono + '</telefono> ';
+    }
+    soapRequest += '</ser:guardarTelefono>';
+    soapRequest += '</soapenv:Body>';
+    soapRequest += '</soapenv:Envelope>';
+    return soapRequest;
+}
+
+function funGuardarTelefono(pTelefono) {
+    $.ajax({
+        type: "POST",
+        url: wsUrlGuardarTelefono,
+        contentType: "application/xml; charset=utf-8", //"text/xml",
+        dataType: "xml",
+        crossDomain: true,
+        xhrFields: {
+            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+            // This can be used to set the 'withCredentials' property.
+            // Set the value to 'true' if you'd like to pass cookies to the server.
+            // If this is enabled, your server must respond with the header
+            // 'Access-Control-Allow-Credentials: true'.
+            withCredentials: true
+        },
+        data: CargarParametroEntradaGuardarTelefono(pTelefono),
+        success: processSuccessGuardarTelefono,
+        error: processError
+    });
+}
+function processSuccessGuardarTelefono(data, status, req) {
+
+}
+
 function CargarAuditoria() {
     //alert('CargarAuditoria');
     listaTablaModificaciones = null;
@@ -98,8 +138,8 @@ function processSuccessAuditoria(data, status, req) {
         if (listaTablaModificaciones != null) {
             for (var i = 0; i < listaTablaModificaciones.length; i++) {
                 if (listaTablaModificaciones[i].codigoTabla == 1) {//Cotizaciones
-                   grabarStorageFechaCotizacion(listaTablaModificaciones[i].fecha);            
-                   if (localStorage.getItem("storageTablaModificaciones1") == null) {
+                    grabarStorageFechaCotizacion(listaTablaModificaciones[i].fecha);
+                    if (localStorage.getItem("storageTablaModificaciones1") == null) {
                         isCargarCotizaciones = true;
                     } else {
                         var fechaCotizacionesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
@@ -164,45 +204,45 @@ function processSuccessAuditoria(data, status, req) {
                 isCargarInformes = true;
             } else {
                 var listaInformesGuardada = localStorage.getItem("storageListaInformes");
-               listaInformes = eval('(' + listaInformesGuardada + ')');
+                listaInformes = eval('(' + listaInformesGuardada + ')');
             }
         }
-        $.when( CargaCotizacionDestacada(), CargaNovedades(),CargaTodasCotizaciones(),CargaUltimoInforme() ).done(funDoneAjax);
-        
-//        if (isCargarCotizaciones) {
-//            CargaCotizacionDestacada();
-//        } else if (isCargarNotificaciones) {
-//            CargarCotizacionesDestacadaHtml();
-//            CargaNovedades();
-//        } else if (isCargarInformes) {
-//            //
-//            CargarCotizacionesDestacadaHtml();
-//            CargarNovedadesHtml();
-//            CargaUltimoInforme();           
-//            //
-//        } else {
-//            CargarCotizacionesDestacadaHtml();
-//            CargarNovedadesHtml();            
-//            finCargarInicial();
-//        }
+        $.when(CargaCotizacionDestacada(), CargaNovedades(), CargaTodasCotizaciones(), CargaUltimoInforme()).done(funDoneAjax);
+
+        //        if (isCargarCotizaciones) {
+        //            CargaCotizacionDestacada();
+        //        } else if (isCargarNotificaciones) {
+        //            CargarCotizacionesDestacadaHtml();
+        //            CargaNovedades();
+        //        } else if (isCargarInformes) {
+        //            //
+        //            CargarCotizacionesDestacadaHtml();
+        //            CargarNovedadesHtml();
+        //            CargaUltimoInforme();           
+        //            //
+        //        } else {
+        //            CargarCotizacionesDestacadaHtml();
+        //            CargarNovedadesHtml();            
+        //            finCargarInicial();
+        //        }
     }
 }
 
-$(document).ajaxStop(function () {finCargarInicial(); });
+$(document).ajaxStop(function () { finCargarInicial(); });
 
 //armarPagina se ejecuta solo si se obtienen las respuestas exitosas
 // a las dos requests.
 
- 
-function funDoneAjax(a, b,c,d){
-// a es un array con los argumentos que recibiria de la primer request,
-// b lo mismo pero para la segunda request.
+
+function funDoneAjax(a, b, c, d) {
+    // a es un array con los argumentos que recibiria de la primer request,
+    // b lo mismo pero para la segunda request.
     //console.log(a[2].responseText);
     //console.log(b[2].responseText);
-    
+
     //alert(a);
-   // alert(b);
-  //finCargarInicial();
+    // alert(b);
+    //finCargarInicial();
 }
 
 
@@ -231,26 +271,28 @@ function CargarResultadoAuditoriaJavascript(pXML) {
 
 function CargaCotizacionDestacada() {
     //alert('CargaCotizacionDestacada');
-     if (isCargarCotizaciones) {
-    $.ajax({
-        type: "POST",
-        url: wsUrlCotizacion,
-        contentType: "application/xml; charset=utf-8", //"text/xml",
-        dataType: "xml",
-        crossDomain: true,
-        xhrFields: {
-            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-            // This can be used to set the 'withCredentials' property.
-            // Set the value to 'true' if you'd like to pass cookies to the server.
-            // If this is enabled, your server must respond with the header
-            // 'Access-Control-Allow-Credentials: true'.
-            withCredentials: true
-        },
-        data: CargarParametroEntradaCotizaciones(1, 15, obtenerFechaParametroEntrada(0), '', '', '', ''),
-        success: processSuccessCotizacionDestacada,
-        error: processError
-    });
-     }
+    if (isCargarCotizaciones) {
+        $.ajax({
+            type: "POST",
+            url: wsUrlCotizacion,
+            contentType: "application/xml; charset=utf-8", //"text/xml",
+            dataType: "xml",
+            crossDomain: true,
+            xhrFields: {
+                // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+                // This can be used to set the 'withCredentials' property.
+                // Set the value to 'true' if you'd like to pass cookies to the server.
+                // If this is enabled, your server must respond with the header
+                // 'Access-Control-Allow-Credentials: true'.
+                withCredentials: true
+            },
+            data: CargarParametroEntradaCotizaciones(1, 15, obtenerFechaParametroEntrada(0), '', '', '', ''),
+            success: processSuccessCotizacionDestacada,
+            error: processError
+        });
+    } else {
+        CargarCotizacionesDestacadaHtml();
+    }
 }
 function processSuccessCotizacionDestacada(data, status, req) {
     if (status == "success") {
@@ -423,21 +465,21 @@ function processSuccessCotizacionHistorica(data, status, req) {
 }
 
 function CargaTodasCotizaciones() {
-   if (isCargarCotizaciones) {
-    $.ajax({
-        type: "POST",
-        url: wsUrlCotizacion,
-        contentType: "application/xml; charset=utf-8", //"text/xml",
-        dataType: "xml",
-        crossDomain: true,
-        xhrFields: {
-            withCredentials: true
-        },
-        data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', '', '', ''),
-        success: processSuccessTodasCotizaciones,
-        error: processError
-    });
-   }
+    if (isCargarCotizaciones) {
+        $.ajax({
+            type: "POST",
+            url: wsUrlCotizacion,
+            contentType: "application/xml; charset=utf-8", //"text/xml",
+            dataType: "xml",
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: true
+            },
+            data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', '', '', ''),
+            success: processSuccessTodasCotizaciones,
+            error: processError
+        });
+    }
 }
 function processSuccessTodasCotizaciones(data, status, req) {
     if (status == "success") {
@@ -448,14 +490,14 @@ function processSuccessTodasCotizaciones(data, status, req) {
         } else {
 
         }
- 
-//        if (isCargarNotificaciones) {
-//            CargaNovedades();
-//        } else if (isCargarInformes) {
-//            CargaUltimoInforme();
-//        }else{
-//         finCargarInicial();
-//        }
+
+        //        if (isCargarNotificaciones) {
+        //            CargaNovedades();
+        //        } else if (isCargarInformes) {
+        //            CargaUltimoInforme();
+        //        }else{
+        //         finCargarInicial();
+        //        }
         //
     }
 }
@@ -510,19 +552,21 @@ function CargarParametroEntradaNovedades(pFechaDesde, pFechaHasta, pCodigoCatego
 }
 function CargaNovedades() {
     if (isCargarNotificaciones) {
-    $.ajax({
-        type: "POST",
-        url: wsUrlNovedades,
-        contentType: "application/xml; charset=utf-8", //"text/xml",
-        dataType: "xml",
-        crossDomain: true,
-        xhrFields: {
-            withCredentials: true
-        },
-        data: CargarParametroEntradaNovedades(obtenerFechaParametroEntrada(-69), obtenerFechaParametroEntrada(0), ''),
-        success: processSuccessNovedades,
-        error: processError
-    });
+        $.ajax({
+            type: "POST",
+            url: wsUrlNovedades,
+            contentType: "application/xml; charset=utf-8", //"text/xml",
+            dataType: "xml",
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: true
+            },
+            data: CargarParametroEntradaNovedades(obtenerFechaParametroEntrada(-69), obtenerFechaParametroEntrada(0), ''),
+            success: processSuccessNovedades,
+            error: processError
+        });
+    } else {
+        CargarNovedadesHtml();
     }
 }
 function processSuccessNovedades(data, status, req) {
@@ -533,12 +577,12 @@ function processSuccessNovedades(data, status, req) {
             localStorage.setItem('storageListaNovedades', listaNovedadesAGuardar);
         } else {
 
-        }              
-//        if (isCargarInformes) {
-//            CargaUltimoInforme();
-//        }else{
-//         finCargarInicial();
-//        }
+        }
+        //        if (isCargarInformes) {
+        //            CargaUltimoInforme();
+        //        }else{
+        //         finCargarInicial();
+        //        }
         CargarNovedadesHtml();
     }
 }
@@ -559,27 +603,27 @@ function ObtenerNovedades(pXML) {
 }
 function CargaUltimoInforme() {
     if (isCargarInformes) {
-    $.ajax({
-        type: "POST",
-        url: wsUrlInforme,
-        contentType: "application/xml; charset=utf-8", //"text/xml",
-        dataType: "xml",
-        crossDomain: true,
-        xhrFields: {
-            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-            // This can be used to set the 'withCredentials' property.
-            // Set the value to 'true' if you'd like to pass cookies to the server.
-            // If this is enabled, your server must respond with the header
-            // 'Access-Control-Allow-Credentials: true'.
-            withCredentials: true
-        },
-        data: CargarParametroEntradaInforme('', '', 1),
-        success: processSuccessInforme,
-        error: processError
-    });
+        $.ajax({
+            type: "POST",
+            url: wsUrlInforme,
+            contentType: "application/xml; charset=utf-8", //"text/xml",
+            dataType: "xml",
+            crossDomain: true,
+            xhrFields: {
+                // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+                // This can be used to set the 'withCredentials' property.
+                // Set the value to 'true' if you'd like to pass cookies to the server.
+                // If this is enabled, your server must respond with the header
+                // 'Access-Control-Allow-Credentials: true'.
+                withCredentials: true
+            },
+            data: CargarParametroEntradaInforme('', '', 1),
+            success: processSuccessInforme,
+            error: processError
+        });
     }
 }
-function CargarParametroEntradaInforme(pFechaDesde,pFechaHasta,pTipoConsulta){
+function CargarParametroEntradaInforme(pFechaDesde, pFechaHasta, pTipoConsulta) {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
     soapRequest += '<soapenv:Header/>';
@@ -601,13 +645,13 @@ function CargarParametroEntradaInforme(pFechaDesde,pFechaHasta,pTipoConsulta){
 }
 function processSuccessInforme(data, status, req) {
     if (status == "success") {
-        listaInformes =  ObtenerImforme(req.responseText);
+        listaInformes = ObtenerImforme(req.responseText);
         if (window.localStorage) {
             var listaInformesAGuardar = JSON.stringify(listaInformes);
             localStorage.setItem('storageListaInformes', listaInformesAGuardar);
         } else {
 
-        }                
+        }
         //finCargarInicial();
     }
 }
@@ -623,10 +667,10 @@ function ObtenerImforme(pXML) {
     });
     return listaInformesAUX;
 }
-function finCargarInicial(){
-  CargarHtmlFechaMenuPrincipal();
-  OcultarDivBloqueo();
-              if (listaNovedades == null) {
+function finCargarInicial() {
+    CargarHtmlFechaMenuPrincipal();
+    OcultarDivBloqueo();
+    if (listaNovedades == null) {
         porcentajeArriba = 1;
         porcentajeAbajo = 0;
     } else if (listaNovedades.length == 0) {
@@ -634,5 +678,5 @@ function finCargarInicial(){
         porcentajeAbajo = 0;
     }
 
-    onresizeBody();  
+    onresizeBody();
 }
