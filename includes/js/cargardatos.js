@@ -60,7 +60,7 @@ function FuncionInicio() {
 //    localStorage.setItem("storageTablaModificaciones1",null);
 //        localStorage.setItem("storageTablaModificaciones2",null);
 //        localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
-    localStorage.clear();
+    //localStorage.clear();
 
 
     CargarAuditoria();
@@ -167,7 +167,7 @@ function processSuccessAuditoria(data, status, req) {
                listaInformes = eval('(' + listaInformesGuardada + ')');
             }
         }
-        $.when( CargaCotizacionDestacada(), CargaNovedades(),CargaTodasCotizaciones(),CargaUltimoInforme() ).done(armarPagina);
+        $.when( CargaCotizacionDestacada(), CargaNovedades(),CargaTodasCotizaciones(),CargaUltimoInforme() ).done(funDoneAjax);
         
 //        if (isCargarCotizaciones) {
 //            CargaCotizacionDestacada();
@@ -194,7 +194,7 @@ $(document).ajaxStop(function () {finCargarInicial(); });
 // a las dos requests.
 
  
-function armarPagina(a, b,c,d){
+function funDoneAjax(a, b,c,d){
 // a es un array con los argumentos que recibiria de la primer request,
 // b lo mismo pero para la segunda request.
     //console.log(a[2].responseText);
@@ -231,6 +231,7 @@ function CargarResultadoAuditoriaJavascript(pXML) {
 
 function CargaCotizacionDestacada() {
     //alert('CargaCotizacionDestacada');
+     if (isCargarCotizaciones) {
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
@@ -249,6 +250,7 @@ function CargaCotizacionDestacada() {
         success: processSuccessCotizacionDestacada,
         error: processError
     });
+     }
 }
 function processSuccessCotizacionDestacada(data, status, req) {
     if (status == "success") {
@@ -421,7 +423,7 @@ function processSuccessCotizacionHistorica(data, status, req) {
 }
 
 function CargaTodasCotizaciones() {
-    //alert('CargaTodasCotizaciones');
+   if (isCargarCotizaciones) {
     $.ajax({
         type: "POST",
         url: wsUrlCotizacion,
@@ -435,6 +437,7 @@ function CargaTodasCotizaciones() {
         success: processSuccessTodasCotizaciones,
         error: processError
     });
+   }
 }
 function processSuccessTodasCotizaciones(data, status, req) {
     if (status == "success") {
@@ -506,6 +509,7 @@ function CargarParametroEntradaNovedades(pFechaDesde, pFechaHasta, pCodigoCatego
     //</soapenv:Envelope>
 }
 function CargaNovedades() {
+    if (isCargarNotificaciones) {
     $.ajax({
         type: "POST",
         url: wsUrlNovedades,
@@ -519,6 +523,7 @@ function CargaNovedades() {
         success: processSuccessNovedades,
         error: processError
     });
+    }
 }
 function processSuccessNovedades(data, status, req) {
     if (status == "success") {
@@ -553,6 +558,7 @@ function ObtenerNovedades(pXML) {
     return listaNovedadesAux;
 }
 function CargaUltimoInforme() {
+    if (isCargarInformes) {
     $.ajax({
         type: "POST",
         url: wsUrlInforme,
@@ -571,6 +577,7 @@ function CargaUltimoInforme() {
         success: processSuccessInforme,
         error: processError
     });
+    }
 }
 function CargarParametroEntradaInforme(pFechaDesde,pFechaHasta,pTipoConsulta){
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
