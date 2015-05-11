@@ -9,10 +9,10 @@ $(document).ready(function () {
 });
 
 function onresizeBody() {
-    var altura = ($(document).height() - $('#header').height());
+    var altura = ($(document).height() - $('#header').outerHeight());
     $('#divResultadoTodasCotizaciones').css('height', altura);
     
-    $('#divParteScrollTodasCotizaciones').css('height', altura - ($('#divRowTodasCotizacionesTitulo').height() +  $('#divRowTodasCotizacionesEncabezado').height()));
+    $('#divParteScrollTodasCotizaciones').css('height', altura - ($('#divRowTodasCotizacionesTitulo').outerHeight() +  $('#divRowTodasCotizacionesEncabezado').outerHeight()));
 }
 function CargarTodasCotizacionesHtml() {
     var resultadoDiv = '';
@@ -68,7 +68,7 @@ function CargarTodasCotizacionesHtml() {
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });
-          resultadoDiv += '</div>';// fin parte scroll
+      resultadoDiv += '</div>';// fin parte scroll
     }
     $('#divResultadoTodasCotizaciones').html(resultadoDiv);
 }

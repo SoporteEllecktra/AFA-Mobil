@@ -18,7 +18,7 @@ function CargarPantallaCompletaInformeHtml() {
    $('#divResultadoInforme').html(informesHtml);
 }
 function onresizeBody() {
-    var altura = ($(document).height() - $('#header').height());//- ($('#divInformeFecha').height() +$('#cssInformeTitulo').height())
+    var altura = ($(document).height() - $('#header').outerHeight());//- ($('#divInformeFecha').height() +$('#cssInformeTitulo').height())
     $('#divResultadoInforme').css('height', altura);
     $('#divInformeDescripcion').css('height', $('#divResultadoInforme').innerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() ));
 }

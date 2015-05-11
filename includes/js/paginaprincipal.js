@@ -3,7 +3,6 @@ var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 $(document).ready(function () {
 
-    //CargaDatosInicio();
     swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true
@@ -46,6 +45,8 @@ $(document).ready(function () {
     }
 
 });
+$(document).ajaxStop(function () { finCargarInicial(); });
+
 var isMoverAmpliar = false;
 var cantNN = 0;
 function onmousedownAmpliar(e) {
@@ -83,19 +84,19 @@ function onmouseupAmpliar(e) {
 }
 function onresizeBody() {
     //
-    var altura = ($(document).height() - $('#header').height());
+    var altura = ($(document).height() - $('#header').outerHeight());
     var alturaCotizacionesDestacada = altura * porcentajeArriba; //0.55;
     var alturaParteAbajo = altura * porcentajeAbajo; // 0.45;
     $('#divCotizacionesDestacada').css('height', alturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', alturaParteAbajo);
     //
-    $('.swiper-slide').css('height', $('#divBarraAbajo').height());
+    $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
 
-    $('#divRowParteScrollNovedades').css('height', $('#divBarraAbajo').height());
-    $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').height() - $('#divParteFijaCotizacionHistorica').height());
+    $('#divRowParteScrollNovedades').css('height', $('#divBarraAbajo').outerHeight());
+    $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').outerHeight() - $('#divParteFijaCotizacionHistorica').outerHeight());
 
     // $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
-    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight())); // 
+    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight())); // 
 }
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
@@ -440,4 +441,17 @@ function onclickFullScreenButtonAmpliar() {
     } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide3') {
         window.location.href = "informe.html";
     }
+}
+function finCargarInicial() {
+    CargarHtmlFechaMenuPrincipal();
+    OcultarDivBloqueo();
+    if (listaNovedades == null) {
+        porcentajeArriba = 1;
+        porcentajeAbajo = 0;
+    } else if (listaNovedades.length == 0) {
+        porcentajeArriba = 1;
+        porcentajeAbajo = 0;
+    }
+
+    onresizeBody();
 }

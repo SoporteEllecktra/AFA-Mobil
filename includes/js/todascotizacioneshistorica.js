@@ -13,9 +13,9 @@ $(document).ready(function () {
 });
 
 function onresizeBody() {
-    var altura = ($(document).height() - $('#header').height());
+    var altura = ($(document).height() - $('#header').outerHeight());
     $('#divResultadoTodasCotizacionesHistorica').css('height', altura);    
-    $('#divRowParteScrollTodosHistoricoCotizaciones').css('height', altura - ($('#divRowTodosHistoricoCotizacionesTitulo').height() +  $('#divRowTodosHistoricoCotizacionesEncabezado').height()));
+    $('#divRowParteScrollTodosHistoricoCotizaciones').css('height', altura - ($('#divRowTodosHistoricoCotizacionesTitulo').outerHeight() +  $('#divRowTodosHistoricoCotizacionesEncabezado').outerHeight()));
 }
 
 function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {

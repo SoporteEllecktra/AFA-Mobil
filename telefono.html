@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AFA</title>
+    <link rel="stylesheet" href="includes/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="includes/css/web.css" />
+</head>
+<body onresize="onresizeBody()">
+    <div class="container cssContenedorTelefono">
+        <div class="cssDivLogoAfaTelefono">
+            <img src="img/material/logoTransparente.png" alt="Afa" class="cssLogoAfaTelefono" />
+            <br/>
+            <span class="cssSpanLogoAfaTelefono">
+              Bienvenido.
+            </span>          
+        </div>
+        <div id="divContenedorTelefono">
+            <div class="cssTringuloTelefonoContenedor">
+                <div class="cssTringuloTelefono">
+                </div>
+                <div class="cssCajaTelefono">
+                    <div class="cssCajaTelefonoTexto">
+                        Por favor, para comenzar ingrese su número de teléfono
+                    </div>
+                    <input id="txtTelefono" class="cssInputTelefono" type="text" onkeypress="return justNumbers(event);" />
+                    <div class="cssDivBotonIngresar" onclick="onclickIngresarTelefono()">
+                        INGRESAR
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="includes/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="includes/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="includes/js/libreria.js"></script>
+    <script type="text/javascript" src="includes/js/cargardatos.js"></script>
+    <script type="text/javascript" src="includes/js/telefono.js"></script>
+</body>
+</html>

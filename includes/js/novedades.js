@@ -8,7 +8,7 @@ $(document).ready(function () {
     onresizeBody();
 });
 function onresizeBody() {
-    var altura = ($(document).height() - $('#header').height());
+    var altura = ($(document).height() - $('#header').outerHeight());
     $('#divResultadoNovedades').css('height', altura);
 }
 function CargarTodasNovedadesHtml() {

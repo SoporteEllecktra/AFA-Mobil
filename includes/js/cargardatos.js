@@ -16,7 +16,7 @@ var isCargarCotizaciones = true;
 var isCargarNotificaciones = true;
 var isCargarInformes = true;
 //
-
+var telefonoDelUsuario = '';
 //CargarParametroEntradaAuditoria()
 //CargaNovedades()
 //CargaUltimoInforme() 
@@ -58,15 +58,34 @@ function informes() {
     this.texto = '';
 }
 function FuncionInicio() {
-    //    localStorage.setItem("storageTablaModificaciones1",null);
-    //        localStorage.setItem("storageTablaModificaciones2",null);
-    //        localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
-    // localStorage.clear();
-
-
-    CargarAuditoria();
+    // localStorage.setItem("storageTablaModificaciones1",null);
+    // localStorage.setItem("storageTablaModificaciones2",null);
+    // localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
+    //localStorage.clear();
+    if (localStorage.getItem("storageTelefono") == null) {
+       // isGuardarTelefono = true;
+        window.location.href = "telefono.html";
+    } else {
+        CargarAuditoria();
+    }
+    //PrimerInicioAplicacion();
+    
 
 }
+
+function PrimerInicioAplicacion() {
+    //var isGuardarTelefono = false;
+    if (localStorage.getItem("storageTelefono") == null) {
+       // isGuardarTelefono = true;
+        window.location.href = "telefono.html";
+    } else {
+
+    }
+//    if (isGuardarTelefono) {
+//        funGuardarTelefono(telefonoDelUsuario);
+//    }
+}
+
 function CargarParametroEntradaGuardarTelefono(pTelefono) {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
@@ -83,6 +102,7 @@ function CargarParametroEntradaGuardarTelefono(pTelefono) {
 }
 
 function funGuardarTelefono(pTelefono) {
+    telefonoDelUsuario = pTelefono;
     $.ajax({
         type: "POST",
         url: wsUrlGuardarTelefono,
@@ -99,11 +119,22 @@ function funGuardarTelefono(pTelefono) {
         },
         data: CargarParametroEntradaGuardarTelefono(pTelefono),
         success: processSuccessGuardarTelefono,
-        error: processError
+        error: processErrorGuardarTelefono
     });
 }
+function processErrorGuardarTelefono(data, status, req) {
+    //OcultarDivBloqueo();
+   // alert(req);
+          localStorage.setItem('storageTelefono', telefonoDelUsuario);
+         window.location.href = "index.html";
+}
 function processSuccessGuardarTelefono(data, status, req) {
-
+    if (status == "success") {
+        alert(req.responseText);
+        // var tablaModificacionesInformesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
+        localStorage.setItem('storageTelefono', telefonoDelUsuario);
+         window.location.href = "index.html";
+    }
 }
 
 function CargarAuditoria() {
@@ -228,7 +259,7 @@ function processSuccessAuditoria(data, status, req) {
     }
 }
 
-$(document).ajaxStop(function () { finCargarInicial(); });
+
 
 //armarPagina se ejecuta solo si se obtienen las respuestas exitosas
 // a las dos requests.
@@ -666,17 +697,4 @@ function ObtenerImforme(pXML) {
         listaInformesAUX.push(obj);
     });
     return listaInformesAUX;
-}
-function finCargarInicial() {
-    CargarHtmlFechaMenuPrincipal();
-    OcultarDivBloqueo();
-    if (listaNovedades == null) {
-        porcentajeArriba = 1;
-        porcentajeAbajo = 0;
-    } else if (listaNovedades.length == 0) {
-        porcentajeArriba = 1;
-        porcentajeAbajo = 0;
-    }
-
-    onresizeBody();
 }
