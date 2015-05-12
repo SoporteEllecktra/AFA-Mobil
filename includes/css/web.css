@@ -569,7 +569,9 @@ header
     background-size: cover;  /*Fin fondo color*/
 }
 /* Fin Novedades pantalla completa */
-
+.swiper-pagination{
+bottom: 0.2em !important;
+}
 .swiper-pagination-bullet
 {
     width: 1em;

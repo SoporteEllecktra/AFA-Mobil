@@ -90,13 +90,15 @@ function onresizeBody() {
     $('#divCotizacionesDestacada').css('height', alturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', alturaParteAbajo);
     //
+  var cantPxBotonesSlider = parseInt(  $('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight();
+    
     $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
 
-    $('#divRowParteScrollNovedades').css('height', $('#divBarraAbajo').outerHeight());
-    $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').outerHeight() - $('#divParteFijaCotizacionHistorica').outerHeight());
+    $('#divRowParteScrollNovedades').css('height', ($('#divBarraAbajo').outerHeight() - cantPxBotonesSlider));
+    $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').outerHeight() - ($('#divParteFijaCotizacionHistorica').outerHeight() + cantPxBotonesSlider));
 
     // $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
-    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight())); // 
+    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight()+ cantPxBotonesSlider)); // 
 }
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
