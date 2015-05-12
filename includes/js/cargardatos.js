@@ -154,7 +154,7 @@ function CargarAuditoria() {
         },
         data: CargarParametroEntradaAuditoria(),
         success: processSuccessAuditoria,
-        error: processError
+        error: processErrorAuditoria
     });
 }
 function processSuccessAuditoria(data, status, req) {
@@ -317,22 +317,43 @@ function CargaCotizacionDestacada() {
             },
             data: CargarParametroEntradaCotizaciones(1, 15, obtenerFechaParametroEntrada(0), '', '', '', ''),
             success: processSuccessCotizacionDestacada,
-            error: processError
+            error: processErrorCotizacionDestacada
         });
     } else {
         CargarCotizacionesDestacadaHtml();
     }
 }
+
 function processSuccessCotizacionDestacada(data, status, req) {
     if (status == "success") {
         CargarResultadoCotizacionDestacadoJavascript(req.responseText);
     }
 }
+/* Inicio Error */
 function processError(data, status, req) {
     OcultarDivBloqueo();
     //alert('Error');
 }
+function processErrorAuditoria(data, status, req) {
+     processError(data, status, req);
+}
 
+function processErrorCotizacionDestacada(data, status, req) {
+     processError(data, status, req);
+}
+function processErrorCotizacionHistoricaConIndiceDetacado(data, status, req) {
+     processError(data, status, req);
+}
+function processErrorNovedades(data, status, req) {
+     processError(data, status, req);
+}
+function processErrorTodasCotizaciones(data, status, req) {
+     processError(data, status, req);
+}
+function processErrorUltimoInforme(data, status, req) {
+     processError(data, status, req);
+}
+/* Fin Error */
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
     cotizacionesDestacada = [];
     $(pXML).find('cotizaciones').each(function () {
@@ -452,7 +473,7 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
         },
         data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
         success: processSuccessCotizacionHistorica,
-        error: processError
+        error: processErrorCotizacionHistoricaConIndiceDetacado
     });
 }
 function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
@@ -506,7 +527,7 @@ function CargaTodasCotizaciones() {
             },
             data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', '', '', ''),
             success: processSuccessTodasCotizaciones,
-            error: processError
+            error: processErrorTodasCotizaciones
         });
     }
 }
@@ -592,7 +613,7 @@ function CargaNovedades() {
             },
             data: CargarParametroEntradaNovedades(obtenerFechaParametroEntrada(-69), obtenerFechaParametroEntrada(0), ''),
             success: processSuccessNovedades,
-            error: processError
+            error: processErrorNovedades
         });
     } else {
         CargarNovedadesHtml();
@@ -648,7 +669,7 @@ function CargaUltimoInforme() {
             },
             data: CargarParametroEntradaInforme('', '', 1),
             success: processSuccessInforme,
-            error: processError
+            error: processErrorUltimoInforme
         });
     }
 }
