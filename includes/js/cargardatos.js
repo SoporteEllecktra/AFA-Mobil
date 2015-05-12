@@ -131,8 +131,8 @@ function processSuccessGuardarTelefono(data, status, req) {
         alert(req.responseText);
         // var tablaModificacionesInformesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
         localStorage.setItem('storageTelefono', telefonoDelUsuario);
-         //window.location.href = "index.html";
-         window.history.go(-1);
+         window.location.href = "index.html";
+         //window.history.go(-1);
     }
 }
 
