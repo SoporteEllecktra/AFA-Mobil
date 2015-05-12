@@ -90,7 +90,7 @@ function onresizeBody() {
     $('#divCotizacionesDestacada').css('height', alturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', alturaParteAbajo);
     //
-  var cantPxBotonesSlider = parseInt(  $('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight();
+  var cantPxBotonesSlider = parseInt(  $('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 5;
     
     $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
 
