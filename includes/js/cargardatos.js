@@ -61,7 +61,7 @@ function FuncionInicio() {
     // localStorage.setItem("storageTablaModificaciones1",null);
     // localStorage.setItem("storageTablaModificaciones2",null);
     // localStorage.setItem("storageTablaModificaciones3",null);localStorage.removeItem('');
-    //localStorage.clear();
+    localStorage.clear();
     if (localStorage.getItem("storageTelefono") == null) {
        // isGuardarTelefono = true;
         window.location.href = "telefono.html";
@@ -69,8 +69,6 @@ function FuncionInicio() {
         CargarAuditoria();
     }
     //PrimerInicioAplicacion();
-    
-
 }
 
 function PrimerInicioAplicacion() {
@@ -133,7 +131,8 @@ function processSuccessGuardarTelefono(data, status, req) {
         alert(req.responseText);
         // var tablaModificacionesInformesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
         localStorage.setItem('storageTelefono', telefonoDelUsuario);
-         window.location.href = "index.html";
+         //window.location.href = "index.html";
+         window.history.go(-1);
     }
 }
 

@@ -702,17 +702,20 @@ z-index: 1000;
 }
 /* inicio telefono */
 .cssTringuloTelefonoContenedor{
-  position: absolute;
-  top: 70%; 
+/*  position: absolute;*/
+ /* top: 70%; 
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
+  transform: translate(-50%, -50%);*/
+  /*width: 100%;*/
+ /*  margin: 1em;*/
+margin-top:2em;    
+ 
 }
 .cssCajaTelefono{
        margin: 0 auto;
        background-color: #FFF; 
        width: 95%;    
-        padding-bottom: 2em; 
+       padding-bottom: 2em; 
 }
 .cssContenedorTelefono{
     background: url(../../img/material/fondo.jpg) no-repeat bottom;
@@ -722,8 +725,8 @@ z-index: 1000;
     background-size: cover;
 }
 #divContenedorTelefono{
-    width: 100%;
-    height: 100%;
+  /*  width: 100%;
+    height: 100%;*/
 
 }
 .cssTringuloTelefono{  
@@ -774,5 +777,13 @@ padding-top:2em;
 }
 .cssSpanLogoAfaTelefono{
 font-size:4em; 
+}
+.cssTablaTelefono{
+width: 100%;
+height: 100%;
+}
+.cssTdParteAbajoTelefono{
+vertical-align: bottom;
+padding-bottom: 2em;    
 }
 /* fin telefono */
