@@ -212,7 +212,29 @@ function share(expr){
       case "Facebook": 
 	  //alert('Pasa Facebook');
         //window.plugins.socialsharing.shareViaFacebook('Message via Facebook', 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
-		window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
+		//window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Message pasted to clip board ,press on the area to paste it in the feed') .then(function(result) {
+                aler('face ok');
+//        console.log(result);
+//        var message = 'Thanks for sharing via facebook';
+//        if(!result){
+//            message = 'Please share us';
+//        }
+//         var alertPopup = $ionicPopup.alert({
+//             title: message
+//           });
+//           alertPopup.then(function(res) {
+//           });
+    }, function(err) {
+                aler('face error');
+//        console.log(err);
+//              var alertPopup = $ionicPopup.alert({
+//                 title: 'Could not post to Facebook',
+//                 template : 'Do you have the app installed?'
+//               });
+//           alertPopup.then(function(res) {
+//           });
+    });
        // closeOptions(); 
         break; 
       case "WhatsApp": 
