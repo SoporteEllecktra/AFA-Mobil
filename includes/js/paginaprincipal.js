@@ -379,7 +379,7 @@ function CargarNovedadesHtml() {
             resultadoDiv += '<div class="row">';
             resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
              if (this.url != ''){
-                 resultadoDiv += '<a href="javascript:loadURL('+ this.url +');" >';
+                 resultadoDiv += '<a href="javascript:loadURL("'+ this.url +'");" >';
               resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
                   resultadoDiv += '</a>';
              }
