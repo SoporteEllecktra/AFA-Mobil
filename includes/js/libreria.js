@@ -210,8 +210,8 @@ function share(expr){
        // closeOptions(); 
         break; 
       case "Facebook": 
-	  //alert('Pasa Facebook');
-        window.plugins.socialsharing.shareViaFacebook('Message via Facebook', 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
+	  //    window.plugins.socialsharing.shareViaFacebook('Message via Facebook', 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
+        window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null ,null, function() {alert('Ok');}, function(errormsg){alert('Error');}); 
 		//window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
         //    window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Message pasted to clip board ,press on the area to paste it in the feed') .then(function(result) { aler('face ok');}, function(err) {aler('face error');});
        // closeOptions(); 
