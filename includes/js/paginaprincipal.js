@@ -380,8 +380,8 @@ function CargarNovedadesHtml() {
             resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
              if (this.url != ''){
                  resultadoDiv += '<a href="javascript:loadURL(\''+ this.url +'\');" >';
-              resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
-                  resultadoDiv += '</a>';
+                 resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+                 resultadoDiv += '</a>';
              }
             else{
               resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
@@ -454,7 +454,8 @@ function CargarInformeHtml() {
         //alert(listaInformes[i].titulo);
         informesHtml += '<div id="divInformeTitulo" class="cssInformeTitulo">' + listaInformes[i].titulo + '</div>';
         informesHtml += '<div id="divInformeFecha" class="cssInformeFecha">' + obtenerFechaMostrar(listaInformes[i].fecha) + '</div>';
-        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto + '</div>';
+        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto + '</div>'
+        informesHtml += '<a href="javascript:loadURL(\''+ 'www.agirregabiria.net/g/sylvainaitor/principito.pdf' +'\');" >pdf </a>';
         break;
     }
     return informesHtml;
