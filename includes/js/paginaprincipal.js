@@ -454,8 +454,8 @@ function CargarInformeHtml() {
         //alert(listaInformes[i].titulo);
         informesHtml += '<div id="divInformeTitulo" class="cssInformeTitulo">' + listaInformes[i].titulo + '</div>';
         informesHtml += '<div id="divInformeFecha" class="cssInformeFecha">' + obtenerFechaMostrar(listaInformes[i].fecha) + '</div>';
-        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto + '</div>'
-        informesHtml += '<a href="javascript:loadURL(\''+ 'www.agirregabiria.net/g/sylvainaitor/principito.pdf' +'\');" >pdf </a>';
+        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto + '<br/>' + '<a href="javascript:loadURL(\''+ 'www.agirregabiria.net/g/sylvainaitor/principito.pdf' +'\');" >pdf </a>' + '</div>'
+        //informesHtml += ;
         break;
     }
     return informesHtml;
