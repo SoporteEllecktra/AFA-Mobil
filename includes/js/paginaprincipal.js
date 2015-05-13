@@ -211,26 +211,27 @@ function CargarCotizacionesDestacadaHtml() {
         }
         onresizeBody(); //////////////////
         $('#swiper-slide2').scrollTop(0);
-        //if (swiper.slides.length == 2) {
-        if (listaInformes != null) {
-            if (listaInformes.length > 0) {
-                var indexSlide3 = -1;
-                for (var i = 0; i < swiper.slides.length; i++) {
-                    if (swiper.slides[i].id == 'swiper-slide3') {
-                        indexSlide3 = i;
-                    }
-                }
-                if (indexSlide3 == -1) {
-                    swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
-                } else {
-                    $('#swiper-slide3').html(CargarInformeHtml());
-                }
-                //swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
-            }
-        }
+//        if (listaInformes != null) {
+//            if (listaInformes.length > 0) {
+//                var indexSlide3 = -1;
+//                for (var i = 0; i < swiper.slides.length; i++) {
+//                    if (swiper.slides[i].id == 'swiper-slide3') {
+//                        indexSlide3 = i;
+//                    }
+//                }
+//                if (indexSlide3 == -1) {
+//                    swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
+//                } else {
+//                    $('#swiper-slide3').html(CargarInformeHtml());
+//                }
+//                //swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
+//            }
+//        }
         onresizeBody();
-        //}
     });
+    
+
+    
     $('.collapse').on('hide.bs.collapse', function (e) {
         var indexSlide3 = -1;
         var indexSlide2 = -1;
@@ -244,9 +245,9 @@ function CargarCotizacionesDestacadaHtml() {
                 indexSlide1 = i;
             }
         }
-        if (indexSlide3 != -1) {
-            swiper.removeSlide(indexSlide3);
-        }
+//        if (indexSlide3 != -1) {
+//            swiper.removeSlide(indexSlide3);
+//        }
         if (indexSlide2 != -1) {
             swiper.removeSlide(indexSlide2);
         }
@@ -260,6 +261,23 @@ function CargarCotizacionesDestacadaHtml() {
         }
     });
     onresizeBody();
+}
+function CargarInformeCierreMercado(){
+            if (listaInformes != null) {
+            if (listaInformes.length > 0) {
+                var indexSlide3 = -1;
+                for (var i = 0; i < swiper.slides.length; i++) {
+                    if (swiper.slides[i].id == 'swiper-slide3') {
+                        indexSlide3 = i;
+                    }
+                }
+                if (indexSlide3 == -1) {
+                    swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
+                } else {
+                    $('#swiper-slide3').html(CargarInformeHtml());
+                }
+            }
+        }
 }
 function onclickVerMas() {
     window.location.href = "todascotizaciones.html";
@@ -337,7 +355,12 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         onresizeBody();
     }
 }
+//<a href="javascript:loadURL('http://www.lavidaenbinario.com');" class="link ">Example</a>
 
+function loadURL(url){
+    navigator.app.loadUrl(url, { openExternal:true });
+    return false;
+} 
 function CargarNovedadesHtml() {
     var resultadoDiv = '';
     if (listaNovedades != null) {
@@ -355,7 +378,14 @@ function CargarNovedadesHtml() {
             indiceNovedades++;
             resultadoDiv += '<div class="row">';
             resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
-            resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+             if (this.url != ''){
+                 resultadoDiv += '<a href="javascript:loadURL('+ this.url +');" >';
+              resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+                  resultadoDiv += '</a>';
+             }
+            else{
+              resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+            }
             resultadoDiv += '</div>';
             //
             resultadoDiv += '<div class="col-xs-11 ">';
@@ -399,7 +429,7 @@ function CargarNovedadesHtml() {
         });
         resultadoDiv += '</div>';   // fin parte scroll   
     }
-    // $('#swiper-slide1').html(resultadoDiv);
+
     if (listaNovedades != null) {
         if (listaNovedades.length > 0) {
 
@@ -416,6 +446,7 @@ function CargarNovedadesHtml() {
             }
         }
     }
+     CargarInformeCierreMercado();
 }
 function CargarInformeHtml() {
     var informesHtml = '';

@@ -205,7 +205,8 @@ function share(expr){
  
     switch (expr) { 
       case "Twitter": 
-        window.plugins.socialsharing.shareViaTwitter('AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'); 
+            //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'
+        window.plugins.socialsharing.shareViaTwitter('08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // www.afascl.coop'); 
        // closeOptions(); 
         break; 
       case "Facebook": 
