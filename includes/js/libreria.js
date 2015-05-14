@@ -6,7 +6,7 @@ function toString00(pNro) {
 }
 function onclickCompartir() {
     if ($('.cssTdHeaderDerecha .btn_rs').hasClass('cssTdHeaderDerecha_btn_rs_Activo')) {
-      CerrarMenuCompartir();
+        CerrarMenuCompartir();
     } else {
         $('.cssTdHeaderDerecha .btn_rs').addClass('cssTdHeaderDerecha_btn_rs_Activo');
         $('.cssTdHeaderDerecha .btn_rs .center').addClass('cssTdHeaderDerecha_btn_rs_center_Activo');
@@ -14,16 +14,16 @@ function onclickCompartir() {
         $('.cssTdHeaderDerecha .btn_rs .one .center').addClass('cssTdHeaderDerecha_btn_rs_one_center_Activo');
         $('.cssTdHeaderDerecha .btn_rs .two .right').addClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
         $('.divMenuCompartir').css('display', 'block');
-        setTimeout(function(){ CerrarMenuCompartir(); }, 4000);
+        setTimeout(function () { CerrarMenuCompartir(); }, 4000);
     }
 }
-function CerrarMenuCompartir(){
-        $('.cssTdHeaderDerecha .btn_rs').removeClass('cssTdHeaderDerecha_btn_rs_Activo');
-        $('.cssTdHeaderDerecha .btn_rs .center').removeClass('cssTdHeaderDerecha_btn_rs_center_Activo');
-        $('.cssTdHeaderDerecha .btn_rs .one .left').removeClass('cssTdHeaderDerecha_btn_rs_one_left_Activo');
-        $('.cssTdHeaderDerecha .btn_rs .one .center').removeClass('cssTdHeaderDerecha_btn_rs_one_center_Activo');
-        $('.cssTdHeaderDerecha .btn_rs .two .right').removeClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
-        $('.divMenuCompartir').css('display', 'none');
+function CerrarMenuCompartir() {
+    $('.cssTdHeaderDerecha .btn_rs').removeClass('cssTdHeaderDerecha_btn_rs_Activo');
+    $('.cssTdHeaderDerecha .btn_rs .center').removeClass('cssTdHeaderDerecha_btn_rs_center_Activo');
+    $('.cssTdHeaderDerecha .btn_rs .one .left').removeClass('cssTdHeaderDerecha_btn_rs_one_left_Activo');
+    $('.cssTdHeaderDerecha .btn_rs .one .center').removeClass('cssTdHeaderDerecha_btn_rs_one_center_Activo');
+    $('.cssTdHeaderDerecha .btn_rs .two .right').removeClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
+    $('.divMenuCompartir').css('display', 'none');
 }
 function obtenerFechaParametroEntrada(pDia) {
     var milisegundos = parseInt(pDia * 24 * 60 * 60 * 1000);
@@ -201,62 +201,60 @@ function obtenerParametroGetHtml(param) {//$_GET(param)
 }
 
 
-function share(expr){ 
- 
-    switch (expr) { 
-      case "Twitter": 
+function share(expr) {
+
+    switch (expr) {
+        case "Twitter":
             //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'
-        window.plugins.socialsharing.shareViaTwitter( ObtenerTxtCompartirCotizacionesDestacada()); 
-       // closeOptions(); 
-        break; 
-      case "Facebook": 
-	   //   window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
-       window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null ,null, function() {/*alert('Ok');*/}, function(errormsg){alert('Error');}); 
-		//window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
-        //    window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Message pasted to clip board ,press on the area to paste it in the feed') .then(function(result) { aler('face ok');}, function(err) {aler('face error');});
-       // closeOptions(); 
-          //  window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', null /* img */, null /* url */, 'Paste it dude!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
-        break; 
-      case "WhatsApp": 
-            window.plugins.socialsharing.shareViaWhatsApp( ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function() {console.log('share ok')}, function(errormsg){console.log(errormsg)}); 
-         //   closeOptions(); 
-        break; 
-        case "share":
-    
+            window.plugins.socialsharing.shareViaTwitter(ObtenerTxtCompartirCotizacionesDestacada());
+            // closeOptions(); 
             break;
-      default: 
-       // console.log(""); 
-    } 
+        case "Facebook":
+            //   window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
+            window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { alert('Error'); });
+            //window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
+            //    window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Message pasted to clip board ,press on the area to paste it in the feed') .then(function(result) { aler('face ok');}, function(err) {aler('face error');});
+            // closeOptions(); 
+            //  window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', null /* img */, null /* url */, 'Paste it dude!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
+            break;
+        case "WhatsApp":
+            window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
+            //   closeOptions(); 
+            break;
+        case "share":
+
+            break;
+        default:
+            // console.log(""); 
+    }
     onclickCompartir();
 }
-
-function onclickFacebook(){
- share('Facebook');
+function onclickFacebook() {
+    share('Facebook');
 }
-function onclickTwitter(){
- share('Twitter');
+function onclickTwitter() {
+    share('Twitter');
 }
-function onclickWhatsApp(){
- share('WhatsApp');
+function onclickWhatsApp() {
+    share('WhatsApp');
 }
-
-function ObtenerTxtCompartirCotizacionesDestacada(){
+function ObtenerTxtCompartirCotizacionesDestacada() {
     var strResultado = '';
-//'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'    
-     var fechaUltima = localStorage.getItem("storageTablaModificaciones1");//obtenerStorageFechaMenuPrincipal() ;
-       var listaFecha = fechaUltima.substring(0, 10).split('-');
-    strResultado += 'AFA SCL ' +  listaFecha[0] + '/' + listaFecha[1] + ':';
-if (cotizacionesDestacada != null)
-{
-    var index = 0;
-$(cotizacionesDestacada).each(function () {
-    if (index != 0)
-    {
-    strResultado += ' /';
+    //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'    
+    // var fechaUltima = localStorage.getItem("storageTablaModificaciones1");
+    var fechaUltima = eval('(' + localStorage.getItem("storageTablaModificaciones1") + ')');
+    // var fechaUltima = obtenerFechaUTC(TablaModificacionesCotizaciones.fecha, TablaModificacionesCotizaciones.hora);
+    var listaFecha = fechaUltima.fecha.split('/');
+    strResultado += 'AFA SCL ' + listaFecha[0] + '/' + listaFecha[1] + ':';
+    if (cotizacionesDestacada != null) {
+        var index = 0;
+        $(cotizacionesDestacada).each(function () {
+            if (index != 0) {
+                strResultado += ' /';
+            }
+            strResultado += ' ' + this.descripcionProducto.toUpperCase() + ' ' + this.valor;
+            index++;
+        });
     }
-  strResultado += ' ' +   this.descripcionProducto.toUpperCase() + ' ' + this.valor;
-    index++;
-});
-}
     return strResultado;
 }

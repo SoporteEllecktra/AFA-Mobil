@@ -90,15 +90,15 @@ function onresizeBody() {
     $('#divCotizacionesDestacada').css('height', alturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', alturaParteAbajo);
     //
-  var cantPxBotonesSlider = parseInt(  $('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 2;
-    
+    var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 2;
+
     $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
 
     $('#divRowParteScrollNovedades').css('height', ($('#divBarraAbajo').outerHeight() - cantPxBotonesSlider));
     $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').outerHeight() - ($('#divParteFijaCotizacionHistorica').outerHeight() + cantPxBotonesSlider));
 
     // $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
-    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight()+ cantPxBotonesSlider)); // 
+    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() + cantPxBotonesSlider)); // 
 }
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
@@ -213,9 +213,9 @@ function CargarCotizacionesDestacadaHtml() {
         $('#swiper-slide2').scrollTop(0);
         onresizeBody();
     });
-    
 
-    
+
+
     $('.collapse').on('hide.bs.collapse', function (e) {
         var indexSlide3 = -1;
         var indexSlide2 = -1;
@@ -243,22 +243,22 @@ function CargarCotizacionesDestacadaHtml() {
     });
     onresizeBody();
 }
-function CargarInformeCierreMercado(){
-            if (listaInformes != null) {
-            if (listaInformes.length > 0) {
-                var indexSlide3 = -1;
-                for (var i = 0; i < swiper.slides.length; i++) {
-                    if (swiper.slides[i].id == 'swiper-slide3') {
-                        indexSlide3 = i;
-                    }
-                }
-                if (indexSlide3 == -1) {
-                    swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
-                } else {
-                    $('#swiper-slide3').html(CargarInformeHtml());
+function CargarInformeCierreMercado() {
+    if (listaInformes != null) {
+        if (listaInformes.length > 0) {
+            var indexSlide3 = -1;
+            for (var i = 0; i < swiper.slides.length; i++) {
+                if (swiper.slides[i].id == 'swiper-slide3') {
+                    indexSlide3 = i;
                 }
             }
+            if (indexSlide3 == -1) {
+                swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
+            } else {
+                $('#swiper-slide3').html(CargarInformeHtml());
+            }
         }
+    }
 }
 function onclickVerMas() {
     window.location.href = "todascotizaciones.html";
@@ -338,10 +338,10 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
 }
 //<a href="javascript:loadURL('http://www.lavidaenbinario.com');" class="link ">Example</a>
 
-function loadURL(url){
-    navigator.app.loadUrl(url, { openExternal:true });
+function loadURL(url) {
+    navigator.app.loadUrl(url, { openExternal: true });
     return false;
-} 
+}
 function CargarNovedadesHtml() {
     var resultadoDiv = '';
     if (listaNovedades != null) {
@@ -359,13 +359,13 @@ function CargarNovedadesHtml() {
             indiceNovedades++;
             resultadoDiv += '<div class="row">';
             resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
-             if (this.url != ''){
-                 resultadoDiv += '<a href="javascript:loadURL(\''+ this.url +'\');" >';
-                 resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
-                 resultadoDiv += '</a>';
-             }
-            else{
-              resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+            if (this.url != '') {
+                resultadoDiv += '<a href="javascript:loadURL(\'' + this.url + '\');" >';
+                resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+                resultadoDiv += '</a>';
+            }
+            else {
+                resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
             }
             resultadoDiv += '</div>';
             //
@@ -427,7 +427,7 @@ function CargarNovedadesHtml() {
             }
         }
     }
-     CargarInformeCierreMercado();
+    CargarInformeCierreMercado();
 }
 function CargarInformeHtml() {
     var informesHtml = '';
