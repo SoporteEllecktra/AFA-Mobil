@@ -211,22 +211,6 @@ function CargarCotizacionesDestacadaHtml() {
         }
         onresizeBody(); //////////////////
         $('#swiper-slide2').scrollTop(0);
-//        if (listaInformes != null) {
-//            if (listaInformes.length > 0) {
-//                var indexSlide3 = -1;
-//                for (var i = 0; i < swiper.slides.length; i++) {
-//                    if (swiper.slides[i].id == 'swiper-slide3') {
-//                        indexSlide3 = i;
-//                    }
-//                }
-//                if (indexSlide3 == -1) {
-//                    swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
-//                } else {
-//                    $('#swiper-slide3').html(CargarInformeHtml());
-//                }
-//                //swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
-//            }
-//        }
         onresizeBody();
     });
     
@@ -245,9 +229,6 @@ function CargarCotizacionesDestacadaHtml() {
                 indexSlide1 = i;
             }
         }
-//        if (indexSlide3 != -1) {
-//            swiper.removeSlide(indexSlide3);
-//        }
         if (indexSlide2 != -1) {
             swiper.removeSlide(indexSlide2);
         }
