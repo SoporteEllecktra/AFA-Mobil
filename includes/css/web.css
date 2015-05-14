@@ -98,17 +98,33 @@ z-index: 1000;
   margin: 0.5em;
   margin-bottom: 0.3em;
 }
-.spanFacebook{
-    cursor: pointer;
-    padding-right: 1em;
-    font-size: 1.3em;
+.cssLogoWhatsApp{
+  width: 1.725em;
+  height: 1.725em;
+  margin: 0.5em;
+  margin-bottom: 0.5em;
 }
 .spanTwitter{
     cursor: pointer;
     padding-right: 1em;
     font-size: 1.3em;
 }
+.spanFacebook{
+    cursor: pointer;
+    padding-right: 1em;
+    font-size: 1.3em;
+}
+.spanWhatsApp{
+    cursor: pointer;
+    padding-right: 1em;
+    font-size: 1.3em;
+}
 .linkTwitter{
+    border-top-style: solid;
+    border-top-color: #000;
+    border-top-width:0.0625em;
+}
+.linkWhatsApp{
     border-top-style: solid;
     border-top-color: #000;
     border-top-width:0.0625em;

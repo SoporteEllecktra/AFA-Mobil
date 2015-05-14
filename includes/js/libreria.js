@@ -25,8 +25,6 @@ function CerrarMenuCompartir(){
         $('.cssTdHeaderDerecha .btn_rs .two .right').removeClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
         $('.divMenuCompartir').css('display', 'none');
 }
-
-
 function obtenerFechaParametroEntrada(pDia) {
     var milisegundos = parseInt(pDia * 24 * 60 * 60 * 1000);
     var fecha = new Date();
@@ -212,8 +210,8 @@ function share(expr){
        // closeOptions(); 
         break; 
       case "Facebook": 
-	      window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
-      //  window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null ,null, function() {alert('Ok');}, function(errormsg){alert('Error');}); 
+	   //   window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
+       window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null ,null, function() {/*alert('Ok');*/}, function(errormsg){alert('Error');}); 
 		//window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
         //    window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Message pasted to clip board ,press on the area to paste it in the feed') .then(function(result) { aler('face ok');}, function(err) {aler('face error');});
        // closeOptions(); 
@@ -245,9 +243,9 @@ function onclickWhatsApp(){
 function ObtenerTxtCompartirCotizacionesDestacada(){
     var strResultado = '';
 //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'    
-     var fechaUltima = obtenerStorageFechaMenuPrincipal() ;
+     var fechaUltima = localStorage.getItem("storageTablaModificaciones1");//obtenerStorageFechaMenuPrincipal() ;
        var listaFecha = fechaUltima.substring(0, 10).split('-');
-    strResultado += 'AFA SCL ' +  listaFecha[2] + '/' + listaFecha[1] + ':';
+    strResultado += 'AFA SCL ' +  listaFecha[0] + '/' + listaFecha[1] + ':';
 if (cotizacionesDestacada != null)
 {
     var index = 0;
