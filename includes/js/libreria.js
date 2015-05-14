@@ -202,7 +202,7 @@ function obtenerParametroGetHtml(param) {//$_GET(param)
 
 
 function share(expr) {
-
+window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
     switch (expr) {
         case "Twitter":
             //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'
@@ -245,7 +245,8 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
     var fechaUltima = eval('(' + localStorage.getItem("storageTablaModificaciones1") + ')');
     // var fechaUltima = obtenerFechaUTC(TablaModificacionesCotizaciones.fecha, TablaModificacionesCotizaciones.hora);
     var listaFecha = fechaUltima.fecha.split('/');
-    strResultado += 'AFA SCL ' + listaFecha[0] + '/' + listaFecha[1] + ':';
+        strResultado += 'AFA SCL ' + fechaUltima.fecha.substring(0, 5) + ':';
+    //strResultado += 'AFA SCL ' + listaFecha[0] + '/' + listaFecha[1] + ':';
     if (cotizacionesDestacada != null) {
         var index = 0;
         $(cotizacionesDestacada).each(function () {
