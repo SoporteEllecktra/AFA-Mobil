@@ -110,6 +110,17 @@ function onresizeBody() {
         enteroAlturaParteAbajo = enteroAlturaParteAbajo + 1;
     }
     // fin redondear para arriba
+    // inicio optimizar
+    if (porcentajeArriba != 1){
+        if (enteroAlturaCotizacionesDestacada > $('#divCotizacionesDestacada').height())
+        {
+          enteroAlturaCotizacionesDestacada = $('#divCotizacionesDestacada').height();
+          enteroAlturaParteAbajo = altura - enteroAlturaCotizacionesDestacada;
+        }
+    //
+    }
+    // fin optimizar
+    
     $('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
     //
