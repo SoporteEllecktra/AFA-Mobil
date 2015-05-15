@@ -111,19 +111,19 @@ function onresizeBody() {
     }
     // fin redondear para arriba
     // inicio optimizar
-//    if (porcentajeArriba != 1){
-//        if (enteroAlturaCotizacionesDestacada > $('#divCotizacionesDestacada').height())
-//        {
-//          enteroAlturaCotizacionesDestacada = $('#divCotizacionesDestacada').height();
-//          enteroAlturaParteAbajo = altura - enteroAlturaCotizacionesDestacada;
-//        }
-//    }
+    if (porcentajeArriba != 1){
+        if (enteroAlturaCotizacionesDestacada > $('#divCotizacionesDestacada').height())
+        {
+          enteroAlturaCotizacionesDestacada = $('#divCotizacionesDestacada').height();
+          enteroAlturaParteAbajo = altura - enteroAlturaCotizacionesDestacada;
+        }
+    }
     // fin optimizar
     
-    //$('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
-    //$('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
-      $('#divCotizacionesDestacada').css('max-height',alturaCotizacionesDestacada);
-    $('#divBarraAbajo').css('min-height',alturaParteAbajo);
+    $('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
+    $('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
+    //$('#divCotizacionesDestacada').css('max-height',alturaCotizacionesDestacada);
+    //$('#divBarraAbajo').css('min-height',alturaParteAbajo);
     //
     var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 2;
 
