@@ -40,10 +40,8 @@ $(document).ready(function () {
             porcentajeArriba = 1;
             porcentajeAbajo = 0;
         }
-
         onresizeBody();
     }
-
 });
 $(document).ajaxStop(function () { finCargarInicial(); });
 
@@ -86,9 +84,34 @@ function onresizeBody() {
     //
     var altura = ($(document).height() - $('#header').outerHeight());
     var alturaCotizacionesDestacada = altura * porcentajeArriba; //0.55;
+    // incio redondear para abajo
+    var arrAlturaCotizacionesDestacada = alturaCotizacionesDestacada.toString().split(".");
+    var enteroAlturaCotizacionesDestacada = 0;
+    var decimalAlturaCotizacionesDestacada = 0;
+    if (arrAlturaCotizacionesDestacada.length == 2) {
+        enteroAlturaCotizacionesDestacada = parseInt(arrAlturaCotizacionesDestacada[0]);
+        decimalAlturaCotizacionesDestacada = parseInt(arrAlturaCotizacionesDestacada[1]);
+    } else {
+        enteroAlturaCotizacionesDestacada = parseInt(arrAlturaCotizacionesDestacada[0]);
+    }
+    // fin redondear para abajo
     var alturaParteAbajo = altura * porcentajeAbajo; // 0.45;
-    $('#divCotizacionesDestacada').css('height', alturaCotizacionesDestacada);
-    $('#divBarraAbajo').css('height', alturaParteAbajo);
+    // incio redondear para arriba
+    var arrAlturaParteAbajo = alturaCotizacionesDestacada.toString().split(".");
+    var enteroAlturaParteAbajo = 0;
+    var decimalAlturaParteAbajo = 0;
+    if (arrAlturaParteAbajo.length == 2) {
+        enteroAlturaParteAbajo = parseInt(arrAlturaParteAbajo[0]);
+        decimalAlturaParteAbajo = parseInt(arrAlturaParteAbajo[1]);
+    } else {
+        enteroAlturaParteAbajo = parseInt(arrAlturaParteAbajo[0]);
+    }
+    if (decimalAlturaCotizacionesDestacada > 0) {
+        enteroAlturaParteAbajo = enteroAlturaParteAbajo + 1;
+    }
+    // fin redondear para arriba
+    $('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
+    $('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
     //
     var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 2;
 
