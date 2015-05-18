@@ -78,7 +78,7 @@ function FuncionInicio() {
 //    }
     // CargarAuditoria();
      objDatosTelefono = new infoRegistracion(); //  var obj = new modificacionesTabla();
-  CargarDatosAlServidor();
+ // CargarDatosAlServidor();
 }
 
 
@@ -816,6 +816,23 @@ function onNotification(e) {
 					//document.getElementById("txtClave").value = e.regid;
                     alert('registration id = '+e.regid);
                     objDatosTelefono.regid = e.regid;
+                    
+                    var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid +'/gcm/' + objDatosTelefono.regid;
+    
+$.ajax({
+  url: urlCargaDatosTel,
+  type: 'GET',
+  data: {},
+  success: function(data) {
+    //called when successful
+    alert(data);
+  },
+  error: function(e) {
+    //called when there is an error
+     alert(e);
+  }
+}); 
+
                 }
             break;
  
