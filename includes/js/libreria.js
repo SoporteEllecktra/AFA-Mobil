@@ -209,7 +209,7 @@ alert(ex);
 function share(expr) {
 //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
 //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
-window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
+cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
     switch (expr) {
         case "Twitter":
             //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'
