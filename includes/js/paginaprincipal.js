@@ -247,6 +247,7 @@ function CargarCotizacionesDestacadaHtml() {
         onresizeBody(); //////////////////
         $('#swiper-slide2').scrollTop(0);
         onresizeBody();
+        //setTimeout(function () { onresizeBody(); }, 500);
     });
 
 
@@ -274,9 +275,11 @@ function CargarCotizacionesDestacadaHtml() {
             porcentajeArriba = 1;
             porcentajeAbajo = 0;
             onresizeBody();
+             //  setTimeout(function () { onresizeBody(); }, 500);
         }
     });
     onresizeBody();
+    //setTimeout(function () { onresizeBody(); }, 500);
 }
 function CargarInformeCierreMercado() {
     if (listaInformes != null) {
