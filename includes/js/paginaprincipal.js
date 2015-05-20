@@ -135,6 +135,9 @@ function onresizeBody() {
     // $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
     $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() + cantPxBotonesSlider)); // 
 }
+function onclikAcodeon(){
+alert('Ok');
+}
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
     resultadoDiv += '<div class="row cssDestacadoEncabezado ">';
@@ -154,7 +157,7 @@ function CargarCotizacionesDestacadaHtml() {
         index++;
 
 
-        resultadoDiv += '<div class="accordion-group">';
+        resultadoDiv += '<div class="accordion-group" onclick="onclikAcodeon()">';
         resultadoDiv += '<div class="accordion-heading cssAccordion-heading ">';
         resultadoDiv += '<div class="accordion-toggle" href="#collapse' + index + '" data-toggle="collapse" data-parent="#accordion2">';
 
