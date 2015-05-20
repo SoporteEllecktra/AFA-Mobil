@@ -36,8 +36,8 @@ function onDeviceReady() {
              alert('pushNotificationiOS');
             pushNotification.register(tokenHandler, errorHandler, { "badge": "true", "sound": "true", "alert": "true", "ecb": "onNotificationAPN" });	// required!
         } catch (err) {
-              alert('pushNotificationiOS - error');
-            alert(err.message);
+              //alert('pushNotificationiOS - error');
+            alert('pushNotificationiOS - error: ' + err.message);
         }
     } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
         try {
@@ -80,7 +80,7 @@ function successHandler(result) {
 }
 
 function errorHandler(error) {
-     alert(error);
+     alert('errorHandler: ' + error);
 }
 function onNotification(e) {
     //alert('onNotification');
