@@ -66,11 +66,11 @@ function onDeviceReady() {
 
 
 function successHandler(result) {
-    //  alert('Callback Success! Result = '+result);
+      alert('Callback Success! Result = '+result);
 }
 
 function errorHandler(error) {
-   //  alert(error);
+     alert(error);
 }
 function onNotification(e) {
     //alert('onNotification');
@@ -82,8 +82,8 @@ function onNotification(e) {
                 //document.getElementById("txtClave").value = e.regid;
                 // alert('registration id = '+e.regid);
                 objDatosTelefono.regid = e.regid;
-
-                var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/gcm/' + objDatosTelefono.regid;
+                objDatosTelefono.type = 'gcm';
+                var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
 
                 $.ajax({
                     url: urlCargaDatosTel,
@@ -141,6 +141,24 @@ function tokenHandler(result) {
     // Your iOS push server needs to know the token before it can push to this device
     // here is where you might want to send it the token for later use.
     alert('device token = ' + result);
+    objDatosTelefono.regid = result;
+    objDatosTelefono.type = 'apn';
+     var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
+
+                $.ajax({
+                    url: urlCargaDatosTel,
+                    type: 'GET',
+                    data: {},
+                    success: function (data) {
+                        //called when successful
+                        alert(data);
+                    },
+                    error: function (e) {
+                        //called when there is an error
+                        alert(e);
+                    }
+                });
+    
 }
 
 
