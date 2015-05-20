@@ -76,47 +76,47 @@ function FuncionInicio() {
 }
 
 
-function CargarDatosAlServidor() {
-    // 
-    //     if (localStorage.getItem("storageDatosDelTelefono") == null) {
-    //       // isGuardarTelefono = true;
-    //        window.location.href = "telefono.html";
-    //    } else {
-    //        CargarAuditoria();
-    //    }   
-    var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/gcm/' + objDatosTelefono.regid;
+//function CargarDatosAlServidor() {
+//    // 
+//    //     if (localStorage.getItem("storageDatosDelTelefono") == null) {
+//    //       // isGuardarTelefono = true;
+//    //        window.location.href = "telefono.html";
+//    //    } else {
+//    //        CargarAuditoria();
+//    //    }   
+//    var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/gcm/' + objDatosTelefono.regid;
+//
+//    $.ajax({
+//        url: urlCargaDatosTel,
+//        type: 'GET',
+//        data: {},
+//        success: function (data) {
+//            //called when successful
+//            alert(data);
+//        },
+//        error: function (e) {
+//            //called when there is an error
+//            alert(e);
+//        }
+//    });
+//
+//}
 
-    $.ajax({
-        url: urlCargaDatosTel,
-        type: 'GET',
-        data: {},
-        success: function (data) {
-            //called when successful
-            alert(data);
-        },
-        error: function (e) {
-            //called when there is an error
-            alert(e);
-        }
-    });
-
-}
-
-function CargarParametroEntradaGuardarTelefono() {
-    var soapRequest = '';// '<?xml version="1.0" encoding="utf-8"?>';
-    //    soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
-    //    soapRequest += '<soapenv:Header/>';
-    //    soapRequest += '<soapenv:Body>';
-    //    soapRequest += '<ser:guardarTelefono>';
-    //    if (pTelefono != '') {
-    //        soapRequest += '<telefono>' + pTelefono + '</telefono> ';
-    //    }
-    //    soapRequest += '</ser:guardarTelefono>';
-    //    soapRequest += '</soapenv:Body>';
-    //    soapRequest += '</soapenv:Envelope>';
-    soapRequest += '/uuid/type/regid';//http://200.58.118.98:3000/registrationinfo/uuid/type/regid
-    return soapRequest;
-}
+//function CargarParametroEntradaGuardarTelefono() {
+//    var soapRequest = '';// '<?xml version="1.0" encoding="utf-8"?>';
+//    //    soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
+//    //    soapRequest += '<soapenv:Header/>';
+//    //    soapRequest += '<soapenv:Body>';
+//    //    soapRequest += '<ser:guardarTelefono>';
+//    //    if (pTelefono != '') {
+//    //        soapRequest += '<telefono>' + pTelefono + '</telefono> ';
+//    //    }
+//    //    soapRequest += '</ser:guardarTelefono>';
+//    //    soapRequest += '</soapenv:Body>';
+//    //    soapRequest += '</soapenv:Envelope>';
+//    soapRequest += '/uuid/type/regid';//http://200.58.118.98:3000/registrationinfo/uuid/type/regid
+//    return soapRequest;
+//}
 
 function PrimerInicioAplicacion() {
     //var isGuardarTelefono = false;
