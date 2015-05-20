@@ -2,6 +2,8 @@
 
 var pushNotification;
 
+document.addEventListener('deviceready', onDeviceReady, true);
+
 function onDeviceReady() {
     alert('onDeviceReady');
     objDatosTelefono = new infoRegistracion();
@@ -64,7 +66,6 @@ function onDeviceReady() {
 
 // result contains any message sent from the plugin call
 
-
 function successHandler(result) {
       alert('Callback Success! Result = '+result);
 }
@@ -118,7 +119,6 @@ function onNotification(e) {
     }
 }
 
-document.addEventListener('deviceready', onDeviceReady, true);
 
 /// inicio iOS
 
