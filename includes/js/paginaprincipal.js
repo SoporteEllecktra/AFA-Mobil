@@ -136,7 +136,7 @@ function onresizeBody() {
     $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() + cantPxBotonesSlider)); // 
 }
 function onclikAcodeon(){
-alert('Ok');
+//alert('Ok');
 }
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
