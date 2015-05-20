@@ -33,8 +33,10 @@ function onDeviceReady() {
         }
     } else if (device.platform == 'iOS') {
         try {
+             alert('pushNotificationiOS');
             pushNotification.register(tokenHandler, errorHandler, { "badge": "true", "sound": "true", "alert": "true", "ecb": "onNotificationAPN" });	// required!
         } catch (err) {
+              alert('pushNotificationiOS - error');
             alert(err.message);
         }
     } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
