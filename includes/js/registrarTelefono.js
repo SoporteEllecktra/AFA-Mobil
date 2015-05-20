@@ -1,6 +1,13 @@
 //////////////////
 
 var pushNotification;
+function infoRegistracion() {
+    this.uuid = '';
+    this.type = ''; //"gcm" (Android), "apn" (iOS) y "mpn" (Windows Phone)
+    this.regid = '';
+    this.fecha = '';
+}
+var objDatosTelefono = null;
 
 document.addEventListener('deviceready', onDeviceReady, true);
 
