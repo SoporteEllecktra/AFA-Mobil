@@ -120,8 +120,8 @@ function onresizeBody() {
     }
     // fin optimizar
     
-    $('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
-    $('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
+    $('#divCotizacionesDestacada').css('height', alturaCotizacionesDestacada);
+    $('#divBarraAbajo').css('height', alturaParteAbajo);
     //$('#divCotizacionesDestacada').css('max-height',alturaCotizacionesDestacada);
     //$('#divBarraAbajo').css('min-height',alturaParteAbajo);
     //
