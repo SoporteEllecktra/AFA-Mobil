@@ -5,7 +5,7 @@ var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webserv
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
 var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
 
-var wsUrlRegistracionTelefono =  'http://200.58.118.98:3000/registrationinfo/';//'http://200.58.118.98:3000/registrationinfo/uuid/type/regid';
+var wsUrlRegistracionTelefono = 'http://200.58.118.98:3000/registrationinfo/';//'http://200.58.118.98:3000/registrationinfo/uuid/type/regid';
 //'http://200.58.118.98:3000/registrationinfo/';
 
 var cotizacionesDestacada = null;
@@ -61,7 +61,7 @@ function informes() {
     this.texto = '';
 }
 function infoRegistracion() {
-    this.uuid = '';    
+    this.uuid = '';
     this.type = ''; //"gcm" (Android), "apn" (iOS) y "mpn" (Windows Phone)
     this.regid = '';
     this.fecha = '';
@@ -69,72 +69,72 @@ function infoRegistracion() {
 var objDatosTelefono = null;
 function FuncionInicio() {
 
-  // localStorage.clear();
-//    if (localStorage.getItem("storageTelefono") == null) {
-//       // isGuardarTelefono = true;
-//        window.location.href = "telefono.html";
-//    } else {
-//        CargarAuditoria();
-//    }
-    // CargarAuditoria();
-     objDatosTelefono = new infoRegistracion(); //  var obj = new modificacionesTabla();
- // CargarDatosAlServidor();
+    // localStorage.clear();
+    //    if (localStorage.getItem("storageTelefono") == null) {
+    //       // isGuardarTelefono = true;
+    //        window.location.href = "telefono.html";
+    //    } else {
+    //        CargarAuditoria();
+    //    }
+     CargarAuditoria();
+     //  var obj = new modificacionesTabla();
+    // CargarDatosAlServidor();
 }
 
 
-function CargarDatosAlServidor(){
-// 
-//     if (localStorage.getItem("storageDatosDelTelefono") == null) {
-//       // isGuardarTelefono = true;
-//        window.location.href = "telefono.html";
-//    } else {
-//        CargarAuditoria();
-//    }   
-var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid +'/gcm/' + objDatosTelefono.regid;
-    
-$.ajax({
-  url: urlCargaDatosTel,
-  type: 'GET',
-  data: {},
-  success: function(data) {
-    //called when successful
-    alert(data);
-  },
-  error: function(e) {
-    //called when there is an error
-     alert(e);
-  }
-}); 
+function CargarDatosAlServidor() {
+    // 
+    //     if (localStorage.getItem("storageDatosDelTelefono") == null) {
+    //       // isGuardarTelefono = true;
+    //        window.location.href = "telefono.html";
+    //    } else {
+    //        CargarAuditoria();
+    //    }   
+    var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/gcm/' + objDatosTelefono.regid;
+
+    $.ajax({
+        url: urlCargaDatosTel,
+        type: 'GET',
+        data: {},
+        success: function (data) {
+            //called when successful
+            alert(data);
+        },
+        error: function (e) {
+            //called when there is an error
+            alert(e);
+        }
+    });
 
 }
 
-function CargarParametroEntradaGuardarTelefono(){
-    var soapRequest ='';// '<?xml version="1.0" encoding="utf-8"?>';
-//    soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
-//    soapRequest += '<soapenv:Header/>';
-//    soapRequest += '<soapenv:Body>';
-//    soapRequest += '<ser:guardarTelefono>';
-//    if (pTelefono != '') {
-//        soapRequest += '<telefono>' + pTelefono + '</telefono> ';
-//    }
-//    soapRequest += '</ser:guardarTelefono>';
-//    soapRequest += '</soapenv:Body>';
-//    soapRequest += '</soapenv:Envelope>';
-     soapRequest += '/uuid/type/regid';//http://200.58.118.98:3000/registrationinfo/uuid/type/regid
+function CargarParametroEntradaGuardarTelefono() {
+    var soapRequest = '';// '<?xml version="1.0" encoding="utf-8"?>';
+    //    soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
+    //    soapRequest += '<soapenv:Header/>';
+    //    soapRequest += '<soapenv:Body>';
+    //    soapRequest += '<ser:guardarTelefono>';
+    //    if (pTelefono != '') {
+    //        soapRequest += '<telefono>' + pTelefono + '</telefono> ';
+    //    }
+    //    soapRequest += '</ser:guardarTelefono>';
+    //    soapRequest += '</soapenv:Body>';
+    //    soapRequest += '</soapenv:Envelope>';
+    soapRequest += '/uuid/type/regid';//http://200.58.118.98:3000/registrationinfo/uuid/type/regid
     return soapRequest;
 }
 
 function PrimerInicioAplicacion() {
     //var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
-       // isGuardarTelefono = true;
+        // isGuardarTelefono = true;
         window.location.href = "telefono.html";
     } else {
 
     }
-//    if (isGuardarTelefono) {
-//        funGuardarTelefono(telefonoDelUsuario);
-//    }
+    //    if (isGuardarTelefono) {
+    //        funGuardarTelefono(telefonoDelUsuario);
+    //    }
 }
 
 function CargarParametroEntradaGuardarTelefono(pTelefono) {
@@ -175,17 +175,17 @@ function funGuardarTelefono(pTelefono) {
 }
 function processErrorGuardarTelefono(data, status, req) {
     //OcultarDivBloqueo();
-   // alert(req);
-          localStorage.setItem('storageTelefono', telefonoDelUsuario);
-         window.location.href = "index.html";
+    // alert(req);
+    localStorage.setItem('storageTelefono', telefonoDelUsuario);
+    window.location.href = "index.html";
 }
 function processSuccessGuardarTelefono(data, status, req) {
     if (status == "success") {
         alert(req.responseText);
         // var tablaModificacionesInformesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
         localStorage.setItem('storageTelefono', telefonoDelUsuario);
-         window.location.href = "index.html";
-         //window.history.go(-1);
+        window.location.href = "index.html";
+        //window.history.go(-1);
     }
 }
 
@@ -389,23 +389,23 @@ function processError(data, status, req) {
     //alert('Error');
 }
 function processErrorAuditoria(data, status, req) {
-     processError(data, status, req);
+    processError(data, status, req);
 }
 
 function processErrorCotizacionDestacada(data, status, req) {
-     processError(data, status, req);
+    processError(data, status, req);
 }
 function processErrorCotizacionHistoricaConIndiceDetacado(data, status, req) {
-     processError(data, status, req);
+    processError(data, status, req);
 }
 function processErrorNovedades(data, status, req) {
-     processError(data, status, req);
+    processError(data, status, req);
 }
 function processErrorTodasCotizaciones(data, status, req) {
-     processError(data, status, req);
+    processError(data, status, req);
 }
 function processErrorUltimoInforme(data, status, req) {
-     processError(data, status, req);
+    processError(data, status, req);
 }
 /* Fin Error */
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
@@ -771,85 +771,3 @@ function ObtenerImforme(pXML) {
     });
     return listaInformesAUX;
 }
-//////////////////
-
-var pushNotification;
-
-function onDeviceReady(){
-	alert('onDeviceReady');
-    pushNotification = window.plugins.pushNotification;
-    try { 
-		pushNotification.register(successHandler, errorHandler,{"senderID":"970066199992","ecb":"onNotification"});
-	} catch(err) { 
-		var txt="There was an error on this page.\n\n"; 
-		txt+="Error description: " + err.message + "\n\n"; 
-		alert(txt);
-	}
-//	 var element = document.getElementById('deviceProperties');
-//        element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
-//                            'Device Cordova: '  + device.cordova  + '<br />' +
-//                            'Device Platform: ' + device.platform + '<br />' +
-//                            'Device UUID: '     + device.uuid     + '<br />' +
-//                            'Device Version: '  + device.version  + '<br />';
-	objDatosTelefono.uuid =  device.uuid ;
-}
-
-// result contains any message sent from the plugin call
-
-
-function successHandler (result) {
-    alert('Callback Success! Result = '+result);
-}
-
-function errorHandler (error) {
-    alert(error);
-}
-function onNotification(e) {
-	alert('onNotification');
-        switch( e.event )
-        {
-            case 'registered':
-                if ( e.regid.length > 0 )
-                {
-                    //console.log("Regid " + e.regid);
-					
-					//document.getElementById("txtClave").value = e.regid;
-                    alert('registration id = '+e.regid);
-                    objDatosTelefono.regid = e.regid;
-                    
-                    var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid +'/gcm/' + objDatosTelefono.regid;
-    
-$.ajax({
-  url: urlCargaDatosTel,
-  type: 'GET',
-  data: {},
-  success: function(data) {
-    //called when successful
-    alert(data);
-  },
-  error: function(e) {
-    //called when there is an error
-     alert(e);
-  }
-}); 
-
-                }
-            break;
- 
-            case 'message':
-              // this is the actual push notification. its format depends on the data model from the push server
-              alert('message = '+e.message+' msgcnt = '+e.msgcnt);
-            break;
- 
-            case 'error':
-              alert('GCM error = '+e.msg);
-            break;
- 
-            default:
-              alert('An unknown GCM event has occurred');
-             // break;
-        }
-    }
-	
-	document.addEventListener('deviceready', onDeviceReady, true);
-/////////////////
