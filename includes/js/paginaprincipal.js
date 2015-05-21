@@ -97,7 +97,7 @@ function onresizeBody() {
     // fin redondear para abajo
     var alturaParteAbajo = altura * porcentajeAbajo; // 0.45;
     // incio redondear para arriba
-    var arrAlturaParteAbajo = alturaCotizacionesDestacada.toString().split(".");
+    var arrAlturaParteAbajo = alturaParteAbajo.toString().split(".");
     var enteroAlturaParteAbajo = 0;
     var decimalAlturaParteAbajo = 0;
     if (arrAlturaParteAbajo.length == 2) {
