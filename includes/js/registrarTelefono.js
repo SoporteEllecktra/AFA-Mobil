@@ -33,7 +33,7 @@ function onDeviceReady() {
         }
     } else if (device.platform == 'iOS') {
         try {
-             alert('pushNotificationiOS');
+             //alert('pushNotificationiOS');
             pushNotification.register(tokenHandler, errorHandler, { "badge": "true", "sound": "true", "alert": "true", "ecb": "onNotificationAPN" });	// required!
         } catch (err) {
               //alert('pushNotificationiOS - error');
