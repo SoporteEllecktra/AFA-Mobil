@@ -70,8 +70,8 @@ function FuncionInicio() {
     //    } else {
     //        CargarAuditoria();
     //    }
-     CargarAuditoria();
-     //  var obj = new modificacionesTabla();
+    CargarAuditoria();
+    //  var obj = new modificacionesTabla();
     // CargarDatosAlServidor();
 }
 

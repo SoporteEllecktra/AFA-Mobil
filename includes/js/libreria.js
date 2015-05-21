@@ -200,26 +200,26 @@ function obtenerParametroGetHtml(param) {//$_GET(param)
     return '';
 }
 
-function onSuccessCopy(args){
-alert(args);
+function onSuccessCopy(args) {
+    alert(args);
 }
-function onErrorCopy(ex){
-alert(ex);
+function onErrorCopy(ex) {
+    alert(ex);
 }
 function share(expr) {
-//window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
-//cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
-    try{
-cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
-    }catch (exx){
-        alert(exx);
-           try{
-window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
-    }catch (exx1){
-        alert(exx1);
-  
-        } 
-        }
+    //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
+    //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
+    //try {
+    //    cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
+    //} catch (exx) {
+    //    alert(exx);
+    //    try {
+    //        window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
+    //    } catch (exx1) {
+    //        alert(exx1);
+
+    //    }
+    //}
     switch (expr) {
         case "Twitter":
             //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'
@@ -262,7 +262,7 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
     var fechaUltima = eval('(' + localStorage.getItem("storageTablaModificaciones1") + ')');
     // var fechaUltima = obtenerFechaUTC(TablaModificacionesCotizaciones.fecha, TablaModificacionesCotizaciones.hora);
     var listaFecha = fechaUltima.fecha.split('/');
-        strResultado += 'AFA SCL ' + fechaUltima.fecha.substring(0, 5) + ':';
+    strResultado += 'AFA SCL ' + fechaUltima.fecha.substring(0, 5) + ':';
     //strResultado += 'AFA SCL ' + listaFecha[0] + '/' + listaFecha[1] + ':';
     if (cotizacionesDestacada != null) {
         var index = 0;
