@@ -276,3 +276,11 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
     }
     return strResultado;
 }
+function loadURL(url) {
+    try {
+    navigator.app.loadUrl(url, { openExternal: true });
+    }catch(ex){
+        alert (ex);
+        }
+    return false;
+}
