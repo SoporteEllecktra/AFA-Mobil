@@ -110,16 +110,16 @@ function onresizeBody() {
         enteroAlturaParteAbajo = enteroAlturaParteAbajo + 1;
     }
     // fin redondear para arriba
-//    // inicio optimizar
-//    if (porcentajeArriba != 1){
-//        if (enteroAlturaCotizacionesDestacada > $('#divCotizacionesDestacada').height())
-//        {
-//          enteroAlturaCotizacionesDestacada = $('#divCotizacionesDestacada').height();
-//          enteroAlturaParteAbajo = altura - enteroAlturaCotizacionesDestacada;
-//        }
-//    }
-//    // fin optimizar
-    
+    //    // inicio optimizar
+    //    if (porcentajeArriba != 1){
+    //        if (enteroAlturaCotizacionesDestacada > $('#divCotizacionesDestacada').height())
+    //        {
+    //          enteroAlturaCotizacionesDestacada = $('#divCotizacionesDestacada').height();
+    //          enteroAlturaParteAbajo = altura - enteroAlturaCotizacionesDestacada;
+    //        }
+    //    }
+    //    // fin optimizar
+
     $('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
     //$('#divCotizacionesDestacada').css('max-height',alturaCotizacionesDestacada);
@@ -135,8 +135,8 @@ function onresizeBody() {
     // $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
     $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() + cantPxBotonesSlider)); // 
 }
-function onclikAcodeon(){
-//alert('Ok');
+function onclikAcodeon() {
+    //alert('Ok');
 }
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
@@ -278,7 +278,7 @@ function CargarCotizacionesDestacadaHtml() {
             porcentajeArriba = 1;
             porcentajeAbajo = 0;
             onresizeBody();
-             //  setTimeout(function () { onresizeBody(); }, 500);
+            //  setTimeout(function () { onresizeBody(); }, 500);
         }
     });
     onresizeBody();
@@ -379,10 +379,10 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
 }
 //<a href="javascript:loadURL('http://www.lavidaenbinario.com');" class="link ">Example</a>
 
-function loadURL(url) {
-    navigator.app.loadUrl(url, { openExternal: true });
-    return false;
-}
+//function loadURL(url) {
+//    navigator.app.loadUrl(url, { openExternal: true });
+//    return false;
+//}
 function CargarNovedadesHtml() {
     var resultadoDiv = '';
     if (listaNovedades != null) {

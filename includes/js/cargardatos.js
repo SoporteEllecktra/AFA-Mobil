@@ -5,7 +5,7 @@ var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webserv
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
 var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
 
-var wsUrlRegistracionTelefono = 'http://200.58.118.98:3000/registrationinfo/';//'http://200.58.118.98:3000/registrationinfo/uuid/type/regid';
+var wsUrlRegistracionTelefono = 'http://200.58.118.98:50002/registrationinfo/';//'http://200.58.118.98:50002/registrationinfo/uuid/type/regid';
 //'http://200.58.118.98:3000/registrationinfo/';
 
 var cotizacionesDestacada = null;

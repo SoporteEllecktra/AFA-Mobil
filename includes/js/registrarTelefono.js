@@ -90,7 +90,7 @@ function onNotification(e) {
                 //console.log("Regid " + e.regid);
 
                 //document.getElementById("txtClave").value = e.regid;
-                // alert('registration id = '+e.regid);
+                 alert('registration id = '+e.regid);
                 objDatosTelefono.regid = e.regid;
                 objDatosTelefono.type = 'gcm';
                 var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
@@ -149,7 +149,7 @@ function onNotificationAPN(event) {
 function tokenHandler(result) {
     // Your iOS push server needs to know the token before it can push to this device
     // here is where you might want to send it the token for later use.
-    //alert('device token = ' + result);
+    alert('device token = ' + result);
     objDatosTelefono.regid = result;
     objDatosTelefono.type = 'apn';
      var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
