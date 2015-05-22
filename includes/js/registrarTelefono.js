@@ -90,7 +90,7 @@ function onNotification(e) {
                 //console.log("Regid " + e.regid);
 
                 //document.getElementById("txtClave").value = e.regid;
-                 alert('registration id = '+e.regid);
+                // alert('registration id = '+e.regid);
                 objDatosTelefono.regid = e.regid;
                 objDatosTelefono.type = 'gcm';
                 var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
@@ -105,7 +105,7 @@ function onNotification(e) {
                     },
                     error: function (e) {
                         //called when there is an error
-                        alert(e);
+                        alert('CargaDatosTel:' + e);
                     }
                 });
 
@@ -164,7 +164,7 @@ function tokenHandler(result) {
                     },
                     error: function (e) {
                         //called when there is an error
-                        alert(e);
+                        alert('CargaDatosTel:' + e);
                     }
                 });
     
