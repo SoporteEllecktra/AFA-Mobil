@@ -63,7 +63,7 @@ function informes() {
 
 function FuncionInicio() {
 
-    // localStorage.clear();
+     //localStorage.clear();
     //    if (localStorage.getItem("storageTelefono") == null) {
     //       // isGuardarTelefono = true;
     //        window.location.href = "telefono.html";
@@ -363,7 +363,7 @@ function CargaCotizacionDestacada() {
                 // 'Access-Control-Allow-Credentials: true'.
                 withCredentials: true
             },
-            data: CargarParametroEntradaCotizaciones(1, 15, obtenerFechaParametroEntrada(0), '', '', '', ''),
+            data: CargarParametroEntradaCotizaciones(1, 15, obtenerFechaParametroEntrada(0), '', '', '', ''),                      
             success: processSuccessCotizacionDestacada,
             error: processErrorCotizacionDestacada
         });
@@ -423,6 +423,45 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         indexCotizacionesDestacada = 0;
         CargaConIndiceDetalleCotizacion(indexCotizacionesDestacada);
     }
+}
+function CargarParametroEntradaCotizaciones_Ordenada(pCodigoTipoCotizacion, pCodigoTipoCliente, pFechaDesde, pFechaHasta,pTipoOrden, pProductos, pPuertos, pMonedas) {
+
+    var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
+    soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios" >';
+    soapRequest += '<soapenv:Header/>';
+    soapRequest += '<soapenv:Body>';
+    soapRequest += '<ser:consultaCotizacionProductoPuertoMonedaOrdenada>';
+    if (pCodigoTipoCotizacion != '') {
+        soapRequest += '<codigoTipoCotizacion>' + pCodigoTipoCotizacion + '</codigoTipoCotizacion>';
+    }
+    if (pCodigoTipoCliente != '') {
+        soapRequest += '<codigoTipoCliente>' + pCodigoTipoCliente + '</codigoTipoCliente>';
+    }
+    if (pFechaDesde != '') {
+        soapRequest += '<fechaDesde>' + pFechaDesde + '</fechaDesde>';
+    }
+    if(pTipoOrden != '')
+    {
+     soapRequest += '<tipoOrden>' + pTipoOrden + '</tipoOrden>';
+    }
+    if (pFechaHasta != '') {
+        soapRequest += '<fechaHasta>' + pFechaHasta + '</fechaHasta>';
+    }
+    if (pProductos != '') {
+        soapRequest += '<productos>' + pProductos + '</productos>';
+    }
+    if (pPuertos != '') {
+        soapRequest += '<puertos>' + pPuertos + '</puertos>';
+    }
+    if (pMonedas != '') {
+        soapRequest += '<monedas>' + pMonedas + '</monedas>';
+    }
+    soapRequest += '</ser:consultaCotizacionProductoPuertoMonedaOrdenada>';
+    soapRequest += '</soapenv:Body>';
+    soapRequest += '</soapenv:Envelope>';
+
+    return soapRequest;
+
 }
 function CargarParametroEntradaCotizaciones(pCodigoTipoCotizacion, pCodigoTipoCliente, pFechaDesde, pFechaHasta, pProductos, pPuertos, pMonedas) {
 
@@ -520,6 +559,7 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
             withCredentials: true
         },
         data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
+       // data: CargarParametroEntradaCotizaciones_Ordenada(1, 11,obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0),7, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''), 
         success: processSuccessCotizacionHistorica,
         error: processErrorCotizacionHistoricaConIndiceDetacado
     });

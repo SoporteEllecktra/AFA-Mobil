@@ -278,7 +278,13 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
 }
 function loadURL(url) {
     try {
-        navigator.app.loadUrl(url, { openExternal: true });
+        //navigator.app.loadUrl(url, { openExternal: true });
+    if(device.platform === 'Android') {
+        navigator.app.loadUrl(url, {openExternal:true});
+    } else {
+        window.open(url, '_system');
+    }
+        
     } catch (ex) {
         alert(ex);
     }
