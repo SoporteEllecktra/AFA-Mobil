@@ -209,17 +209,17 @@ function onErrorCopy(ex) {
 function share(expr) {
     //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
     //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
-    //try {
-    //    cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
-    //} catch (exx) {
-    //    alert(exx);
-    //    try {
-    //        window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
-    //    } catch (exx1) {
-    //        alert(exx1);
-
-    //    }
-    //}
+//    try {
+//        cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
+//    } catch (exx) {
+//        alert(exx);
+//        try {
+//            window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
+//        } catch (exx1) {
+//            alert(exx1);
+//
+//        }
+//    }
     switch (expr) {
         case "Twitter":
             //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'
@@ -228,9 +228,9 @@ function share(expr) {
             break;
         case "Facebook":
             //   window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
-            window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
+          //  window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
             //window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
-            //    window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Message pasted to clip board ,press on the area to paste it in the feed') .then(function(result) { aler('face ok');}, function(err) {aler('face error');});
+                window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
             // closeOptions(); 
             //  window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', null /* img */, null /* url */, 'Paste it dude!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
             break;
