@@ -210,11 +210,13 @@ function share(expr) {
     //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
     //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
     try {
-        window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada()/*, onSuccessCopy, onErrorCopy*/);
+      // window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada()/*, onSuccessCopy, onErrorCopy*/);
+        cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
     } catch (exx) {
         alert(exx);
         try {
           cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
+            //cordova.plugins.clipboard.copy(text);
             //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
         } catch (exx1) {
             alert(exx1);
