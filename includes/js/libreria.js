@@ -201,10 +201,10 @@ function obtenerParametroGetHtml(param) {//$_GET(param)
 }
 
 function onSuccessCopy(args) {
-    alert(args);
+    //alert(args);
 }
 function onErrorCopy(ex) {
-    alert(ex);
+   // alert(ex);
 }
 function share(expr) {
     //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
@@ -213,15 +213,15 @@ function share(expr) {
       // window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada()/*, onSuccessCopy, onErrorCopy*/);
         cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
     } catch (exx) {
-        alert(exx);
-        try {
-          cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
-            //cordova.plugins.clipboard.copy(text);
-            //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
-        } catch (exx1) {
-            alert(exx1);
-
-        }
+//        alert(exx);
+//        try {
+//          cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
+//            //cordova.plugins.clipboard.copy(text);
+//            //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
+//        } catch (exx1) {
+//            alert(exx1);
+//
+//        }
     }
     switch (expr) {
         case "Twitter":
@@ -231,9 +231,9 @@ function share(expr) {
             break;
         case "Facebook":
             //   window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
-          //  window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
+            window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
             //window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
-                window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
+               // window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
             // closeOptions(); 
             //  window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', null /* img */, null /* url */, 'Paste it dude!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
             break;
