@@ -203,7 +203,7 @@ function obtenerParametroGetHtml(param) {//$_GET(param)
 function onSuccessCopy(args) {
     //alert(args);
 // window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () {  }, function (errormsg) { });
-     window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
+     window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(ObtenerTxtCompartirCotizacionesDestacada(),null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
 }
 function onErrorCopy(ex) {
    // alert(ex);
