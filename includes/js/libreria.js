@@ -202,7 +202,8 @@ function obtenerParametroGetHtml(param) {//$_GET(param)
 
 function onSuccessCopy(args) {
     //alert(args);
- window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () {  }, function (errormsg) { });
+// window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () {  }, function (errormsg) { });
+     window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
 }
 function onErrorCopy(ex) {
    // alert(ex);
@@ -224,8 +225,17 @@ function share(expr) {
             // closeOptions(); 
             break;
         case "Facebook":
+                try {
+      // window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada()/*, onSuccessCopy, onErrorCopy*/);
+         //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
+        cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
+    } catch (exx) {
+
+    }
+            
+            
             //   window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
-            window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
+            //window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
             //window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
                // window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
             // closeOptions(); 
