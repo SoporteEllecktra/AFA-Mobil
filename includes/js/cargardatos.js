@@ -62,8 +62,7 @@ function informes() {
 }
 
 function FuncionInicio() {
-
-     //localStorage.clear();
+    //localStorage.clear();
     //    if (localStorage.getItem("storageTelefono") == null) {
     //       // isGuardarTelefono = true;
     //        window.location.href = "telefono.html";
@@ -71,8 +70,9 @@ function FuncionInicio() {
     //        CargarAuditoria();
     //    }
     CargarAuditoria();
-    //  var obj = new modificacionesTabla();
-    // CargarDatosAlServidor();
+// CargarNovedadesHtml();
+//   CargarCotizacionesDestacadaHtml();
+//    finCargarInicial();
 }
 
 

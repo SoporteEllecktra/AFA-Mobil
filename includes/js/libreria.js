@@ -213,12 +213,13 @@ function share(expr) {
         window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada()/*, onSuccessCopy, onErrorCopy*/);
     } catch (exx) {
         alert(exx);
-/*        try {
-            window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
+        try {
+          cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
+            //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada(), onSuccessCopy, onErrorCopy);
         } catch (exx1) {
             alert(exx1);
 
-        }*/
+        }
     }
     switch (expr) {
         case "Twitter":

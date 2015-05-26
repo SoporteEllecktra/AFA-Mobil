@@ -674,6 +674,7 @@ bottom: 0.2em !important;
 /* Inicio informe */
 #swiper-slide3{
     padding-left: 1em; 
+ 
 }
 .cssInformeTitulo{
 font-size: 1.5em;
@@ -689,8 +690,11 @@ padding-top: 1em;
 {
     overflow-y: auto; 
     padding-right: 1em; 
+    
 }
-
+.cssInformeDescripcion  span{
+  font-size: 1.25em!important; 
+}
 /* Fin informe */
 
 /* Inicio informe Pantalla completa */
