@@ -217,6 +217,10 @@ header
 {
     font-size: 1.5625em;
     font-weight: 600;
+    text-align: right;    
+}
+.cssDestacadoPrecioTitulo{
+text-align: right;
 }
 .colVerMas
 {
@@ -236,6 +240,8 @@ header
     -moz-border-radius: 0.32em 0.32em 0.32em 0.32em;
     -webkit-border-radius: 0.32em 0.32em 0.32em 0.32em;
     border: 0px solid #000000;
+    float: right;
+    margin-right:0.2em;
 }
 .colRectanguloPrecioVerde
 {

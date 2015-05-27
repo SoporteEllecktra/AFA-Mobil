@@ -3,7 +3,7 @@ var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webserv
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
-var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl&username=user&password=pass123/";
 
 var wsUrlRegistracionTelefono = 'http://200.58.118.98:50002/registrationinfo/';//'http://200.58.118.98:50002/registrationinfo/uuid/type/regid';
 //'http://200.58.118.98:3000/registrationinfo/';

@@ -11,6 +11,23 @@ var objDatosTelefono = null;
 
 document.addEventListener('deviceready', onDeviceReady, true);
 
+
+function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel){
+                $.ajax({
+                    url: pUrlCargaDatosTel,
+                    type: 'GET',
+                    data: {},
+                    success: function (data) {
+                        //called when successful
+                      //  alert(data);
+                    },
+                    error: function (e) {
+                        //called when there is an error
+                      //  alert('CargaDatosTel:' + e);
+                    }
+                });
+}
+
 function onDeviceReady() {
     //alert('onDeviceReady');
     objDatosTelefono = new infoRegistracion();
@@ -54,22 +71,6 @@ function onDeviceReady() {
             alert(err.message);
         }
     }
-    //    
-
-
-    //try {
-    //    pushNotification.register(successHandler, errorHandler, { "senderID": "970066199992", "ecb": "onNotification" });
-    //} catch (err) {
-    //    var txt = "There was an error on this page.\n\n";
-    //    txt += "Error description: " + err.message + "\n\n";
-    //    alert(txt);
-    //}
-    //	 var element = document.getElementById('deviceProperties');
-    //        element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
-    //                            'Device Cordova: '  + device.cordova  + '<br />' +
-    //                            'Device Platform: ' + device.platform + '<br />' +
-    //                            'Device UUID: '     + device.uuid     + '<br />' +
-    //                            'Device Version: '  + device.version  + '<br />';
     objDatosTelefono.uuid = device.uuid;
 }
 
@@ -87,27 +88,25 @@ function onNotification(e) {
     switch (e.event) {
         case 'registered':
             if (e.regid.length > 0) {
-                //console.log("Regid " + e.regid);
-
                 //document.getElementById("txtClave").value = e.regid;
                 // alert('registration id = '+e.regid);
                 objDatosTelefono.regid = e.regid;
                 objDatosTelefono.type = 'gcm';
                 var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
-
-                $.ajax({
-                    url: urlCargaDatosTel,
-                    type: 'GET',
-                    data: {},
-                    success: function (data) {
-                        //called when successful
-                      //  alert(data);
-                    },
-                    error: function (e) {
-                        //called when there is an error
-                      //  alert('CargaDatosTel:' + e);
-                    }
-                });
+LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
+//                $.ajax({
+//                    url: urlCargaDatosTel,
+//                    type: 'GET',
+//                    data: {},
+//                    success: function (data) {
+//                        //called when successful
+//                      //  alert(data);
+//                    },
+//                    error: function (e) {
+//                        //called when there is an error
+//                      //  alert('CargaDatosTel:' + e);
+//                    }
+//                });
 
             }
             break;
@@ -154,19 +153,20 @@ function tokenHandler(result) {
     objDatosTelefono.type = 'apn';
      var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
 
-                $.ajax({
-                    url: urlCargaDatosTel,
-                    type: 'GET',
-                    data: {},
-                    success: function (data) {
-                        //called when successful
-                      //  alert(data);
-                    },
-                    error: function (e) {
-                        //called when there is an error
-                      //  alert('CargaDatosTel:' + e);
-                    }
-                });
+    LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
+//                    $.ajax({
+//                        url: urlCargaDatosTel,
+//                        type: 'GET',
+//                        data: {},
+//                        success: function (data) {
+//                            //called when successful
+//                          //  alert(data);
+//                        },
+//                        error: function (e) {
+//                            //called when there is an error
+//                          //  alert('CargaDatosTel:' + e);
+//                        }
+//                    });
     
 }
 

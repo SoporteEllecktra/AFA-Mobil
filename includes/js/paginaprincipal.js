@@ -147,7 +147,7 @@ function CargarCotizacionesDestacadaHtml() {
     resultadoDiv += '<div class="col-xs-4">';
     resultadoDiv += 'PUERTO';
     resultadoDiv += '</div>';
-    resultadoDiv += '<div class="col-xs-4">';
+    resultadoDiv += '<div class="col-xs-4 cssDestacadoPrecioTitulo">';
     resultadoDiv += 'PRECIO P/TN';
     resultadoDiv += '</div>';
     resultadoDiv += '</div>';
