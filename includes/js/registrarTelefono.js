@@ -174,16 +174,14 @@ function tokenHandler(result) {
 
 /// inicio WP8
 function channelHandler(event) {
-      //var uri = event.uri;
-    
-     objDatosTelefono.regid = event.uri;
+     //objDatosTelefono.regid = event.uri;    
+     objDatosTelefono.regid = event.uri.replace(/\//g,'ELLECKTRACODE');
      objDatosTelefono.type = 'mpn';
      var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
 
     LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
     
     alert(event.uri);
-      //alert('channelHandler');
 }
 
 //handle MPNS notifications for WP8
