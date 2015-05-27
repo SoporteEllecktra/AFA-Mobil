@@ -57,9 +57,6 @@ function onDeviceReady() {
             alert('pushNotificationiOS - error: ' + err.message);
         }
     } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
-//        var channelHandler = function(obj) {
-//            console.log()
-//        }
         var channelName = '34923EIGApp.EIGPush';
         try {
             pushNotification.register(
@@ -77,11 +74,6 @@ function onDeviceReady() {
     }
     objDatosTelefono.uuid = device.uuid;
 }
-function channelHandler(result) {
-      alert('channelHandler = '+result);
-}
-
-// result contains any message sent from the plugin call
 
 function successHandler(result) {
     //  alert('Callback Success! Result = '+result);
@@ -181,6 +173,19 @@ function tokenHandler(result) {
 /// fin iOS
 
 /// inicio WP8
+function channelHandler(event) {
+      //var uri = event.uri;
+    
+     objDatosTelefono.regid = event.uri;
+     objDatosTelefono.type = 'mpn';
+     var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
+
+    LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
+    
+    alert(event.uri);
+      //alert('channelHandler');
+}
+
 //handle MPNS notifications for WP8
 function onNotificationWP8(e) {
 

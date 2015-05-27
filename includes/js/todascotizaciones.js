@@ -73,5 +73,5 @@ function CargarTodasCotizacionesHtml() {
     $('#divResultadoTodasCotizaciones').html(resultadoDiv);
 }
 function onclickFullScreenVerMasCotizacionesAbajo(){
- window.location.href = "index.html?r=1";
+    RedireccionarPagIndex();
 }

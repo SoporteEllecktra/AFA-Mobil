@@ -66,6 +66,6 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
     $('#divResultadoTodasCotizacionesHistorica').html(resultadoDiv);
 }
 function onclickFullScreenCotizacionesHistoricaAbajo() {
-    window.location.href = "index.html?r=1";
-
+  //  window.location.href = "index.html?r=1";
+RedireccionarPagIndex();
 }
