@@ -86,8 +86,6 @@ function CargarHtmlFechaMenuPrincipal() {
 }
 
 function obtenerFechaMostrar(pValor) {
-    //2015-03-27T00:00:00-03:00
-    // pValor.substring(0,10);
     var listaFecha = pValor.substring(0, 10).split('-');
     return listaFecha[2] + '/' + listaFecha[1] + '/' + listaFecha[0];
 }
@@ -154,13 +152,6 @@ function obtenerFechaMostrarMenuInicio(pValor) {
     resultado = listaFecha[0] + ' de ' + obtenerNombreMes(listaFecha[1]) + ' del ' + listaFecha[2];
     return resultado;
 }
-//function obtenerFechaMostrarMenuInicio(pValor) {
-//    //2015-03-27T00:00:00-03:00
-//    var resultado = '';
-//    var listaFecha = pValor.substring(0, 10).split('-');
-//    resultado = listaFecha[2] + ' de ' + obtenerNombreMes(listaFecha[1]) + ' del ' + listaFecha[0];
-//    return resultado;
-//}
 function MostrarDivBloqueo() {
     ActualizarAltoFondoBloqueo();
     $('#divFondoBloqueo').css('display', 'block');
@@ -202,54 +193,43 @@ function obtenerParametroGetHtml(param) {//$_GET(param)
 
 function onSuccessCopy(args) {
     //alert(args);
-// window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () {  }, function (errormsg) { });
-     window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(ObtenerTxtCompartirCotizacionesDestacada(),null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
+    // window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () {  }, function (errormsg) { });
+
 }
 function onErrorCopy(ex) {
-   // alert(ex);
+    // alert(ex);
 }
 function share(expr) {
     //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
     //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
-//    try {
-//      // window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada()/*, onSuccessCopy, onErrorCopy*/);
-//         //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
-//        cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
-//    } catch (exx) {
-//
-//    }
-    switch (expr) {
-        case "Twitter":
-            //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'
-            window.plugins.socialsharing.shareViaTwitter(ObtenerTxtCompartirCotizacionesDestacada());
-            // closeOptions(); 
-            break;
-        case "Facebook":
-                try {
-      // window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada()/*, onSuccessCopy, onErrorCopy*/);
-         //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
+    try {
         cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
     } catch (exx) {
 
     }
-            
-            
-            //   window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
+    switch (expr) {
+        case "Twitter":
+            //window.plugins.socialsharing.shareViaTwitter(ObtenerTxtCompartirCotizacionesDestacada());
+            window.plugins.socialsharing.shareViaTwitter('');
+            break;
+        case "Facebook":
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(ObtenerTxtCompartirCotizacionesDestacada(), null, null, ObtenerTxtCompartirCotizacionesDestacada(), function () { console.log('share ok') }, function (errormsg) { alert(errormsg) });
+
+
+            //window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
             //window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
             //window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
-               // window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
-            // closeOptions(); 
-            //  window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', null /* img */, null /* url */, 'Paste it dude!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
+            //window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
+            //window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', null /* img */, null /* url */, 'Paste it dude!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
             break;
         case "WhatsApp":
-            window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
-            //   closeOptions(); 
+            //window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
+            window.plugins.socialsharing.shareViaWhatsApp('', null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
             break;
         case "share":
 
             break;
         default:
-            // console.log(""); 
     }
     onclickCompartir();
 }
@@ -265,12 +245,9 @@ function onclickWhatsApp() {
 function ObtenerTxtCompartirCotizacionesDestacada() {
     var strResultado = '';
     //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'    
-    // var fechaUltima = localStorage.getItem("storageTablaModificaciones1");
     var fechaUltima = eval('(' + localStorage.getItem("storageTablaModificaciones1") + ')');
-    // var fechaUltima = obtenerFechaUTC(TablaModificacionesCotizaciones.fecha, TablaModificacionesCotizaciones.hora);
     var listaFecha = fechaUltima.fecha.split('/');
     strResultado += 'AFA SCL ' + fechaUltima.fecha.substring(0, 5) + ':';
-    //strResultado += 'AFA SCL ' + listaFecha[0] + '/' + listaFecha[1] + ':';
     if (cotizacionesDestacada != null) {
         var index = 0;
         $(cotizacionesDestacada).each(function () {
@@ -285,13 +262,12 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
 }
 function loadURL(url) {
     try {
-        //navigator.app.loadUrl(url, { openExternal: true });
-    if(device.platform === 'Android') {
-        navigator.app.loadUrl(url, {openExternal:true});
-    } else {
-        window.open(url, '_system');
-    }
-        
+        if (device.platform === 'Android') {
+            navigator.app.loadUrl(url, { openExternal: true });
+        } else {
+            window.open(url, '_system');
+        }
+
     } catch (ex) {
         alert(ex);
     }

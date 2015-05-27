@@ -20,9 +20,6 @@ var isCargarNotificaciones = true;
 var isCargarInformes = true;
 //
 var telefonoDelUsuario = '';
-//CargarParametroEntradaAuditoria()
-//CargaNovedades()
-//CargaUltimoInforme() 
 
 function cotizacion() {
     this.fechaCotizacion = '';
@@ -74,49 +71,6 @@ function FuncionInicio() {
 //   CargarCotizacionesDestacadaHtml();
 //    finCargarInicial();
 }
-
-
-//function CargarDatosAlServidor() {
-//    // 
-//    //     if (localStorage.getItem("storageDatosDelTelefono") == null) {
-//    //       // isGuardarTelefono = true;
-//    //        window.location.href = "telefono.html";
-//    //    } else {
-//    //        CargarAuditoria();
-//    //    }   
-//    var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/gcm/' + objDatosTelefono.regid;
-//
-//    $.ajax({
-//        url: urlCargaDatosTel,
-//        type: 'GET',
-//        data: {},
-//        success: function (data) {
-//            //called when successful
-//            alert(data);
-//        },
-//        error: function (e) {
-//            //called when there is an error
-//            alert(e);
-//        }
-//    });
-//
-//}
-
-//function CargarParametroEntradaGuardarTelefono() {
-//    var soapRequest = '';// '<?xml version="1.0" encoding="utf-8"?>';
-//    //    soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
-//    //    soapRequest += '<soapenv:Header/>';
-//    //    soapRequest += '<soapenv:Body>';
-//    //    soapRequest += '<ser:guardarTelefono>';
-//    //    if (pTelefono != '') {
-//    //        soapRequest += '<telefono>' + pTelefono + '</telefono> ';
-//    //    }
-//    //    soapRequest += '</ser:guardarTelefono>';
-//    //    soapRequest += '</soapenv:Body>';
-//    //    soapRequest += '</soapenv:Envelope>';
-//    soapRequest += '/uuid/type/regid';//http://200.58.118.98:3000/registrationinfo/uuid/type/regid
-//    return soapRequest;
-//}
 
 function PrimerInicioAplicacion() {
     //var isGuardarTelefono = false;
@@ -286,22 +240,6 @@ function processSuccessAuditoria(data, status, req) {
         }
         $.when(CargaCotizacionDestacada(), CargaNovedades(), CargaTodasCotizaciones(), CargaUltimoInforme()).done(funDoneAjax);
 
-        //        if (isCargarCotizaciones) {
-        //            CargaCotizacionDestacada();
-        //        } else if (isCargarNotificaciones) {
-        //            CargarCotizacionesDestacadaHtml();
-        //            CargaNovedades();
-        //        } else if (isCargarInformes) {
-        //            //
-        //            CargarCotizacionesDestacadaHtml();
-        //            CargarNovedadesHtml();
-        //            CargaUltimoInforme();           
-        //            //
-        //        } else {
-        //            CargarCotizacionesDestacadaHtml();
-        //            CargarNovedadesHtml();            
-        //            finCargarInicial();
-        //        }
     }
 }
 
@@ -316,14 +254,7 @@ function funDoneAjax(a, b, c, d) {
     // b lo mismo pero para la segunda request.
     //console.log(a[2].responseText);
     //console.log(b[2].responseText);
-
-    //alert(a);
-    // alert(b);
-    //finCargarInicial();
 }
-
-
-
 function CargarParametroEntradaAuditoria() {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
@@ -628,15 +559,6 @@ function processSuccessTodasCotizaciones(data, status, req) {
         } else {
 
         }
-
-        //        if (isCargarNotificaciones) {
-        //            CargaNovedades();
-        //        } else if (isCargarInformes) {
-        //            CargaUltimoInforme();
-        //        }else{
-        //         finCargarInicial();
-        //        }
-        //
     }
 }
 function ObtenerTodasCotizaciones(pXML) {
@@ -677,16 +599,6 @@ function CargarParametroEntradaNovedades(pFechaDesde, pFechaHasta, pCodigoCatego
     soapRequest += '</soapenv:Body>';
     soapRequest += '</soapenv:Envelope>';
     return soapRequest;
-    //<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">
-    //   <soapenv:Header/>
-    //   <soapenv:Body>
-    //      <ser:consultaNotificaciones>
-    //         <fechaDesde>06032015</fechaDesde>
-    //         <fechaHasta>18032015</fechaHasta>
-    //         <codigoCategoria></codigoCategoria>
-    //      </ser:consultaNotificaciones>
-    //   </soapenv:Body>
-    //</soapenv:Envelope>
 }
 function CargaNovedades() {
     if (isCargarNotificaciones) {
@@ -716,11 +628,6 @@ function processSuccessNovedades(data, status, req) {
         } else {
 
         }
-        //        if (isCargarInformes) {
-        //            CargaUltimoInforme();
-        //        }else{
-        //         finCargarInicial();
-        //        }
         CargarNovedadesHtml();
     }
 }
@@ -790,7 +697,6 @@ function processSuccessInforme(data, status, req) {
         } else {
 
         }
-        //finCargarInicial();
     }
 }
 function ObtenerImforme(pXML) {

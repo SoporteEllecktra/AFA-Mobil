@@ -70,8 +70,6 @@ function onmousemoveAmpliar(e) {
             cantNN = e.clientY;
             onresizeBody();
         }
-        //cantNN++;
-        //$('#divButtonAmpliar').html(cantNN);
     }
 
 }
@@ -109,30 +107,15 @@ function onresizeBody() {
     if (decimalAlturaCotizacionesDestacada > 0) {
         enteroAlturaParteAbajo = enteroAlturaParteAbajo + 1;
     }
-    // fin redondear para arriba
-    //    // inicio optimizar
-    //    if (porcentajeArriba != 1){
-    //        if (enteroAlturaCotizacionesDestacada > $('#divCotizacionesDestacada').height())
-    //        {
-    //          enteroAlturaCotizacionesDestacada = $('#divCotizacionesDestacada').height();
-    //          enteroAlturaParteAbajo = altura - enteroAlturaCotizacionesDestacada;
-    //        }
-    //    }
-    //    // fin optimizar
-
     $('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
-    //$('#divCotizacionesDestacada').css('max-height',alturaCotizacionesDestacada);
-    //$('#divBarraAbajo').css('min-height',alturaParteAbajo);
-    //
+
     var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 2;
 
     $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
 
     $('#divRowParteScrollNovedades').css('height', ($('#divBarraAbajo').outerHeight() - cantPxBotonesSlider));
     $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').outerHeight() - ($('#divParteFijaCotizacionHistorica').outerHeight() + cantPxBotonesSlider));
-
-    // $('#divInformeDescripcion').css('height', $('#divBarraAbajo').height() - $('#divInformeTitulo').height());
     $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() + cantPxBotonesSlider)); // 
 }
 function onclikAcodeon() {
@@ -250,7 +233,6 @@ function CargarCotizacionesDestacadaHtml() {
         onresizeBody(); //////////////////
         $('#swiper-slide2').scrollTop(0);
         onresizeBody();
-        //setTimeout(function () { onresizeBody(); }, 500);
     });
 
 
@@ -308,9 +290,6 @@ function onclickVerMas() {
 function CargarCotizacionesHistoricaHtml(pIndex) {
     var resultadoDiv = '';
     if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
-        //        resultadoDiv += '<div class="containerCotizacionHistorica">'; //container
-        //        resultadoDiv +='<br/>';
-        //        resultadoDiv += '<div class="containerCotizacionHistoricaHijo">'; //container hijo
         resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
         resultadoDiv += '<div class="row">';
         resultadoDiv += '<div class="col-xs-10 colHistoricoTitulo">';
@@ -318,8 +297,6 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         resultadoDiv += '</div>';
         //
         resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
-        //        //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar"  />';
-        //        resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenCotizacionesHistorica(); return false;"/>';
         resultadoDiv += '</div>';
         //
         resultadoDiv += '</div>';
@@ -352,13 +329,7 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
             resultadoDiv += '</div>';
         });
         resultadoDiv += '</div>'; // fin div scroll
-        //        resultadoDiv +='</div>'; //container hijo
-        //        //resultadoDiv +='<br/>';
-        //        resultadoDiv += '</div>';// fin container
     }
-    //$('#swiper-slide2').html(resultadoDiv);
-
-    //swiper.slides[swiper.activeIndex].id
     var isAgregarSlides2 = true;
     for (var i = 0; i < swiper.slides.length; i++) {
         if (swiper.slides[i].id == 'swiper-slide2') {
@@ -386,14 +357,7 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
 function CargarNovedadesHtml() {
     var resultadoDiv = '';
     if (listaNovedades != null) {
-        //    if (listaNovedades.length > 0)
-        //    {
-        //        resultadoDiv += '<div class="row">';
-        //        resultadoDiv += '<div class="col-xs-12 cssColImgAmpliar">';
-        //        resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar" />';
-        //        resultadoDiv += '</div>';     
-        //        resultadoDiv += '</div>';     
-        //    }
+
         resultadoDiv += '<div id="divRowParteScrollNovedades">';   // parte scroll      
         var indiceNovedades = -1;
         $(listaNovedades).each(function () {
@@ -414,19 +378,6 @@ function CargarNovedadesHtml() {
             //
             // Primer fila novedades
             resultadoDiv += '<div class="row">';
-            //            if (indiceNovedades == 0) {
-            //                resultadoDiv += '<div class="col-xs-10 cssNovedadesTitulo">';
-            //                resultadoDiv += this.titulo;
-            //                resultadoDiv += '</div>';
-            //                resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenNovedades()"
-            //                //resultadoDiv += '<img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliar" />';
-            //                resultadoDiv += '<input type="button" class="cssImgImputButtonAmpliar"  onclick="onclickFullScreenNovedades(); return false;"/>';
-            //                resultadoDiv += '</div>';
-            //            } else {
-            //                resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
-            //                resultadoDiv += this.titulo;
-            //                resultadoDiv += '</div>';
-            //            }
             resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
             resultadoDiv += this.titulo;
             resultadoDiv += '</div>';
