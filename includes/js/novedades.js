@@ -64,6 +64,6 @@ function CargarTodasNovedadesHtml() {
     $('#divResultadoNovedades').html(resultadoDiv);
 }
 function onclickFullScreenNovedadesAbajo() {
-    window.location.href = "index.html?r=1";
-
+  //  window.location.href = "index.html?r=1";
+RedireccionarPagIndex();
 }

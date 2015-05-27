@@ -23,5 +23,6 @@ function onresizeBody() {
     $('#divInformeDescripcion').css('height', $('#divResultadoInforme').innerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() ));
 }
 function onclickFullScreenInformesAbajo() {
-    window.location.href = "index.html?r=1";
+  //  window.location.href = "index.html?r=1";
+    RedireccionarPagIndex();
 }

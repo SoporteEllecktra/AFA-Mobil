@@ -273,3 +273,10 @@ function loadURL(url) {
     }
     return false;
 }
+function RedireccionarPagIndex(){    
+     if (device.platform == 'android' || device.platform == 'Android' || device.platform == 'iOS') {
+          window.location.href = "index.html?r=1";
+    } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
+ window.location.href = "index.html?r=1";
+    }
+}

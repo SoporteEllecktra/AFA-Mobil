@@ -57,6 +57,10 @@ function onDeviceReady() {
             alert('pushNotificationiOS - error: ' + err.message);
         }
     } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
+//        var channelHandler = function(obj) {
+//            console.log()
+//        }
+        var channelName = '34923EIGApp.EIGPush';
         try {
             pushNotification.register(
                 channelHandler,
@@ -72,6 +76,9 @@ function onDeviceReady() {
         }
     }
     objDatosTelefono.uuid = device.uuid;
+}
+function channelHandler(result) {
+      alert('channelHandler = '+result);
 }
 
 // result contains any message sent from the plugin call
