@@ -162,10 +162,7 @@ function tokenHandler(result) {
 //                          //  alert('CargaDatosTel:' + e);
 //                        }
 //                    });
-
 }
-
-
 /// fin iOS
 
 /// inicio WP8
@@ -177,21 +174,21 @@ function channelHandler(event) {
 
     LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
     
-    alert(event.uri);
+    //alert(event.uri);
 }
 
 //handle MPNS notifications for WP8
 function onNotificationWP8(e) {
-    alert('oo' + e.jsonContent["wp:Text1"]);
+   // alert('oo' + e.jsonContent["wp:Text1"]);
     if (e.type == "toast" && e.jsonContent) {
         pushNotification.showToastNotification(successHandler, errorHandler,
         {
             "Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
         });
     }
-    if (e.type == "raw" && e.jsonContent) {
-        alert(e.jsonContent.Body);
-    }
+//    if (e.type == "raw" && e.jsonContent) {
+//        alert(e.jsonContent.Body);
+//    }
 }
 
 function jsonErrorHandler(error) {

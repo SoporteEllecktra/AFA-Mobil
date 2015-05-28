@@ -6,11 +6,22 @@ $(document).ready(function () {
         pagination: '.swiper-pagination',
         paginationClickable: true
     });
-    var varParametroUrl = obtenerParametroGetHtml('r');
-    if (varParametroUrl == '') {
+    //var varParametroUrl = obtenerParametroGetHtml('r');
+    
+    var varParametroUrl = '';
+     if (localStorage.getItem("storageIndexVolver") == null) {
+             varParametroUrl = '';
+        } else {
+            varParametroUrl = localStorage.getItem("storageIndexVolver");            
+        }
+    
+    if (varParametroUrl == '') {        
         MostrarDivBloqueo();
         FuncionInicio();
     } else {
+        //
+        localStorage.setItem('storageIndexVolver', '');
+        //
         if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
 
         } else {
