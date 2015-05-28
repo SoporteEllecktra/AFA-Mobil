@@ -59,14 +59,14 @@ function informes() {
 }
 
 function FuncionInicio() {
-    localStorage.clear();
-        if (localStorage.getItem("storageTelefono") == null) {
-           // isGuardarTelefono = true;
-            window.location.href = "telefono.html";
-        } else {
-            CargarAuditoria();
-        }
-   // CargarAuditoria();
+//    localStorage.clear();
+//        if (localStorage.getItem("storageTelefono") == null) {
+//           // isGuardarTelefono = true;
+//            window.location.href = "telefono.html";
+//        } else {
+//            CargarAuditoria();
+//        }
+    CargarAuditoria();
 // CargarNovedadesHtml();
 //   CargarCotizacionesDestacadaHtml();
 //    finCargarInicial();
