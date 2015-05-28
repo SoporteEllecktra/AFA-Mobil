@@ -3,7 +3,7 @@ var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webserv
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
-var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl&username=user&password=pass123/";
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";//&username=user&password=pass123/";
 
 var wsUrlRegistracionTelefono = 'http://200.58.118.98:50002/registrationinfo/';//'http://200.58.118.98:50002/registrationinfo/uuid/type/regid';
 //'http://200.58.118.98:3000/registrationinfo/';
@@ -59,14 +59,14 @@ function informes() {
 }
 
 function FuncionInicio() {
-    //localStorage.clear();
-    //    if (localStorage.getItem("storageTelefono") == null) {
-    //       // isGuardarTelefono = true;
-    //        window.location.href = "telefono.html";
-    //    } else {
-    //        CargarAuditoria();
-    //    }
-    CargarAuditoria();
+    localStorage.clear();
+        if (localStorage.getItem("storageTelefono") == null) {
+           // isGuardarTelefono = true;
+            window.location.href = "telefono.html";
+        } else {
+            CargarAuditoria();
+        }
+   // CargarAuditoria();
 // CargarNovedadesHtml();
 //   CargarCotizacionesDestacadaHtml();
 //    finCargarInicial();
@@ -99,7 +99,11 @@ function CargarParametroEntradaGuardarTelefono(pTelefono) {
     soapRequest += '</soapenv:Envelope>';
     return soapRequest;
 }
-
+function make_base_auth(user, password) {
+  var tok = user + ':' + password;
+  var hash = btoa(tok);
+  return "Basic " + hash;
+}
 function funGuardarTelefono(pTelefono) {
     telefonoDelUsuario = pTelefono;
     $.ajax({
@@ -107,15 +111,19 @@ function funGuardarTelefono(pTelefono) {
         url: wsUrlGuardarTelefono,
         contentType: "application/xml; charset=utf-8", //"text/xml",
         dataType: "xml",
+       // data: '{"username": "' + 'user' + '", "password" : "' + 'pass123' + '"}',        
+    beforeSend: function (xhr){ 
+        xhr.setRequestHeader('Authorization', make_base_auth('user', 'pass123')); 
+    }, 
         crossDomain: true,
-        xhrFields: {
-            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-            // This can be used to set the 'withCredentials' property.
-            // Set the value to 'true' if you'd like to pass cookies to the server.
-            // If this is enabled, your server must respond with the header
-            // 'Access-Control-Allow-Credentials: true'.
-            withCredentials: true
-        },
+//        xhrFields: {
+//            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+//            // This can be used to set the 'withCredentials' property.
+//            // Set the value to 'true' if you'd like to pass cookies to the server.
+//            // If this is enabled, your server must respond with the header
+//            // 'Access-Control-Allow-Credentials: true'.
+//            withCredentials: true
+//        },
         data: CargarParametroEntradaGuardarTelefono(pTelefono),
         success: processSuccessGuardarTelefono,
         error: processErrorGuardarTelefono

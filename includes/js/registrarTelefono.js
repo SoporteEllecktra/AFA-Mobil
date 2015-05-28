@@ -1,5 +1,4 @@
 //////////////////
-
 var pushNotification;
 function infoRegistracion() {
     this.uuid = '';
@@ -10,7 +9,6 @@ function infoRegistracion() {
 var objDatosTelefono = null;
 
 document.addEventListener('deviceready', onDeviceReady, true);
-
 
 function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel){
                 $.ajax({
@@ -125,8 +123,6 @@ LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
             // break;
     }
 }
-
-
 /// inicio iOS
 
 function onNotificationAPN(event) {
@@ -166,7 +162,7 @@ function tokenHandler(result) {
 //                          //  alert('CargaDatosTel:' + e);
 //                        }
 //                    });
-    
+
 }
 
 
@@ -186,14 +182,13 @@ function channelHandler(event) {
 
 //handle MPNS notifications for WP8
 function onNotificationWP8(e) {
-
+    alert('oo' + e.jsonContent["wp:Text1"]);
     if (e.type == "toast" && e.jsonContent) {
         pushNotification.showToastNotification(successHandler, errorHandler,
         {
             "Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
         });
     }
-
     if (e.type == "raw" && e.jsonContent) {
         alert(e.jsonContent.Body);
     }
@@ -202,7 +197,7 @@ function onNotificationWP8(e) {
 function jsonErrorHandler(error) {
     //$("#app-status-ul").append('<li style="color:red;">error:' + error.code + '</li>');
     //    $("#app-status-ul").append('<li style="color:red;">error:' + error.message + '</li>');
-    alert( error.message );
+    alert('jsonErrorHandler' + error.message );
 }
 /// fin WP8
 /////////////////
