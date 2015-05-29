@@ -19,7 +19,15 @@ function CargarTodasNovedadesHtml() {
             indiceNovedades++;
             resultadoDiv += '<div class="row">';
             resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
-            resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+             if (this.url != '') {
+                resultadoDiv += '<a href="javascript:loadURL(\'' + this.url + '\');" >';
+                resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+                resultadoDiv += '</a>';
+            }
+            else {
+                resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+            }
+            //resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
             resultadoDiv += '</div>';
             //
             resultadoDiv += '<div class="col-xs-11 ">';
