@@ -159,8 +159,8 @@ function onNotificationWP8(e) {
         });
     }
     if (e.type == "raw" && e.jsonContent) {
-        alert(JSON.stringify(e));
-        //alert(e.jsonContent.Body);
+        //alert(JSON.stringify(e));
+        alert(e.jsonContent.Body);
     }
 }
 //function onNotificationWP8(e) {
