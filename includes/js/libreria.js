@@ -224,7 +224,7 @@ function share(expr) {
             break;
         case "WhatsApp":
             //window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
-            window.plugins.socialsharing.shareViaWhatsApp('', null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
+            window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
             break;
         case "share":
 
