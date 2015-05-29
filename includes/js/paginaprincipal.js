@@ -7,15 +7,14 @@ $(document).ready(function () {
         paginationClickable: true
     });
     //var varParametroUrl = obtenerParametroGetHtml('r');
-    
+
     var varParametroUrl = '';
-     if (localStorage.getItem("storageIndexVolver") == null) {
-             varParametroUrl = '';
-        } else {
-            varParametroUrl = localStorage.getItem("storageIndexVolver");            
-        }
-    
-    if (varParametroUrl == '') {        
+    if (localStorage.getItem("storageIndexVolver") == null) {
+        varParametroUrl = '';
+    } else {
+        varParametroUrl = localStorage.getItem("storageIndexVolver");
+    }
+    if (varParametroUrl == '') {
         MostrarDivBloqueo();
         FuncionInicio();
     } else {
@@ -429,7 +428,17 @@ function CargarNovedadesHtml() {
             }
         }
     }
-    CargarInformeCierreMercado();
+
+    var isTimeoutInformeCierreMercado = true;
+    if (listaInformes != null) {
+        if (listaInformes.length > 0) {
+            isTimeoutInformeCierreMercado = false;
+            CargarInformeCierreMercado();
+        } 
+    }
+    if (isTimeoutInformeCierreMercado) {
+        setTimeout(function () { CargarInformeCierreMercado(); }, 500);
+    }
 }
 function CargarInformeHtml() {
     var informesHtml = '';

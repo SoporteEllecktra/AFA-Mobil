@@ -85,25 +85,10 @@ function onNotification(e) {
     switch (e.event) {
         case 'registered':
             if (e.regid.length > 0) {
-                //document.getElementById("txtClave").value = e.regid;
-                // alert('registration id = '+e.regid);
                 objDatosTelefono.regid = e.regid;
                 objDatosTelefono.type = 'gcm';
                 var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
 LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
-//                $.ajax({
-//                    url: urlCargaDatosTel,
-//                    type: 'GET',
-//                    data: {},
-//                    success: function (data) {
-//                        //called when successful
-//                      //  alert(data);
-//                    },
-//                    error: function (e) {
-//                        //called when there is an error
-//                      //  alert('CargaDatosTel:' + e);
-//                    }
-//                });
 
             }
             break;
@@ -149,19 +134,6 @@ function tokenHandler(result) {
      var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
 
     LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
-//                    $.ajax({
-//                        url: urlCargaDatosTel,
-//                        type: 'GET',
-//                        data: {},
-//                        success: function (data) {
-//                            //called when successful
-//                          //  alert(data);
-//                        },
-//                        error: function (e) {
-//                            //called when there is an error
-//                          //  alert('CargaDatosTel:' + e);
-//                        }
-//                    });
 }
 /// fin iOS
 
@@ -190,7 +162,17 @@ function onNotificationWP8(e) {
 //        alert(e.jsonContent.Body);
 //    }
 }
-
+//function onNotificationWP8(e) {
+//    if (e.type == "toast" && e.jsonContent) {
+//        pushNotification.showToastNotification(successHandler, errorHandler,
+//        {
+//            "Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
+//        });
+//    }
+//    if (e.type == "raw" && e.jsonContent) {
+//        alert(e.jsonContent.Body);
+//    }
+//}
 function jsonErrorHandler(error) {
     //$("#app-status-ul").append('<li style="color:red;">error:' + error.code + '</li>');
     //    $("#app-status-ul").append('<li style="color:red;">error:' + error.message + '</li>');

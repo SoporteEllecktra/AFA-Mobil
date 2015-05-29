@@ -16,16 +16,19 @@ function onclickIngresarTelefono(){
 //if (localStorage.getItem("storageTelefono") == null) {
 //        isGuardarTelefono = true;
 //    } 
-  var varTelefono = $('#txtTelefono').val();
+    
+     if(!$.trim( $('#txtTelefonoArea').val()).length || !$.trim( $('#txtTelefono').val()).length) { // zero-length string AFTER a trim
+       //  alert('Ok');
+     }
+    else{
+  var varTelefono = $('#txtTelefonoArea').val() + $('#txtTelefono').val();
     if (varTelefono != ''){
         funGuardarTelefono(varTelefono);
-    }
+    }}
 }
-function justNumbers(e)
-{
+function justNumbers(e){
 var keynum = window.event ? window.event.keyCode : e.which;
 if ((keynum == 8) )//|| (keynum == 46)
 return true;
- 
 return /\d/.test(String.fromCharCode(keynum));
 }
