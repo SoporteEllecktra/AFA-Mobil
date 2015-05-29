@@ -151,7 +151,7 @@ function channelHandler(event) {
 
 //handle MPNS notifications for WP8
 function onNotificationWP8(e) {
-    alert(JSON.stringify( e));
+  //  alert(JSON.stringify( e));
     if (e.type == "toast" && e.jsonContent) {
         pushNotification.showToastNotification(successHandler, errorHandler,
         {
@@ -159,7 +159,8 @@ function onNotificationWP8(e) {
         });
     }
     if (e.type == "raw" && e.jsonContent) {
-        alert(e.jsonContent.Body);
+        alert(JSON.stringify(e));
+        //alert(e.jsonContent.Body);
     }
 }
 //function onNotificationWP8(e) {
