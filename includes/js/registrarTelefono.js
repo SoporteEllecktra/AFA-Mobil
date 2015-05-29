@@ -151,16 +151,16 @@ function channelHandler(event) {
 
 //handle MPNS notifications for WP8
 function onNotificationWP8(e) {
-   // alert('oo' + e.jsonContent["wp:Text1"]);
+    alert(JSON.stringify( e));
     if (e.type == "toast" && e.jsonContent) {
         pushNotification.showToastNotification(successHandler, errorHandler,
         {
             "Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
         });
     }
-//    if (e.type == "raw" && e.jsonContent) {
-//        alert(e.jsonContent.Body);
-//    }
+    if (e.type == "raw" && e.jsonContent) {
+        alert(e.jsonContent.Body);
+    }
 }
 //function onNotificationWP8(e) {
 //    if (e.type == "toast" && e.jsonContent) {
