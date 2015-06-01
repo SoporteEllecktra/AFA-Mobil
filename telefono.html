@@ -6,39 +6,137 @@
     <title>AFA</title>
     <link rel="stylesheet" href="includes/css/bootstrap.min.css" />
     <link rel="stylesheet" href="includes/css/web.css" />
+    <style type="text/css">
+        @media (max-height: 480px)
+        {
+            .cssLogoAfaTelefono
+            {
+                width: 10em;
+                height: 10em;
+            }
+            .cssSpanLogoAfaTelefono
+            {
+                font-size: 2em;
+            }
+        }
+        @media (max-height: 370px)
+        {
+            .cssLogoAfaTelefono
+            {
+                width: 8em;
+                height: 8em;
+            }
+            .cssSpanLogoAfaTelefono
+            {
+                font-size: 1.5em;
+            }
+            .cssCajaTelefonoTexto
+            {
+                font-size: 0.9em;
+            }
+            .cssInputTelefonoArea
+            {
+                font-size: 1.9em;
+            }
+            .cssInputTelefono
+            {
+                font-size: 1.9em;
+            }
+            .cssDivBotonIngresar
+            {
+                font-size: 1.4em;
+            }
+        }
+        @media (max-height: 350px)
+        {
+            .cssLogoAfaTelefono
+            {
+                width: 7em;
+                height: 7em;
+            }
+            .cssSpanLogoAfaTelefono
+            {
+                font-size: 1.2em;
+            }
+            .cssCajaTelefonoTexto
+            {
+                font-size: 0.9em;
+            }
+            .cssInputTelefonoArea
+            {
+                font-size: 1.9em;
+            }
+            .cssInputTelefono
+            {
+                font-size: 1.9em;
+            }
+            .cssDivBotonIngresar
+            {
+                font-size: 1.4em;
+            }
+        }
+        @media (max-height: 320px)
+        {
+            .cssLogoAfaTelefono
+            {
+                width: 6em;
+                height: 6em;
+            }
+            .cssSpanLogoAfaTelefono
+            {
+                font-size: 1em;
+            }
+              .cssCajaTelefonoTexto
+            {
+                font-size: 0.8em;
+            }
+            .cssInputTelefonoArea
+            {
+                font-size: 1.5em;
+            }
+            .cssInputTelefono
+            {
+                font-size: 1.5em;
+            }
+            .cssDivBotonIngresar
+            {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body onresize="onresizeBody()">
     <div class="container cssContenedorTelefono">
         <table class="cssTablaTelefono">
-        <tr>
-            <td>
-        <div class="cssDivLogoAfaTelefono">
-            <img src="img/material/Logo.svg" alt="Afa" class="cssLogoAfaTelefono" />
-            <br/>
-            <span class="cssSpanLogoAfaTelefono">
-              Bienvenido.
-            </span>          
-        </div>
+            <tr>
+                <td>
+                    <div class="cssDivLogoAfaTelefono">
+                        <img src="img/material/Logo.svg" alt="Afa" class="cssLogoAfaTelefono" />
+                        <br />
+                        <span class="cssSpanLogoAfaTelefono">Bienvenido. </span>
+                    </div>
                 </td>
             </tr>
-                  <tr>
-            <td class="cssTdParteAbajoTelefono" >
-        <div id="divContenedorTelefono">
-            <div class="cssTringuloTelefonoContenedor">
-                <div class="cssTringuloTelefono">
-                </div>
-                <div class="cssCajaTelefono">
-                    <div class="cssCajaTelefonoTexto">
-                        Por favor, para comenzar ingrese su número de teléfono
+            <tr>
+                <td class="cssTdParteAbajoTelefono">
+                    <div id="divContenedorTelefono">
+                        <div class="cssTringuloTelefonoContenedor">
+                            <div class="cssTringuloTelefono">
+                            </div>
+                            <div class="cssCajaTelefono">
+                                <div class="cssCajaTelefonoTexto">
+                                    Por favor, para comenzar ingrese su número de teléfono
+                                </div>
+                                <div style="margin: 0 auto; width:100%;">
+                                    <input id="txtTelefonoArea" class="cssInputTelefonoArea" type="text" onkeypress="return justNumbers(event);" />
+                                    <input id="txtTelefono" class="cssInputTelefono" type="text" onkeypress="return justNumbers(event);" />
+                                </div>
+                                <div class="cssDivBotonIngresar" onclick="onclickIngresarTelefono()">
+                                    INGRESAR
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <input id="txtTelefonoArea" class="cssInputTelefonoArea" type="text" onkeypress="return justNumbers(event);" />
-                    <input id="txtTelefono" class="cssInputTelefono" type="text" onkeypress="return justNumbers(event);" />
-                    <div class="cssDivBotonIngresar" onclick="onclickIngresarTelefono()">
-                        INGRESAR
-                    </div>
-                </div>
-            </div>
-        </div>
                 </td>
             </tr>
         </table>

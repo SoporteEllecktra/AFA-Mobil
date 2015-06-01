@@ -534,7 +534,6 @@ text-align: right;
 {
     color: #FFF;
 }
-
 /* Novedades */
 .cssColImgAmpliar
 {
@@ -639,7 +638,6 @@ bottom: 0.2em !important;
         font-size: 13px;
     }
 }
-
 @media (max-width: 500px)
 {
     body
@@ -703,13 +701,11 @@ padding-top: 1em;
 {
     overflow-y: auto; 
     padding-right: 1em; 
-    
 }
 .cssInformeDescripcion  span{
   font-size: 1.25em!important; 
 }
 /* Fin informe */
-
 /* Inicio informe Pantalla completa */
 .cssImgAmpliarPantallaCompletaInforme
 {
@@ -757,8 +753,10 @@ z-index: 1000;
 .cssCajaTelefono{
        margin: 0 auto;
        background-color: #FFF; 
-       width: 95%;    
-       padding-bottom: 0.4em; 
+     /*  width: 95%;    */
+       padding-bottom: 0.4em;
+       margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 .cssContenedorTelefono{
     background: url(../../img/material/fondo.jpg) no-repeat bottom;
@@ -768,8 +766,6 @@ z-index: 1000;
     background-size: cover;
 }
 #divContenedorTelefono{
-  /*  width: 100%;
-    height: 100%;*/
 
 }
 .cssTringuloTelefono{  
@@ -783,43 +779,49 @@ z-index: 1000;
 .cssCajaTelefonoTexto{
     font-size: 1.4em;
     padding-top: 2em;
-    margin-left: 10%;
+   /* margin-left: 10%;*/
     padding-right: 1em;
+    margin-left: 0.8em;
+    margin-right: 0.5em;
+        margin-bottom: 0.5em;
 }
 .cssInputTelefonoArea{
 width: 30%;
 background: #E6E6E6;
 font-size: 2.5em;
-margin-left: 10%;
-/*margin-top: 1.5em;*/
+/*margin-left: 10%;*/
+     margin-left: 0.5em;
+
 }
 .cssInputTelefono{
 width: 50%;
 background: #E6E6E6;
 font-size: 2.5em;
-/*margin-left: 10%;*/
-margin-top: 0.8em;
+/*margin-top: 0.8em;*/
 }
 .cssDivBotonIngresar{
     text-align: center;
     background-color: #57BFDC;
     color: #FFF;
-   font-size: 2em;  
+    font-size: 2em;  
     margin-top: 0.8em;
     margin-bottom: 0.1em;
-    width: 80%;
-    margin-left: 10%;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    /*width: 80%;*/
+   /* margin-left: 10%;*/
     padding-top: 0.2em;
     padding-bottom: 0.2em;
     cursor: pointer;
+    
 }
 .cssDivBotonIngresar:hover{
     opacity: 0.8;
 }
 .cssLogoAfaTelefono
 {
-  width: 16em;
-  height: 16em;    
+  width: 14em;
+  height: 14em;    
 }
 .cssDivLogoAfaTelefono{
  text-align: center;
@@ -827,7 +829,7 @@ padding-top:2em;
     
 }
 .cssSpanLogoAfaTelefono{
-font-size:4em; 
+font-size:3em; 
 }
 .cssTablaTelefono{
 width: 100%;
@@ -838,4 +840,5 @@ height: 100%;
 vertical-align: middle;
 padding-bottom: 2em;    
 }
+
 /* fin telefono */
