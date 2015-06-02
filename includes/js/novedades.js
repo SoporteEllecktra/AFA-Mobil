@@ -50,12 +50,30 @@ function CargarTodasNovedadesHtml() {
             resultadoDiv += '</div>';
             // fin  Primer fila novedades
             resultadoDiv += '<div class="row ">';
-            resultadoDiv += '<div class="col-sm-2 cssNovedadesFecha">';
+//            resultadoDiv += '<div class="col-sm-2 cssNovedadesFecha">';
+//            resultadoDiv += obtenerFechaMostrar(this.fecha);
+//            resultadoDiv += '</div>';
+//            resultadoDiv += '<div class="col-sm-10 cssNovedadesCategoria">';
+//            resultadoDiv += this.descripcionCategoria;
+//            resultadoDiv += '</div>';
+            
+            resultadoDiv += '<div class="col-xs-12">';
+            resultadoDiv += '<table>';
+            resultadoDiv += '<tr>';
+            resultadoDiv += '<td>';
+            resultadoDiv += '<div class="cssNovedadesFecha">'; 
             resultadoDiv += obtenerFechaMostrar(this.fecha);
             resultadoDiv += '</div>';
-            resultadoDiv += '<div class="col-sm-10 cssNovedadesCategoria">';
+            resultadoDiv += '</td>';
+            resultadoDiv += '<td>';
+            resultadoDiv += '<div class="cssNovedadesCategoria">'; 
             resultadoDiv += this.descripcionCategoria;
             resultadoDiv += '</div>';
+            resultadoDiv += '</td>';
+            resultadoDiv += '</table>';
+            resultadoDiv += '</tr>';
+            resultadoDiv += '</div>';
+            
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="row">';
             resultadoDiv += '<div class="col-xs-12 cssNovedadesDescripcion">';

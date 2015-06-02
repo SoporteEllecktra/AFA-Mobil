@@ -1,4 +1,6 @@
+//var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 //var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
@@ -59,14 +61,18 @@ function informes() {
 }
 
 function FuncionInicio() {
-    //localStorage.clear();
+   // localStorage.clear();
+    
+    alert(JSON.stringify(device));
+    alert(navigator.userAgent);
     if (localStorage.getItem("storageTelefono") == null) {
         // isGuardarTelefono = true;
+        var ismobile=(/Mobile/.test(navigator.userAgent))?1:0;
         window.location.href = "telefono.html";
     } else {
         CargarAuditoria();
     }
-    // CargarAuditoria();
+     CargarAuditoria();
     // CargarNovedadesHtml();
     //   CargarCotizacionesDestacadaHtml();
     //    finCargarInicial();
@@ -259,13 +265,8 @@ function processSuccessAuditoria(data, status, req) {
 
     }
 }
-
-
-
 //armarPagina se ejecuta solo si se obtienen las respuestas exitosas
 // a las dos requests.
-
-
 function funDoneAjax(a, b, c, d) {
     // a es un array con los argumentos que recibiria de la primer request,
     // b lo mismo pero para la segunda request.
@@ -323,7 +324,7 @@ function CargaCotizacionDestacada() {
 function processSuccessCotizacionDestacada(data, status, req) {
     if (status == "success") {
         CargarResultadoCotizacionDestacadoJavascript(req.responseText);
-    }
+    }        
 }
 /* Inicio Error */
 function processError(data, status, req) {
@@ -497,15 +498,15 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
     //alert('CargaCotizacionHistoricaConIndiceDetacado');
     $.ajax({
         type: "POST",
-        url: wsUrlCotizacion,
+        url: wsUrlCotizacionHistorico,
         contentType: "application/xml; charset=utf-8", //"text/xml",
         dataType: "xml",
         crossDomain: true,
         xhrFields: {
             withCredentials: true
         },
-        data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
-        // data: CargarParametroEntradaCotizaciones_Ordenada(1, 11,obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0),7, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''), 
+        //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
+         data: CargarParametroEntradaCotizaciones_Ordenada(1, 11,obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0),7, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''), 
         success: processSuccessCotizacionHistorica,
         error: processErrorCotizacionHistoricaConIndiceDetacado
     });
@@ -626,7 +627,7 @@ function CargaNovedades() {
             xhrFields: {
                 withCredentials: true
             },
-            data: CargarParametroEntradaNovedades(obtenerFechaParametroEntrada(-69), obtenerFechaParametroEntrada(0), ''),
+            data: CargarParametroEntradaNovedades('', '', ''),
             success: processSuccessNovedades,
             error: processErrorNovedades
         });

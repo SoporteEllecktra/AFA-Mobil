@@ -393,12 +393,29 @@ function CargarNovedadesHtml() {
             resultadoDiv += '</div>';
             // fin  Primer fila novedades
             resultadoDiv += '<div class="row ">';
-            resultadoDiv += '<div class="col-sm-3 cssNovedadesFecha">';
+            //            resultadoDiv += '<div class="col-xs-3 cssNovedadesFecha">';//col-sm-3
+            //            resultadoDiv += obtenerFechaMostrar(this.fecha);
+            //            resultadoDiv += '</div>';
+            //            resultadoDiv += '<div class="col-xs-9 cssNovedadesCategoria">';//col-sm-9
+            //            resultadoDiv += this.descripcionCategoria;
+            //            resultadoDiv += '</div>';
+            resultadoDiv += '<div class="col-xs-12">';
+            resultadoDiv += '<table>';
+            resultadoDiv += '<tr>';
+            resultadoDiv += '<td>';
+            resultadoDiv += '<div class="cssNovedadesFecha">'; 
             resultadoDiv += obtenerFechaMostrar(this.fecha);
             resultadoDiv += '</div>';
-            resultadoDiv += '<div class="col-sm-9 cssNovedadesCategoria">';
+            resultadoDiv += '</td>';
+            resultadoDiv += '<td>';
+            resultadoDiv += '<div class="cssNovedadesCategoria">'; 
             resultadoDiv += this.descripcionCategoria;
             resultadoDiv += '</div>';
+            resultadoDiv += '</td>';
+            resultadoDiv += '</table>';
+            resultadoDiv += '</tr>';
+            resultadoDiv += '</div>';
+            //
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="row">';
             resultadoDiv += '<div class="col-xs-12 cssNovedadesDescripcion">';
@@ -434,7 +451,7 @@ function CargarNovedadesHtml() {
         if (listaInformes.length > 0) {
             isTimeoutInformeCierreMercado = false;
             CargarInformeCierreMercado();
-        } 
+        }
     }
     if (isTimeoutInformeCierreMercado) {
         setTimeout(function () { CargarInformeCierreMercado(); }, 500);
