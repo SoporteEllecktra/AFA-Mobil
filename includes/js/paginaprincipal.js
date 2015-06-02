@@ -52,7 +52,11 @@ $(document).ready(function () {
         onresizeBody();
     }
 });
-$(document).ajaxStop(function () { finCargarInicial(); });
+$(document).ajaxStop(function () { finCargarInicial();
+                                 
+                                 
+                                   alert(JSON.stringify(device));
+    alert(navigator.userAgent); });
 
 var isMoverAmpliar = false;
 var cantNN = 0;

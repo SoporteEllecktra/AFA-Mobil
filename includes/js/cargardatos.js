@@ -63,8 +63,7 @@ function informes() {
 function FuncionInicio() {
    // localStorage.clear();
     
-    alert(JSON.stringify(device));
-    alert(navigator.userAgent);
+ 
     if (localStorage.getItem("storageTelefono") == null) {
         // isGuardarTelefono = true;
         var ismobile=(/Mobile/.test(navigator.userAgent))?1:0;
