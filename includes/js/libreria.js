@@ -199,6 +199,15 @@ function onSuccessCopy(args) {
 function onErrorCopy(ex) {
     // alert(ex);
 }
+function shareNuevo(expr) {
+   // alert('Ok');
+    try {
+        cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
+    } catch (exx) {
+
+    }
+    window.plugins.socialsharing.share(ObtenerTxtCompartirCotizacionesDestacada());
+}
 function share(expr) {
     //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
     //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
@@ -206,7 +215,7 @@ function share(expr) {
         cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
     } catch (exx) {
 
-    }
+    }   
     switch (expr) {
         case "Twitter":
             //window.plugins.socialsharing.shareViaTwitter(ObtenerTxtCompartirCotizacionesDestacada());

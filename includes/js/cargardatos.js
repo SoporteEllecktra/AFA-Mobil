@@ -61,35 +61,35 @@ function informes() {
 }
 
 function FuncionInicio() {
-   // localStorage.clear();
-    
- 
+    // localStorage.clear();
+    var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
-        // isGuardarTelefono = true;
-        var ismobile=(/Mobile/.test(navigator.userAgent))?1:0;
+        var isGuardarTelefono = false;
+        try {
+            if (device.platform == 'android' || device.platform == 'Android') {
+                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
+                if (ismobile == 1) {
+                    isGuardarTelefono = true;
+                }
+            } else if (device.platform == 'iOS') {
+                var isiPad = (/iPad/.test(navigator.userAgent)) ? 1 : 0;
+                if (isiPad == 1) {
+                    isGuardarTelefono = true;
+                }
+            } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
+                isGuardarTelefono = true;
+            }
+        } catch (ex) {
+
+        }
+    }
+    if (isGuardarTelefono) {
         window.location.href = "telefono.html";
     } else {
         CargarAuditoria();
     }
-     CargarAuditoria();
-    // CargarNovedadesHtml();
-    //   CargarCotizacionesDestacadaHtml();
-    //    finCargarInicial();
+    //CargarAuditoria();
 }
-
-function PrimerInicioAplicacion() {
-    //var isGuardarTelefono = false;
-    if (localStorage.getItem("storageTelefono") == null) {
-        // isGuardarTelefono = true;
-        window.location.href = "telefono.html";
-    } else {
-
-    }
-    //    if (isGuardarTelefono) {
-    //        funGuardarTelefono(telefonoDelUsuario);
-    //    }
-}
-
 function CargarParametroEntradaGuardarTelefono(pTelefono) {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
@@ -323,7 +323,7 @@ function CargaCotizacionDestacada() {
 function processSuccessCotizacionDestacada(data, status, req) {
     if (status == "success") {
         CargarResultadoCotizacionDestacadoJavascript(req.responseText);
-    }        
+    }
 }
 /* Inicio Error */
 function processError(data, status, req) {
@@ -505,7 +505,7 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
             withCredentials: true
         },
         //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
-         data: CargarParametroEntradaCotizaciones_Ordenada(1, 11,obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0),7, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''), 
+        data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 7, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
         success: processSuccessCotizacionHistorica,
         error: processErrorCotizacionHistoricaConIndiceDetacado
     });
