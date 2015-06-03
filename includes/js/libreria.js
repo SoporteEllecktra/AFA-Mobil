@@ -7,14 +7,16 @@ function toString00(pNro) {
 function isMobil() {
     var resultado = false;
     try {
-         alert(objDatosTelefono);
         alert(objDatosTelefono.platform);
+        alert(device);
+       
         if (objDatosTelefono.platform == 'android' || objDatosTelefono.platform == 'Android') {
             try {
-            var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
-                } catch (ex) {
-            alert('Error  var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;');
-    }
+                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
+            } catch (ex) {
+                alert('Error  var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;');
+            }
+            //
             if (ismobile == 1) {
                 resultado = true;
             }
@@ -27,7 +29,7 @@ function isMobil() {
             resultado = true;
         }
     } catch (ex) {
-            alert('Error isMobil');
+        alert('Error isMobil');
     }
     return resultado;
 }
