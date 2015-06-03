@@ -88,7 +88,7 @@ function FuncionInicio() {
         }
     }
     if (isGuardarTelefono) {
-        window.location.href = "telefono.html";
+        window.location.href = "telefono.html";window.location.href = "telefono.html";
     } else {
         CargarAuditoria();
     }
@@ -164,7 +164,7 @@ function processSuccessGuardarTelefono(data, status, req) {
 }
 
 function CargarAuditoria() {
-    alert('CargarAuditoria');
+    //alert('CargarAuditoria');
     listaTablaModificaciones = null;
     $.ajax({
         type: "POST",
@@ -187,7 +187,7 @@ function CargarAuditoria() {
 }
 function processSuccessAuditoria(data, status, req) {
     if (status == "success") {
-        alert('CargarAuditoria Ok');
+        //alert('CargarAuditoria Ok');
         //1:"Cotizaciones", 2:"Notificaciones", 3:"Informes"   
         isCargarCotizaciones = false;
         isCargarNotificaciones = false;
@@ -332,11 +332,11 @@ function processSuccessCotizacionDestacada(data, status, req) {
 }
 /* Inicio Error */
 function processError(data, status, req) {
-    OcultarDivBloqueo();
-    //alert('Error');
+    //OcultarDivBloqueo();
+    window.location.href = "error.html";
 }
 function processErrorAuditoria(data, status, req) {
-    alert('CargarAuditoria Error');
+    //alert('CargarAuditoria Error');
     processError(data, status, req);
 }
 

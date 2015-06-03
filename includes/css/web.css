@@ -852,3 +852,23 @@ padding-bottom: 2em;
 }
 
 /* fin telefono */
+
+/* Pagina Error */
+.containerError{
+    background: url(../../img/material/fondo2.jpg) no-repeat bottom;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.cssLogoAfaError{
+   width: 10em;
+    height:  10em;
+    margin: 1em;
+   
+}
+.divDescripcionError{
+    font-size: 2em;
+  margin: 1em;
+}
+/* Fin pagina error */
