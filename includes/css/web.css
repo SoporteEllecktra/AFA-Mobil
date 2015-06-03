@@ -748,6 +748,14 @@ z-index: 1000;
     margin-top: 1em;
 }
 /* inicio telefono */
+.cssDivNumeroTelefono{
+
+margin-left: 0.5em;
+ /* font-size: 2.5em;*/
+}
+.spanNroInfo{
+ font-size: 2.5em;
+}
 .cssTringuloTelefonoContenedor{
 /*margin-top:2em; */   
  
@@ -788,15 +796,15 @@ z-index: 1000;
         margin-bottom: 0.5em;
 }
 .cssInputTelefonoArea{
-width: 30%;
+width: 25%;
 background: #E6E6E6;
 font-size: 2.5em;
 /*margin-left: 10%;*/
-     margin-left: 0.5em;
+     
 
 }
 .cssInputTelefono{
-width: 50%;
+width: 45%;
 background: #E6E6E6;
 font-size: 2.5em;
 /*margin-top: 0.8em;*/

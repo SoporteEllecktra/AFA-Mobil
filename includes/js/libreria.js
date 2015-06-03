@@ -4,6 +4,27 @@ function toString00(pNro) {
     }
     return pNro;
 }
+function isMobil() {
+    var resultado = false;
+    try {
+        if (device.platform == 'android' || device.platform == 'Android') {
+            var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
+            if (ismobile == 1) {
+                resultado = true;
+            }
+        } else if (device.platform == 'iOS') {
+            var isiPad = (/iPad/.test(navigator.userAgent)) ? 1 : 0;
+            if (isiPad == 1) {
+                resultado = true;
+            }
+        } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
+            resultado = true;
+        }
+    } catch (ex) {
+alert('Error isMobil');
+    }
+    return resultado;
+}
 function onclickCompartir() {
     if ($('.cssTdHeaderDerecha .btn_rs').hasClass('cssTdHeaderDerecha_btn_rs_Activo')) {
         CerrarMenuCompartir();
@@ -200,7 +221,7 @@ function onErrorCopy(ex) {
     // alert(ex);
 }
 function shareNuevo(expr) {
-   // alert('Ok');
+    // alert('Ok');
     try {
         cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
     } catch (exx) {
@@ -215,7 +236,7 @@ function share(expr) {
         cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
     } catch (exx) {
 
-    }   
+    }
     switch (expr) {
         case "Twitter":
             //window.plugins.socialsharing.shareViaTwitter(ObtenerTxtCompartirCotizacionesDestacada());
@@ -283,12 +304,12 @@ function loadURL(url) {
     return false;
 }
 function RedireccionarPagIndex() {
-       localStorage.setItem('storageIndexVolver', '1');
-       window.history.go(-1);
-//    if (device.platform == 'android' || device.platform == 'Android' || device.platform == 'iOS') {
-//        window.location.href = "index.html?r=1";
-//    } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
-//        //window.location.href = "index.html?r=1";
-//     
-//    }
+    localStorage.setItem('storageIndexVolver', '1');
+    window.history.go(-1);
+    //    if (device.platform == 'android' || device.platform == 'Android' || device.platform == 'iOS') {
+    //        window.location.href = "index.html?r=1";
+    //    } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
+    //        //window.location.href = "index.html?r=1";
+    //     
+    //    }
 }

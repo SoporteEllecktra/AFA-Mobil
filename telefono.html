@@ -127,9 +127,9 @@
                                 <div class="cssCajaTelefonoTexto">
                                     Por favor, para comenzar ingrese su número de teléfono
                                 </div>
-                                <div style="margin: 0 auto; width:100%;">
-                                    <input id="txtTelefonoArea" class="cssInputTelefonoArea" type="text" onkeypress="return justNumbers(event);" />
-                                    <input id="txtTelefono" class="cssInputTelefono" type="text" onkeypress="return justNumbers(event);" />
+                                <div class="cssDivNumeroTelefono" >
+                                   <span class="spanNroInfo"> 0</span><input id="txtTelefonoArea" class="cssInputTelefonoArea" type="text" onkeypress="return justNumbers(event);" />
+                                   <span class="spanNroInfo"> 15</span><input id="txtTelefono" class="cssInputTelefono" type="text" onkeypress="return justNumbers(event);" />
                                 </div>
                                 <div class="cssDivBotonIngresar" onclick="onclickIngresarTelefono()">
                                     INGRESAR
@@ -145,7 +145,6 @@
     <script type="text/javascript" src="includes/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="includes/js/libreria.js"></script>
     <script type="text/javascript" src="includes/js/cargardatos.js"></script>
-    <script type="text/javascript" src="registrarTelefono.js"></script>
     <script type="text/javascript" src="includes/js/telefono.js"></script>
 </body>
 </html>
