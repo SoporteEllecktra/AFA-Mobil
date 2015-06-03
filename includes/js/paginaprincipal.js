@@ -51,14 +51,16 @@ $(document).ready(function () {
     //        }
     //        onresizeBody();
     //    }
+
     CargaDeLosDatosPrevioTelefono();
+    
 });
 $(document).ajaxStop(function () { finCargarInicial(); });
 
 function CargaDeLosDatosPrevioTelefono() {
-alert(localStorage.getItem("storagePlatform"));
+    alert(localStorage.getItem("storagePlatform"));
     if (localStorage.getItem("storagePlatform") == null) {
-        setTimeout(function () { CargaDeLosDatosPrevioTelefono(); }, 500);
+        setTimeout(function () { CargaDeLosDatosPrevioTelefono(); }, 100);
     } else {
         var varParametroUrl = '';
         if (localStorage.getItem("storageIndexVolver") == null) {

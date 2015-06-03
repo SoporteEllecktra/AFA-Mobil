@@ -64,7 +64,8 @@ function FuncionInicio() {
     // localStorage.clear();
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
-        var isGuardarTelefono = isMobile();
+         isGuardarTelefono = isMobile();
+         alert('lalal: ' + isGuardarTelefono);
 //        try {
 //            if (device.platform == 'android' || device.platform == 'Android') {
 //                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
