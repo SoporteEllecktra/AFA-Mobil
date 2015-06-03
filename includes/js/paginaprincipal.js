@@ -16,7 +16,7 @@ $(document).ready(function () {
     }
     if (varParametroUrl == '') {
         MostrarDivBloqueo();
-        FuncionInicio();
+        //FuncionInicio();
     } else {
         //
         localStorage.setItem('storageIndexVolver', '');

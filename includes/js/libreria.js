@@ -4,33 +4,36 @@ function toString00(pNro) {
     }
     return pNro;
 }
-function isMobil() {
+function isMobile() {
     var resultado = false;
-    try {
-        alert(objDatosTelefono.platform);
-        alert(device);
+ //   try {
+        //alert(objDatosTelefono.platform);
+        //alert(device);
        
-        if (objDatosTelefono.platform == 'android' || objDatosTelefono.platform == 'Android') {
-            try {
-                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
-            } catch (ex) {
-                alert('Error  var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;');
-            }
-            //
-            if (ismobile == 1) {
-                resultado = true;
-            }
-        } else if (objDatosTelefono.platform == 'iOS') {
-            var isiPad = (/iPad/.test(navigator.userAgent)) ? 1 : 0;
-            if (isiPad == 1) {
-                resultado = true;
-            }
+        if (objDatosTelefono.platform === 'android' || objDatosTelefono.platform === 'Android') {
+//            try {
+//                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
+//            } catch (ex) {
+//                alert('Error  var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;');
+//            }
+//            //
+//            if (ismobile == 1) {
+//                resultado = true;
+//            }
+            
+         return   (/Mobile/.test(navigator.userAgent));
+        } else if (objDatosTelefono.platform === 'iOS') {
+//            var isiPad = (/iPad/.test(navigator.userAgent)) ? 1 : 0;
+//            if (isiPad == 0) {
+//                resultado = true;
+//            }
+            return (!(/iPad/.test(navigator.userAgent)));
         } else if (objDatosTelefono.platform == 'WinCE' || objDatosTelefono.platform == 'Win32NT') {
-            resultado = true;
+            return true;
         }
-    } catch (ex) {
-        alert('Error isMobil');
-    }
+//    } catch (ex) {
+//        alert('Error isMobil()');
+//    }
     return resultado;
 }
 function onclickCompartir() {

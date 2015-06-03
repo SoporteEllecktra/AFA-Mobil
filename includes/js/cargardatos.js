@@ -64,7 +64,7 @@ function FuncionInicio() {
     // localStorage.clear();
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
-        var isGuardarTelefono = isMobil();
+        var isGuardarTelefono = isMobile();
 //        try {
 //            if (device.platform == 'android' || device.platform == 'Android') {
 //                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
@@ -82,6 +82,9 @@ function FuncionInicio() {
 //        } catch (ex) {
 //
 //        }
+        if (!isGuardarTelefono){
+            localStorage.setItem('storageTelefono', '');
+        }
     }
     if (isGuardarTelefono) {
         window.location.href = "telefono.html";

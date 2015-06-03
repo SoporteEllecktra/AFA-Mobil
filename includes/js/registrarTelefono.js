@@ -32,6 +32,7 @@ function onDeviceReady() {
     objDatosTelefono = new infoRegistracion();
     pushNotification = window.plugins.pushNotification;
     objDatosTelefono.platform  = device.platform;
+    
     // Depending on the device, a few examples are:
     //   - "Android"
     //   - "BlackBerry 10"
@@ -72,6 +73,21 @@ function onDeviceReady() {
         }
     }
     objDatosTelefono.uuid = device.uuid;
+    ///
+    var varParametroUrl = '';
+    if (localStorage.getItem("storageIndexVolver") == null) {
+        varParametroUrl = '';
+    } else {
+        varParametroUrl = localStorage.getItem("storageIndexVolver");
+    }
+    if (varParametroUrl == '') {
+       // MostrarDivBloqueo();
+        FuncionInicio();
+    } else {
+    
+    
+    }
+    ///
 }
 
 function successHandler(result) {
