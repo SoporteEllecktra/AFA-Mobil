@@ -7,21 +7,21 @@ function toString00(pNro) {
 function isMobil() {
     var resultado = false;
     try {
-        if (device.platform == 'android' || device.platform == 'Android') {
+        if (objDatosTelefono.platform == 'android' || objDatosTelefono.platform == 'Android') {
             var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
             if (ismobile == 1) {
                 resultado = true;
             }
-        } else if (device.platform == 'iOS') {
+        } else if (objDatosTelefono.platform == 'iOS') {
             var isiPad = (/iPad/.test(navigator.userAgent)) ? 1 : 0;
             if (isiPad == 1) {
                 resultado = true;
             }
-        } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
+        } else if (objDatosTelefono.platform == 'WinCE' || objDatosTelefono.platform == 'Win32NT') {
             resultado = true;
         }
     } catch (ex) {
-alert('Error isMobil');
+            alert('Error isMobil');
     }
     return resultado;
 }

@@ -5,6 +5,7 @@ function infoRegistracion() {
     this.type = ''; //"gcm" (Android), "apn" (iOS) y "mpn" (Windows Phone)
     this.regid = '';
     this.fecha = '';
+    this.platform = '';
 }
 var objDatosTelefono = null;
 
@@ -30,7 +31,7 @@ function onDeviceReady() {
     //alert('onDeviceReady');
     objDatosTelefono = new infoRegistracion();
     pushNotification = window.plugins.pushNotification;
-
+    objDatosTelefono.platform  = device.platform;
     // Depending on the device, a few examples are:
     //   - "Android"
     //   - "BlackBerry 10"
