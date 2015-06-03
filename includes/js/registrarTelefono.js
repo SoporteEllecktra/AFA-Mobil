@@ -74,18 +74,48 @@ function onDeviceReady() {
     }
     objDatosTelefono.uuid = device.uuid;
     ///
-    var varParametroUrl = '';
+   var varParametroUrl = '';
     if (localStorage.getItem("storageIndexVolver") == null) {
         varParametroUrl = '';
     } else {
         varParametroUrl = localStorage.getItem("storageIndexVolver");
     }
     if (varParametroUrl == '') {
-       // MostrarDivBloqueo();
+        MostrarDivBloqueo();
         FuncionInicio();
     } else {
-    
-    
+        //
+        localStorage.setItem('storageIndexVolver', '');
+        //
+        if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
+
+        } else {
+            var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+            cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+        }
+        if (localStorage.getItem("storageListaNovedades") == null) {
+
+        } else {
+            var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
+            listaNovedades = eval('(' + listaNovedadesGuardada + ')');
+        }
+        if (localStorage.getItem("storageListaInformes") == null) {
+
+        } else {
+            var listaInformesGuardada = localStorage.getItem("storageListaInformes");
+            listaInformes = eval('(' + listaInformesGuardada + ')');
+        }
+        CargarHtmlFechaMenuPrincipal();
+        CargarCotizacionesDestacadaHtml();
+        CargarNovedadesHtml();
+        if (listaNovedades == null) {
+            porcentajeArriba = 1;
+            porcentajeAbajo = 0;
+        } else if (listaNovedades.length == 0) {
+            porcentajeArriba = 1;
+            porcentajeAbajo = 0;
+        }
+        onresizeBody();
     }
     ///
 }
