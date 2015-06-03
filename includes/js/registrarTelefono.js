@@ -73,7 +73,7 @@ function onDeviceReady() {
         }
     }
     objDatosTelefono.uuid = device.uuid;
-  
+    //alert(device.platform);
     if (localStorage.getItem("storagePlatform") == null) {
      localStorage.setItem('storagePlatform', device.platform);  
     }

@@ -8,101 +8,102 @@ $(document).ready(function () {
     });
     //var varParametroUrl = obtenerParametroGetHtml('r');
 
-//    var varParametroUrl = '';
-//    if (localStorage.getItem("storageIndexVolver") == null) {
-//        varParametroUrl = '';
-//    } else {
-//        varParametroUrl = localStorage.getItem("storageIndexVolver");
-//    }
-//    if (varParametroUrl == '') {
-//        MostrarDivBloqueo();
-//        FuncionInicio();
-//    } else {
-//        //
-//        localStorage.setItem('storageIndexVolver', '');
-//        //
-//        if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
-//
-//        } else {
-//            var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-//            cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
-//        }
-//        if (localStorage.getItem("storageListaNovedades") == null) {
-//
-//        } else {
-//            var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-//            listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-//        }
-//        if (localStorage.getItem("storageListaInformes") == null) {
-//
-//        } else {
-//            var listaInformesGuardada = localStorage.getItem("storageListaInformes");
-//            listaInformes = eval('(' + listaInformesGuardada + ')');
-//        }
-//        CargarHtmlFechaMenuPrincipal();
-//        CargarCotizacionesDestacadaHtml();
-//        CargarNovedadesHtml();
-//        if (listaNovedades == null) {
-//            porcentajeArriba = 1;
-//            porcentajeAbajo = 0;
-//        } else if (listaNovedades.length == 0) {
-//            porcentajeArriba = 1;
-//            porcentajeAbajo = 0;
-//        }
-//        onresizeBody();
-//    }
+    //    var varParametroUrl = '';
+    //    if (localStorage.getItem("storageIndexVolver") == null) {
+    //        varParametroUrl = '';
+    //    } else {
+    //        varParametroUrl = localStorage.getItem("storageIndexVolver");
+    //    }
+    //    if (varParametroUrl == '') {
+    //        MostrarDivBloqueo();
+    //        FuncionInicio();
+    //    } else {
+    //        //
+    //        localStorage.setItem('storageIndexVolver', '');
+    //        //
+    //        if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
+    //
+    //        } else {
+    //            var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+    //            cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+    //        }
+    //        if (localStorage.getItem("storageListaNovedades") == null) {
+    //
+    //        } else {
+    //            var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
+    //            listaNovedades = eval('(' + listaNovedadesGuardada + ')');
+    //        }
+    //        if (localStorage.getItem("storageListaInformes") == null) {
+    //
+    //        } else {
+    //            var listaInformesGuardada = localStorage.getItem("storageListaInformes");
+    //            listaInformes = eval('(' + listaInformesGuardada + ')');
+    //        }
+    //        CargarHtmlFechaMenuPrincipal();
+    //        CargarCotizacionesDestacadaHtml();
+    //        CargarNovedadesHtml();
+    //        if (listaNovedades == null) {
+    //            porcentajeArriba = 1;
+    //            porcentajeAbajo = 0;
+    //        } else if (listaNovedades.length == 0) {
+    //            porcentajeArriba = 1;
+    //            porcentajeAbajo = 0;
+    //        }
+    //        onresizeBody();
+    //    }
+    CargaDeLosDatosPrevioTelefono();
 });
 $(document).ajaxStop(function () { finCargarInicial(); });
 
-function CargaDeLosDatosPrevioTelefono(){
-    
-        if (localStorage.getItem("storagePlatform") == null) {
-    setTimeout(function () { CargaDeLosDatosPrevioTelefono(); }, 500);
-        }else{
-   var varParametroUrl = '';
-    if (localStorage.getItem("storageIndexVolver") == null) {
-        varParametroUrl = '';
+function CargaDeLosDatosPrevioTelefono() {
+
+    if (localStorage.getItem("storagePlatform") == null) {
+        setTimeout(function () { CargaDeLosDatosPrevioTelefono(); }, 500);
     } else {
-        varParametroUrl = localStorage.getItem("storageIndexVolver");
+        var varParametroUrl = '';
+        if (localStorage.getItem("storageIndexVolver") == null) {
+            varParametroUrl = '';
+        } else {
+            varParametroUrl = localStorage.getItem("storageIndexVolver");
+        }
+        if (varParametroUrl == '') {
+            MostrarDivBloqueo();
+            FuncionInicio();
+        } else {
+            //
+            localStorage.setItem('storageIndexVolver', '');
+            //
+            if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
+
+            } else {
+                var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+                cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+            }
+            if (localStorage.getItem("storageListaNovedades") == null) {
+
+            } else {
+                var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
+                listaNovedades = eval('(' + listaNovedadesGuardada + ')');
+            }
+            if (localStorage.getItem("storageListaInformes") == null) {
+
+            } else {
+                var listaInformesGuardada = localStorage.getItem("storageListaInformes");
+                listaInformes = eval('(' + listaInformesGuardada + ')');
+            }
+            CargarHtmlFechaMenuPrincipal();
+            CargarCotizacionesDestacadaHtml();
+            CargarNovedadesHtml();
+            if (listaNovedades == null) {
+                porcentajeArriba = 1;
+                porcentajeAbajo = 0;
+            } else if (listaNovedades.length == 0) {
+                porcentajeArriba = 1;
+                porcentajeAbajo = 0;
+            }
+            onresizeBody();
+        }
     }
-    if (varParametroUrl == '') {
-        MostrarDivBloqueo();
-        FuncionInicio();
-    } else {
-        //
-        localStorage.setItem('storageIndexVolver', '');
-        //
-        if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
-
-        } else {
-            var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-            cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
-        }
-        if (localStorage.getItem("storageListaNovedades") == null) {
-
-        } else {
-            var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-            listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-        }
-        if (localStorage.getItem("storageListaInformes") == null) {
-
-        } else {
-            var listaInformesGuardada = localStorage.getItem("storageListaInformes");
-            listaInformes = eval('(' + listaInformesGuardada + ')');
-        }
-        CargarHtmlFechaMenuPrincipal();
-        CargarCotizacionesDestacadaHtml();
-        CargarNovedadesHtml();
-        if (listaNovedades == null) {
-            porcentajeArriba = 1;
-            porcentajeAbajo = 0;
-        } else if (listaNovedades.length == 0) {
-            porcentajeArriba = 1;
-            porcentajeAbajo = 0;
-        }
-        onresizeBody();
-    }
- }
 }
 
 
@@ -455,12 +456,12 @@ function CargarNovedadesHtml() {
             resultadoDiv += '<table>';
             resultadoDiv += '<tr>';
             resultadoDiv += '<td>';
-            resultadoDiv += '<div class="cssNovedadesFecha">'; 
+            resultadoDiv += '<div class="cssNovedadesFecha">';
             resultadoDiv += obtenerFechaMostrar(this.fecha);
             resultadoDiv += '</div>';
             resultadoDiv += '</td>';
             resultadoDiv += '<td>';
-            resultadoDiv += '<div class="cssNovedadesCategoria">'; 
+            resultadoDiv += '<div class="cssNovedadesCategoria">';
             resultadoDiv += this.descripcionCategoria;
             resultadoDiv += '</div>';
             resultadoDiv += '</td>';

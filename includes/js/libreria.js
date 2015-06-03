@@ -6,35 +6,17 @@ function toString00(pNro) {
 }
 function isMobile() {
     var resultado = false;
-    var varPlatform =   '';
- if (localStorage.getItem("storagePlatform") != null) {
-     varPlatform =  localStorage.getItem("storagePlatform");
-        }
-       
-        if (varPlatform === 'android' || varPlatform === 'Android') {
-//            try {
-//                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
-//            } catch (ex) {
-//                alert('Error  var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;');
-//            }
-//            //
-//            if (ismobile == 1) {
-//                resultado = true;
-//            }
-            
-         return   (/Mobile/.test(navigator.userAgent));
-        } else if (varPlatform === 'iOS') {
-//            var isiPad = (/iPad/.test(navigator.userAgent)) ? 1 : 0;
-//            if (isiPad == 0) {
-//                resultado = true;
-//            }
-            return (!(/iPad/.test(navigator.userAgent)));
-        } else if (varPlatform == 'WinCE' || varPlatform == 'Win32NT') {
-            return true;
-        }
-//    } catch (ex) {
-//        alert('Error isMobil()');
-//    }
+    var varPlatform = '';
+    if (localStorage.getItem("storagePlatform") != null) {
+        varPlatform = localStorage.getItem("storagePlatform");
+    }
+    if (varPlatform === 'android' || varPlatform === 'Android') {
+        return (/Mobile/.test(navigator.userAgent));
+    } else if (varPlatform === 'iOS') {
+        return (!(/iPad/.test(navigator.userAgent)));
+    } else if (varPlatform == 'WinCE' || varPlatform == 'Win32NT') {
+        return true;
+    }
     return resultado;
 }
 function onclickCompartir() {
