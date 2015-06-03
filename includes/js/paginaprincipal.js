@@ -56,7 +56,7 @@ $(document).ready(function () {
 $(document).ajaxStop(function () { finCargarInicial(); });
 
 function CargaDeLosDatosPrevioTelefono() {
-
+alert(localStorage.getItem("storagePlatform"));
     if (localStorage.getItem("storagePlatform") == null) {
         setTimeout(function () { CargaDeLosDatosPrevioTelefono(); }, 500);
     } else {
