@@ -6,11 +6,12 @@ function toString00(pNro) {
 }
 function isMobile() {
     var resultado = false;
- //   try {
-        //alert(objDatosTelefono.platform);
-        //alert(device);
+    var varPlatform =   '';
+ if (localStorage.getItem("storagePlatform") != null) {
+     varPlatform =  localStorage.getItem("storagePlatform");
+        }
        
-        if (objDatosTelefono.platform === 'android' || objDatosTelefono.platform === 'Android') {
+        if (varPlatform === 'android' || varPlatform === 'Android') {
 //            try {
 //                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
 //            } catch (ex) {
@@ -22,13 +23,13 @@ function isMobile() {
 //            }
             
          return   (/Mobile/.test(navigator.userAgent));
-        } else if (objDatosTelefono.platform === 'iOS') {
+        } else if (varPlatform === 'iOS') {
 //            var isiPad = (/iPad/.test(navigator.userAgent)) ? 1 : 0;
 //            if (isiPad == 0) {
 //                resultado = true;
 //            }
             return (!(/iPad/.test(navigator.userAgent)));
-        } else if (objDatosTelefono.platform == 'WinCE' || objDatosTelefono.platform == 'Win32NT') {
+        } else if (varPlatform == 'WinCE' || varPlatform == 'Win32NT') {
             return true;
         }
 //    } catch (ex) {
