@@ -65,7 +65,7 @@ function FuncionInicio() {
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
          isGuardarTelefono = isMobile();
-         alert('lalal: ' + isGuardarTelefono);
+         //alert('lalal: ' + isGuardarTelefono);
 //        try {
 //            if (device.platform == 'android' || device.platform == 'Android') {
 //                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
@@ -164,7 +164,7 @@ function processSuccessGuardarTelefono(data, status, req) {
 }
 
 function CargarAuditoria() {
-    //alert('CargarAuditoria');
+    alert('CargarAuditoria');
     listaTablaModificaciones = null;
     $.ajax({
         type: "POST",
@@ -187,6 +187,7 @@ function CargarAuditoria() {
 }
 function processSuccessAuditoria(data, status, req) {
     if (status == "success") {
+        alert('CargarAuditoria Ok');
         //1:"Cotizaciones", 2:"Notificaciones", 3:"Informes"   
         isCargarCotizaciones = false;
         isCargarNotificaciones = false;
@@ -335,6 +336,7 @@ function processError(data, status, req) {
     //alert('Error');
 }
 function processErrorAuditoria(data, status, req) {
+    alert('CargarAuditoria Error');
     processError(data, status, req);
 }
 
