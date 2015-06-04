@@ -42,7 +42,7 @@
 		<preference name="LoadingDialog" value=","/> 
 		<preference name="LoadUrlTimeoutValue" value="20000" />
 		<preference name="disable-cursor" value="true" />
-        <preference name="android-windowSoftInputMode" value="stateHidden" />
+        <preference name="android-windowSoftInputMode" value="adjustResize" />
 
 		<gap:platform name="ios" />
 		<gap:platform name="android" />
