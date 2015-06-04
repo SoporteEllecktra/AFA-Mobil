@@ -61,7 +61,10 @@ function informes() {
 }
 
 function FuncionInicio() {
-    // localStorage.clear();
+     //
+//     localStorage.clear();
+//     localStorage.setItem('storagePlatform', 'Android');
+    //
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
          isGuardarTelefono = isMobile();
@@ -88,7 +91,7 @@ function FuncionInicio() {
         }
     }
     if (isGuardarTelefono) {
-        window.location.href = "telefono.html";window.location.href = "telefono.html";
+        window.location.href = "telefono.html";
     } else {
         CargarAuditoria();
     }
@@ -142,14 +145,12 @@ function funGuardarTelefono(pTelefono) {
     });
 }
 function processErrorGuardarTelefono(data, status, req) {
-    //OcultarDivBloqueo();
-    // alert(req);
-    localStorage.setItem('storageTelefono', telefonoDelUsuario);
-    window.location.href = "index.html";
+    //localStorage.setItem('storageTelefono', telefonoDelUsuario);
+    //window.location.href = "index.html";
+     processError(data, status, req);
 }
 function processSuccessGuardarTelefono(data, status, req) {
     if (status == "success") {
-        //alert(req.responseText);
         var codigoRespuesta = 1;
         $(req.responseText).find('return').each(function () {
             codigoRespuesta = parseInt($(this).find('codigoResultado').text());
@@ -159,7 +160,6 @@ function processSuccessGuardarTelefono(data, status, req) {
             localStorage.setItem('storageTelefono', telefonoDelUsuario);
         }
         window.location.href = "index.html";
-        //window.history.go(-1);
     }
 }
 
@@ -343,6 +343,9 @@ function processErrorAuditoria(data, status, req) {
 function processErrorCotizacionDestacada(data, status, req) {
     processError(data, status, req);
 }
+function processErrorCargaConIndiceDetalleCotizacion(data, status, req) {
+  processError(data, status, req);
+}
 function processErrorCotizacionHistoricaConIndiceDetacado(data, status, req) {
     processError(data, status, req);
 }
@@ -369,7 +372,7 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         obj.descripcionPuerto = $(this).find('descripcionPuerto').text();
         obj.codigoProducto = $(this).find('codigoProducto').text();
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
-        obj.valor = parseInt($(this).find('valor').text());
+        obj.valor = parseFloat($(this).find('valor').text());
         obj.observacion = $(this).find('observacion').text();
         cotizacionesDestacada.push(obj);
     });
@@ -463,7 +466,7 @@ function CargaConIndiceDetalleCotizacion(pIndex) {
         },
         data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
         success: processSuccessDetalleCotizacion,
-        error: processError
+        error: processErrorCargaConIndiceDetalleCotizacion
     });
 }
 function processSuccessDetalleCotizacion(data, status, req) {
@@ -493,7 +496,7 @@ function ObtenerResultadoCotizacionDetalleJavascript(pXML) {
         obj.descripcionPuerto = $(this).find('descripcionPuerto').text();
         obj.codigoProducto = $(this).find('codigoProducto').text();
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
-        obj.valor = parseInt($(this).find('valor').text());
+        obj.valor = parseFloat($(this).find('valor').text());
         obj.observacion = $(this).find('observacion').text();
         cotizacionesDetalle.push(obj);
     });
@@ -529,7 +532,7 @@ function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
         obj.descripcionPuerto = $(this).find('descripcionPuerto').text();
         obj.codigoProducto = $(this).find('codigoProducto').text();
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
-        obj.valor = parseInt($(this).find('valor').text());
+        obj.valor = parseFloat($(this).find('valor').text());
         obj.observacion = $(this).find('observacion').text();
         listaHistorica.push(obj);
     });
@@ -595,7 +598,7 @@ function ObtenerTodasCotizaciones(pXML) {
         obj.descripcionPuerto = $(this).find('descripcionPuerto').text();
         obj.codigoProducto = $(this).find('codigoProducto').text();
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
-        obj.valor = parseInt($(this).find('valor').text());
+        obj.valor = parseFloat($(this).find('valor').text());
         obj.observacion = $(this).find('observacion').text();
         listaTodasCotizaciones.push(obj);
     });
