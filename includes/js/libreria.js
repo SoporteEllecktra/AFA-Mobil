@@ -28,7 +28,7 @@ function onclickCompartir() {
         $('.cssTdHeaderDerecha .btn_rs .one .left').addClass('cssTdHeaderDerecha_btn_rs_one_left_Activo');
         $('.cssTdHeaderDerecha .btn_rs .one .center').addClass('cssTdHeaderDerecha_btn_rs_one_center_Activo');
         $('.cssTdHeaderDerecha .btn_rs .two .right').addClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
-        $('.divMenuCompartir').css('display', 'block');
+        //$('.divMenuCompartir').css('display', 'block');
         setTimeout(function () { CerrarMenuCompartir(); }, 4000);
     }
 }
@@ -38,7 +38,7 @@ function CerrarMenuCompartir() {
     $('.cssTdHeaderDerecha .btn_rs .one .left').removeClass('cssTdHeaderDerecha_btn_rs_one_left_Activo');
     $('.cssTdHeaderDerecha .btn_rs .one .center').removeClass('cssTdHeaderDerecha_btn_rs_one_center_Activo');
     $('.cssTdHeaderDerecha .btn_rs .two .right').removeClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
-    $('.divMenuCompartir').css('display', 'none');
+   // $('.divMenuCompartir').css('display', 'none');
 }
 function obtenerFechaParametroEntrada(pDia) {
     var milisegundos = parseInt(pDia * 24 * 60 * 60 * 1000);
