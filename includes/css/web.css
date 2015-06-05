@@ -1,12 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
-
-body
-{
-    font-size: 16px; /*font-family: OpenSansRegular;*/
-    font-family: 'Open Sans' , sans-serif;
+body {
+    font-size: 16px;
+    /*font-family: OpenSansRegular;*/
+    
+    font-family: 'Open Sans', sans-serif;
 }
-.container
-{
+
+.container {
     width: 100%;
     padding: 0px;
     margin: 0px;
@@ -16,39 +16,58 @@ body
     right: 0;
     top: 0;
 }
-.container .col
-{
+
+.container .col {
     height: 100%;
 }
-.row
-{
+
+.row {
     margin: 0px;
 }
-#divCotizacionesDestacada
-{
+
+#divCotizacionesDestacada {
     background-color: #FFF;
-    overflow-y: auto; /*overflow-x: hidden;*/
+    overflow-y: auto;
+    /*overflow-x: hidden;*/
 }
-#divBarraAbajo
-{
+
+#divBarraAbajo {}
+
+.cssIconoCompartir {
+    width: 2em;
+    height: 2em;
+    margin-top: 0.4em;
 }
-.cssIconoCompartir{
-width: 2em;height: 2em;
-margin-top: 0.4em;
+
+.cssTablaHeader {
+    width: 100%;
 }
-.cssTablaHeader{
-width: 100%;
-}
-.cssTdHeaderDerecha{
-text-align: right;
+
+.cssTdHeaderDerecha {
+    text-align: right;
     background: #FFF;
     width: 9.2em;
 }
 
-.cssTdHeaderDerecha .btn_rs { display: block;  height: 3.8em; }
-.cssTdHeaderDerecha .btn_rs .one { float: left; width: 4.5em; height: 3.8em; background-color: #606966;}
-.cssTdHeaderDerecha .btn_rs .two { float: left; height: 3.8em; background-color: #FFF;}
-.cssTdHeaderDerecha .btn_rs .one .left { 
+.cssTdHeaderDerecha .btn_rs {
+    display: block;
+    height: 3.8em;
+}
+
+.cssTdHeaderDerecha .btn_rs .one {
+    float: left;
+    width: 4.5em;
+    height: 3.8em;
+    background-color: #606966;
+}
+
+.cssTdHeaderDerecha .btn_rs .two {
+    float: left;
+    height: 3.8em;
+    background-color: #FFF;
+}
+
+.cssTdHeaderDerecha .btn_rs .one .left {
     float: left;
     width: 0;
     height: 0;
@@ -56,184 +75,211 @@ text-align: right;
     border-width: 0 0 3.8em 1em;
     border-color: transparent transparent #606966;
 }
-.cssTdHeaderDerecha .btn_rs .one .center { 
+
+.cssTdHeaderDerecha .btn_rs .one .center {
     width: 3.5em;
     height: 3.8em;
     float: left;
     background-color: #606966;
     padding: 0.5em;
 }
+
 .cssTdHeaderDerecha .btn_rs .two .right {
     float: left;
-width: 0;
-height: 0;
-border-style: solid;
-border-width: 3.8em 1em 0 0;
-border-color: #606966 transparent transparent transparent;}
-/*Inicio Menu compartir click*/
-.cssTdHeaderDerecha_btn_rs_Activo { background: #CCC !important; }
-.cssTdHeaderDerecha_btn_rs_center_Activo { background: #CCC !important;; }
-.cssTdHeaderDerecha_btn_rs_one_left_Activo { border-color: transparent transparent #4F5857 !important;;}
-.cssTdHeaderDerecha_btn_rs_one_center_Activo { background-color: #4F5857 !important;;}
-.cssTdHeaderDerecha_btn_rs_two_right_Activo { border-color: #4F5857 transparent transparent transparent !important;;}
-/*Fin Menu compartir click1*/
-.divMenuCompartir{
-background-color: #FFF;
-display: none;
-position: absolute;
-right: 4.64em;
- -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
-z-index: 1000;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 3.8em 1em 0 0;
+    border-color: #606966 transparent transparent transparent;
 }
-.cssLogoFacebook{
+/*Inicio Menu compartir click*/
+
+.cssTdHeaderDerecha_btn_rs_Activo {
+    background: #CCC !important;
+}
+
+.cssTdHeaderDerecha_btn_rs_center_Activo {
+    background: #CCC !important;
+    ;
+}
+
+.cssTdHeaderDerecha_btn_rs_one_left_Activo {
+    border-color: transparent transparent #4F5857 !important;
+    ;
+}
+
+.cssTdHeaderDerecha_btn_rs_one_center_Activo {
+    background-color: #4F5857 !important;
+    ;
+}
+
+.cssTdHeaderDerecha_btn_rs_two_right_Activo {
+    border-color: #4F5857 transparent transparent transparent !important;
+    ;
+}
+/*Fin Menu compartir click1*/
+
+.divMenuCompartir {
+    background-color: #FFF;
+    display: none;
+    position: absolute;
+    right: 4.64em;
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+}
+
+.cssLogoFacebook {
     width: 1.5em;
     height: 1.5em;
     margin: 0.5em;
 }
-.cssLogoTwitter{
-  width: 1.725em;
-  height: 1.725em;
-  margin: 0.5em;
-  margin-bottom: 0.3em;
+
+.cssLogoTwitter {
+    width: 1.725em;
+    height: 1.725em;
+    margin: 0.5em;
+    margin-bottom: 0.3em;
 }
-.cssLogoWhatsApp{
-  width: 1.725em;
-  height: 1.725em;
-  margin: 0.5em;
-  margin-bottom: 0.5em;
+
+.cssLogoWhatsApp {
+    width: 1.725em;
+    height: 1.725em;
+    margin: 0.5em;
+    margin-bottom: 0.5em;
 }
-.spanTwitter{
+
+.spanTwitter {
     cursor: pointer;
     padding-right: 1em;
     font-size: 1.3em;
 }
-.spanFacebook{
+
+.spanFacebook {
     cursor: pointer;
     padding-right: 1em;
     font-size: 1.3em;
 }
-.spanWhatsApp{
+
+.spanWhatsApp {
     cursor: pointer;
     padding-right: 1em;
     font-size: 1.3em;
 }
-.linkTwitter{
+
+.linkTwitter {
     border-top-style: solid;
     border-top-color: #000;
-    border-top-width:0.0625em;
+    border-top-width: 0.0625em;
 }
-.linkWhatsApp{
+
+.linkWhatsApp {
     border-top-style: solid;
     border-top-color: #000;
-    border-top-width:0.0625em;
+    border-top-width: 0.0625em;
 }
-header
-{
+
+header {
     background-color: #606966;
     height: 3.8em;
-
 }
-.cssCalendario
-{
+
+.cssCalendario {
     width: 2.1em;
     height: 2.1em;
     margin-left: 0.5em;
 }
-.cssDivColCalendario
-{
+
+.cssDivColCalendario {
     margin-top: 0.5em;
     margin-left: 0.4em;
 }
-#headerFecha
-{
+
+#headerFecha {
     color: #FFF;
     text-align: left;
     margin-top: 0.3em;
     vertical-align: middle;
     font-size: 1.2em;
 }
-.cssLogoAfa
-{
-   width: 3.6324em;
-    height:  3.6324em;
-   padding-top: 0.3em;
-    padding-right:  0.1em;
+
+.cssLogoAfa {
+    width: 3.6324em;
+    height: 3.6324em;
+    padding-top: 0.3em;
+    padding-right: 0.1em;
 }
-.cssCompartir{
+
+.cssCompartir {
     width: 4.46em;
     height: 2.8em;
 }
-.cssDivColImgLogo
-{
-    text-align: right;     
+
+.cssDivColImgLogo {
+    text-align: right;
     background-color: #FFF;
-    float: right; 
+    float: right;
 }
-.cssDivImgLogo
-{
-}
+
+.cssDivImgLogo {}
 /* Cotizacion destacado */
-.cssAccordion-heading
-{
-}
 
-.cssAccordion-headingActivo
-{
-}
+.cssAccordion-heading {}
 
-.cssDestacadoEncabezado
-{
+.cssAccordion-headingActivo {}
+
+.cssDestacadoEncabezado {
     font-size: 0.875em;
     padding-top: 0.9em;
     padding-bottom: 0.9em;
     border-bottom: 0.125em solid #D6D6D6;
 }
-.cssDestacado
-{
+
+.cssDestacado {
     padding-top: 1em;
     padding-bottom: 1em;
-   /* border-bottom-color: #C2C8C8;
+    /* border-bottom-color: #C2C8C8;
       border-bottom-style: solid;
     border-bottom-width: 1px;*/
-     border-bottom:0.125em solid #EAEAEA;
+    
+    border-bottom: 0.125em solid #EAEAEA;
 }
 
-.cssDestacadoDescripcionProducto
-{
+.cssDestacadoDescripcionProducto {
     font-size: 1.75em;
 }
-.cssDestacadoDescripcionProductoMargenes
-{
+
+.cssDestacadoDescripcionProductoMargenes {
     padding-left: 0.5em;
 }
-.cssDestacadoDescripcionPuerto
-{
+
+.cssDestacadoDescripcionPuerto {
     font-size: 1.25em;
     padding-top: 0.25em;
 }
-.cssDestacadoPrecio
-{
+
+.cssDestacadoPrecio {
     font-size: 1.5625em;
     font-weight: 600;
-    text-align: right;    
+    text-align: right;
 }
-.cssDestacadoPrecioTitulo{
-text-align: right;
+
+.cssDestacadoPrecioTitulo {
+    text-align: right;
 }
-.colVerMas
-{
+
+.colVerMas {
     height: 3.438em;
     font-size: 1.625em;
     background-color: #EBEBEB;
     color: #777;
     text-align: center;
     padding-top: 0.9065em;
-    cursor:pointer;
+    cursor: pointer;
 }
-.colRectanguloPrecio
-{
+
+.colRectanguloPrecio {
     max-width: 7em;
     padding: 0.2em;
     border-radius: 0.32em 0.32em 0.32em 0.32em;
@@ -241,133 +287,134 @@ text-align: right;
     -webkit-border-radius: 0.32em 0.32em 0.32em 0.32em;
     border: 0px solid #000000;
     float: right;
-    margin-right:0.2em;
+    margin-right: 0.2em;
 }
-.colRectanguloPrecioVerde
-{
+
+.colRectanguloPrecioVerde {
     background-color: #4CD98A;
     color: #FEFEFE;
 }
-.colRectanguloPrecioRojo
-{
+
+.colRectanguloPrecioRojo {
     background-color: #FF393A;
     color: #FEFEFE;
 }
-.colRectanguloPrecioGris
-{
+
+.colRectanguloPrecioGris {
     background-color: #EFEFEF;
     color: #2D2D2D;
 }
 /* Fin Cotizacion destacado */
-
 /* Cotizacion Detalle */
 
-.cssDetalleEncabezado
-{
+.cssDetalleEncabezado {
     background-color: #C2C8C8;
     font-size: 0.875em;
     color: #FFF;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
 }
-.cssDetalle
-{
+
+.cssDetalle {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     background-color: #E7E7E7;
 }
-.cssDetalleImpar
-{
+
+.cssDetalleImpar {
     background-color: #EFEFEF;
 }
-.colDetalleDescripcionPuerto
-{
+
+.colDetalleDescripcionPuerto {
     font-size: 1.125em;
 }
-.colDetallePrecio
-{
+
+.colDetallePrecio {
     font-weight: 700;
     font-size: 1.125em;
 }
-.colDetalleObservacion
-{
+
+.colDetalleObservacion {
     font-size: 0.875em;
 }
 /* Fin Cotizacion Detalle */
-
 /* Cotizacion Historica */
-.colHistoricoTitulo
-{
+
+.colHistoricoTitulo {
     font-size: 1.75em;
     text-align: center;
     font-weight: 700;
     padding-top: 0.8em;
     padding-bottom: 0.8em;
 }
-.cssHistoricoEncabezado
-{
+
+.cssHistoricoEncabezado {
     padding-top: 1em;
     padding-bottom: 1em;
     border-bottom: 0.125em solid #C6C6C6;
     border-top: 0.125em solid #C6C6C6;
 }
-.cssHistorico
-{
+
+.cssHistorico {
     background-color: transparent;
     padding-top: 1em;
     padding-bottom: 1em;
 }
-.cssHistoricoImpar
-{
-    background-color: rgba(0,0,0,.1);
+
+.cssHistoricoImpar {
+    background-color: rgba(0, 0, 0, .1);
 }
-.colHistoricoEncabezadoFecha
-{
+
+.colHistoricoEncabezadoFecha {
     font-size: 0.875em;
     text-align: right;
 }
-.colHistoricoEncabezadoPrecio
-{
+
+.colHistoricoEncabezadoPrecio {
     font-size: 0.875em;
     text-align: left;
 }
-.colHistoricoFecha
-{
+
+.colHistoricoFecha {
     font-size: 1.25em;
     text-align: right;
 }
-.colHistoricoPrecio
-{
+
+.colHistoricoPrecio {
     font-size: 1.25em;
     text-align: left;
     font-weight: 600;
 }
-#divParteScrollCotizacionHistorica
-{
+
+#divParteScrollCotizacionHistorica {
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
 }
 /* Fin Cotizacion Historica */
 /* Cotizacion Historica pantalla completa */
-.cssDivResultadoTodasCotizacionesHistorica
-{
+
+.cssDivResultadoTodasCotizacionesHistorica {
     /*overflow-y: auto; */
-    color: #FFF; /*Fondo color*/
+    
+    color: #FFF;
+    /*Fondo color*/
+    
     background: url(../../img/material/fondo2.jpg) no-repeat bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover; /*Fin fondo color*/
+    background-size: cover;
+    /*Fin fondo color*/
 }
-#divRowParteScrollTodosHistoricoCotizaciones
-{
+
+#divRowParteScrollTodosHistoricoCotizaciones {
     overflow-y: auto;
     width: 100%;
 }
 /* Fin Cotizacion Historica pantalla completa */
-#divFondoBloqueo
-{
+
+#divFondoBloqueo {
     display: none;
     width: 100%;
     height: 100%;
@@ -375,15 +422,16 @@ text-align: right;
     z-index: 1000;
     position: absolute;
     background-color: #ABB69C;
-     background: url(../../img/material/fondo.jpg) no-repeat bottom;
+    background: url(../../img/material/fondo.jpg) no-repeat bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover; 
-    opacity: 1;/*0.5;*/
+    background-size: cover;
+    opacity: 1;
+    /*0.5;*/
 }
-.imgFondoBloqueo
-{
+
+.imgFondoBloqueo {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -394,391 +442,449 @@ text-align: right;
     opacity: 0.4;
 }
 
-.row-xs-12
-{
+.row-xs-12 {
     height: 100%;
 }
-.row-xs-11
-{
+
+.row-xs-11 {
     height: 91.66666666666666%;
 }
-.row-xs-10
-{
+
+.row-xs-10 {
     height: 83.33333333333334%;
 }
-.row-xs-9
-{
+
+.row-xs-9 {
     height: 75%;
 }
-.row-xs-8
-{
+
+.row-xs-8 {
     height: 66.66666666666666%;
 }
-.row-xs-7
-{
+
+.row-xs-7 {
     height: 58.333333333333336%;
 }
-.row-xs-6
-{
+
+.row-xs-6 {
     height: 50%;
 }
-.row-xs-5
-{
+
+.row-xs-5 {
     height: 41.66666666666667%;
 }
-.row-xs-4
-{
+
+.row-xs-4 {
     height: 33.33333333333333%;
 }
-.row-xs-3
-{
+
+.row-xs-3 {
     height: 25%;
 }
-.row-xs-2
-{
+
+.row-xs-2 {
     height: 16.666666666666664%;
 }
-.row-xs-1
-{
+
+.row-xs-1 {
     height: 8.333333333333332%;
 }
-.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9
-{
+
+.col-lg-1,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-md-1,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-sm-1,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-xs-1,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
     padding-right: 0.5em;
     padding-left: 0.5em;
 }
-.cssDestacado .col-xs-4
-{
+
+.cssDestacado .col-xs-4 {
     padding-right: 0em;
     padding-left: 0em;
 }
 /* Todas cotizaciones */
-.cssDivResultadoTodasCotizaciones
-{
+
+.cssDivResultadoTodasCotizaciones {
     width: 100%;
     /*overflow-y: auto;  */
-    color: #FFF; /*Fondo color*/
+    
+    color: #FFF;
+    /*Fondo color*/
     /*background: url(../../img/material/fondo2.jpg) no-repeat fixed bottom;*/
+    
     background: url(../../img/material/fondo2.jpg) no-repeat bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover; /*Fin Fondo color*/
+    background-size: cover;
+    /*Fin Fondo color*/
 }
-.cssColTodasCotizacionesTitulo
-{
+
+.cssColTodasCotizacionesTitulo {
     font-weight: 700;
     font-size: 1.75em;
     padding-top: 1.1em;
     padding-bottom: 1.1em;
 }
-.cssTodasCotizacionesEncabezado
-{
+
+.cssTodasCotizacionesEncabezado {
     font-size: 0.875em;
     padding-top: 1em;
     padding-bottom: 1em;
     border-bottom: 0.125em solid #C6C6C6;
     border-top: 0.125em solid #C6C6C6;
 }
-.cssTodasCotizacionesProducto
-{
+
+.cssTodasCotizacionesProducto {
     font-size: 1.125em;
     font-weight: 600;
 }
-.cssTodasCotizacionesPuerto
-{
+
+.cssTodasCotizacionesPuerto {
     font-size: 1.125em;
 }
-.cssTodasCotizacionesPrecio
-{
+
+.cssTodasCotizacionesPrecio {
     font-size: 1.125em;
     font-weight: 700;
 }
-.cssTodasCotizacionesObservacion
-{
+
+.cssTodasCotizacionesObservacion {
     font-size: 0.875em;
 }
-.cssTodasCotizaciones
-{
+
+.cssTodasCotizaciones {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     background-color: transparent;
 }
-.cssTodasCotizacionesImpar
-{
-    background-color: rgba(0,0,0,.1);
+
+.cssTodasCotizacionesImpar {
+    background-color: rgba(0, 0, 0, .1);
 }
-#divParteScrollTodasCotizaciones
-{
+
+#divParteScrollTodasCotizaciones {
     overflow-y: auto;
     width: 100%;
 }
 /* FIn todas cotizaciones */
 
-.swiper-container
-{
+.swiper-container {
     position: static;
 }
-.swiper-container
-{
+
+.swiper-container {
     /*Fondo color*/
+    
     background: url(../../img/material/fondo2.jpg) no-repeat bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover; /*Fin fondo color*/
+    background-size: cover;
+    /*Fin fondo color*/
 }
-.swiper-slide
-{
+
+.swiper-slide {
     color: #FFF;
 }
 /* Novedades */
-.cssColImgAmpliar
-{
+
+.cssColImgAmpliar {
     text-align: right;
 }
-.cssImgAmpliar
-{
+
+.cssImgAmpliar {
     width: 2.25em;
     height: 2.25em;
     margin-top: 1.5em;
 }
-.cssColImgNovedades
-{
+
+.cssColImgNovedades {
     padding-top: 1.5em;
-   /* padding-left: 1.5em;*/
+    /* padding-left: 1.5em;*/
 }
-.cssImgNovedades
-{
+
+.cssImgNovedades {
     width: 2em;
     height: 2.5em;
 }
-.cssNovedades
-{
+
+.cssNovedades {
     width: 2em;
     height: 2.5em;
 }
-.cssNovedadesTitulo
-{
+
+.cssNovedadesTitulo {
     font-size: 1.25em;
     font-weight: 700;
     padding-top: 1em;
 }
-.cssNovedadesFecha
-{
+
+.cssNovedadesFecha {
     font-size: 1em;
     font-weight: 500;
-
 }
-.cssNovedadesCategoria
-{
+
+.cssNovedadesCategoria {
     font-size: 0.75em;
     font-weight: 700;
     margin-top: 0.5em;
     padding-left: 1em;
 }
-.cssNovedadesDescripcion
-{
+
+.cssNovedadesDescripcion {
     padding-top: 1em;
-   /* font-size: 1.25em;*/
+    /* font-size: 1.25em;*/
+    
     font-size: 1em;
 }
-#divRowParteScrollNovedades{
+
+#divRowParteScrollNovedades {
     overflow-y: auto;
     width: 100%;
 }
 /* Fin Novedades */
 /* Novedades pantalla completa */
-.cssDivResultadoNovedades
-{
+
+.cssDivResultadoNovedades {
     overflow-y: auto;
-    color: #FFF; /*Fondo color*/
+    color: #FFF;
+    /*Fondo color*/
+    
     background: url(../../img/material/fondo2.jpg) no-repeat bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;  /*Fin fondo color*/
+    background-size: cover;
+    /*Fin fondo color*/
 }
 /* Fin Novedades pantalla completa */
-.swiper-pagination{
-bottom: 0.2em !important;
+
+.swiper-pagination {
+    bottom: 0.2em !important;
 }
-.swiper-pagination-bullet
-{
+
+.swiper-pagination-bullet {
     width: 1em;
     height: 1em;
 }
-.swiper-pagination-bullet-active
-{
+
+.swiper-pagination-bullet-active {
     background: #FFF;
 }
-@media (min-width: 1170px)
-{
-    body
-    {
+
+@media (min-width: 1170px) {
+    body {
         font-size: 16px;
     }
 }
-@media (max-width: 1170px)
-{
-    body
-    {
-         font-size: 15px;
+
+@media (max-width: 1170px) {
+    body {
+        font-size: 15px;
     }
 }
-@media (max-width: 940px)
-{
-    body
-    {
+
+@media (max-width: 940px) {
+    body {
         font-size: 14px;
     }
 }
-@media (max-width: 728px)
-{
-    body
-    {
+
+@media (max-width: 728px) {
+    body {
         font-size: 13px;
     }
 }
-@media (max-width: 500px)
-{
-    body
-    {
+
+@media (max-width: 500px) {
+    body {
         font-size: 12px;
     }
 }
-@media (max-width: 400px)
-{
-    body
-    {
+
+@media (max-width: 400px) {
+    body {
         font-size: 11px;
     }
 }
-.cssAmpliarAchicar
-{
-    text-align: center;  
+
+.cssAmpliarAchicar {
+    text-align: center;
 }
-.cssImgImputButtonAmpliar
-{ 
-    background:url(../../img/material/ampliar.svg) no-repeat ;
+
+.cssImgImputButtonAmpliar {
+    background: url(../../img/material/ampliar.svg) no-repeat;
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
-    background-size: contain; 
-    cursor:pointer;
+    background-size: contain;
+    cursor: pointer;
     border: none;
     width: 2.25em;
     height: 2.25em;
     margin-top: 1.5em;
 }
-.cssImgImputButtonAchicar
-{
-    background:url(../../img/material/ampliarAbajo.svg) no-repeat;
-    -webkit-background-size:contain;
+
+.cssImgImputButtonAchicar {
+    background: url(../../img/material/ampliarAbajo.svg) no-repeat;
+    -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
-    background-size:contain; 
-    cursor:pointer;
+    background-size: contain;
+    cursor: pointer;
     border: none;
     width: 2.25em;
     height: 2.25em;
     margin-top: 1.5em;
 }
 /* Inicio informe */
-#swiper-slide3{
-    padding-left: 1em; 
- 
+
+#swiper-slide3 {
+    padding-left: 1em;
 }
-.cssInformeTitulo{
-font-size: 1.5em;
-font-weight: 800;  
-padding-top: 1em;    
-   
-} 
-.cssInformeFecha
-{
-  padding-bottom: 2em; 
+
+.cssInformeTitulo {
+    font-size: 1.5em;
+    font-weight: 800;
+    padding-top: 1em;
 }
-.cssInformeDescripcion
-{
-    overflow-y: auto; 
-    padding-right: 1em; 
+
+.cssInformeFecha {
+    padding-bottom: 2em;
 }
-.cssInformeDescripcion  span{
-  font-size: 1.25em!important; 
+
+.cssInformeDescripcion {
+    overflow-y: auto;
+    padding-right: 1em;
+}
+
+.cssInformeDescripcion span {
+    font-size: 1.25em!important;
 }
 /* Fin informe */
 /* Inicio informe Pantalla completa */
-.cssImgAmpliarPantallaCompletaInforme
-{
+
+.cssImgAmpliarPantallaCompletaInforme {
     width: 2.25em;
     height: 2.25em;
     margin-top: 0.8em;
 }
-#divButtonInformePantallaCompletaAbajo{
-display: block;
-position: absolute;
-right: 1.5em;
-cursor:pointer;
-z-index: 1000;
+
+#divButtonInformePantallaCompletaAbajo {
+    display: block;
+    position: absolute;
+    right: 1.5em;
+    cursor: pointer;
+    z-index: 1000;
 }
-.cssDivResultadoInforme
-{
+
+.cssDivResultadoInforme {
     /*overflow-y: auto;*/
+    
     color: #FFF;
     background: url(../../img/material/fondo2.jpg) no-repeat bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    padding-left: 1em; 
+    padding-left: 1em;
 }
 /* Fin informe Pantalla completa */
-#divButtonAmpliar{
-display: block;
-position: absolute;
-right: 1.5em;
-cursor:pointer;
-z-index: 1000;
+
+#divButtonAmpliar {
+    display: block;
+    position: absolute;
+    right: 1.5em;
+    cursor: pointer;
+    z-index: 1000;
 }
-.cssImgAmpliarParteAbajo
-{
+
+.cssImgAmpliarParteAbajo {
     width: 2.25em;
     height: 2.25em;
     margin-top: 1em;
 }
 /* inicio telefono */
-.cssDivNumeroTelefono{
 
-margin-left: 0.5em;
- /* font-size: 2.5em;*/
+.cssDivNumeroTelefono {
+    margin-left: 0.5em;
+    /* font-size: 2.5em;*/
 }
-.spanNroInfo{
- font-size: 2.5em;
+
+.spanNroInfo {
+    font-size: 2.5em;
 }
-.cssTringuloTelefonoContenedor{
-/*margin-top:2em; */   
- 
+
+.cssTringuloTelefonoContenedor {
+    /*margin-top:2em; */
 }
-.cssCajaTelefono{
-       margin: 0 auto;
-       background-color: #FFF; 
-     /*  width: 95%;    */
-       padding-bottom: 0.4em;
-       margin-left: 0.5em;
+
+.cssCajaTelefono {
+    margin: 0 auto;
+    background-color: #FFF;
+    /*  width: 95%;    */
+    
+    padding-bottom: 0.4em;
+    margin-left: 0.5em;
     margin-right: 0.5em;
 }
-.cssContenedorTelefono{
+
+.cssContenedorTelefono {
     background: url(../../img/material/fondo.jpg) no-repeat bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
-#divContenedorTelefono{
 
-}
-.cssTringuloTelefono{  
+#divContenedorTelefono {}
+
+.cssTringuloTelefono {
     margin: 0 auto;
     width: 0;
     height: 0;
@@ -786,89 +892,95 @@ margin-left: 0.5em;
     border-width: 0 2.78em 1.8em 2.78em;
     border-color: transparent transparent #FFF transparent;
 }
-.cssCajaTelefonoTexto{
+
+.cssCajaTelefonoTexto {
     font-size: 1.4em;
     padding-top: 2em;
-   /* margin-left: 10%;*/
+    /* margin-left: 10%;*/
+    
     padding-right: 1em;
     margin-left: 0.8em;
     margin-right: 0.5em;
-        margin-bottom: 0.5em;
+    margin-bottom: 0.5em;
 }
-.cssInputTelefonoArea{
-width: 25%;
-background: #E6E6E6;
-font-size: 2.5em;
-/*margin-left: 10%;*/
-     
 
+.cssInputTelefonoArea {
+    width: 25%;
+    background: #E6E6E6;
+    font-size: 2.5em;
+    /*margin-left: 10%;*/
 }
-.cssInputTelefono{
-width: 45%;
-background: #E6E6E6;
-font-size: 2.5em;
-/*margin-top: 0.8em;*/
+
+.cssInputTelefono {
+    width: 45%;
+    background: #E6E6E6;
+    font-size: 2.5em;
+    /*margin-top: 0.8em;*/
 }
-.cssDivBotonIngresar{
+
+.cssDivBotonIngresar {
     text-align: center;
     background-color: #57BFDC;
     color: #FFF;
-    font-size: 2em;  
+    font-size: 2em;
     margin-top: 0.8em;
     margin-bottom: 0.1em;
     margin-left: 0.5em;
     margin-right: 0.5em;
     /*width: 80%;*/
-   /* margin-left: 10%;*/
+    /* margin-left: 10%;*/
+    
     padding-top: 0.2em;
     padding-bottom: 0.2em;
     cursor: pointer;
-    
 }
-.cssDivBotonIngresar:hover{
+
+.cssDivBotonIngresar:hover {
     opacity: 0.8;
 }
-.cssLogoAfaTelefono
-{
-  width: 14em;
-  height: 14em;    
-}
-.cssDivLogoAfaTelefono{
- text-align: center;
-padding-top:2em;    
-    
-}
-.cssSpanLogoAfaTelefono{
-font-size:3em; 
-}
-.cssTablaTelefono{
-width: 100%;
-height: 100%;
-}
-.cssTdParteAbajoTelefono{
 
-vertical-align: middle;
-padding-bottom: 2em;    
+.cssLogoAfaTelefono {
+    width: 14em;
+    height: 14em;
 }
 
+.cssDivLogoAfaTelefono {
+    text-align: center;
+    padding-top: 2em;
+}
+
+.cssSpanLogoAfaTelefono {
+    font-size: 3em;
+}
+
+.cssTablaTelefono {
+    width: 100%;
+    height: 100%;
+}
+
+.cssTdParteAbajoTelefono {
+    vertical-align: middle;
+    padding-bottom: 2em;
+}
 /* fin telefono */
-
 /* Pagina Error */
-.containerError{
+
+.containerError {
     background: url(../../img/material/fondo2.jpg) no-repeat bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
-.cssLogoAfaError{
-   width: 10em;
-    height:  10em;
+
+.cssLogoAfaError {
+    width: 10em;
+    height: 10em;
     margin: 1em;
-   
 }
-.divDescripcionError{
+
+.divDescripcionError {
     font-size: 2em;
-  margin: 1em;
+    margin: 1em;
 }
 /* Fin pagina error */

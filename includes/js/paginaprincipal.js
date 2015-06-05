@@ -7,7 +7,6 @@ $(document).ready(function () {
         paginationClickable: true
     });
     //var varParametroUrl = obtenerParametroGetHtml('r');
-
     //    var varParametroUrl = '';
     //    if (localStorage.getItem("storageIndexVolver") == null) {
     //        varParametroUrl = '';
@@ -51,16 +50,18 @@ $(document).ready(function () {
     //        }
     //        onresizeBody();
     //    }
-   
     CargaDeLosDatosPrevioTelefono();
-    
 });
-$(document).ajaxStop(function () { finCargarInicial(); });
+$(document).ajaxStop(function () {
+    finCargarInicial();
+});
 
 function CargaDeLosDatosPrevioTelefono() {
-   // alert(localStorage.getItem("storagePlatform"));
+    // alert(localStorage.getItem("storagePlatform"));
     if (localStorage.getItem("storagePlatform") == null) {
-        setTimeout(function () { CargaDeLosDatosPrevioTelefono(); }, 100);
+        setTimeout(function () {
+            CargaDeLosDatosPrevioTelefono();
+        }, 100);
     } else {
         var varParametroUrl = '';
         if (localStorage.getItem("storageIndexVolver") == null) {
@@ -111,14 +112,17 @@ function CargaDeLosDatosPrevioTelefono() {
 
 var isMoverAmpliar = false;
 var cantNN = 0;
+
 function onmousedownAmpliar(e) {
     isMoverAmpliar = true;
     //return false;
 }
+
 function onmouseoverAmpliar(e) {
     isMoverAmpliar = false;
     cantNN = 0;
 }
+
 function onmousemoveAmpliar(e) {
     if (isMoverAmpliar) {
         if (cantNN == 0) {
@@ -135,13 +139,14 @@ function onmousemoveAmpliar(e) {
             onresizeBody();
         }
     }
-
 }
+
 function onmouseupAmpliar(e) {
     isMoverAmpliar = false;
     cantNN = 0;
     //return false;
 }
+
 function onresizeBody() {
     //
     var altura = ($(document).height() - $('#header').outerHeight());
@@ -182,9 +187,11 @@ function onresizeBody() {
     $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').outerHeight() - ($('#divParteFijaCotizacionHistorica').outerHeight() + cantPxBotonesSlider));
     $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() + cantPxBotonesSlider)); // 
 }
+
 function onclikAcodeon() {
     //alert('Ok');
 }
+
 function CargarCotizacionesDestacadaHtml() {
     var resultadoDiv = '';
     resultadoDiv += '<div class="row cssDestacadoEncabezado ">';
@@ -200,6 +207,14 @@ function CargarCotizacionesDestacadaHtml() {
     resultadoDiv += '</div>';
     resultadoDiv += '<div class="accordion" id="accordion2">';
     var index = -1;
+    var cantValorMoneda = 0;
+    for (var i = 0; i < cotizacionesDestacada.length; i++) {
+        var cantValorMonedaAUX = cotizacionesDestacada[i].descripcionMoneda.length + String(cotizacionesDestacada[i].valor).length;
+        if (cantValorMoneda < cantValorMonedaAUX) {
+            cantValorMoneda = cantValorMonedaAUX;
+        }
+    }
+    //alert(cantValorMoneda);
     $(cotizacionesDestacada).each(function () {
         index++;
 
@@ -218,8 +233,15 @@ function CargarCotizacionesDestacadaHtml() {
         resultadoDiv += this.descripcionPuerto;
         resultadoDiv += '</div>';
         resultadoDiv += '<div class="col-xs-4 cssDestacadoPrecio">';
-        resultadoDiv += '<div class="colRectanguloPrecio colRectanguloPrecioVerde">'; // rectangulo
-        resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+        resultadoDiv += '<div class="colRectanguloPrecio colRectanguloPrecioVerde">'; // rectangulo    
+        var cantValorMonedaAUX = this.descripcionMoneda.length + String(this.valor).length;
+        var strCantValorMoneda = '';
+        if (cantValorMonedaAUX < cantValorMoneda) {
+            for (var iValorMoneda = cantValorMonedaAUX; iValorMoneda < cantValorMoneda; iValorMoneda++) {
+                strCantValorMoneda += '&nbsp;' + '&nbsp;';
+            }
+        }
+        resultadoDiv += strCantValorMoneda + this.descripcionMoneda + ' ' + this.valor;
         resultadoDiv += '</div>'; // fin rectangulo
         resultadoDiv += '</div>';
         resultadoDiv += '</div>'; // '<div class="row">';
@@ -330,6 +352,7 @@ function CargarCotizacionesDestacadaHtml() {
     onresizeBody();
     //setTimeout(function () { onresizeBody(); }, 500);
 }
+
 function CargarInformeCierreMercado() {
     if (listaInformes != null) {
         if (listaInformes.length > 0) {
@@ -347,72 +370,73 @@ function CargarInformeCierreMercado() {
         }
     }
 }
+
 function onclickVerMas() {
     window.location.href = "todascotizaciones.html";
 }
 
 function CargarCotizacionesHistoricaHtml(pIndex) {
-    var resultadoDiv = '';
-    if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
-        resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
-        resultadoDiv += '<div class="row">';
-        resultadoDiv += '<div class="col-xs-10 colHistoricoTitulo">';
-        resultadoDiv += 'Cotizaci&#243;n hist&#243;rica: ' + cotizacionesDestacada[pIndex].descripcionProducto.toUpperCase();
-        resultadoDiv += '</div>';
-        //
-        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
-        resultadoDiv += '</div>';
-        //
-        resultadoDiv += '</div>';
-        resultadoDiv += '<div class="row cssHistoricoEncabezado">';
-        resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoFecha">';
-        resultadoDiv += 'FECHA';
-        resultadoDiv += '</div>';
-        resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoPrecio">';
-        resultadoDiv += 'PRECIO P/TN';
-        resultadoDiv += '</div>';
-        resultadoDiv += '</div>';
+        var resultadoDiv = '';
+        if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
+            resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
+            resultadoDiv += '<div class="row">';
+            resultadoDiv += '<div class="col-xs-10 colHistoricoTitulo">';
+            resultadoDiv += 'Cotizaci&#243;n hist&#243;rica: ' + cotizacionesDestacada[pIndex].descripcionProducto.toUpperCase();
+            resultadoDiv += '</div>';
+            //
+            resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
+            resultadoDiv += '</div>';
+            //
+            resultadoDiv += '</div>';
+            resultadoDiv += '<div class="row cssHistoricoEncabezado">';
+            resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoFecha">';
+            resultadoDiv += 'FECHA';
+            resultadoDiv += '</div>';
+            resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoPrecio">';
+            resultadoDiv += 'PRECIO P/TN';
+            resultadoDiv += '</div>';
+            resultadoDiv += '</div>';
 
-        resultadoDiv += '</div>'; // fin div parte fija
+            resultadoDiv += '</div>'; // fin div parte fija
 
-        resultadoDiv += '<div id="divParteScrollCotizacionHistorica" >'; // div scroll
-        var indexHistorico = -1;
-        $(cotizacionesDestacada[pIndex].listaHistorico).each(function () {
-            indexHistorico++;
-            var strHtmlColorFondo = '';
-            if (indexHistorico % 2 == 0) {
-                strHtmlColorFondo = ' cssHistoricoImpar ';
+            resultadoDiv += '<div id="divParteScrollCotizacionHistorica" >'; // div scroll
+            var indexHistorico = -1;
+            $(cotizacionesDestacada[pIndex].listaHistorico).each(function () {
+                indexHistorico++;
+                var strHtmlColorFondo = '';
+                if (indexHistorico % 2 == 0) {
+                    strHtmlColorFondo = ' cssHistoricoImpar ';
+                }
+                resultadoDiv += '<div class="row cssHistorico ' + strHtmlColorFondo + '">';
+                resultadoDiv += '<div class="col-xs-6 colHistoricoFecha"><span style="opacity:1;">';
+                resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
+                resultadoDiv += '</span></div>';
+                resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
+                resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+                resultadoDiv += '</div>';
+                resultadoDiv += '</div>';
+            });
+            resultadoDiv += '</div>'; // fin div scroll
+        }
+        var isAgregarSlides2 = true;
+        for (var i = 0; i < swiper.slides.length; i++) {
+            if (swiper.slides[i].id == 'swiper-slide2') {
+                isAgregarSlides2 = false;
+                break;
             }
-            resultadoDiv += '<div class="row cssHistorico ' + strHtmlColorFondo + '">';
-            resultadoDiv += '<div class="col-xs-6 colHistoricoFecha"><span style="opacity:1;">';
-            resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
-            resultadoDiv += '</span></div>';
-            resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
-            resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
-            resultadoDiv += '</div>';
-            resultadoDiv += '</div>';
-        });
-        resultadoDiv += '</div>'; // fin div scroll
-    }
-    var isAgregarSlides2 = true;
-    for (var i = 0; i < swiper.slides.length; i++) {
-        if (swiper.slides[i].id == 'swiper-slide2') {
-            isAgregarSlides2 = false;
-            break;
+        }
+        if (isAgregarSlides2) {
+            swiper.appendSlide('<div id="swiper-slide2" class="swiper-slide">' + resultadoDiv + '</div>');
+        } else {
+            $('#swiper-slide2').html(resultadoDiv);
+        }
+        if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
+            porcentajeArriba = 0.55;
+            porcentajeAbajo = 0.45;
+            onresizeBody();
         }
     }
-    if (isAgregarSlides2) {
-        swiper.appendSlide('<div id="swiper-slide2" class="swiper-slide">' + resultadoDiv + '</div>');
-    } else {
-        $('#swiper-slide2').html(resultadoDiv);
-    }
-    if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
-        porcentajeArriba = 0.55;
-        porcentajeAbajo = 0.45;
-        onresizeBody();
-    }
-}
-//<a href="javascript:loadURL('http://www.lavidaenbinario.com');" class="link ">Example</a>
+    //<a href="javascript:loadURL('http://www.lavidaenbinario.com');" class="link ">Example</a>
 
 //function loadURL(url) {
 //    navigator.app.loadUrl(url, { openExternal: true });
@@ -422,7 +446,7 @@ function CargarNovedadesHtml() {
     var resultadoDiv = '';
     if (listaNovedades != null) {
 
-        resultadoDiv += '<div id="divRowParteScrollNovedades">';   // parte scroll      
+        resultadoDiv += '<div id="divRowParteScrollNovedades">'; // parte scroll      
         var indiceNovedades = -1;
         $(listaNovedades).each(function () {
             indiceNovedades++;
@@ -432,8 +456,7 @@ function CargarNovedadesHtml() {
                 resultadoDiv += '<a href="javascript:loadURL(\'' + this.url + '\');" >';
                 resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
                 resultadoDiv += '</a>';
-            }
-            else {
+            } else {
                 resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
             }
             resultadoDiv += '</div>';
@@ -481,7 +504,7 @@ function CargarNovedadesHtml() {
             resultadoDiv += '</div>';
             //
         });
-        resultadoDiv += '</div>';   // fin parte scroll   
+        resultadoDiv += '</div>'; // fin parte scroll   
     }
 
     if (listaNovedades != null) {
@@ -509,9 +532,12 @@ function CargarNovedadesHtml() {
         }
     }
     if (isTimeoutInformeCierreMercado) {
-        setTimeout(function () { CargarInformeCierreMercado(); }, 500);
+        setTimeout(function () {
+            CargarInformeCierreMercado();
+        }, 500);
     }
 }
+
 function CargarInformeHtml() {
     var informesHtml = '';
     for (var i = 0; i < listaInformes.length; i++) {
@@ -519,17 +545,20 @@ function CargarInformeHtml() {
         informesHtml += '<div id="divInformeTitulo" class="cssInformeTitulo">' + listaInformes[i].titulo + '</div>';
         informesHtml += '<div id="divInformeFecha" class="cssInformeFecha">' + obtenerFechaMostrar(listaInformes[i].fecha) + '</div>';
         informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto + '</div>'
-        //informesHtml += ;+ '<br/>' + '<a href="javascript:loadURL(\''+ 'http://www.agirregabiria.net/g/sylvainaitor/principito.pdf' +'\');" >pdf </a>' 
+            //informesHtml += ;+ '<br/>' + '<a href="javascript:loadURL(\''+ 'http://www.agirregabiria.net/g/sylvainaitor/principito.pdf' +'\');" >pdf </a>' 
         break;
     }
     return informesHtml;
 }
+
 function onclickFullScreenNovedades() {
     window.location.href = "novedades.html";
 }
+
 function onclickFullScreenCotizacionesHistorica() {
     window.location.href = "todascotizacioneshistorica.html";
 }
+
 function onclickFullScreenButtonAmpliar() {
 
     if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
@@ -540,6 +569,7 @@ function onclickFullScreenButtonAmpliar() {
         window.location.href = "informe.html";
     }
 }
+
 function finCargarInicial() {
     CargarHtmlFechaMenuPrincipal();
     OcultarDivBloqueo();
