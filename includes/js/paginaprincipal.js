@@ -182,8 +182,12 @@ function onresizeBody() {
     var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 2;
 
     $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
-
-    $('#divRowParteScrollNovedades').css('height', ($('#divBarraAbajo').outerHeight() - cantPxBotonesSlider));
+      var cantPaddingNovedadesSlider = 0;
+    if(document.getElementById('swiper-slide1')){
+    cantPaddingNovedadesSlider = parseInt($('#swiper-slide1').css('padding-top').replace('px', ''));
+    }
+    
+    $('#divRowParteScrollNovedades').css('height', ($('#divBarraAbajo').outerHeight() - (cantPxBotonesSlider + cantPaddingNovedadesSlider)));
     $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').outerHeight() - ($('#divParteFijaCotizacionHistorica').outerHeight() + cantPxBotonesSlider));
     $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() + cantPxBotonesSlider)); // 
 }
@@ -354,8 +358,10 @@ function CargarCotizacionesDestacadaHtml() {
 }
 
 function CargarInformeCierreMercado() {
+    var isTimeoutInformeCierreMercado = true;
     if (listaInformes != null) {
         if (listaInformes.length > 0) {
+            isTimeoutInformeCierreMercado = false;
             var indexSlide3 = -1;
             for (var i = 0; i < swiper.slides.length; i++) {
                 if (swiper.slides[i].id == 'swiper-slide3') {
@@ -368,6 +374,9 @@ function CargarInformeCierreMercado() {
                 $('#swiper-slide3').html(CargarInformeHtml());
             }
         }
+    }
+    if (isTimeoutInformeCierreMercado) {
+        setTimeout(function () {CargarInformeCierreMercado();}, 115);
     }
 }
 
@@ -524,18 +533,19 @@ function CargarNovedadesHtml() {
         }
     }
 
-    var isTimeoutInformeCierreMercado = true;
-    if (listaInformes != null) {
-        if (listaInformes.length > 0) {
-            isTimeoutInformeCierreMercado = false;
-            CargarInformeCierreMercado();
-        }
-    }
-    if (isTimeoutInformeCierreMercado) {
-        setTimeout(function () {
-            CargarInformeCierreMercado();
-        }, 500);
-    }
+//    var isTimeoutInformeCierreMercado = true;
+//    if (listaInformes != null) {
+//        if (listaInformes.length > 0) {
+//            isTimeoutInformeCierreMercado = false;
+//            CargarInformeCierreMercado();
+//        }
+//    }
+//    if (isTimeoutInformeCierreMercado) {
+//        setTimeout(function () {
+//            CargarInformeCierreMercado();
+//        }, 500);
+//    }
+    CargarInformeCierreMercado();
 }
 
 function CargarInformeHtml() {

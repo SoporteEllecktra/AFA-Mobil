@@ -632,7 +632,9 @@ header {
     color: #FFF;
 }
 /* Novedades */
-
+#swiper-slide1 {
+   padding-top: 0.5em;
+}
 .cssColImgAmpliar {
     text-align: right;
 }
