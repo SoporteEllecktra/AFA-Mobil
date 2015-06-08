@@ -24,7 +24,7 @@ function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
         error: function (e) {
             //called when there is an error
             //  alert('CargaDatosTel:' + e);
-            window.location.href = "error.html";
+            //window.location.href = "error.html";
         }
     });
 }
