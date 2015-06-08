@@ -1,5 +1,5 @@
 var varNoSeEncuentraRegistro = 'No se encuentra registro.';
-
+var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 function toString00(pNro) {
     if (pNro.toString().length == 1) {
         return '0' + pNro;

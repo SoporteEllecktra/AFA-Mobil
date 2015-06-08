@@ -430,7 +430,9 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         resultadoDiv += '</div>'; // fin div scroll
     } else {
         resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
-        resultadoDiv += varNoSeEncuentraRegistro;
+        resultadoDiv += '<div class="divNoSeEncuentraRegistro" >'; // 
+        resultadoDiv += varNoSeEncuentraRegistroHistorica;
+        resultadoDiv += '</div>'; // 
         resultadoDiv += '</div>'; // fin div scroll
     }
     var isAgregarSlides2 = true;
