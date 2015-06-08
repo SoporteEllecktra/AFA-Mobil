@@ -182,11 +182,11 @@ function onresizeBody() {
     var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 2;
 
     $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
-      var cantPaddingNovedadesSlider = 0;
-    if(document.getElementById('swiper-slide1')){
-    cantPaddingNovedadesSlider = parseInt($('#swiper-slide1').css('padding-top').replace('px', ''));
+    var cantPaddingNovedadesSlider = 0;
+    if (document.getElementById('swiper-slide1')) {
+        cantPaddingNovedadesSlider = parseInt($('#swiper-slide1').css('padding-top').replace('px', ''));
     }
-    
+
     $('#divRowParteScrollNovedades').css('height', ($('#divBarraAbajo').outerHeight() - (cantPxBotonesSlider + cantPaddingNovedadesSlider)));
     $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').outerHeight() - ($('#divParteFijaCotizacionHistorica').outerHeight() + cantPxBotonesSlider));
     $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() + cantPxBotonesSlider)); // 
@@ -376,7 +376,9 @@ function CargarInformeCierreMercado() {
         }
     }
     if (isTimeoutInformeCierreMercado) {
-        setTimeout(function () {CargarInformeCierreMercado();}, 115);
+        setTimeout(function () {
+            CargarInformeCierreMercado();
+        }, 115);
     }
 }
 
@@ -385,72 +387,71 @@ function onclickVerMas() {
 }
 
 function CargarCotizacionesHistoricaHtml(pIndex) {
-        var resultadoDiv = '';
-        if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
-            resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
-            resultadoDiv += '<div class="row">';
-            resultadoDiv += '<div class="col-xs-10 colHistoricoTitulo">';
-            resultadoDiv += 'Cotizaci&#243;n hist&#243;rica: ' + cotizacionesDestacada[pIndex].descripcionProducto.toUpperCase();
-            resultadoDiv += '</div>';
-            //
-            resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
-            resultadoDiv += '</div>';
-            //
-            resultadoDiv += '</div>';
-            resultadoDiv += '<div class="row cssHistoricoEncabezado">';
-            resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoFecha">';
-            resultadoDiv += 'FECHA';
-            resultadoDiv += '</div>';
-            resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoPrecio">';
-            resultadoDiv += 'PRECIO P/TN';
-            resultadoDiv += '</div>';
-            resultadoDiv += '</div>';
+    var resultadoDiv = '';
+    if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
+        resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
+        resultadoDiv += '<div class="row">';
+        resultadoDiv += '<div class="col-xs-10 colHistoricoTitulo">';
+        resultadoDiv += 'Cotizaci&#243;n hist&#243;rica: ' + cotizacionesDestacada[pIndex].descripcionProducto.toUpperCase();
+        resultadoDiv += '</div>';
+        //
+        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
+        resultadoDiv += '</div>';
+        //
+        resultadoDiv += '</div>';
+        resultadoDiv += '<div class="row cssHistoricoEncabezado">';
+        resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoFecha">';
+        resultadoDiv += 'FECHA';
+        resultadoDiv += '</div>';
+        resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoPrecio">';
+        resultadoDiv += 'PRECIO P/TN';
+        resultadoDiv += '</div>';
+        resultadoDiv += '</div>';
 
-            resultadoDiv += '</div>'; // fin div parte fija
+        resultadoDiv += '</div>'; // fin div parte fija
 
-            resultadoDiv += '<div id="divParteScrollCotizacionHistorica" >'; // div scroll
-            var indexHistorico = -1;
-            $(cotizacionesDestacada[pIndex].listaHistorico).each(function () {
-                indexHistorico++;
-                var strHtmlColorFondo = '';
-                if (indexHistorico % 2 == 0) {
-                    strHtmlColorFondo = ' cssHistoricoImpar ';
-                }
-                resultadoDiv += '<div class="row cssHistorico ' + strHtmlColorFondo + '">';
-                resultadoDiv += '<div class="col-xs-6 colHistoricoFecha"><span style="opacity:1;">';
-                resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
-                resultadoDiv += '</span></div>';
-                resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
-                resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
-                resultadoDiv += '</div>';
-                resultadoDiv += '</div>';
-            });
-            resultadoDiv += '</div>'; // fin div scroll
-        }
-        var isAgregarSlides2 = true;
-        for (var i = 0; i < swiper.slides.length; i++) {
-            if (swiper.slides[i].id == 'swiper-slide2') {
-                isAgregarSlides2 = false;
-                break;
+        resultadoDiv += '<div id="divParteScrollCotizacionHistorica" >'; // div scroll
+        var indexHistorico = -1;
+        $(cotizacionesDestacada[pIndex].listaHistorico).each(function () {
+            indexHistorico++;
+            var strHtmlColorFondo = '';
+            if (indexHistorico % 2 == 0) {
+                strHtmlColorFondo = ' cssHistoricoImpar ';
             }
-        }
-        if (isAgregarSlides2) {
-            swiper.appendSlide('<div id="swiper-slide2" class="swiper-slide">' + resultadoDiv + '</div>');
-        } else {
-            $('#swiper-slide2').html(resultadoDiv);
-        }
-        if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
-            porcentajeArriba = 0.55;
-            porcentajeAbajo = 0.45;
-            onresizeBody();
+            resultadoDiv += '<div class="row cssHistorico ' + strHtmlColorFondo + '">';
+            resultadoDiv += '<div class="col-xs-6 colHistoricoFecha"><span style="opacity:1;">';
+            resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
+            resultadoDiv += '</span></div>';
+            resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
+            resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+            resultadoDiv += '</div>';
+            resultadoDiv += '</div>';
+        });
+        resultadoDiv += '</div>'; // fin div scroll
+    } else {
+        resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
+        resultadoDiv += varNoSeEncuentraRegistro;
+        resultadoDiv += '</div>'; // fin div scroll
+    }
+    var isAgregarSlides2 = true;
+    for (var i = 0; i < swiper.slides.length; i++) {
+        if (swiper.slides[i].id == 'swiper-slide2') {
+            isAgregarSlides2 = false;
+            break;
         }
     }
-    //<a href="javascript:loadURL('http://www.lavidaenbinario.com');" class="link ">Example</a>
+    if (isAgregarSlides2) {
+        swiper.appendSlide('<div id="swiper-slide2" class="swiper-slide">' + resultadoDiv + '</div>');
+    } else {
+        $('#swiper-slide2').html(resultadoDiv);
+    }
+    if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
+        porcentajeArriba = 0.55;
+        porcentajeAbajo = 0.45;
+        onresizeBody();
+    }
+}
 
-//function loadURL(url) {
-//    navigator.app.loadUrl(url, { openExternal: true });
-//    return false;
-//}
 function CargarNovedadesHtml() {
     var resultadoDiv = '';
     if (listaNovedades != null) {
@@ -533,18 +534,18 @@ function CargarNovedadesHtml() {
         }
     }
 
-//    var isTimeoutInformeCierreMercado = true;
-//    if (listaInformes != null) {
-//        if (listaInformes.length > 0) {
-//            isTimeoutInformeCierreMercado = false;
-//            CargarInformeCierreMercado();
-//        }
-//    }
-//    if (isTimeoutInformeCierreMercado) {
-//        setTimeout(function () {
-//            CargarInformeCierreMercado();
-//        }, 500);
-//    }
+    //    var isTimeoutInformeCierreMercado = true;
+    //    if (listaInformes != null) {
+    //        if (listaInformes.length > 0) {
+    //            isTimeoutInformeCierreMercado = false;
+    //            CargarInformeCierreMercado();
+    //        }
+    //    }
+    //    if (isTimeoutInformeCierreMercado) {
+    //        setTimeout(function () {
+    //            CargarInformeCierreMercado();
+    //        }, 500);
+    //    }
     CargarInformeCierreMercado();
 }
 

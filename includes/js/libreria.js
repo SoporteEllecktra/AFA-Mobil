@@ -1,3 +1,5 @@
+var varNoSeEncuentraRegistro = 'No se encuentra registro.';
+
 function toString00(pNro) {
     if (pNro.toString().length == 1) {
         return '0' + pNro;
