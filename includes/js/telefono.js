@@ -25,7 +25,13 @@ function onclickIngresarTelefono() {
     } else {
         var varTelefono = $('#txtTelefonoArea').val() + $('#txtTelefono').val();
         if (varTelefono != '') {
-            funGuardarTelefono(varTelefono);
+            if (varTelefono.length == 10) {
+                funGuardarTelefono(varTelefono);
+            } else {
+                alert('Formato del número incorrecto');
+            }
+
+
         }
     }
 }
