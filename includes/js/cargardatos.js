@@ -1,5 +1,5 @@
-var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
-//var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+//var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 //var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
@@ -67,8 +67,8 @@ function informes() {
 
 function FuncionInicio() {
     //
-    //   localStorage.clear();
-    //   localStorage.setItem('storagePlatform', 'Android');
+       localStorage.clear();
+       localStorage.setItem('storagePlatform', 'Android');
     //
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
@@ -328,7 +328,7 @@ function CargaCotizacionDestacada() {
                 // 'Access-Control-Allow-Credentials: true'.
                 withCredentials: true
             },
-            data: CargarParametroEntradaCotizaciones(1, 15, obtenerFechaParametroEntrada(0), '', '', '', ''),
+            data: CargarParametroEntradaCotizaciones(1, 14, obtenerFechaParametroEntrada(0), '', '', '', ''),
             success: processSuccessCotizacionDestacada,
             error: processErrorCotizacionDestacada
         });
@@ -492,7 +492,6 @@ function CargaConIndiceDetalleCotizacion(pIndex) {
         error: processErrorCargaConIndiceDetalleCotizacion
     });
 }
-
 function processSuccessDetalleCotizacion(data, status, req) {
     if (status == "success") {
         cotizacionesDestacada[indexCotizacionesDestacada].listaDetalle = ObtenerResultadoCotizacionDetalleJavascript(req.responseText);
@@ -542,7 +541,8 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
             withCredentials: true
         },
         //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
-        data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 7, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
+        //"Por Fecha Descendente"
+        data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 8, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
         success: processSuccessCotizacionHistorica,
         error: processErrorCotizacionHistoricaConIndiceDetacado
     });

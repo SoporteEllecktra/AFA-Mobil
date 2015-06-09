@@ -237,7 +237,14 @@ function CargarCotizacionesDestacadaHtml() {
         resultadoDiv += this.descripcionPuerto;
         resultadoDiv += '</div>';
         resultadoDiv += '<div class="col-xs-4 cssDestacadoPrecio">';
-        resultadoDiv += '<div class="colRectanguloPrecio colRectanguloPrecioVerde">'; // rectangulo    
+        var strCssColorPrecio = 'colRectanguloPrecioGris';
+        if (this.variacion == '-') {
+            strCssColorPrecio = 'colRectanguloPrecioRojo';
+        } else if (this.variacion == '+') {
+            strCssColorPrecio = 'colRectanguloPrecioVerde';
+        }
+
+        resultadoDiv += '<div class="colRectanguloPrecio ' + strCssColorPrecio + '">'; // rectangulo    
         //var cantValorMonedaAUX = this.descripcionMoneda.length + String(this.valor).length;
         var cantValorMonedaAUX = this.abreviaturaMoneda.length + String(this.valor).length;
         var strCantValorMoneda = '';
