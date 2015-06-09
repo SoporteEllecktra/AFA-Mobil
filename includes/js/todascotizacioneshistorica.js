@@ -56,7 +56,8 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
             resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
-            resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+           // resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+            resultadoDiv +=  this.abreviaturaMoneda + ' ' + this.valor;
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });

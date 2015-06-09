@@ -238,14 +238,16 @@ function CargarCotizacionesDestacadaHtml() {
         resultadoDiv += '</div>';
         resultadoDiv += '<div class="col-xs-4 cssDestacadoPrecio">';
         resultadoDiv += '<div class="colRectanguloPrecio colRectanguloPrecioVerde">'; // rectangulo    
-        var cantValorMonedaAUX = this.descripcionMoneda.length + String(this.valor).length;
+        //var cantValorMonedaAUX = this.descripcionMoneda.length + String(this.valor).length;
+        var cantValorMonedaAUX = this.abreviaturaMoneda.length + String(this.valor).length;
         var strCantValorMoneda = '';
         if (cantValorMonedaAUX < cantValorMoneda) {
             for (var iValorMoneda = cantValorMonedaAUX; iValorMoneda < cantValorMoneda; iValorMoneda++) {
                 strCantValorMoneda += '&nbsp;' + '&nbsp;';
             }
         }
-        resultadoDiv += strCantValorMoneda + this.descripcionMoneda + ' ' + this.valor;
+        //resultadoDiv += strCantValorMoneda + this.descripcionMoneda + ' ' + this.valor;
+        resultadoDiv += strCantValorMoneda + this.abreviaturaMoneda + ' ' + this.valor;
         resultadoDiv += '</div>'; // fin rectangulo
         resultadoDiv += '</div>';
         resultadoDiv += '</div>'; // '<div class="row">';
@@ -280,7 +282,8 @@ function CargarCotizacionesDestacadaHtml() {
             resultadoDiv += this.listaDetalle[iDetalle].descripcionPuerto;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetallePrecio">';
-            resultadoDiv += this.listaDetalle[iDetalle].descripcionMoneda + ' ' + this.listaDetalle[iDetalle].valor;
+            //resultadoDiv += this.listaDetalle[iDetalle].descripcionMoneda + ' ' + this.listaDetalle[iDetalle].valor;
+            resultadoDiv += this.listaDetalle[iDetalle].abreviaturaMoneda + ' ' + this.listaDetalle[iDetalle].valor;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetalleObservacion">';
             resultadoDiv += this.listaDetalle[iDetalle].observacion;
@@ -423,7 +426,8 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
             resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
             resultadoDiv += '</span></div>';
             resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
-            resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+            //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+            resultadoDiv += this.abreviaturaMoneda + ' ' + this.valor;
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });

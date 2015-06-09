@@ -61,7 +61,8 @@ function CargarTodasCotizacionesHtml() {
             resultadoDiv += this.descripcionPuerto;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesPrecio">';
-            resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+            //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+            resultadoDiv +=  this.abreviaturaMoneda + ' ' + this.valor;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesObservacion">';
             resultadoDiv += this.observacion;

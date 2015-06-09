@@ -1,5 +1,5 @@
-//var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+//var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 //var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
@@ -36,6 +36,8 @@ function cotizacion() {
     this.descripcionProducto = '';
     this.valor = 0;
     this.observacion = '';
+    this.abreviaturaMoneda = '';
+    this.variacion = '';
     this.listaDetalle = [];
     this.listaHistorico = [];
 }
@@ -65,8 +67,8 @@ function informes() {
 
 function FuncionInicio() {
     //
-    //     localStorage.clear();
-    //     localStorage.setItem('storagePlatform', 'Android');
+    //   localStorage.clear();
+    //   localStorage.setItem('storagePlatform', 'Android');
     //
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
@@ -390,6 +392,8 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
         obj.valor = parseFloat($(this).find('valor').text());
         obj.observacion = $(this).find('observacion').text();
+        obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
+        obj.variacion = $(this).find('variacion').text();
         cotizacionesDestacada.push(obj);
     });
     if (cotizacionesDestacada.length > 0) {
@@ -519,6 +523,8 @@ function ObtenerResultadoCotizacionDetalleJavascript(pXML) {
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
         obj.valor = parseFloat($(this).find('valor').text());
         obj.observacion = $(this).find('observacion').text();
+        obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
+        obj.variacion = $(this).find('variacion').text();
         cotizacionesDetalle.push(obj);
     });
     return cotizacionesDetalle;
@@ -557,6 +563,8 @@ function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
         obj.valor = parseFloat($(this).find('valor').text());
         obj.observacion = $(this).find('observacion').text();
+        obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
+        obj.variacion = $(this).find('variacion').text();
         listaHistorica.push(obj);
     });
     return listaHistorica;
@@ -626,6 +634,8 @@ function ObtenerTodasCotizaciones(pXML) {
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
         obj.valor = parseFloat($(this).find('valor').text());
         obj.observacion = $(this).find('observacion').text();
+        obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
+        obj.variacion = $(this).find('variacion').text();
         listaTodasCotizaciones.push(obj);
     });
     return listaTodasCotizaciones;
