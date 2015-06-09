@@ -547,7 +547,6 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
         error: processErrorCotizacionHistoricaConIndiceDetacado
     });
 }
-
 function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
     var listaHistorica = [];
     $(pXML).find('cotizaciones').each(function () {
@@ -569,7 +568,6 @@ function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
     });
     return listaHistorica;
 }
-
 function processSuccessCotizacionHistorica(data, status, req) {
     if (status == "success") {
         cotizacionesDestacada[indexCotizacionesDestacada].listaHistorico = ObtenerCotizacionHistoricaConIndiceProductoDestacado(req.responseText);
@@ -588,7 +586,6 @@ function processSuccessCotizacionHistorica(data, status, req) {
         }
     }
 }
-
 function CargaTodasCotizaciones() {
     if (isCargarCotizaciones) {
         $.ajax({
@@ -618,7 +615,6 @@ function processSuccessTodasCotizaciones(data, status, req) {
         }
     }
 }
-
 function ObtenerTodasCotizaciones(pXML) {
     var listaTodasCotizaciones = [];
     $(pXML).find('cotizaciones').each(function () {
@@ -640,7 +636,6 @@ function ObtenerTodasCotizaciones(pXML) {
     });
     return listaTodasCotizaciones;
 }
-
 function CargarParametroEntradaNovedades(pFechaDesde, pFechaHasta, pCodigoCategoria) {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
@@ -661,7 +656,6 @@ function CargarParametroEntradaNovedades(pFechaDesde, pFechaHasta, pCodigoCatego
     soapRequest += '</soapenv:Envelope>';
     return soapRequest;
 }
-
 function CargaNovedades() {
     if (isCargarNotificaciones) {
         $.ajax({
@@ -681,7 +675,6 @@ function CargaNovedades() {
         CargarNovedadesHtml();
     }
 }
-
 function processSuccessNovedades(data, status, req) {
     if (status == "success") {
         listaNovedades = ObtenerNovedades(req.responseText);
@@ -694,7 +687,6 @@ function processSuccessNovedades(data, status, req) {
         CargarNovedadesHtml();
     }
 }
-
 function ObtenerNovedades(pXML) {
     var listaNovedadesAux = [];
     $(pXML).find('notificaciones').each(function () {
@@ -710,7 +702,6 @@ function ObtenerNovedades(pXML) {
     });
     return listaNovedadesAux;
 }
-
 function CargaUltimoInforme() {
     if (isCargarInformes) {
         $.ajax({

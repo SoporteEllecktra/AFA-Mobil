@@ -15,7 +15,7 @@ function isMobile() {
     if (varPlatform === 'android' || varPlatform === 'Android') {
         return (/Mobile/.test(navigator.userAgent));
     } else if (varPlatform === 'iOS') {
-        return (!(/iPad/.test(navigator.userAgent)));
+        return resultado;//(!(/iPad/.test(navigator.userAgent)));
     } else if (varPlatform == 'WinCE' || varPlatform == 'Win32NT') {
         return true;
     }
