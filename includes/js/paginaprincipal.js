@@ -213,7 +213,7 @@ function CargarCotizacionesDestacadaHtml() {
     var index = -1;
     var cantValorMoneda = 0;
     for (var i = 0; i < cotizacionesDestacada.length; i++) {
-        var cantValorMonedaAUX = cotizacionesDestacada[i].descripcionMoneda.length + String(cotizacionesDestacada[i].valor).length;
+        var cantValorMonedaAUX = cotizacionesDestacada[i].abreviaturaMoneda.length + String(cotizacionesDestacada[i].valor).length;
         if (cantValorMoneda < cantValorMonedaAUX) {
             cantValorMoneda = cantValorMonedaAUX;
         }
@@ -263,6 +263,13 @@ function CargarCotizacionesDestacadaHtml() {
         resultadoDiv += '<div class="accordion-body collapse" id="collapse' + index + '" style="height: 0px;">';
         resultadoDiv += '<div class="accordion-inner">';
         // detallle
+        var cantValorMonedaDetalle = 0;
+        for (var iDetalleMoneda = 0; iDetalleMoneda < this.listaDetalle.length; iDetalleMoneda++) {
+            var cantValorMonedaDetalleAUX = this.listaDetalle[iDetalleMoneda].abreviaturaMoneda.length + String(this.listaDetalle[iDetalleMoneda].valor).length;
+            if (cantValorMonedaDetalle < cantValorMonedaDetalleAUX) {
+                cantValorMonedaDetalle = cantValorMonedaDetalleAUX;
+            }
+        }
         if (this.listaDetalle.length > 0) {
             // Encabezado detalle
             resultadoDiv += '<div class="row">';
@@ -290,7 +297,14 @@ function CargarCotizacionesDestacadaHtml() {
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetallePrecio">';
             //resultadoDiv += this.listaDetalle[iDetalle].descripcionMoneda + ' ' + this.listaDetalle[iDetalle].valor;
-            resultadoDiv += this.listaDetalle[iDetalle].abreviaturaMoneda + ' ' + this.listaDetalle[iDetalle].valor;
+            var cantValorMonedaAUXDetalle = this.listaDetalle[iDetalle].abreviaturaMoneda.length + String(this.listaDetalle[iDetalle].valor).length;
+            var strCantValorMonedaDetalle = '';
+            if (cantValorMonedaAUXDetalle < cantValorMonedaDetalle) {
+                for (var iValorMonedaDetalle = cantValorMonedaAUXDetalle; iValorMonedaDetalle < cantValorMonedaDetalle; iValorMonedaDetalle++) {
+                    strCantValorMonedaDetalle += '&nbsp;' + '&nbsp;';
+                }
+            }
+            resultadoDiv += strCantValorMonedaDetalle + this.listaDetalle[iDetalle].abreviaturaMoneda + ' ' + this.listaDetalle[iDetalle].valor;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetalleObservacion">';
             resultadoDiv += this.listaDetalle[iDetalle].observacion;
@@ -419,6 +433,15 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         resultadoDiv += '</div>';
 
         resultadoDiv += '</div>'; // fin div parte fija
+        //
+        var cantValorMonedaHistorico = 0;
+        for (var iHistoricoMoneda = 0; iHistoricoMoneda < cotizacionesDestacada[pIndex].listaHistorico.length; iHistoricoMoneda++) {
+            var cantValorMonedaHistoricoAUX = cotizacionesDestacada[pIndex].listaHistorico[iHistoricoMoneda].abreviaturaMoneda.length + String(cotizacionesDestacada[pIndex].listaHistorico[iHistoricoMoneda].valor).length;
+            if (cantValorMonedaHistorico < cantValorMonedaHistoricoAUX) {
+                cantValorMonedaHistorico = cantValorMonedaHistoricoAUX;
+            }
+        }
+        //
 
         resultadoDiv += '<div id="divParteScrollCotizacionHistorica" >'; // div scroll
         var indexHistorico = -1;
@@ -433,8 +456,15 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
             resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
             resultadoDiv += '</span></div>';
             resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
+            var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valor).length;
+            var strCantValorMonedaHistorico = '';
+            if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
+                for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
+                    strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
+                }
+            }
             //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
-            resultadoDiv += this.abreviaturaMoneda + ' ' + this.valor;
+            resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valor;
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });

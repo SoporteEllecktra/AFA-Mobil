@@ -11,9 +11,10 @@ $(document).ready(function () {
 function onresizeBody() {
     var altura = ($(document).height() - $('#header').outerHeight());
     $('#divResultadoTodasCotizaciones').css('height', altura);
-    
-    $('#divParteScrollTodasCotizaciones').css('height', altura - ($('#divRowTodasCotizacionesTitulo').outerHeight() +  $('#divRowTodasCotizacionesEncabezado').outerHeight()));
+
+    $('#divParteScrollTodasCotizaciones').css('height', altura - ($('#divRowTodasCotizacionesTitulo').outerHeight() + $('#divRowTodasCotizacionesEncabezado').outerHeight()));
 }
+
 function CargarTodasCotizacionesHtml() {
     var resultadoDiv = '';
     if (listaTodasCotizaciones.length > 0) {
@@ -22,14 +23,14 @@ function CargarTodasCotizacionesHtml() {
         resultadoDiv += 'Cotizaciones de hoy';
         resultadoDiv += '</div>';
         //
-        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >';//onclick="onclickFullScreenVerMasCotizacionesAbajo()"
+        resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenVerMasCotizacionesAbajo()"
         //resultadoDiv += '<img src="img/material/ampliarAbajo.svg" alt="ampliar bajo" class="cssImgAmpliar" onclick="onclickFullScreenVerMasCotizacionesAbajo()"/>';
         resultadoDiv += '<input type="button" class="cssImgImputButtonAchicar"  onclick="onclickFullScreenVerMasCotizacionesAbajo(); return false;"/>';
         resultadoDiv += '</div>';
         //
         resultadoDiv += '</div>';
 
-        
+
         resultadoDiv += '<div id="divRowTodasCotizacionesEncabezado" class="row cssTodasCotizacionesEncabezado">';
         resultadoDiv += '<div class="col-xs-3">';
         resultadoDiv += 'PRODUCTO';
@@ -44,9 +45,18 @@ function CargarTodasCotizacionesHtml() {
         resultadoDiv += 'OBSERVACI&#211;N';
         resultadoDiv += '</div>';
         resultadoDiv += '</div>';
-        
-        resultadoDiv += '<div id="divParteScrollTodasCotizaciones">';// parte scroll
-        var indexTodasCotizaciones = -1;        
+
+        //
+        var cantValorMonedaTodasCotizaciones = 0;
+        for (var i = 0; i < listaTodasCotizaciones.length; i++) {
+            var cantValorMonedaAUXTodasCotizaciones = listaTodasCotizaciones[i].abreviaturaMoneda.length + String(listaTodasCotizaciones[i].valor).length;
+            if (cantValorMonedaTodasCotizaciones < cantValorMonedaAUXTodasCotizaciones) {
+                cantValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones;
+            }
+        }
+        //
+        resultadoDiv += '<div id="divParteScrollTodasCotizaciones">'; // parte scroll
+        var indexTodasCotizaciones = -1;
         $(listaTodasCotizaciones).each(function () {
             indexTodasCotizaciones++;
             var strHtmlColorFondo = '';
@@ -62,17 +72,26 @@ function CargarTodasCotizacionesHtml() {
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesPrecio">';
             //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
-            resultadoDiv +=  this.abreviaturaMoneda + ' ' + this.valor;
+
+            var cantValorMonedaAUXTodasCotizaciones = this.abreviaturaMoneda.length + String(this.valor).length;
+            var strCantValorMonedaTodasCotizaciones = '';
+            if (cantValorMonedaAUXTodasCotizaciones < cantValorMonedaTodasCotizaciones) {
+                for (var iValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones; iValorMonedaTodasCotizaciones < cantValorMonedaTodasCotizaciones; iValorMonedaTodasCotizaciones++) {
+                    strCantValorMonedaTodasCotizaciones += '&nbsp;' + '&nbsp;';
+                }
+            }
+            resultadoDiv += strCantValorMonedaTodasCotizaciones + this.abreviaturaMoneda + ' ' + this.valor;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesObservacion">';
             resultadoDiv += this.observacion;
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });
-      resultadoDiv += '</div>';// fin parte scroll
+        resultadoDiv += '</div>'; // fin parte scroll
     }
     $('#divResultadoTodasCotizaciones').html(resultadoDiv);
 }
-function onclickFullScreenVerMasCotizacionesAbajo(){
+
+function onclickFullScreenVerMasCotizacionesAbajo() {
     RedireccionarPagIndex();
 }
