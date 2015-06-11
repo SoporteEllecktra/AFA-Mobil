@@ -75,11 +75,11 @@ function CargarTodasCotizacionesHtml() {
 
             var cantValorMonedaAUXTodasCotizaciones = this.abreviaturaMoneda.length + String(this.valor).length;
             var strCantValorMonedaTodasCotizaciones = '';
-            if (cantValorMonedaAUXTodasCotizaciones < cantValorMonedaTodasCotizaciones) {
-                for (var iValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones; iValorMonedaTodasCotizaciones < cantValorMonedaTodasCotizaciones; iValorMonedaTodasCotizaciones++) {
-                    strCantValorMonedaTodasCotizaciones += '&nbsp;' + '&nbsp;';
-                }
-            }
+//            if (cantValorMonedaAUXTodasCotizaciones < cantValorMonedaTodasCotizaciones) {
+//                for (var iValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones; iValorMonedaTodasCotizaciones < cantValorMonedaTodasCotizaciones; iValorMonedaTodasCotizaciones++) {
+//                    strCantValorMonedaTodasCotizaciones += '&nbsp;' + '&nbsp;';
+//                }
+//            }
             resultadoDiv += strCantValorMonedaTodasCotizaciones + this.abreviaturaMoneda + ' ' + this.valor;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesObservacion">';

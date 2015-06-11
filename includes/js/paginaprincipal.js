@@ -248,11 +248,11 @@ function CargarCotizacionesDestacadaHtml() {
         //var cantValorMonedaAUX = this.descripcionMoneda.length + String(this.valor).length;
         var cantValorMonedaAUX = this.abreviaturaMoneda.length + String(this.valor).length;
         var strCantValorMoneda = '';
-        if (cantValorMonedaAUX < cantValorMoneda) {
-            for (var iValorMoneda = cantValorMonedaAUX; iValorMoneda < cantValorMoneda; iValorMoneda++) {
-                strCantValorMoneda += '&nbsp;' + '&nbsp;';
-            }
-        }
+//        if (cantValorMonedaAUX < cantValorMoneda) {
+//            for (var iValorMoneda = cantValorMonedaAUX; iValorMoneda < cantValorMoneda; iValorMoneda++) {
+//                strCantValorMoneda += '&nbsp;' + '&nbsp;';
+//            }
+//        }
         //resultadoDiv += strCantValorMoneda + this.descripcionMoneda + ' ' + this.valor;
         resultadoDiv += strCantValorMoneda + this.abreviaturaMoneda + ' ' + this.valor;
         resultadoDiv += '</div>'; // fin rectangulo
@@ -299,11 +299,11 @@ function CargarCotizacionesDestacadaHtml() {
             //resultadoDiv += this.listaDetalle[iDetalle].descripcionMoneda + ' ' + this.listaDetalle[iDetalle].valor;
             var cantValorMonedaAUXDetalle = this.listaDetalle[iDetalle].abreviaturaMoneda.length + String(this.listaDetalle[iDetalle].valor).length;
             var strCantValorMonedaDetalle = '';
-            if (cantValorMonedaAUXDetalle < cantValorMonedaDetalle) {
-                for (var iValorMonedaDetalle = cantValorMonedaAUXDetalle; iValorMonedaDetalle < cantValorMonedaDetalle; iValorMonedaDetalle++) {
-                    strCantValorMonedaDetalle += '&nbsp;' + '&nbsp;';
-                }
-            }
+//            if (cantValorMonedaAUXDetalle < cantValorMonedaDetalle) {
+//                for (var iValorMonedaDetalle = cantValorMonedaAUXDetalle; iValorMonedaDetalle < cantValorMonedaDetalle; iValorMonedaDetalle++) {
+//                    strCantValorMonedaDetalle += '&nbsp;' + '&nbsp;';
+//                }
+//            }
             resultadoDiv += strCantValorMonedaDetalle + this.listaDetalle[iDetalle].abreviaturaMoneda + ' ' + this.listaDetalle[iDetalle].valor;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetalleObservacion">';
@@ -458,11 +458,11 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
             resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
             var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valor).length;
             var strCantValorMonedaHistorico = '';
-            if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
-                for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
-                    strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
-                }
-            }
+//            if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
+//                for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
+//                    strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
+//                }
+//            }
             //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
             resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valor;
             resultadoDiv += '</div>';

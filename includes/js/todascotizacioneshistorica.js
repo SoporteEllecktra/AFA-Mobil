@@ -66,11 +66,11 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
                 //
                 var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valor).length;
                 var strCantValorMonedaHistorico = '';
-                if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
-                    for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
-                        strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
-                    }
-                }
+//                if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
+//                    for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
+//                        strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
+//                    }
+//                }
                 //
                 // resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
                 resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valor;
