@@ -289,17 +289,16 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
 function loadURL(url) {
     //alert('ff');
     try {
-        if (device.platform === 'Android') {
+        if (device.platform == 'Android' || device.platform == 'android') {
             navigator.app.loadUrl(url, { openExternal: true });
         } else {
             window.open(url, '_system');
         }
-
     } catch (ex) {
         //alert(ex);
-            return false;
+       //     return false;
     }
-    return false;
+  //  return false;
 }
 function RedireccionarPagIndex() {
     localStorage.setItem('storageIndexVolver', '1');
