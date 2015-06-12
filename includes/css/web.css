@@ -332,7 +332,6 @@ header {
 .colDetallePrecio {
     font-weight: 700;
     font-size: 1.125em;
-    
 }
 
 .colDetalleObservacion {
@@ -633,9 +632,11 @@ header {
     color: #FFF;
 }
 /* Novedades */
+
 #swiper-slide1 {
-   padding-top: 0.5em;
+    padding-top: 0.5em;
 }
+
 .cssColImgAmpliar {
     text-align: right;
 }
@@ -828,7 +829,6 @@ header {
 
 .cssDivResultadoInforme {
     /*overflow-y: auto;*/
-    
     color: #FFF;
     background: url(../../img/material/fondo2.jpg) no-repeat bottom;
     -webkit-background-size: cover;
@@ -836,6 +836,22 @@ header {
     -o-background-size: cover;
     background-size: cover;
     padding-left: 1em;
+}
+.cssInformeUrl {
+    font-size: 1.2em;
+    font-weight: 700;
+    background-color: rgba(0, 0, 0, .1);
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+.btnDescargarPDF {
+    cursor: pointer;
+}
+.cssImgDescargarPDF {
+    width: 1.2em;
+    height: 1.2em;
 }
 /* Fin informe Pantalla completa */
 
@@ -987,11 +1003,10 @@ header {
     margin: 1em;
 }
 /* Fin pagina error */
-
 /**/
 
-.divNoSeEncuentraRegistro{
-font-size: 1.5em;
-margin: 0.6em;    
+.divNoSeEncuentraRegistro {
+    font-size: 1.5em;
+    margin: 0.6em;
 }
 /**/

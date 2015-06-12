@@ -63,12 +63,13 @@ function informes() {
     this.fecha = '';
     this.titulo = '';
     this.texto = '';
+    this.url = '';
 }
 
 function FuncionInicio() {
     //
-      // localStorage.clear();
-       //localStorage.setItem('storagePlatform', 'Android');
+       localStorage.clear();
+       localStorage.setItem('storagePlatform', 'Android');
     //
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
@@ -728,7 +729,6 @@ function CargaUltimoInforme() {
         });
     }
 }
-
 function CargarParametroEntradaInforme(pFechaDesde, pFechaHasta, pTipoConsulta) {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
@@ -749,7 +749,6 @@ function CargarParametroEntradaInforme(pFechaDesde, pFechaHasta, pTipoConsulta) 
     soapRequest += '</soapenv:Envelope>';
     return soapRequest;
 }
-
 function processSuccessInforme(data, status, req) {
     if (status == "success") {
         listaInformes = ObtenerImforme(req.responseText);
@@ -761,7 +760,6 @@ function processSuccessInforme(data, status, req) {
         }
     }
 }
-
 function ObtenerImforme(pXML) {
     var listaInformesAUX = [];
     $(pXML).find('informes').each(function () {
@@ -769,7 +767,8 @@ function ObtenerImforme(pXML) {
         obj.codigoInforme = parseInt($(this).find('codigoInforme').text());
         obj.fecha = $(this).find('fecha').text();
         obj.titulo = $(this).find('titulo').text();
-        obj.texto = $(this).find('texto ').text();
+        obj.texto = $(this).find('texto').text();
+        obj.url = $(this).find('url').text();
         listaInformesAUX.push(obj);
     });
     return listaInformesAUX;

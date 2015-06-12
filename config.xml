@@ -42,6 +42,7 @@
     <gap:platform name="android" />
     <gap:platform name="winphone" />
     <feature name="http://api.phonegap.com/1.0/geolocation" />
+    <feature name="InAppBrowser" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.console" />

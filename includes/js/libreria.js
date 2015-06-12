@@ -287,6 +287,7 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
     return strResultado;
 }
 function loadURL(url) {
+    //alert('ff');
     try {
         if (device.platform === 'Android') {
             navigator.app.loadUrl(url, { openExternal: true });
@@ -295,7 +296,8 @@ function loadURL(url) {
         }
 
     } catch (ex) {
-        alert(ex);
+        //alert(ex);
+            return false;
     }
     return false;
 }
