@@ -68,8 +68,8 @@ function informes() {
 
 function FuncionInicio() {
     //
-       localStorage.clear();
-       localStorage.setItem('storagePlatform', 'Android');
+    //   localStorage.clear();
+    //   localStorage.setItem('storagePlatform', 'Android');
     //
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
