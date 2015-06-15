@@ -320,7 +320,7 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
 }
 
 function loadURL(url) {
-    alert('ff');
+   
     try {
         var varPlatform = '';
         if (localStorage.getItem("storagePlatform") != null) {
@@ -336,7 +336,7 @@ function loadURL(url) {
             window.open(url, '_system');
         }
     } catch (ex) {
-        //alert(ex);
+        alert(ex);
         //     return false;
     }
     //  return false;
