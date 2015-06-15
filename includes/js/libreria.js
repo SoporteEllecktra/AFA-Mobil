@@ -320,7 +320,7 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
 }
 
 function loadURL(url) {
-   
+        alert(url);
     try {
         var varPlatform = '';
         if (localStorage.getItem("storagePlatform") != null) {
