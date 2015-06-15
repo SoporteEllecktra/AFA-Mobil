@@ -202,7 +202,7 @@ function CargarCotizacionesDestacadaHtml() {
     resultadoDiv += '<div class="col-xs-4">';
     resultadoDiv += 'PRODUCTO';
     resultadoDiv += '</div>';
-    resultadoDiv += '<div class="col-xs-4">';
+    resultadoDiv += '<div class="col-xs-4 cssDestacadoPuertoTitulo">';
     resultadoDiv += 'PUERTO';
     resultadoDiv += '</div>';
     resultadoDiv += '<div class="col-xs-4 cssDestacadoPrecioTitulo">';

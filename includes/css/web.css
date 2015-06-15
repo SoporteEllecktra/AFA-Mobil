@@ -37,6 +37,7 @@ body {
     width: 2em;
     height: 2em;
     margin-top: 0.4em;
+    margin-right: 0.4em;
 }
 
 .cssTablaHeader {
@@ -46,7 +47,7 @@ body {
 .cssTdHeaderDerecha {
     text-align: right;
     background: #FFF;
-    width: 9.2em;
+    width: 9.8em;/*width: 9.2em;*/
 }
 
 .cssTdHeaderDerecha .btn_rs {
@@ -62,7 +63,7 @@ body {
 }
 
 .cssTdHeaderDerecha .btn_rs .two {
-    float: left;
+   /* float: left;*/
     height: 3.8em;
     background-color: #FFF;
 }
@@ -182,8 +183,8 @@ header {
 }
 
 .cssCalendario {
-    width: 2.1em;
-    height: 2.1em;
+    width: 1.4em;
+    height: 1.4em;
     margin-left: 0.5em;
 }
 
@@ -195,7 +196,7 @@ header {
 #headerFecha {
     color: #FFF;
     text-align: left;
-    margin-top: 0.3em;
+    margin-top: 0.2em;
     vertical-align: middle;
     font-size: 1.2em;
 }
@@ -204,7 +205,10 @@ header {
     width: 3.6324em;
     height: 3.6324em;
     padding-top: 0.3em;
-    padding-right: 0.1em;
+    padding-right: 0.1em
+/**/
+        margin-left: 0.3em;
+     margin-right: 0.3em;
 }
 
 .cssCompartir {
@@ -253,6 +257,7 @@ header {
 .cssDestacadoDescripcionPuerto {
     font-size: 1.25em;
     padding-top: 0.25em;
+   
 }
 
 .cssDestacadoPrecio {
@@ -260,7 +265,9 @@ header {
     font-weight: 600;
     text-align: right;
 }
-
+.cssDestacadoPuertoTitulo{
+padding-left: 0px !important;    
+}
 .cssDestacadoPrecioTitulo {
     text-align: right;
 }
@@ -277,13 +284,15 @@ header {
 
 .colRectanguloPrecio {
     max-width: 7em;
-    padding: 0.2em;
+    padding: 0.4em;
     border-radius: 0.32em 0.32em 0.32em 0.32em;
     -moz-border-radius: 0.32em 0.32em 0.32em 0.32em;
     -webkit-border-radius: 0.32em 0.32em 0.32em 0.32em;
     border: 0px solid #000000;
     float: right;
     margin-right: 0.2em;
+    /*padding-right: 0.4em;
+    padding-left: 0.4em;*/
 }
 
 .colRectanguloPrecioVerde {
@@ -838,13 +847,15 @@ header {
 .cssInformeUrl {
     font-size: 1.2em;
     font-weight: 700;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(255, 255, 255, .1);
     text-align: center;
     margin-top: 2em;
     margin-bottom: 1em;
     padding: 1em;
 }
-
+.cssInformeUrlActivo{
+    background-color: rgba(255, 255, 255, .2);
+}
 .btnDescargarPDF {
     cursor: pointer;
 }
