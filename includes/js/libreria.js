@@ -1,11 +1,13 @@
 var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
+
 function toString00(pNro) {
     if (pNro.toString().length == 1) {
         return '0' + pNro;
     }
     return pNro;
 }
+
 function isMobile() {
     var resultado = false;
     var varPlatform = '';
@@ -21,6 +23,7 @@ function isMobile() {
     }
     return resultado;
 }
+
 function onclickCompartir() {
     if ($('.cssTdHeaderDerecha .btn_rs').hasClass('cssTdHeaderDerecha_btn_rs_Activo')) {
         CerrarMenuCompartir();
@@ -31,17 +34,21 @@ function onclickCompartir() {
         $('.cssTdHeaderDerecha .btn_rs .one .center').addClass('cssTdHeaderDerecha_btn_rs_one_center_Activo');
         $('.cssTdHeaderDerecha .btn_rs .two .right').addClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
         //$('.divMenuCompartir').css('display', 'block');
-        setTimeout(function () { CerrarMenuCompartir(); }, 4000);
+        setTimeout(function () {
+            CerrarMenuCompartir();
+        }, 4000);
     }
 }
+
 function CerrarMenuCompartir() {
     $('.cssTdHeaderDerecha .btn_rs').removeClass('cssTdHeaderDerecha_btn_rs_Activo');
     $('.cssTdHeaderDerecha .btn_rs .center').removeClass('cssTdHeaderDerecha_btn_rs_center_Activo');
     $('.cssTdHeaderDerecha .btn_rs .one .left').removeClass('cssTdHeaderDerecha_btn_rs_one_left_Activo');
     $('.cssTdHeaderDerecha .btn_rs .one .center').removeClass('cssTdHeaderDerecha_btn_rs_one_center_Activo');
     $('.cssTdHeaderDerecha .btn_rs .two .right').removeClass('cssTdHeaderDerecha_btn_rs_two_right_Activo');
-   // $('.divMenuCompartir').css('display', 'none');
+    // $('.divMenuCompartir').css('display', 'none');
 }
+
 function obtenerFechaParametroEntrada(pDia) {
     var milisegundos = parseInt(pDia * 24 * 60 * 60 * 1000);
     var fecha = new Date();
@@ -53,6 +60,7 @@ function obtenerFechaParametroEntrada(pDia) {
     var anio = fecha.getFullYear();
     return toString00(dia) + toString00(mes) + anio.toString();
 }
+
 function obtenerFechaUTC(pFecha, pHora) {
     var fechaSplit = pFecha.split('/');
     var anio = parseInt(fechaSplit[0]);
@@ -73,6 +81,7 @@ function grabarStorageIndexCotizacionDestacadaSeleccionda(pValor) {
 
     }
 }
+
 function obtenerStorageIndexCotizacionDestacadaSeleccionda() {
     var resultado = -1;
     if (window.localStorage) {
@@ -82,6 +91,7 @@ function obtenerStorageIndexCotizacionDestacadaSeleccionda() {
     }
     return resultado;
 }
+
 function grabarStorageFechaCotizacion(pValor) {
     if (window.localStorage) {
         localStorage.setItem('storageFechaCotizaciones', pValor);
@@ -89,6 +99,7 @@ function grabarStorageFechaCotizacion(pValor) {
 
     }
 }
+
 function obtenerStorageFechaMenuPrincipal() {
     var resultado = '';
     if (window.localStorage) {
@@ -98,70 +109,72 @@ function obtenerStorageFechaMenuPrincipal() {
     }
     return resultado;
 }
+
 function CargarHtmlFechaMenuPrincipal() {
     $('#headerFecha').html(obtenerStorageFechaMenuPrincipal());
 }
 
 function obtenerFechaMostrar(pValor) {
-    var listaFecha = pValor.substring(0, 10).split('-');
-    return listaFecha[2] + '/' + listaFecha[1] + '/' + listaFecha[0];
-}
-//enero, con 31 días
-//febrero, con 28 días o 29 en año bisiesto
-//marzo, con 31 días
-//abril, con 30 días
-//mayo, con 31 días
-//junio, con 30 días
-//julio, con 31 días
-//agosto, con 31 días
-//septiembre, con 30 días
-//octubre, con 31 días
-//noviembre, con 30 días
-//diciembre, con 31 días
+        var listaFecha = pValor.substring(0, 10).split('-');
+        return listaFecha[2] + '/' + listaFecha[1] + '/' + listaFecha[0];
+    }
+    //enero, con 31 días
+    //febrero, con 28 días o 29 en año bisiesto
+    //marzo, con 31 días
+    //abril, con 30 días
+    //mayo, con 31 días
+    //junio, con 30 días
+    //julio, con 31 días
+    //agosto, con 31 días
+    //septiembre, con 30 días
+    //octubre, con 31 días
+    //noviembre, con 30 días
+    //diciembre, con 31 días
 function obtenerNombreMes(pValor) {
     var resultado = '';
     switch (pValor) {
-        case '01':
-            resultado = 'enero';
-            break;
-        case '02':
-            resultado = 'febrero';
-            break;
-        case '03':
-            resultado = 'marzo';
-            break;
-        case '04':
-            resultado = 'abril';
-            break;
-        case '05':
-            resultado = 'mayo';
-            break;
-        case '06':
-            resultado = 'junio';
-            break;
-        case '07':
-            resultado = 'julio';
-            break;
-        case '08':
-            resultado = 'agosto';
-            break;
-        case '09':
-            resultado = 'septiembre';
-            break;
-        case '10':
-            resultado = 'octubre';
-            break;
-        case '11':
-            resultado = 'noviembre';
-            break;
-        case '12':
-            resultado = 'diciembre';
-            break;
-        default:
-            break;
+    case '01':
+        resultado = 'enero';
+        break;
+    case '02':
+        resultado = 'febrero';
+        break;
+    case '03':
+        resultado = 'marzo';
+        break;
+    case '04':
+        resultado = 'abril';
+        break;
+    case '05':
+        resultado = 'mayo';
+        break;
+    case '06':
+        resultado = 'junio';
+        break;
+    case '07':
+        resultado = 'julio';
+        break;
+    case '08':
+        resultado = 'agosto';
+        break;
+    case '09':
+        resultado = 'septiembre';
+        break;
+    case '10':
+        resultado = 'octubre';
+        break;
+    case '11':
+        resultado = 'noviembre';
+        break;
+    case '12':
+        resultado = 'diciembre';
+        break;
+    default:
+        break;
     }
     return resultado;
 }
+
 function obtenerFechaMostrarMenuInicio(pValor) {
     //05/05/2015
     var resultado = '';
@@ -169,18 +182,22 @@ function obtenerFechaMostrarMenuInicio(pValor) {
     resultado = listaFecha[0] + ' de ' + obtenerNombreMes(listaFecha[1]) + ' del ' + listaFecha[2];
     return resultado;
 }
+
 function MostrarDivBloqueo() {
     ActualizarAltoFondoBloqueo();
     $('#divFondoBloqueo').css('display', 'block');
 }
+
 function OcultarDivBloqueo() {
     $('#divFondoBloqueo').css('display', 'none');
 }
+
 function ActualizarAltoFondoBloqueo() {
     var height = $(document).height();
     document.getElementById("divFondoBloqueo").style.height = parseInt(height) + "px";
 }
-function obtenerParametroGetHtml(param) {//$_GET(param)
+
+function obtenerParametroGetHtml(param) { //$_GET(param)
     /* Obtener la url completa */
     url = document.URL;
     /* Buscar a partir del signo de interrogación ? */
@@ -213,9 +230,11 @@ function onSuccessCopy(args) {
     // window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () {  }, function (errormsg) { });
 
 }
+
 function onErrorCopy(ex) {
     // alert(ex);
 }
+
 function shareNuevo(expr) {
     // alert('Ok');
     try {
@@ -225,6 +244,7 @@ function shareNuevo(expr) {
     }
     window.plugins.socialsharing.share(ObtenerTxtCompartirCotizacionesDestacada());
 }
+
 function share(expr) {
     //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
     //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
@@ -234,40 +254,52 @@ function share(expr) {
 
     }
     switch (expr) {
-        case "Twitter":
-            //window.plugins.socialsharing.shareViaTwitter(ObtenerTxtCompartirCotizacionesDestacada());
-            window.plugins.socialsharing.shareViaTwitter('');
-            break;
-        case "Facebook":
-            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(ObtenerTxtCompartirCotizacionesDestacada(), null, null, ObtenerTxtCompartirCotizacionesDestacada(), function () { console.log('share ok') }, function (errormsg) { alert(errormsg) });
+    case "Twitter":
+        //window.plugins.socialsharing.shareViaTwitter(ObtenerTxtCompartirCotizacionesDestacada());
+        window.plugins.socialsharing.shareViaTwitter('');
+        break;
+    case "Facebook":
+        window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(ObtenerTxtCompartirCotizacionesDestacada(), null, null, ObtenerTxtCompartirCotizacionesDestacada(), function () {
+            console.log('share ok')
+        }, function (errormsg) {
+            alert(errormsg)
+        });
 
 
-            //window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
-            //window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
-            //window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
-            //window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
-            //window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', null /* img */, null /* url */, 'Paste it dude!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
-            break;
-        case "WhatsApp":
-            //window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
-            window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
-            break;
-        case "share":
+        //window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
+        //window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
+        //window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
+        //window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
+        //window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', null /* img */, null /* url */, 'Paste it dude!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
+        break;
+    case "WhatsApp":
+        //window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
+        window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */ , null /* url */ , function () {
+            console.log('share ok')
+        }, function (errormsg) {
+            console.log(errormsg)
+        });
+        break;
+    case "share":
 
-            break;
-        default:
+        break;
+    default:
     }
     onclickCompartir();
 }
+
 function onclickFacebook() {
     share('Facebook');
 }
+
 function onclickTwitter() {
     share('Twitter');
 }
+
 function onclickWhatsApp() {
     share('WhatsApp');
 }
+
 function ObtenerTxtCompartirCotizacionesDestacada() {
     var strResultado = '';
     //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'    
@@ -286,20 +318,30 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
     }
     return strResultado;
 }
+
 function loadURL(url) {
     //alert('ff');
     try {
-        if (device.platform == 'Android' || device.platform == 'android') {
-            navigator.app.loadUrl(url, { openExternal: true });
-        } else {
+        var varPlatform = '';
+        if (localStorage.getItem("storagePlatform") != null) {
+            varPlatform = localStorage.getItem("storagePlatform");
+        }
+        if (varPlatform == 'Android' || varPlatform == 'android') {
+            navigator.app.loadUrl(url, {
+                openExternal: true
+            });
+        } else if (varPlatform === 'iOS') {
+            window.open(url, '_system');
+        } else if (varPlatform == 'WinCE' || varPlatform == 'Win32NT') {
             window.open(url, '_system');
         }
     } catch (ex) {
         //alert(ex);
-       //     return false;
+        //     return false;
     }
-  //  return false;
+    //  return false;
 }
+
 function RedireccionarPagIndex() {
     localStorage.setItem('storageIndexVolver', '1');
     window.history.go(-1);
