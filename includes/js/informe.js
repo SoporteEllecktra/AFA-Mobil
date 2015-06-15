@@ -49,7 +49,7 @@ function onclickDescargarPDF(pUrl) {
     setTimeout(function () {
         $('#divInformeUrl').removeClass('cssInformeUrlActivo');
     }, 800);
-    loadURL(pUrl);
+    loadURL(strUrl);
 }
 
 function onresizeBody() {
