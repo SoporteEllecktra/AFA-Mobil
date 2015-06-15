@@ -261,7 +261,7 @@ header {
 }
 
 .cssDestacadoPrecio {
-    font-size: 1.5625em;
+    font-size: 1.2em;
     font-weight: 600;
     text-align: right;
 }
@@ -284,7 +284,7 @@ padding-left: 0px !important;
 
 .colRectanguloPrecio {
     max-width: 7em;
-    padding: 0.4em;
+    padding: 0.5em;
     border-radius: 0.32em 0.32em 0.32em 0.32em;
     -moz-border-radius: 0.32em 0.32em 0.32em 0.32em;
     -webkit-border-radius: 0.32em 0.32em 0.32em 0.32em;
