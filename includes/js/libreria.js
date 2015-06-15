@@ -320,7 +320,7 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
 }
 
 function loadURL(url) {
-    //alert('ff');
+    alert('ff');
     try {
         var varPlatform = '';
         if (localStorage.getItem("storagePlatform") != null) {
@@ -330,7 +330,7 @@ function loadURL(url) {
             navigator.app.loadUrl(url, {
                 openExternal: true
             });
-        } else if (varPlatform === 'iOS') {
+        } else if (varPlatform == 'iOS') {
             window.open(url, '_system');
         } else if (varPlatform == 'WinCE' || varPlatform == 'Win32NT') {
             window.open(url, '_system');
