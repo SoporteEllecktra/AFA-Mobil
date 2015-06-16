@@ -768,7 +768,7 @@ padding-left: 0px !important;
 }
 
 .cssAmpliarAchicar {
-    text-align: center;
+    text-align: right;
 }
 
 .cssImgImputButtonAmpliar {
@@ -832,7 +832,7 @@ padding-left: 0px !important;
 #divButtonInformePantallaCompletaAbajo {
     display: block;
     position: absolute;
-    right: 1.5em;
+    right: 0.5em;
     cursor: pointer;
     z-index: 1000;
 }
@@ -848,7 +848,6 @@ padding-left: 0px !important;
     background-size: cover;
     padding-left: 1em;
 }
-
 .cssInformeUrl {
     font-size: 1.2em;
     font-weight: 700;
@@ -864,7 +863,6 @@ padding-left: 0px !important;
 .btnDescargarPDF {
     cursor: pointer;
 }
-
 .cssImgDescargarPDF {
     width: 1.2em;
     height: 1.2em;
