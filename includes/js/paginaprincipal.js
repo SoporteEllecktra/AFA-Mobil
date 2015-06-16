@@ -247,14 +247,18 @@ function CargarCotizacionesDestacadaHtml() {
         resultadoDiv += '<div class="colRectanguloPrecio ' + strCssColorPrecio + '">'; // rectangulo    
         //var cantValorMonedaAUX = this.descripcionMoneda.length + String(this.valor).length;
         var cantValorMonedaAUX = this.abreviaturaMoneda.length + String(this.valor).length;
-        var strCantValorMoneda = '';
+          //var strCantValorMoneda ='';
+        var strCantValorMonedaLeft = '';
+        var strCantValorMonedaRight = '';
         if (cantValorMonedaAUX < cantValorMoneda) {
             for (var iValorMoneda = cantValorMonedaAUX; iValorMoneda < cantValorMoneda; iValorMoneda++) {
-                strCantValorMoneda += '&nbsp;' + '&nbsp;';
+                //strCantValorMoneda += '&nbsp;' + '&nbsp;' ;//+ '&nbsp;' + '&nbsp;'+ '&nbsp;' + '&nbsp;'+ '&nbsp;' + '&nbsp;'
+                 strCantValorMonedaLeft += '&nbsp;';
+               strCantValorMonedaRight += '&nbsp;' ;
             }
         }
         //resultadoDiv += strCantValorMoneda + this.descripcionMoneda + ' ' + this.valor;
-        resultadoDiv += strCantValorMoneda + this.abreviaturaMoneda + ' ' + this.valor;
+        resultadoDiv += strCantValorMonedaLeft + this.abreviaturaMoneda + ' ' + this.valor + strCantValorMonedaRight;
         resultadoDiv += '</div>'; // fin rectangulo
         resultadoDiv += '</div>';
         resultadoDiv += '</div>'; // '<div class="row">';

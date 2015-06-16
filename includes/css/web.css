@@ -205,10 +205,8 @@ header {
     width: 3.6324em;
     height: 3.6324em;
     padding-top: 0.3em;
-    padding-right: 0.1em
-/**/
-        margin-left: 0.3em;
-     margin-right: 0.3em;
+    margin-left: 0.1em;
+    margin-right: 0.5em;
 }
 
 .cssCompartir {
@@ -283,16 +281,18 @@ padding-left: 0px !important;
 }
 
 .colRectanguloPrecio {
-    max-width: 7em;
-    padding: 0.5em;
-    border-radius: 0.32em 0.32em 0.32em 0.32em;
+   /* max-width: 7em;*/
+    /*padding: 0.5em;*/
+    /*border-radius: 0.32em 0.32em 0.32em 0.32em;
     -moz-border-radius: 0.32em 0.32em 0.32em 0.32em;
-    -webkit-border-radius: 0.32em 0.32em 0.32em 0.32em;
+    -webkit-border-radius: 0.32em 0.32em 0.32em 0.32em;*/
     border: 0px solid #000000;
     float: right;
-    margin-right: 0.2em;
-    /*padding-right: 0.4em;
-    padding-left: 0.4em;*/
+    margin-right: 0.3em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
 }
 
 .colRectanguloPrecioVerde {
