@@ -179,7 +179,7 @@ function onresizeBody() {
     $('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
 
-    var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 2;
+    var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 12;//2;+ 12
 
     $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
     var cantPaddingNovedadesSlider = 0;

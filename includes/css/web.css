@@ -179,13 +179,13 @@ body {
 
 header {
     background-color: #606966;
-    height: 3.8em;
+    height: 3.8em; 
 }
 
 .cssCalendario {
     width: 1.4em;
     height: 1.4em;
-    margin-left: 0.5em;
+    margin-left: 0.7em;
 }
 
 .cssDivColCalendario {
@@ -620,6 +620,8 @@ padding-left: 0px !important;
 
 .swiper-container {
     position: static;
+   
+
 }
 
 .swiper-container {
@@ -655,11 +657,12 @@ padding-left: 0px !important;
 .cssColImgNovedades {
     padding-top: 1.5em;
     /* padding-left: 1.5em;*/
+    padding-left: 0.7em;
 }
 
 .cssImgNovedades {
-    width: 2em;
-    height: 2.5em;
+    width: 1.6em;/*2em;*/
+    height: 2em;/*2.5em;*/
 }
 
 .cssNovedades {
@@ -715,6 +718,8 @@ padding-left: 0px !important;
 
 .swiper-pagination {
     bottom: 0.2em !important;
+    margin-bottom: 0.4em;
+       /*padding-top:  0.4em;*/
 }
 
 .swiper-pagination-bullet {
@@ -869,7 +874,7 @@ padding-left: 0px !important;
 #divButtonAmpliar {
     display: block;
     position: absolute;
-    right: 1.5em;
+    right: 0.8em;
     cursor: pointer;
     z-index: 1000;
 }
