@@ -6,50 +6,7 @@ $(document).ready(function () {
         pagination: '.swiper-pagination',
         paginationClickable: true
     });
-    //var varParametroUrl = obtenerParametroGetHtml('r');
-    //    var varParametroUrl = '';
-    //    if (localStorage.getItem("storageIndexVolver") == null) {
-    //        varParametroUrl = '';
-    //    } else {
-    //        varParametroUrl = localStorage.getItem("storageIndexVolver");
-    //    }
-    //    if (varParametroUrl == '') {
-    //        MostrarDivBloqueo();
-    //        FuncionInicio();
-    //    } else {
-    //        //
-    //        localStorage.setItem('storageIndexVolver', '');
-    //        //
-    //        if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
-    //
-    //        } else {
-    //            var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-    //            cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
-    //        }
-    //        if (localStorage.getItem("storageListaNovedades") == null) {
-    //
-    //        } else {
-    //            var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-    //            listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-    //        }
-    //        if (localStorage.getItem("storageListaInformes") == null) {
-    //
-    //        } else {
-    //            var listaInformesGuardada = localStorage.getItem("storageListaInformes");
-    //            listaInformes = eval('(' + listaInformesGuardada + ')');
-    //        }
-    //        CargarHtmlFechaMenuPrincipal();
-    //        CargarCotizacionesDestacadaHtml();
-    //        CargarNovedadesHtml();
-    //        if (listaNovedades == null) {
-    //            porcentajeArriba = 1;
-    //            porcentajeAbajo = 0;
-    //        } else if (listaNovedades.length == 0) {
-    //            porcentajeArriba = 1;
-    //            porcentajeAbajo = 0;
-    //        }
-    //        onresizeBody();
-    //    }
+   
     CargaDeLosDatosPrevioTelefono();
 });
 $(document).ajaxStop(function () {
@@ -369,7 +326,7 @@ function CargarCotizacionesDestacadaHtml() {
             }
         }
         if (indexSlide2 != -1) {
-            swiper.removeSlide(indexSlide2);
+            //swiper.removeSlide(indexSlide2);
         }
         if (indexSlide1 != -1) {
             swiper.slideTo(indexSlide1);
@@ -496,9 +453,9 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         porcentajeArriba = 0.55;
         porcentajeAbajo = 0.45;
         onresizeBody();
-         setTimeout(function () {
-           $('#swiper-slide2').width('100%');
-        }, 200); 
+//         setTimeout(function () {
+//           $('#swiper-slide2').width('100%');
+//        }, 200); 
     }
     //alert('AA');
 }

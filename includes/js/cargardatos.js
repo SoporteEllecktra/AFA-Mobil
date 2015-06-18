@@ -52,13 +52,11 @@ function novedades() {
     this.codigoCategoria = 0;
     this.descripcionCategoria = '';
 }
-
 function modificacionesTabla() {
     this.codigoTabla = 0;
     this.fecha = '';
     this.hora = '';
 }
-
 function informes() {
     this.codigoInforme = 0;
     this.fecha = '';
@@ -66,11 +64,10 @@ function informes() {
     this.texto = '';
     this.url = '';
 }
-
 function FuncionInicio() {
     //
-     //localStorage.clear();
-     //localStorage.setItem('storagePlatform', 'Android');
+    // localStorage.clear();
+    // localStorage.setItem('storagePlatform', 'Android');
     //
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
