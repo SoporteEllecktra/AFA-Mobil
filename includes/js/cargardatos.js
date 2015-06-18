@@ -72,24 +72,7 @@ function FuncionInicio() {
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
         isGuardarTelefono = isMobile();
-        //alert('lalal: ' + isGuardarTelefono);
-        //        try {
-        //            if (device.platform == 'android' || device.platform == 'Android') {
-        //                var ismobile = (/Mobile/.test(navigator.userAgent)) ? 1 : 0;
-        //                if (ismobile == 1) {
-        //                    isGuardarTelefono = true;
-        //                }
-        //            } else if (device.platform == 'iOS') {
-        //                var isiPad = (/iPad/.test(navigator.userAgent)) ? 1 : 0;
-        //                if (isiPad == 1) {
-        //                    isGuardarTelefono = true;
-        //                }
-        //            } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
-        //                isGuardarTelefono = true;
-        //            }
-        //        } catch (ex) {
-        //
-        //        }
+
         if (!isGuardarTelefono) {
             localStorage.setItem('storageTelefono', '');
         }

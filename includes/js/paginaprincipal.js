@@ -306,8 +306,8 @@ function CargarCotizacionesDestacadaHtml() {
             swiper.slideTo(indexSlide2);
         }
         onresizeBody(); //////////////////
-        $('#swiper-slide2').scrollTop(0);
-        onresizeBody();
+        //$('#swiper-slide2').scrollTop(0);
+        //onresizeBody();
     });
 
 
@@ -326,7 +326,7 @@ function CargarCotizacionesDestacadaHtml() {
             }
         }
         if (indexSlide2 != -1) {
-            //swiper.removeSlide(indexSlide2);
+            swiper.removeSlide(indexSlide2);
         }
         if (indexSlide1 != -1) {
             swiper.slideTo(indexSlide1);
