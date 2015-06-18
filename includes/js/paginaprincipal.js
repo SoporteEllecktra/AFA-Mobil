@@ -303,15 +303,17 @@ function CargarCotizacionesDestacadaHtml() {
             }
         }
         if (indexSlide2 != -1) {
-            swiper.slideTo(0);
+            //swiper.slideTo(0);
             swiper.slideTo(indexSlide2);
-//            setTimeout(function () {
-//                swiper.slideTo(indexSlide2);
-//            }, 200);
+            //            setTimeout(function () {
+            //                swiper.slideTo(indexSlide2);
+            //            }, 200);
         }
         onresizeBody(); //////////////////
         //$('#swiper-slide2').scrollTop(0);
-        //onresizeBody();
+        setTimeout(function () {
+            onresizeBody();
+        }, 200);
     });
 
 
