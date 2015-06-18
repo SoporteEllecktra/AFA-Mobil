@@ -35,6 +35,7 @@ function cotizacion() {
     this.codigoProducto = 0;
     this.descripcionProducto = '';
     this.valor = 0;
+    this.valorString = '';
     this.observacion = '';
     this.abreviaturaMoneda = '';
     this.variacion = '';
@@ -68,8 +69,8 @@ function informes() {
 
 function FuncionInicio() {
     //
-      // localStorage.clear();
-    //   localStorage.setItem('storagePlatform', 'Android');
+     //localStorage.clear();
+     //localStorage.setItem('storagePlatform', 'Android');
     //
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
@@ -330,7 +331,7 @@ function CargaCotizacionDestacada() {
                 withCredentials: true
             },
             //data: CargarParametroEntradaCotizaciones(1, 14, obtenerFechaParametroEntrada(0), '', '', '', ''),
-            data: CargarParametroEntradaCotizaciones_Ordenada(1, 14, obtenerFechaParametroEntrada(0), '','', '', '', ''),
+            data: CargarParametroEntradaCotizaciones_Ordenada(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessCotizacionDestacada,
             error: processErrorCotizacionDestacada
         });
@@ -393,6 +394,7 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         obj.codigoProducto = $(this).find('codigoProducto').text();
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
         obj.valor = parseFloat($(this).find('valor').text());
+        obj.valorString = convertValorImporte(obj.valor);
         obj.observacion = $(this).find('observacion').text();
         obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
         obj.variacion = $(this).find('variacion').text();
@@ -490,11 +492,12 @@ function CargaConIndiceDetalleCotizacion(pIndex) {
             withCredentials: true
         },
         //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
-        data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0),'' ,'', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
+        data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
         success: processSuccessDetalleCotizacion,
         error: processErrorCargaConIndiceDetalleCotizacion
     });
 }
+
 function processSuccessDetalleCotizacion(data, status, req) {
     if (status == "success") {
         cotizacionesDestacada[indexCotizacionesDestacada].listaDetalle = ObtenerResultadoCotizacionDetalleJavascript(req.responseText);
@@ -524,6 +527,7 @@ function ObtenerResultadoCotizacionDetalleJavascript(pXML) {
         obj.codigoProducto = $(this).find('codigoProducto').text();
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
         obj.valor = parseFloat($(this).find('valor').text());
+        obj.valorString = convertValorImporte(obj.valor);
         obj.observacion = $(this).find('observacion').text();
         obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
         obj.variacion = $(this).find('variacion').text();
@@ -551,6 +555,7 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
         error: processErrorCotizacionHistoricaConIndiceDetacado
     });
 }
+
 function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
     var listaHistorica = [];
     $(pXML).find('cotizaciones').each(function () {
@@ -565,6 +570,7 @@ function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
         obj.codigoProducto = $(this).find('codigoProducto').text();
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
         obj.valor = parseFloat($(this).find('valor').text());
+        obj.valorString = convertValorImporte(obj.valor);
         obj.observacion = $(this).find('observacion').text();
         obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
         obj.variacion = $(this).find('variacion').text();
@@ -572,6 +578,7 @@ function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
     });
     return listaHistorica;
 }
+
 function processSuccessCotizacionHistorica(data, status, req) {
     if (status == "success") {
         cotizacionesDestacada[indexCotizacionesDestacada].listaHistorico = ObtenerCotizacionHistoricaConIndiceProductoDestacado(req.responseText);
@@ -590,6 +597,7 @@ function processSuccessCotizacionHistorica(data, status, req) {
         }
     }
 }
+
 function CargaTodasCotizaciones() {
     if (isCargarCotizaciones) {
         $.ajax({
@@ -602,7 +610,7 @@ function CargaTodasCotizaciones() {
                 withCredentials: true
             },
             //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', '', '', ''),
-            data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0),'', '', '', '', ''),
+            data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessTodasCotizaciones,
             error: processErrorTodasCotizaciones
         });
@@ -620,6 +628,7 @@ function processSuccessTodasCotizaciones(data, status, req) {
         }
     }
 }
+
 function ObtenerTodasCotizaciones(pXML) {
     var listaTodasCotizaciones = [];
     $(pXML).find('cotizaciones').each(function () {
@@ -634,6 +643,7 @@ function ObtenerTodasCotizaciones(pXML) {
         obj.codigoProducto = $(this).find('codigoProducto').text();
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
         obj.valor = parseFloat($(this).find('valor').text());
+        obj.valorString = convertValorImporte(obj.valor);
         obj.observacion = $(this).find('observacion').text();
         obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
         obj.variacion = $(this).find('variacion').text();
@@ -641,6 +651,7 @@ function ObtenerTodasCotizaciones(pXML) {
     });
     return listaTodasCotizaciones;
 }
+
 function CargarParametroEntradaNovedades(pFechaDesde, pFechaHasta, pCodigoCategoria) {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
@@ -661,6 +672,7 @@ function CargarParametroEntradaNovedades(pFechaDesde, pFechaHasta, pCodigoCatego
     soapRequest += '</soapenv:Envelope>';
     return soapRequest;
 }
+
 function CargaNovedades() {
     if (isCargarNotificaciones) {
         $.ajax({
@@ -680,6 +692,7 @@ function CargaNovedades() {
         CargarNovedadesHtml();
     }
 }
+
 function processSuccessNovedades(data, status, req) {
     if (status == "success") {
         listaNovedades = ObtenerNovedades(req.responseText);
@@ -692,6 +705,7 @@ function processSuccessNovedades(data, status, req) {
         CargarNovedadesHtml();
     }
 }
+
 function ObtenerNovedades(pXML) {
     var listaNovedadesAux = [];
     $(pXML).find('notificaciones').each(function () {
@@ -707,6 +721,7 @@ function ObtenerNovedades(pXML) {
     });
     return listaNovedadesAux;
 }
+
 function CargaUltimoInforme() {
     if (isCargarInformes) {
         $.ajax({
@@ -729,6 +744,7 @@ function CargaUltimoInforme() {
         });
     }
 }
+
 function CargarParametroEntradaInforme(pFechaDesde, pFechaHasta, pTipoConsulta) {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
@@ -749,6 +765,7 @@ function CargarParametroEntradaInforme(pFechaDesde, pFechaHasta, pTipoConsulta) 
     soapRequest += '</soapenv:Envelope>';
     return soapRequest;
 }
+
 function processSuccessInforme(data, status, req) {
     if (status == "success") {
         listaInformes = ObtenerImforme(req.responseText);
@@ -760,6 +777,7 @@ function processSuccessInforme(data, status, req) {
         }
     }
 }
+
 function ObtenerImforme(pXML) {
     var listaInformesAUX = [];
     $(pXML).find('informes').each(function () {

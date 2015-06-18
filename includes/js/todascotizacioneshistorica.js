@@ -43,7 +43,7 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
             //
             var cantValorMonedaHistorico = 0;
             for (var i = 0; i < cotizacionesDestacada[pIndex].listaHistorico.length; i++) {
-                var cantValorMonedaAUXHistorico = cotizacionesDestacada[pIndex].listaHistorico[i].abreviaturaMoneda.length + String(cotizacionesDestacada[pIndex].listaHistorico[i].valor).length;
+                var cantValorMonedaAUXHistorico = cotizacionesDestacada[pIndex].listaHistorico[i].abreviaturaMoneda.length + String(cotizacionesDestacada[pIndex].listaHistorico[i].valorString).length;
                 if (cantValorMonedaHistorico < cantValorMonedaAUXHistorico) {
                     cantValorMonedaHistorico = cantValorMonedaAUXHistorico;
                 }
@@ -64,7 +64,7 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
                 resultadoDiv += '</div>';
                 resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
                 //
-                var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valor).length;
+                var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valorString).length;
                 var strCantValorMonedaHistorico = '';
 //                if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
 //                    for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
@@ -73,7 +73,7 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
 //                }
                 //
                 // resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
-                resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valor;
+                resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valorString;
                 resultadoDiv += '</div>';
                 resultadoDiv += '</div>';
             });

@@ -213,7 +213,7 @@ function CargarCotizacionesDestacadaHtml() {
     var index = -1;
     var cantValorMoneda = 0;
     for (var i = 0; i < cotizacionesDestacada.length; i++) {
-        var cantValorMonedaAUX = cotizacionesDestacada[i].abreviaturaMoneda.length + String(cotizacionesDestacada[i].valor).length;
+        var cantValorMonedaAUX = cotizacionesDestacada[i].abreviaturaMoneda.length + String(cotizacionesDestacada[i].valorString).length;
         if (cantValorMoneda < cantValorMonedaAUX) {
             cantValorMoneda = cantValorMonedaAUX;
         }
@@ -246,7 +246,7 @@ function CargarCotizacionesDestacadaHtml() {
 
         resultadoDiv += '<div class="colRectanguloPrecio ' + strCssColorPrecio + '">'; // rectangulo    
         //var cantValorMonedaAUX = this.descripcionMoneda.length + String(this.valor).length;
-        var cantValorMonedaAUX = this.abreviaturaMoneda.length + String(this.valor).length;
+        var cantValorMonedaAUX = this.abreviaturaMoneda.length + String(this.valorString).length;
           //var strCantValorMoneda ='';
         var strCantValorMonedaLeft = '';
         var strCantValorMonedaRight = '';
@@ -258,7 +258,7 @@ function CargarCotizacionesDestacadaHtml() {
             }
         }
         //resultadoDiv += strCantValorMoneda + this.descripcionMoneda + ' ' + this.valor;
-        resultadoDiv += strCantValorMonedaLeft + this.abreviaturaMoneda + ' ' + this.valor + strCantValorMonedaRight;
+        resultadoDiv += strCantValorMonedaLeft + this.abreviaturaMoneda + ' ' + this.valorString + strCantValorMonedaRight;
         resultadoDiv += '</div>'; // fin rectangulo
         resultadoDiv += '</div>';
         resultadoDiv += '</div>'; // '<div class="row">';
@@ -269,7 +269,7 @@ function CargarCotizacionesDestacadaHtml() {
         // detallle
         var cantValorMonedaDetalle = 0;
         for (var iDetalleMoneda = 0; iDetalleMoneda < this.listaDetalle.length; iDetalleMoneda++) {
-            var cantValorMonedaDetalleAUX = this.listaDetalle[iDetalleMoneda].abreviaturaMoneda.length + String(this.listaDetalle[iDetalleMoneda].valor).length;
+            var cantValorMonedaDetalleAUX = this.listaDetalle[iDetalleMoneda].abreviaturaMoneda.length + String(this.listaDetalle[iDetalleMoneda].valorString).length;
             if (cantValorMonedaDetalle < cantValorMonedaDetalleAUX) {
                 cantValorMonedaDetalle = cantValorMonedaDetalleAUX;
             }
@@ -301,14 +301,14 @@ function CargarCotizacionesDestacadaHtml() {
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetallePrecio">';
             //resultadoDiv += this.listaDetalle[iDetalle].descripcionMoneda + ' ' + this.listaDetalle[iDetalle].valor;
-            var cantValorMonedaAUXDetalle = this.listaDetalle[iDetalle].abreviaturaMoneda.length + String(this.listaDetalle[iDetalle].valor).length;
+            var cantValorMonedaAUXDetalle = this.listaDetalle[iDetalle].abreviaturaMoneda.length + String(this.listaDetalle[iDetalle].valorString).length;
             var strCantValorMonedaDetalle = '';
 //            if (cantValorMonedaAUXDetalle < cantValorMonedaDetalle) {
 //                for (var iValorMonedaDetalle = cantValorMonedaAUXDetalle; iValorMonedaDetalle < cantValorMonedaDetalle; iValorMonedaDetalle++) {
 //                    strCantValorMonedaDetalle += '&nbsp;' + '&nbsp;';
 //                }
 //            }
-            resultadoDiv += strCantValorMonedaDetalle + this.listaDetalle[iDetalle].abreviaturaMoneda + ' ' + this.listaDetalle[iDetalle].valor;
+            resultadoDiv += strCantValorMonedaDetalle + this.listaDetalle[iDetalle].abreviaturaMoneda + ' ' + this.listaDetalle[iDetalle].valorString;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetalleObservacion">';
             resultadoDiv += this.listaDetalle[iDetalle].observacion;
@@ -440,7 +440,7 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         //
         var cantValorMonedaHistorico = 0;
         for (var iHistoricoMoneda = 0; iHistoricoMoneda < cotizacionesDestacada[pIndex].listaHistorico.length; iHistoricoMoneda++) {
-            var cantValorMonedaHistoricoAUX = cotizacionesDestacada[pIndex].listaHistorico[iHistoricoMoneda].abreviaturaMoneda.length + String(cotizacionesDestacada[pIndex].listaHistorico[iHistoricoMoneda].valor).length;
+            var cantValorMonedaHistoricoAUX = cotizacionesDestacada[pIndex].listaHistorico[iHistoricoMoneda].abreviaturaMoneda.length + String(cotizacionesDestacada[pIndex].listaHistorico[iHistoricoMoneda].valorString).length;
             if (cantValorMonedaHistorico < cantValorMonedaHistoricoAUX) {
                 cantValorMonedaHistorico = cantValorMonedaHistoricoAUX;
             }
@@ -460,7 +460,7 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
             resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
             resultadoDiv += '</span></div>';
             resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
-            var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valor).length;
+            var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valorString).length;
             var strCantValorMonedaHistorico = '';
 //            if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
 //                for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
@@ -468,7 +468,7 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
 //                }
 //            }
             //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
-            resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valor;
+            resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valorString;
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });
@@ -496,7 +496,11 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         porcentajeArriba = 0.55;
         porcentajeAbajo = 0.45;
         onresizeBody();
+         setTimeout(function () {
+           $('#swiper-slide2').width('100%');
+        }, 200); 
     }
+    //alert('AA');
 }
 
 function CargarNovedadesHtml() {

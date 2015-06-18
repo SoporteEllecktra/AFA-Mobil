@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="includes/css/swiper.min.css" />
     <link rel="stylesheet" href="includes/css/web.css" />
 </head>
+
 <body onresize="onresizeBody()">
     <div class="container">
         <header id="header">
@@ -20,12 +22,14 @@
                         <div id="headerFecha">
                         </div>
                     </td>
-                  <td class="cssTdHeaderDerecha" ><!--   onclick="onclickCompartir();"-->
-                        <a class="btn_rs" href="#">
+                    <td class="cssTdHeaderDerecha">
+                        <!--   onclick="onclickCompartir();"-->
+                        <!--                        <a class="btn_rs" href="#">-->
+                        <div class="btn_rs">
                             <div class="one">
                                 <div class="left">
                                 </div>
-                                <div class="center"  onclick="onclickCompartir(); shareNuevo();">
+                                <div class="center" onclick="onclickCompartir(); shareNuevo();">
                                     <img src="img/material/icono-compartir.svg" alt="calendario" class="cssIconoCompartir" />
                                 </div>
                             </div>
@@ -34,12 +38,13 @@
                                 </div>
                                 <img src="img/material/Logo.svg" alt="afa" class="cssLogoAfa" />
                             </div>
-                        </a>
+                        </div>
+                        <!--                        </a>-->
                     </td>
                 </tr>
             </table>
         </header>
-      <!--<div class="divMenuCompartir" >
+        <!--<div class="divMenuCompartir" >
             <div class="linkFacebook" onclick="onclickFacebook()">
                 <img src="img/material/face.svg" alt="Facebook" class="cssLogoFacebook" />    
                 <span class="spanFacebook">Compartir en Facebook</span></div>
@@ -53,7 +58,8 @@
         <div id="divCotizacionesDestacada" class="row-xs-6">
         </div>
         <div id="divButtonAmpliar" onclick="onclickFullScreenButtonAmpliar()">
-            <img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliarParteAbajo" /></div>
+            <img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliarParteAbajo" />
+        </div>
         <div id="divBarraAbajo" class="row-xs-6">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -73,11 +79,12 @@
         </div>
     </div>
     <div id="divFondoBloqueo">
-        <img class="imgFondoBloqueo" src="img/load_fondo_transparente.gif" alt="Cargando"
-            title="Cargando" />
+        <img class="imgFondoBloqueo" src="img/load_fondo_transparente.gif" alt="Cargando" title="Cargando" />
     </div>
-    <script type="text/javascript" src="cordova.js"> </script>
-    <script type="text/javascript" src="cordova_plugins.js"> </script>
+    <script type="text/javascript" src="cordova.js">
+    </script>
+    <script type="text/javascript" src="cordova_plugins.js">
+    </script>
     <!--
     <script type="text/javascript" src="clipboard.js"></script>  
 -->
@@ -85,8 +92,9 @@
     <script type="text/javascript" src="includes/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="includes/js/swiper.min.js"></script>
     <script type="text/javascript" src="includes/js/libreria.js"></script>
-    <script type="text/javascript" src="includes/js/cargardatos.js"></script>     
+    <script type="text/javascript" src="includes/js/cargardatos.js"></script>
     <script type="text/javascript" src="includes/js/paginaprincipal.js"></script>
-    <script type="text/javascript" src="includes/js/registrarTelefono.js"></script>   
+    <script type="text/javascript" src="includes/js/registrarTelefono.js"></script>
 </body>
+
 </html>

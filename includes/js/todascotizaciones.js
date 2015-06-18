@@ -49,7 +49,7 @@ function CargarTodasCotizacionesHtml() {
         //
         var cantValorMonedaTodasCotizaciones = 0;
         for (var i = 0; i < listaTodasCotizaciones.length; i++) {
-            var cantValorMonedaAUXTodasCotizaciones = listaTodasCotizaciones[i].abreviaturaMoneda.length + String(listaTodasCotizaciones[i].valor).length;
+            var cantValorMonedaAUXTodasCotizaciones = listaTodasCotizaciones[i].abreviaturaMoneda.length + String(listaTodasCotizaciones[i].valorString).length;
             if (cantValorMonedaTodasCotizaciones < cantValorMonedaAUXTodasCotizaciones) {
                 cantValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones;
             }
@@ -73,14 +73,14 @@ function CargarTodasCotizacionesHtml() {
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesPrecio">';
             //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
 
-            var cantValorMonedaAUXTodasCotizaciones = this.abreviaturaMoneda.length + String(this.valor).length;
+            var cantValorMonedaAUXTodasCotizaciones = this.abreviaturaMoneda.length + String(this.valorString).length;
             var strCantValorMonedaTodasCotizaciones = '';
 //            if (cantValorMonedaAUXTodasCotizaciones < cantValorMonedaTodasCotizaciones) {
 //                for (var iValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones; iValorMonedaTodasCotizaciones < cantValorMonedaTodasCotizaciones; iValorMonedaTodasCotizaciones++) {
 //                    strCantValorMonedaTodasCotizaciones += '&nbsp;' + '&nbsp;';
 //                }
 //            }
-            resultadoDiv += strCantValorMonedaTodasCotizaciones + this.abreviaturaMoneda + ' ' + this.valor;
+            resultadoDiv += strCantValorMonedaTodasCotizaciones + this.abreviaturaMoneda + ' ' + this.valorString;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesObservacion">';
             resultadoDiv += this.observacion;

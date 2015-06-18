@@ -1,6 +1,24 @@
 var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
+
+function convertValorImporte(pValor) {
+    var resultado = pValor.toString();
+    if (resultado.indexOf('.') != -1) {
+        var listaAux = resultado.split('.');
+        resultado = listaAux[0] + ',' + listaAux[1];// toString00_decimal(listaAux[1]);
+    } else {
+
+    }
+    return resultado;
+}
+function toString00_decimal(pNro) {
+    if (pNro.toString().length == 1) {
+        return  pNro + '0' ;
+    }
+    return pNro;
+}
+
 function toString00(pNro) {
     if (pNro.toString().length == 1) {
         return '0' + pNro;
@@ -320,7 +338,7 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
 }
 
 function loadURL(url) {
-        //alert(url);
+    //alert(url);
     try {
         var varPlatform = '';
         if (localStorage.getItem("storagePlatform") != null) {
@@ -336,7 +354,7 @@ function loadURL(url) {
             window.open(url, '_system');
         }
     } catch (ex) {
-       // alert(ex);
+        // alert(ex);
         //     return false;
     }
     //  return false;
