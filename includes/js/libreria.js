@@ -319,6 +319,7 @@ function onclickWhatsApp() {
 }
 
 function ObtenerTxtCompartirCotizacionesDestacada() {
+    //AFA SCL 17/06: SOJA 2000 / 219 Jul - SORGO 1050/ 113 Jul.Ago - MAIZ 920 / 100 Ago Grado II - GIRASOL 1850 - TRIGO
     var strResultado = '';
     //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'    
     var fechaUltima = eval('(' + localStorage.getItem("storageTablaModificaciones1") + ')');

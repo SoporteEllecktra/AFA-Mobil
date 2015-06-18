@@ -310,13 +310,11 @@ function CargarCotizacionesDestacadaHtml() {
             //            }, 200);
         }
         onresizeBody(); //////////////////
-        //$('#swiper-slide2').scrollTop(0);
+        //   $('#swiper-slide2').scrollTop(0);
         setTimeout(function () {
-            onresizeBody();
+            CargarDeNuevoHistorico();
         }, 200);
     });
-
-
 
     $('.collapse').on('hide.bs.collapse', function (e) {
         var indexSlide3 = -1;
@@ -346,6 +344,23 @@ function CargarCotizacionesDestacadaHtml() {
     });
     onresizeBody();
     //setTimeout(function () { onresizeBody(); }, 500);
+}
+
+function CargarDeNuevoHistorico() {
+    if (localStorage.getItem("storageIndexCotizacionDestacadaSeleccionda") == null) {} else {
+        var index = parseInt(localStorage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
+        CargarCotizacionesHistoricaHtml(index);
+        var indexSlide2 = -1;
+        for (var i = 0; i < swiper.slides.length; i++) {
+            if (swiper.slides[i].id == 'swiper-slide2') {
+                indexSlide2 = i;
+            }
+        }
+        if (indexSlide2 != -1) {
+            swiper.slideTo(indexSlide2);
+        }
+        onresizeBody();
+    }
 }
 
 function CargarInformeCierreMercado() {
