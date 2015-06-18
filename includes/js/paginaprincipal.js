@@ -313,7 +313,7 @@ function CargarCotizacionesDestacadaHtml() {
         //   $('#swiper-slide2').scrollTop(0);
         setTimeout(function () {
             CargarDeNuevoHistorico();
-        }, 200);
+        },500);
     });
 
     $('.collapse').on('hide.bs.collapse', function (e) {
