@@ -6,7 +6,7 @@ $(document).ready(function () {
         pagination: '.swiper-pagination',
         paginationClickable: true
     });
-   
+
     CargaDeLosDatosPrevioTelefono();
 });
 $(document).ajaxStop(function () {
@@ -136,7 +136,7 @@ function onresizeBody() {
     $('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
     $('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
 
-    var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 12;//2;+ 12
+    var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 12; //2;+ 12
 
     $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
     var cantPaddingNovedadesSlider = 0;
@@ -204,14 +204,14 @@ function CargarCotizacionesDestacadaHtml() {
         resultadoDiv += '<div class="colRectanguloPrecio ' + strCssColorPrecio + '">'; // rectangulo    
         //var cantValorMonedaAUX = this.descripcionMoneda.length + String(this.valor).length;
         var cantValorMonedaAUX = this.abreviaturaMoneda.length + String(this.valorString).length;
-          //var strCantValorMoneda ='';
+        //var strCantValorMoneda ='';
         var strCantValorMonedaLeft = '';
         var strCantValorMonedaRight = '';
         if (cantValorMonedaAUX < cantValorMoneda) {
             for (var iValorMoneda = cantValorMonedaAUX; iValorMoneda < cantValorMoneda; iValorMoneda++) {
                 //strCantValorMoneda += '&nbsp;' + '&nbsp;' ;//+ '&nbsp;' + '&nbsp;'+ '&nbsp;' + '&nbsp;'+ '&nbsp;' + '&nbsp;'
-                 strCantValorMonedaLeft += '&nbsp;';
-               strCantValorMonedaRight += '&nbsp;' ;
+                strCantValorMonedaLeft += '&nbsp;';
+                strCantValorMonedaRight += '&nbsp;';
             }
         }
         //resultadoDiv += strCantValorMoneda + this.descripcionMoneda + ' ' + this.valor;
@@ -260,11 +260,11 @@ function CargarCotizacionesDestacadaHtml() {
             //resultadoDiv += this.listaDetalle[iDetalle].descripcionMoneda + ' ' + this.listaDetalle[iDetalle].valor;
             var cantValorMonedaAUXDetalle = this.listaDetalle[iDetalle].abreviaturaMoneda.length + String(this.listaDetalle[iDetalle].valorString).length;
             var strCantValorMonedaDetalle = '';
-//            if (cantValorMonedaAUXDetalle < cantValorMonedaDetalle) {
-//                for (var iValorMonedaDetalle = cantValorMonedaAUXDetalle; iValorMonedaDetalle < cantValorMonedaDetalle; iValorMonedaDetalle++) {
-//                    strCantValorMonedaDetalle += '&nbsp;' + '&nbsp;';
-//                }
-//            }
+            //            if (cantValorMonedaAUXDetalle < cantValorMonedaDetalle) {
+            //                for (var iValorMonedaDetalle = cantValorMonedaAUXDetalle; iValorMonedaDetalle < cantValorMonedaDetalle; iValorMonedaDetalle++) {
+            //                    strCantValorMonedaDetalle += '&nbsp;' + '&nbsp;';
+            //                }
+            //            }
             resultadoDiv += strCantValorMonedaDetalle + this.listaDetalle[iDetalle].abreviaturaMoneda + ' ' + this.listaDetalle[iDetalle].valorString;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetalleObservacion">';
@@ -303,10 +303,11 @@ function CargarCotizacionesDestacadaHtml() {
             }
         }
         if (indexSlide2 != -1) {
-           // swiper.slideTo(indexSlide2);
-                  setTimeout(function () {
-           swiper.slideTo(indexSlide2);
-        }, 200);
+            swiper.slideTo(0);
+            swiper.slideTo(indexSlide2);
+//            setTimeout(function () {
+//                swiper.slideTo(indexSlide2);
+//            }, 200);
         }
         onresizeBody(); //////////////////
         //$('#swiper-slide2').scrollTop(0);
@@ -422,11 +423,11 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
             resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
             var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valorString).length;
             var strCantValorMonedaHistorico = '';
-//            if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
-//                for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
-//                    strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
-//                }
-//            }
+            //            if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
+            //                for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
+            //                    strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
+            //                }
+            //            }
             //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
             resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valorString;
             resultadoDiv += '</div>';
@@ -456,9 +457,9 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         porcentajeArriba = 0.55;
         porcentajeAbajo = 0.45;
         onresizeBody();
-//         setTimeout(function () {
-//           $('#swiper-slide2').width('100%');
-//        }, 200); 
+        //         setTimeout(function () {
+        //           $('#swiper-slide2').width('100%');
+        //        }, 200); 
     }
     //alert('AA');
 }
