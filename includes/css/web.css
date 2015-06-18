@@ -159,19 +159,16 @@ body {
     padding-right: 1em;
     font-size: 1.3em;
 }
-
 .spanWhatsApp {
     cursor: pointer;
     padding-right: 1em;
     font-size: 1.3em;
 }
-
 .linkTwitter {
     border-top-style: solid;
     border-top-color: #000;
     border-top-width: 0.0625em;
 }
-
 .linkWhatsApp {
     border-top-style: solid;
     border-top-color: #000;
@@ -203,11 +200,11 @@ header {
 }
 
 .cssLogoAfa {
-    width: 3.6324em;
-    height: 3.6324em;
-    padding-top: 0.3em;
+    width: 3.6em;
+    height: 3.6em;
+    /*padding-top: 0.3em;
     margin-left: 0.1em;
-    margin-right: 0.5em;
+    margin-right: 0.5em;*/
 }
 
 .cssCompartir {

@@ -68,8 +68,8 @@ function informes() {
 
 function FuncionInicio() {
     //
-    //   localStorage.clear();
-    //   localStorage.setItem('storagePlatform', 'Android');
+       localStorage.clear();
+       localStorage.setItem('storagePlatform', 'Android');
     //
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
@@ -546,7 +546,7 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
         //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
         //"Por Fecha Descendente"
         //data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 8, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
-        data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 8, cotizacionesDestacada[pIndex].codigoProducto, '', ''),
+        data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 9, cotizacionesDestacada[pIndex].codigoProducto, '', ''),
         success: processSuccessCotizacionHistorica,
         error: processErrorCotizacionHistoricaConIndiceDetacado
     });
