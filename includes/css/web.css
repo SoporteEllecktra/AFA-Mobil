@@ -53,6 +53,7 @@ body {
 .cssTdHeaderDerecha .btn_rs {
     display: block;
     height: 3.8em;
+    float: left;
 }
 
 .cssTdHeaderDerecha .btn_rs .one {
@@ -63,7 +64,7 @@ body {
 }
 
 .cssTdHeaderDerecha .btn_rs .two {
-   /* float: left;*/
+    float: left;
     height: 3.8em;
     background-color: #FFF;
 }
@@ -839,7 +840,6 @@ padding-left: 0px !important;
 
 .cssDivResultadoInforme {
     /*overflow-y: auto;*/
-    
     color: #FFF;
     background: url(../../img/material/fondo2.jpg) no-repeat bottom;
     -webkit-background-size: cover;
@@ -985,33 +985,27 @@ padding-left: 0px !important;
     padding-bottom: 0.4em;
     cursor: pointer;
 }
-
 .cssDivBotonIngresar:hover {
     opacity: 0.8;
 }
-
 .cssLogoAfaTelefono {
     width: 14em;
     height: 14em;
 }
-
 .cssDivLogoAfaTelefono {
     text-align: center;
     padding-top: 2em;
 }
-
 .cssSpanLogoAfaTelefono {
     font-size: 3em;
     font-weight: 300;
     letter-spacing: -0.03em;
     /*-0.3px;*/
 }
-
 .cssTablaTelefono {
     width: 100%;
     height: 100%;
 }
-
 .cssTdParteAbajoTelefono {
     vertical-align: middle;
     padding-bottom: 2em;
