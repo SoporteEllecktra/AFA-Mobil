@@ -348,18 +348,19 @@ function CargarCotizacionesDestacadaHtml() {
 
 function CargarDeNuevoHistorico() {
     if (localStorage.getItem("storageIndexCotizacionDestacadaSeleccionda") == null) {} else {
+        //alert('Ok');
         var index = parseInt(localStorage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
         CargarCotizacionesHistoricaHtml(index);
-        var indexSlide2 = -1;
-        for (var i = 0; i < swiper.slides.length; i++) {
-            if (swiper.slides[i].id == 'swiper-slide2') {
-                indexSlide2 = i;
-            }
-        }
-        if (indexSlide2 != -1) {
-            swiper.slideTo(indexSlide2);
-        }
-        onresizeBody();
+//        var indexSlide2 = -1;
+//        for (var i = 0; i < swiper.slides.length; i++) {
+//            if (swiper.slides[i].id == 'swiper-slide2') {
+//                indexSlide2 = i;
+//            }
+//        }
+//        if (indexSlide2 != -1) {
+//            swiper.slideTo(indexSlide2);
+//        }
+//        onresizeBody();
     }
 }
 
