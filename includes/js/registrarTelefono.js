@@ -115,7 +115,8 @@ function onNotification(e) {
             //alert('message = ' + e.message + ' msgcnt = ' + e.msgcnt);
                 
            // alert(e.message); //'mensaje = ' 
-            CargarVentanaAlerta(e.title,e.message);
+              CargarVentanaAlerta('', JSON.stringify(e));
+            //CargarVentanaAlerta(e.title,e.message);
             break;
 
         case 'error':
