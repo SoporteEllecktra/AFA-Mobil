@@ -13,7 +13,7 @@ $(document).ready(function () {
 $(document).ajaxStop(function () {
     finCargarInicial();
     
-  
+    CargarVentanaAlerta("e.payload.title22","e.message");
 });
 
 function CargaDeLosDatosPrevioTelefono() {

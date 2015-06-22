@@ -1079,6 +1079,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
   transition: background .5s;
   padding: .5em;
   margin:1.5em auto 0 auto;
+  width: 100%;
 }
 
 /* Fin Ventana alerta */
