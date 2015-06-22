@@ -12,6 +12,8 @@ $(document).ready(function () {
 });
 $(document).ajaxStop(function () {
     finCargarInicial();
+    
+  
 });
 
 function CargaDeLosDatosPrevioTelefono() {

@@ -113,7 +113,9 @@ function onNotification(e) {
         case 'message':
             // this is the actual push notification. its format depends on the data model from the push server
             //alert('message = ' + e.message + ' msgcnt = ' + e.msgcnt);
-            alert(e.message); //'mensaje = ' 
+                
+           // alert(e.message); //'mensaje = ' 
+            CargarVentanaAlerta(e.title,e.message);
             break;
 
         case 'error':

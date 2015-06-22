@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, height=device-height,initial-scale=1, user-scalable=no" />
@@ -7,15 +8,31 @@
     <link rel="stylesheet" href="includes/css/bootstrap.min.css" />
     <link rel="stylesheet" href="includes/css/web.css" />
 </head>
-<body >
-    <div class="container containerError">
-      <img src="img/material/Logo.svg" alt="afa" class="cssLogoAfaError" />
-<div class="divDescripcionError">
-No est&aacute; disponible el servicio en este momento. Int&eacute;ntelo de nuevo o m&aacute;s tarde.
 
-</div>
+<body>
+    <div class="container containerError">
+        <img src="img/material/Logo.svg" alt="afa" class="cssLogoAfaError" />
+        <div class="divDescripcionError">
+            No est&aacute; disponible el servicio en este momento. Int&eacute;ntelo de nuevo o m&aacute;s tarde.
+
+        </div>
     </div>
 
+    <!--    Inicio Ventana alerta-->
+    <div id="divVentanaAlertaContenedor">
+        <div class="center_box">
+            <div id="divVentanaTitulo">
 
+            </div>
+            <div id="divVentanaDescripcio">
+
+            </div>
+            <div>
+                <input type="button" onclick="btnCerrarAlerta();" value="Cerrar">
+            </div>
+        </div>
+    </div>
+    <!--    Fin Ventana alerta-->
 </body>
+
 </html>

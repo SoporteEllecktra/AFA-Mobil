@@ -6,15 +6,16 @@ function convertValorImporte(pValor) {
     var resultado = pValor.toString();
     if (resultado.indexOf('.') != -1) {
         var listaAux = resultado.split('.');
-        resultado = listaAux[0] + ',' + listaAux[1];// toString00_decimal(listaAux[1]);
+        resultado = listaAux[0] + ',' + listaAux[1]; // toString00_decimal(listaAux[1]);
     } else {
 
     }
     return resultado;
 }
+
 function toString00_decimal(pNro) {
     if (pNro.toString().length == 1) {
-        return  pNro + '0' ;
+        return pNro + '0';
     }
     return pNro;
 }
@@ -325,9 +326,18 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
     var fechaUltima = eval('(' + localStorage.getItem("storageTablaModificaciones1") + ')');
     var listaFecha = fechaUltima.fecha.split('/');
     strResultado += 'AFA SCL ' + fechaUltima.fecha.substring(0, 5) + ':';
-    if (cotizacionesDestacada != null) {
+
+    var listaCompartirCotizacionesDestacada = null;
+    if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
+
+    } else {
+        var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+        listaCompartirCotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+    }
+
+    if (listaCompartirCotizacionesDestacada != null) {
         var index = 0;
-        $(cotizacionesDestacada).each(function () {
+        $(listaCompartirCotizacionesDestacada).each(function () {
             if (index != 0) {
                 strResultado += ' /';
             }
@@ -371,3 +381,25 @@ function RedireccionarPagIndex() {
     //     
     //    }
 }
+
+/*Inicio Ventana alerta*/
+function btnCerrarAlerta() {
+    $('#divVentanaAlertaContenedor').css('display', 'none');
+}
+
+function CargarVentanaAlerta(pTitulo, pDescripcion) {
+    
+     $('#divVentanaTitulo').html('');
+     $('#divVentanaDescripcio').html('');
+    if (pTitulo != '') {
+       $('#divVentanaTitulo').html(pTitulo);
+    }
+    if (pDescripcion != '') {
+      $('#divVentanaDescripcio').html(pDescripcion);
+    }
+
+
+    $('#divVentanaAlertaContenedor').css('display', 'block');
+}
+
+/*Fin Ventana alerta*/
