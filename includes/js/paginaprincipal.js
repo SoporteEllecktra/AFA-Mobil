@@ -1,12 +1,7 @@
 var swiper = null;
 var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
-$(document).ready(function () {
-    swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true
-    });
-
+0
     CargaDeLosDatosPrevioTelefono();
 });
 $(document).ajaxStop(function () {
@@ -348,19 +343,8 @@ function CargarCotizacionesDestacadaHtml() {
 
 function CargarDeNuevoHistorico() {
     if (localStorage.getItem("storageIndexCotizacionDestacadaSeleccionda") == null) {} else {
-        //alert('Ok');
         var index = parseInt(localStorage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
         CargarCotizacionesHistoricaHtml(index);
-//        var indexSlide2 = -1;
-//        for (var i = 0; i < swiper.slides.length; i++) {
-//            if (swiper.slides[i].id == 'swiper-slide2') {
-//                indexSlide2 = i;
-//            }
-//        }
-//        if (indexSlide2 != -1) {
-//            swiper.slideTo(indexSlide2);
-//        }
-//        onresizeBody();
     }
 }
 

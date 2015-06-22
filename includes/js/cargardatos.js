@@ -140,6 +140,7 @@ function processErrorGuardarTelefono(data, status, req) {
 }
 
 function processSuccessGuardarTelefono(data, status, req) {
+    alert('processSuccessGuardarTelefono');
     if (status == "success") {
         var codigoRespuesta = 1;
         $(req.responseText).find('return').each(function () {
