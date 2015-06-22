@@ -1,15 +1,11 @@
-//var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
-//var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
-var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/"; //&username=user&password=pass123/";
-
-var wsUrlRegistracionTelefono = 'http://200.58.118.98:50002/registrationinfo/'; //'http://200.58.118.98:50002/registrationinfo/uuid/type/regid';
-//'http://200.58.118.98:3000/registrationinfo/';
-
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";
+var wsUrlRegistracionTelefono = 'http://200.58.118.98:50002/registrationinfo/'; 
+//
 var cotizacionesDestacada = null;
 var indexCotizacionesDestacada = null;
 var listaTodasCotizaciones = null;
@@ -140,7 +136,7 @@ function processErrorGuardarTelefono(data, status, req) {
 }
 
 function processSuccessGuardarTelefono(data, status, req) {
-    alert('processSuccessGuardarTelefono');
+    alert(status);
     if (status == "success") {
         var codigoRespuesta = 1;
         $(req.responseText).find('return').each(function () {
