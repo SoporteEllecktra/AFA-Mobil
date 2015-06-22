@@ -1,7 +1,13 @@
 var swiper = null;
 var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
-0
+
+$(document).ready(function () {
+    swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true
+    });
+
     CargaDeLosDatosPrevioTelefono();
 });
 $(document).ajaxStop(function () {
