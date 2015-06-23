@@ -261,7 +261,16 @@ function shareNuevo(expr) {
     } catch (exx) {
 
     }
-    window.plugins.socialsharing.share(ObtenerTxtCompartirCotizacionesDestacada());
+    var varPlatform = '';
+    if (localStorage.getItem("storagePlatform") != null) {
+        varPlatform = localStorage.getItem("storagePlatform");
+    }
+    if (varPlatform == 'WinCE' || varPlatform == 'Win32NT') {
+        window.plugins.socialsharing.share(ObtenerTxtCompartirCotizacionesDestacada(), null, null, null);
+        //window.plugins.socialsharing.share(ObtenerTxtCompartirCotizacionesDestacada());
+    } else {
+        window.plugins.socialsharing.share(ObtenerTxtCompartirCotizacionesDestacada());
+    }
 }
 
 function share(expr) {
@@ -388,14 +397,14 @@ function btnCerrarAlerta() {
 }
 
 function CargarVentanaAlerta(pTitulo, pDescripcion) {
-    
-     $('#divVentanaTitulo').html('');
-     $('#divVentanaDescripcio').html('');
+
+    $('#divVentanaTitulo').html('');
+    $('#divVentanaDescripcio').html('');
     if (pTitulo != '') {
-       $('#divVentanaTitulo').html(pTitulo);
+        $('#divVentanaTitulo').html(pTitulo);
     }
     if (pDescripcion != '') {
-      $('#divVentanaDescripcio').html(pDescripcion);
+        $('#divVentanaDescripcio').html(pDescripcion);
     }
 
 

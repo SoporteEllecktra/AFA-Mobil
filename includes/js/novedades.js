@@ -7,6 +7,7 @@ $(document).ready(function () {
     OcultarDivBloqueo();
     onresizeBody();
 });
+
 function onresizeBody() {
     var altura = ($(document).height() - $('#header').outerHeight());
     $('#divResultadoNovedades').css('height', altura);
