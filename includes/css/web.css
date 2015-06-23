@@ -364,21 +364,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
     font-size: 1.6em;
     text-align: center;
     font-weight: 700;
-    padding-top: 0.8em;
-    padding-bottom: 0.8em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .cssHistoricoEncabezado {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     border-bottom: 0.125em solid #C6C6C6;
     border-top: 0.125em solid #C6C6C6;
 }
 
 .cssHistorico {
     background-color: transparent;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .cssHistoricoImpar {
@@ -396,12 +396,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
 }
 
 .colHistoricoFecha {
-    font-size: 1.25em;
+    font-size: 1.1em;
     text-align: right;
 }
 
 .colHistoricoPrecio {
-    font-size: 1.25em;
+    font-size: 1.1em;
     text-align: left;
     font-weight: 600;
 }
@@ -809,7 +809,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
     border: none;
     width: 2.25em;
     height: 2.25em;
-    margin-top: 1.5em;
+    margin-top: 1em;/*1.5*/
 }
 /* Inicio informe */
 
@@ -830,6 +830,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
 .cssInformeDescripcion {
     overflow-y: auto;
     padding-right: 1em;
+    font-size: 0.9em;
 }
 
 .cssInformeDescripcion span {

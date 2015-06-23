@@ -69,9 +69,9 @@ function CargarTodasNovedadesHtml() {
             resultadoDiv += '<div class="cssNovedadesCategoria">'; 
             resultadoDiv += this.descripcionCategoria;
             resultadoDiv += '</div>';
-            resultadoDiv += '</td>';
-            resultadoDiv += '</table>';
+            resultadoDiv += '</td>';            
             resultadoDiv += '</tr>';
+            resultadoDiv += '</table>';
             resultadoDiv += '</div>';
             
             resultadoDiv += '</div>';
