@@ -913,9 +913,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
     background-color: #FFF;
     /*  width: 95%;    */
     
-    padding-bottom: 0.4em;
-    margin-left: 1.1em;
-    margin-right: 1.1em;
+    padding-bottom: 2em;
+    /*margin-left: 1.1em;
+    margin-right: 1.1em;*/
+    
+    padding-left: 1em;
+    padding-right: 1em;
+    
+
 }
 
 .cssContenedorTelefono {
@@ -926,7 +931,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
     background-size: cover;
 }
 
-#divContenedorTelefono {}
+#divContenedorTelefono {
+  
+ 
+}
 
 .cssTringuloTelefono {
     margin: 0 auto;
@@ -1015,6 +1023,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
     font-size: 3em;
     font-weight: 300;
     letter-spacing: -0.03em;
+    color: #FFF;
     /*-0.3px;*/
 }
 .cssTablaTelefono {
