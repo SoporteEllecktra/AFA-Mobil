@@ -132,7 +132,8 @@ function onNotification(e) {
 
 function onNotificationAPN(event) {
     if (event.alert) {
-        navigator.notification.alert(event.alert);
+        //navigator.notification.alert(event.alert);
+        CargarVentanaAlerta('',event.alert);
     }
 
     if (event.sound) {
@@ -181,7 +182,8 @@ function onNotificationWP8(e) {
         }
         if (e.type == "raw" && e.jsonContent) {
             //alert(JSON.stringify(e));
-            alert(e.jsonContent.Body);
+            //alert(e.jsonContent.Body);
+            CargarVentanaAlerta('',e.jsonContent.Body);
         }
     }
     //function onNotificationWP8(e) {
