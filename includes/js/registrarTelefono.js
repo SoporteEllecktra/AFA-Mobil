@@ -90,7 +90,7 @@ function onDeviceReady() {
 }
 
 function successHandler(result) {
-//  alert('Callback Success! Result = '+result);
+    //  alert('Callback Success! Result = '+result);
 }
 
 function errorHandler(error) {
@@ -116,9 +116,8 @@ function onNotification(e) {
 
             // alert(e.message); //'mensaje = ' 
             //CargarVentanaAlerta('', JSON.stringify(e));
-            if(e.message != '')
-            {
-            CargarVentanaAlerta(e.payload.title, e.message);
+            if (e.message != '') {
+                CargarVentanaAlerta(e.payload.title, e.message);
             }
             break;
 
@@ -159,7 +158,7 @@ function tokenHandler(result) {
 
         LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
     }
-/// fin iOS
+    /// fin iOS
 
 /// inicio WP8
 function channelHandler(event) {

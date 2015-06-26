@@ -1,6 +1,10 @@
 var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
+function onloadInicioPag() {
+    alert('onload');
+
+}
 
 function convertValorImporte(pValor) {
     var resultado = pValor.toString();

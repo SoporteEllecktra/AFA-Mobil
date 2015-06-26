@@ -194,6 +194,7 @@ function processSuccessAuditoria(data, status, req) {
                             var TablaModificacionesCotizaciones = eval('(' + fechaCotizacionesGuardada + ')');
                             var fechaCotizacionesUTC = obtenerFechaUTC(TablaModificacionesCotizaciones.fecha, TablaModificacionesCotizaciones.hora);
                             if (fechaCotizacionesNuevaUTC > fechaCotizacionesUTC) {
+                                //grabarStorageFechaCotizacion(listaTablaModificaciones[i].fecha);
                                 isCargarCotizaciones = true;
                             }
                         }
