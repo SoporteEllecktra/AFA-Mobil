@@ -116,7 +116,10 @@ function onNotification(e) {
 
             // alert(e.message); //'mensaje = ' 
             //CargarVentanaAlerta('', JSON.stringify(e));
+            if(e.message != '')
+            {
             CargarVentanaAlerta(e.payload.title, e.message);
+            }
             break;
 
         case 'error':
