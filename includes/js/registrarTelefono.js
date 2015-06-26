@@ -90,7 +90,7 @@ function onDeviceReady() {
 }
 
 function successHandler(result) {
-    //  alert('Callback Success! Result = '+result);
+//  alert('Callback Success! Result = '+result);
 }
 
 function errorHandler(error) {
@@ -113,10 +113,10 @@ function onNotification(e) {
         case 'message':
             // this is the actual push notification. its format depends on the data model from the push server
             //alert('message = ' + e.message + ' msgcnt = ' + e.msgcnt);
-                
-           // alert(e.message); //'mensaje = ' 
-              //CargarVentanaAlerta('', JSON.stringify(e));
-            CargarVentanaAlerta(e.payload.title,e.message);
+
+            // alert(e.message); //'mensaje = ' 
+            //CargarVentanaAlerta('', JSON.stringify(e));
+            CargarVentanaAlerta(e.payload.title, e.message);
             break;
 
         case 'error':
@@ -132,8 +132,8 @@ function onNotification(e) {
 
 function onNotificationAPN(event) {
     if (event.alert) {
-        //navigator.notification.alert(event.alert);
-        CargarVentanaAlerta('',event.alert);
+        navigator.notification.alert(event.alert);
+        //CargarVentanaAlerta('',event.alert);
     }
 
     if (event.sound) {
@@ -156,7 +156,7 @@ function tokenHandler(result) {
 
         LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
     }
-    /// fin iOS
+/// fin iOS
 
 /// inicio WP8
 function channelHandler(event) {
@@ -164,9 +164,7 @@ function channelHandler(event) {
     objDatosTelefono.regid = event.uri.replace(/\//g, 'ELLECKTRACODE');
     objDatosTelefono.type = 'mpn';
     var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
-
     LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
-
     //alert(event.uri);
 }
 
@@ -183,7 +181,7 @@ function onNotificationWP8(e) {
         if (e.type == "raw" && e.jsonContent) {
             //alert(JSON.stringify(e));
             //alert(e.jsonContent.Body);
-            CargarVentanaAlerta('',e.jsonContent.Body);
+            CargarVentanaAlerta('', e.jsonContent.Body);
         }
     }
     //function onNotificationWP8(e) {

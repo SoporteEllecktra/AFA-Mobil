@@ -39,7 +39,6 @@ function cotizacion() {
     this.listaDetalle = [];
     this.listaHistorico = [];
 }
-
 function novedades() {
     this.codigoNotificacion = 0;
     this.fecha = '';
@@ -96,11 +95,11 @@ function CargarParametroEntradaGuardarTelefono(pTelefono) {
         soapRequest += '</soapenv:Envelope>';
         return soapRequest;
     }
-    //function make_base_auth(user, password) {
-    //  var tok = user + ':' + password;
-    //  var hash = btoa(tok);
-    //  return "Basic " + hash;
-    //}
+//function make_base_auth(user, password) {
+//  var tok = user + ':' + password;
+//  var hash = btoa(tok);
+//  return "Basic " + hash;
+//}
 function funGuardarTelefono(pTelefono) {
     telefonoDelUsuario = pTelefono;
     $.ajax({
@@ -256,7 +255,6 @@ function processSuccessAuditoria(data, status, req) {
                 }
             }
             $.when(CargaCotizacionDestacada(), CargaNovedades(), CargaTodasCotizaciones(), CargaUltimoInforme()).done(funDoneAjax);
-
         }
     }
     //armarPagina se ejecuta solo si se obtienen las respuestas exitosas
