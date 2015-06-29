@@ -31,7 +31,7 @@ function CargaDeLosDatosPrevioTelefono() {
         if (varParametroUrl == '') {
             MostrarDivBloqueo();
             FuncionInicio();
-        } else {
+        } else if (varParametroUrl == '1') {
             //
             localStorage.setItem('storageIndexVolver', '');
             //
@@ -64,6 +64,8 @@ function CargaDeLosDatosPrevioTelefono() {
                 porcentajeAbajo = 0;
             }
             onresizeBody();
+        } else if (varParametroUrl == '2') {
+            onclickActualizar();
         }
     }
 }
@@ -315,7 +317,7 @@ function CargarCotizacionesDestacadaHtml() {
         //   $('#swiper-slide2').scrollTop(0);
         setTimeout(function () {
             CargarDeNuevoHistorico();
-        },500);
+        }, 500);
     });
 
     $('.collapse').on('hide.bs.collapse', function (e) {

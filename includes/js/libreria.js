@@ -1,11 +1,6 @@
 var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
-function onloadInicioPag() {
-    alert('onload');
-
-}
-
 function convertValorImporte(pValor) {
     var resultado = pValor.toString();
     if (resultado.indexOf('.') != -1) {
@@ -137,6 +132,14 @@ function CargarHtmlFechaMenuPrincipal() {
     $('#headerFecha').html(obtenerStorageFechaMenuPrincipal());
 }
 
+function obtenerFechaMostrarDsdCotizacionesDestacada(pValor) {
+    //var listaFecha = pValor.substring(0, 10).split('-');
+    var anio = pValor.substring(0, 4);
+    var mes = pValor.substring(5, 7);
+    var dia = pValor.substring(8, 10);
+    return dia + '/' + mes + '/' + anio;
+}
+
 function obtenerFechaMostrar(pValor) {
         var listaFecha = pValor.substring(0, 10).split('-');
         return listaFecha[2] + '/' + listaFecha[1] + '/' + listaFecha[0];
@@ -213,6 +216,7 @@ function MostrarDivBloqueo() {
 
 function OcultarDivBloqueo() {
     $('#divFondoBloqueo').css('display', 'none');
+    $('#divFondoBloqueo').css('opacity', '1');
 }
 
 function ActualizarAltoFondoBloqueo() {
@@ -416,3 +420,25 @@ function CargarVentanaAlerta(pTitulo, pDescripcion) {
 }
 
 /*Fin Ventana alerta*/
+
+/* Inicio Actualizar */
+function onclickActualizar() {
+    //$('.cssCalendario').css('','');
+    //alert('Ok');
+    $('#divFondoBloqueo').css('opacity', '0.8');
+    // localStorage.clear();
+    //localStorage.setItem('storagePlatform', 'Android');
+    MostrarDivBloqueo();
+    CargarAuditoria();
+}
+
+function onclickActualizarNoIndex() {
+    RedireccionarPagIndexActualizar();
+}
+
+function RedireccionarPagIndexActualizar() {
+    localStorage.setItem('storageIndexVolver', '2');
+    window.history.go(-1);
+}
+
+/* Fin Actualizar */

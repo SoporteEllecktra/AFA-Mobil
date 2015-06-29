@@ -5,7 +5,7 @@ var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webserv
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
 var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";
 //var wsUrlRegistracionTelefono = 'http://200.58.118.98:50002/registrationinfo/'; 
-var wsUrlRegistracionTelefono = 'http://190.210.143.156:50002/registrationinfo/'; 
+var wsUrlRegistracionTelefono = 'http://190.210.143.156:50002/registrationinfo/';
 //
 var cotizacionesDestacada = null;
 var indexCotizacionesDestacada = null;
@@ -39,6 +39,7 @@ function cotizacion() {
     this.listaDetalle = [];
     this.listaHistorico = [];
 }
+
 function novedades() {
     this.codigoNotificacion = 0;
     this.fecha = '';
@@ -48,11 +49,13 @@ function novedades() {
     this.codigoCategoria = 0;
     this.descripcionCategoria = '';
 }
+
 function modificacionesTabla() {
     this.codigoTabla = 0;
     this.fecha = '';
     this.hora = '';
 }
+
 function informes() {
     this.codigoInforme = 0;
     this.fecha = '';
@@ -60,10 +63,11 @@ function informes() {
     this.texto = '';
     this.url = '';
 }
+
 function FuncionInicio() {
     //
-    // localStorage.clear();
-    // localStorage.setItem('storagePlatform', 'Android');
+    //localStorage.clear();
+    //localStorage.setItem('storagePlatform', 'Android');
     //
     var isGuardarTelefono = false;
     if (localStorage.getItem("storageTelefono") == null) {
@@ -95,11 +99,11 @@ function CargarParametroEntradaGuardarTelefono(pTelefono) {
         soapRequest += '</soapenv:Envelope>';
         return soapRequest;
     }
-//function make_base_auth(user, password) {
-//  var tok = user + ':' + password;
-//  var hash = btoa(tok);
-//  return "Basic " + hash;
-//}
+    //function make_base_auth(user, password) {
+    //  var tok = user + ':' + password;
+    //  var hash = btoa(tok);
+    //  return "Basic " + hash;
+    //}
 function funGuardarTelefono(pTelefono) {
     telefonoDelUsuario = pTelefono;
     $.ajax({
@@ -185,6 +189,7 @@ function processSuccessAuditoria(data, status, req) {
             if (listaTablaModificaciones != null) {
                 for (var i = 0; i < listaTablaModificaciones.length; i++) {
                     if (listaTablaModificaciones[i].codigoTabla == 1) { //Cotizaciones
+                        //alert(listaTablaModificaciones[i].fecha);
                         grabarStorageFechaCotizacion(listaTablaModificaciones[i].fecha);
                         if (localStorage.getItem("storageTablaModificaciones1") == null) {
                             isCargarCotizaciones = true;
@@ -378,6 +383,9 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         cotizacionesDestacada.push(obj);
     });
     if (cotizacionesDestacada.length > 0) {
+        // Inicio Cargar Fecha Actual
+        grabarStorageFechaCotizacion(obtenerFechaMostrarDsdCotizacionesDestacada(cotizacionesDestacada[0].fechaCotizacion));
+        // Fin Cargar Fecha Actual
         indexCotizacionesDestacada = 0;
         CargaConIndiceDetalleCotizacion(indexCotizacionesDestacada);
     }
