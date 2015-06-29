@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-
     var isVolverIndex = true;
     if (localStorage.getItem("storageTelefono") == null) {
         isVolverIndex = false;
@@ -10,8 +8,6 @@ $(document).ready(function () {
     }
 
     onresizeBody();
-
-
 
 });
 
