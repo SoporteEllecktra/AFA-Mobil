@@ -150,6 +150,7 @@ function processSuccessGuardarTelefono(data, status, req) {
         if (codigoRespuesta == 0) {
             localStorage.setItem('storageTelefono', telefonoDelUsuario);
         }
+        $('#divFondoBloqueo').css('display', 'block');
         window.location.href = "index.html";
         //window.history.go(-1);
     }
