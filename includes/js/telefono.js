@@ -1,19 +1,22 @@
 $(document).ready(function () {
+    // localStorage.clear();
+    //localStorage.setItem('storagePlatform', 'Android');
     var isVolverIndex = true;
     if (localStorage.getItem("storageTelefono") == null) {
         isVolverIndex = false;
     }
     if (isVolverIndex) {
         window.location.href = "index.html";
+    } else {
+        OcultarDivBloqueo();
     }
-
     onresizeBody();
-
 });
 
 function onresizeBody() {
     //var altura = ($(document).height() - $('#header').height());
     //$('#divResultadoNovedades').css('height', altura);
+    ActualizarAltoFondoBloqueo();
 }
 
 function CargarTodasNovedadesHtml() {
@@ -39,8 +42,6 @@ function onclickIngresarTelefono() {
             } else {
                 alert('Formato del número incorrecto');
             }
-
-
         }
     }
 }
