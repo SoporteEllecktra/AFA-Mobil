@@ -150,8 +150,8 @@ function processSuccessGuardarTelefono(data, status, req) {
         if (codigoRespuesta == 0) {
             localStorage.setItem('storageTelefono', telefonoDelUsuario);
         }
-        window.location.href = "index.html";
-        //window.history.go(-1);
+        //window.location.href = "index.html";
+        window.history.go(-1);
     }
 }
 

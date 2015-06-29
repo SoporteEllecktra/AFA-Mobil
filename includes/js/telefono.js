@@ -1,6 +1,18 @@
 $(document).ready(function () {
 
+
+    var isVolverIndex = true;
+    if (localStorage.getItem("storageTelefono") == null) {
+        isVolverIndex = false;
+    }
+    if (isVolverIndex) {
+        window.location.href = "index.html";
+    }
+
     onresizeBody();
+
+
+
 });
 
 function onresizeBody() {
@@ -26,7 +38,7 @@ function onclickIngresarTelefono() {
         var varTelefono = $('#txtTelefonoArea').val() + $('#txtTelefono').val();
         if (varTelefono != '') {
             if (varTelefono.length == 10) {
-                 //alert('Ok');
+                //alert('Ok');
                 funGuardarTelefono(varTelefono);
             } else {
                 alert('Formato del número incorrecto');
