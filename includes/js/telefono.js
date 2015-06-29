@@ -8,7 +8,7 @@ $(document).ready(function () {
     if (isVolverIndex) {
         window.location.href = "index.html";
     } else {
-        OcultarDivBloqueo();
+       // OcultarDivBloqueo();
     }
     onresizeBody();
 });
@@ -16,7 +16,7 @@ $(document).ready(function () {
 function onresizeBody() {
     //var altura = ($(document).height() - $('#header').height());
     //$('#divResultadoNovedades').css('height', altura);
-    ActualizarAltoFondoBloqueo();
+   // ActualizarAltoFondoBloqueo();
 }
 
 function CargarTodasNovedadesHtml() {
