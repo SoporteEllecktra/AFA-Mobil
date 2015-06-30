@@ -174,7 +174,9 @@ function channelHandler(event) {
 
 //handle MPNS notifications for WP8
 function onNotificationWP8(e) {
-        alert('wp8: ' + JSON.stringify(e));
+        if (e.jsonContent) {
+            CargarVentanaAlerta(e.jsonContent["wp:Text1"], e.jsonContent["wp:Text2"]);
+        }
         if (e.type == "toast" && e.jsonContent) {
             pushNotification.showToastNotification(successHandler, errorHandler, {
                 "Title": e.jsonContent["wp:Text1"],
