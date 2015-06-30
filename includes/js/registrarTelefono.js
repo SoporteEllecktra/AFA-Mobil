@@ -134,8 +134,9 @@ function onNotification(e) {
 
 function onNotificationAPN(event) {
     if (event.alert) {
-        navigator.notification.alert(event.alert);
-        //CargarVentanaAlerta('',event.alert);
+       // navigator.notification.alert(event.alert);
+        CargarVentanaAlerta('','hola: ' + event.alert);
+        
     }
 
     if (event.sound) {
