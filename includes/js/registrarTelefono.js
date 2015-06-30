@@ -133,13 +133,13 @@ function onNotification(e) {
     /// inicio iOS
 
 function onNotificationAPN(event) {
-    CargarVentanaAlerta('','hola event object: ' + JSON.stringify(event));
-    if (event.alert) {
-       // navigator.notification.alert(event.alert);
-        CargarVentanaAlerta('','hola event object: ' + JSON.stringify(event));
-        
-    }
 
+    //    if (event.alert) {
+    //        navigator.notification.alert(event.alert);
+    //    }
+    if (event.body) {
+        CargarVentanaAlerta(event.title, event.body);
+    }
     if (event.sound) {
         var snd = new Media(event.sound);
         snd.play();
