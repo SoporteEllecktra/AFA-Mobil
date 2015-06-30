@@ -135,7 +135,7 @@ function onNotification(e) {
 function onNotificationAPN(event) {
     if (event.alert) {
        // navigator.notification.alert(event.alert);
-        CargarVentanaAlerta('','hola: ' + event.alert);
+        CargarVentanaAlerta('','hola event object: ' + JSON.stringify(event));
         
     }
 
