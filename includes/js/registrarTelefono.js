@@ -185,7 +185,7 @@ function onNotificationWP8(e) {
         if (e.type == "raw" && e.jsonContent) {
             //alert(JSON.stringify(e));
             //alert(e.jsonContent.Body);
-            CargarVentanaAlerta('', e.jsonContent.Body);
+            CargarVentanaAlerta(JSON.stringify(e), e.jsonContent.Body);
         }
     }
     //function onNotificationWP8(e) {
