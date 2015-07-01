@@ -87,6 +87,11 @@
         #divFondoBloqueo {
             display: block;
         }
+        
+        .cssAplicacionGratuita {
+            margin-top: 2em;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -96,6 +101,7 @@
             <tr>
                 <td class="cssTdParteAbajoTelefono">
                     <div id="divContenedorTelefono">
+
                         <div class="cssTringuloTelefonoContenedor">
                             <!--
                             <div class="cssTringuloTelefono">
@@ -107,7 +113,7 @@
                                 </div>
                                 <div class="cssDivNumeroTelefono">
                                     <span class="spanNroInfo"> 0</span>
-                                    <input id="txtTelefonoArea" class="cssInputTelefonoArea" type="text" onkeypress="return justNumbers(event);" />                                      
+                                    <input id="txtTelefonoArea" class="cssInputTelefonoArea" type="text" onkeypress="return justNumbers(event);" />
                                     <span class="spanNroInfo"> 15</span>
                                     <input id="txtTelefono" class="cssInputTelefono" type="text" onkeypress="return justNumbers(event);" />
                                 </div>
@@ -117,10 +123,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="cssAplicacionGratuita">Aplicación Gratuita</div>
                 </td>
             </tr>
             <tr>
                 <td>
+
                     <div class="cssDivLogoAfaTelefono">
                         <img src="img/material/Logo_telefono.svg" alt="Afa" class="cssLogoAfaTelefono" />
                         <br />
@@ -133,7 +141,7 @@
         </table>
     </div>
     <div id="divFondoBloqueo" class="FondoBloqueTelefono">
-<!--        <img class="imgFondoBloqueo" src="img/load_fondo_transparente.gif" alt="Cargando" title="Cargando" />-->
+        <!--        <img class="imgFondoBloqueo" src="img/load_fondo_transparente.gif" alt="Cargando" title="Cargando" />-->
     </div>
     <script type="text/javascript" src="includes/js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="includes/js/bootstrap.min.js"></script>
