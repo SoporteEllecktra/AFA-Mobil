@@ -110,7 +110,7 @@ function onmouseupAmpliar(e) {
 
 function onresizeBody() {
     //
-    var altura = ($(document).height() - $('#header').outerHeight());
+    var altura = ($(document).height() - ($('#header').outerHeight() + $('#StatusBar').outerHeight()));
     var alturaCotizacionesDestacada = altura * porcentajeArriba; //0.55;
     // incio redondear para abajo
     var arrAlturaCotizacionesDestacada = alturaCotizacionesDestacada.toString().split(".");
