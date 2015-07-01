@@ -191,7 +191,7 @@ function processSuccessAuditoria(data, status, req) {
                 for (var i = 0; i < listaTablaModificaciones.length; i++) {
                     if (listaTablaModificaciones[i].codigoTabla == 1) { //Cotizaciones
                         //alert(listaTablaModificaciones[i].fecha);
-                        grabarStorageFechaCotizacion(listaTablaModificaciones[i].fecha);
+                        //grabarStorageFechaCotizacion(listaTablaModificaciones[i].fecha);
                         if (localStorage.getItem("storageTablaModificaciones1") == null) {
                             isCargarCotizaciones = true;
                         } else {
