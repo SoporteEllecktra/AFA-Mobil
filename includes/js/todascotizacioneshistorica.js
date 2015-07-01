@@ -12,7 +12,7 @@ $(document).ready(function () {
 });
 
 function onresizeBody() {
-    var altura = ($(document).height() - $('#header').outerHeight());
+    var altura = ($(document).height() - ($('#header').outerHeight() + $('#StatusBar').outerHeight()));
     $('#divResultadoTodasCotizacionesHistorica').css('height', altura);
     $('#divRowParteScrollTodosHistoricoCotizaciones').css('height', altura - ($('#divRowTodosHistoricoCotizacionesTitulo').outerHeight() + $('#divRowTodosHistoricoCotizacionesEncabezado').outerHeight()));
 }
@@ -66,11 +66,11 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
                 //
                 var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valorString).length;
                 var strCantValorMonedaHistorico = '';
-//                if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
-//                    for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
-//                        strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
-//                    }
-//                }
+                //                if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
+                //                    for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
+                //                        strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
+                //                    }
+                //                }
                 //
                 // resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
                 resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valorString;

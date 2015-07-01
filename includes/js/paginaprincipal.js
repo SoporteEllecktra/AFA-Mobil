@@ -7,7 +7,7 @@ $(document).ready(function () {
         pagination: '.swiper-pagination',
         paginationClickable: true
     });
-
+    
     CargaDeLosDatosPrevioTelefono();
 });
 $(document).ajaxStop(function () {
@@ -17,6 +17,7 @@ $(document).ajaxStop(function () {
 
 function CargaDeLosDatosPrevioTelefono() {
     // alert(localStorage.getItem("storagePlatform"));
+    //localStorage.setItem('storagePlatform', 'Android');
     if (localStorage.getItem("storagePlatform") == null) {
         setTimeout(function () {
             CargaDeLosDatosPrevioTelefono();

@@ -9,7 +9,7 @@ $(document).ready(function () {
 });
 
 function onresizeBody() {
-    var altura = ($(document).height() - $('#header').outerHeight());
+    var altura = ($(document).height() - ($('#header').outerHeight() + $('#StatusBar').outerHeight()));
     $('#divResultadoTodasCotizaciones').css('height', altura);
 
     $('#divParteScrollTodasCotizaciones').css('height', altura - ($('#divRowTodasCotizacionesTitulo').outerHeight() + $('#divRowTodasCotizacionesEncabezado').outerHeight()));
@@ -75,11 +75,11 @@ function CargarTodasCotizacionesHtml() {
 
             var cantValorMonedaAUXTodasCotizaciones = this.abreviaturaMoneda.length + String(this.valorString).length;
             var strCantValorMonedaTodasCotizaciones = '';
-//            if (cantValorMonedaAUXTodasCotizaciones < cantValorMonedaTodasCotizaciones) {
-//                for (var iValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones; iValorMonedaTodasCotizaciones < cantValorMonedaTodasCotizaciones; iValorMonedaTodasCotizaciones++) {
-//                    strCantValorMonedaTodasCotizaciones += '&nbsp;' + '&nbsp;';
-//                }
-//            }
+            //            if (cantValorMonedaAUXTodasCotizaciones < cantValorMonedaTodasCotizaciones) {
+            //                for (var iValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones; iValorMonedaTodasCotizaciones < cantValorMonedaTodasCotizaciones; iValorMonedaTodasCotizaciones++) {
+            //                    strCantValorMonedaTodasCotizaciones += '&nbsp;' + '&nbsp;';
+            //                }
+            //            }
             resultadoDiv += strCantValorMonedaTodasCotizaciones + this.abreviaturaMoneda + ' ' + this.valorString;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesObservacion">';

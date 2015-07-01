@@ -17,7 +17,7 @@ body {
     top: 0;
 }
 .StatusBar{
-background-color: #606966;
+background-color: #000;/* #606966;*/
 height: 0.8em;    
 }
 .container .col {
