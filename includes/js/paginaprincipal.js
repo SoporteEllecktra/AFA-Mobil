@@ -16,7 +16,7 @@ $(document).ajaxStop(function () {
 });
 
 function CargaDeLosDatosPrevioTelefono() {
-    // alert(localStorage.getItem("storagePlatform"));
+    //alert(localStorage.getItem("storagePlatform"));
     //localStorage.setItem('storagePlatform', 'Android');
     if (localStorage.getItem("storagePlatform") == null) {
         setTimeout(function () {
