@@ -46,7 +46,7 @@ function onDeviceReady() {
         try {
             pushNotification.register(successHandler, errorHandler, {
                // "senderID": "970066199992",
-                "senderID": "347764234854",
+                  "senderID": "347764234854",
                 "ecb": "onNotification"
             });
         } catch (err) {
