@@ -45,7 +45,8 @@ function onDeviceReady() {
     if (device.platform == 'android' || device.platform == 'Android') {
         try {
             pushNotification.register(successHandler, errorHandler, {
-                "senderID": "970066199992",
+               // "senderID": "970066199992",
+                "senderID": "347764234854",
                 "ecb": "onNotification"
             });
         } catch (err) {
@@ -67,7 +68,8 @@ function onDeviceReady() {
             alert('pushNotificationiOS - error: ' + err.message);
         }
     } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
-        var channelName = '34923EIGApp.EIGPush';
+        //var channelName = '34923EIGApp.EIGPush';
+        var channelName = 'AFASCL.AFAMvil';
         try {
             pushNotification.register(
                 channelHandler,
