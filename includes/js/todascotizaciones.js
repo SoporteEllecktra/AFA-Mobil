@@ -20,7 +20,7 @@ function CargarTodasCotizacionesHtml() {
     if (listaTodasCotizaciones.length > 0) {
         resultadoDiv += '<div id="divRowTodasCotizacionesTitulo" class="row">';
         resultadoDiv += '<div class="col-xs-10 cssColTodasCotizacionesTitulo">';
-        resultadoDiv += 'Cotizaciones de hoy';
+        resultadoDiv += 'Cotizaciones';
         resultadoDiv += '</div>';
         //
         resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenVerMasCotizacionesAbajo()"
