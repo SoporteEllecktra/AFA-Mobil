@@ -1,6 +1,18 @@
 var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
+var applicationStorage = [];
+
+function getItemApplicationStorage(item_key_value) {
+    for (var i = 0; i < applicationStorage.length; i++) {
+        var item = applicationStorage[i];
+        if (item.key && item.key == item_key_value) {
+            return item.values;
+        }
+    }
+    return '';
+}
+
 function convertValorImporte(pValor) {
     var resultado = pValor.toString();
     if (resultado.indexOf('.') != -1) {
@@ -29,8 +41,10 @@ function toString00(pNro) {
 function isMobile() {
     var resultado = false;
     var varPlatform = '';
-    if (localStorage.getItem("storagePlatform") != null) {
+    if (window.localStorage && localStorage.getItem("storagePlatform") != null && localStorage.getItem("storagePlatform")  != '') {
         varPlatform = localStorage.getItem("storagePlatform");
+    } else {
+        return false;
     }
     if (varPlatform === 'android' || varPlatform === 'Android') {
         return (/Mobile/.test(navigator.userAgent));
@@ -96,7 +110,8 @@ function grabarStorageIndexCotizacionDestacadaSeleccionda(pValor) {
     if (window.localStorage) {
         localStorage.setItem('storageIndexCotizacionDestacadaSeleccionda', pValor);
     } else {
-
+        var item = {'key': 'storageIndexCotizacionDestacadaSeleccionda', 'values': pValor};
+        applicationStorage.push(item);
     }
 }
 
@@ -105,7 +120,7 @@ function obtenerStorageIndexCotizacionDestacadaSeleccionda() {
     if (window.localStorage) {
         resultado = parseInt(localStorage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
     } else {
-
+        resultado = parseInt(getItemApplicationStorage('storageIndexCotizacionDestacadaSeleccionda'));
     }
     return resultado;
 }
@@ -114,7 +129,8 @@ function grabarStorageFechaCotizacion(pValor) {
     if (window.localStorage) {
         localStorage.setItem('storageFechaCotizaciones', pValor);
     } else {
-
+        var item = {'key': 'storageFechaCotizaciones', 'values': pValor};
+        applicationStorage.push(item);
     }
 }
 
@@ -123,7 +139,7 @@ function obtenerStorageFechaMenuPrincipal() {
     if (window.localStorage) {
         resultado = obtenerFechaMostrarMenuInicio(localStorage.getItem('storageFechaCotizaciones'));
     } else {
-
+        resultado = parseInt(getItemApplicationStorage('storageFechaCotizaciones'));
     }
     return resultado;
 }

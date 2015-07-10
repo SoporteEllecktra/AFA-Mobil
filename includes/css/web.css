@@ -839,6 +839,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
 
 .cssInformeDescripcion span {
     font-size: 1.25em!important;
+    color: #FFFFFF!important;
 }
 
 #divInformeDescripcion.cssInformeDescripcion p span{

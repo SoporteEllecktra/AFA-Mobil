@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="afa.diario.afascl.coop" versionCode="0.9" version="0.9">
-
+    <name>AFA Móvil SCL</name>
     <access origin="*" />
     <access origin=".*" />
     <preference name="phonegap-version" value="3.7.0" />
@@ -34,7 +34,7 @@
     <preference name="LoadUrlTimeoutValue" value="20000" />
     <preference name="disable-cursor" value="true" />
     <preference name="android-windowSoftInputMode" value="adjustResize" />
-    
+
 <!--
     <preference name="StatusBarOverlaysWebView" value="false" />
 -->
