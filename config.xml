@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="afa.diario.afascl.coop" versionCode="0.95" version="0.95">
-    <name>AFA Móvil SCL</name>
+    <name>AFA Móvil</name>
     <access origin="*" />
     <access origin=".*" />
     <preference name="phonegap-version" value="3.7.0" />
@@ -50,7 +50,6 @@
     <gap:plugin name="org.apache.cordova.file-transfer" />
     <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.media-capture" />
--->
 
     <gap:plugin name="org.apache.cordova.console" />
     <gap:plugin name="org.apache.cordova.contacts" />
@@ -64,7 +63,7 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
-
+-->
     <icon src="img/Iconos/IOS6_57X57.png" gap:platform="ios" width="57" height="57" />
     <icon src="img/Iconos/IOS6_72X72.png" gap:platform="ios" width="72" height="72" />
     <icon src="img/Iconos/IOS6_114X114.png" gap:platform="ios" width="114" height="114" />
