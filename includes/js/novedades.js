@@ -28,11 +28,11 @@ function CargarTodasNovedadesHtml() {
             } else {
                 resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
             }
-            //resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+            // resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
             resultadoDiv += '</div>';
-            //
+
             resultadoDiv += '<div class="col-xs-11 ">';
-            //
+
             // Primer fila novedades
             resultadoDiv += '<div class="row">';
             if (indiceNovedades == 0) {
@@ -92,6 +92,6 @@ function CargarTodasNovedadesHtml() {
 }
 
 function onclickFullScreenNovedadesAbajo() {
-    //  window.location.href = "index.html?r=1";
+    //window.location.href = "index.html?r=1";
     RedireccionarPagIndex();
 }

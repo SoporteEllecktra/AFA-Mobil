@@ -146,6 +146,8 @@ function obtenerStorageFechaMenuPrincipal() {
 
 function CargarHtmlFechaMenuPrincipal() {
     $('#headerFecha').html(obtenerStorageFechaMenuPrincipal());
+	$('#headerFecha').css('cursor', 'pointer');
+	$('#headerFecha').attr('onclick', 'window.location.href = "index.html"');
 }
 
 function obtenerFechaMostrarDsdCotizacionesDestacada(pValor) {
@@ -271,7 +273,6 @@ function obtenerParametroGetHtml(param) { //$_GET(param)
 function onSuccessCopy(args) {
     //alert(args);
     // window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () {  }, function (errormsg) { });
-
 }
 
 function onErrorCopy(ex) {
@@ -327,9 +328,9 @@ function share(expr) {
     case "WhatsApp":
         //window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
         window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */ , null /* url */ , function () {
-            console.log('share ok')
+            //console.log('share ok')
         }, function (errormsg) {
-            console.log(errormsg)
+            //console.log(errormsg)
         });
         break;
     case "share":
@@ -382,7 +383,6 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
 }
 
 function loadURL(url) {
-    //alert(url);
     try {
         var varPlatform = '';
         if (localStorage.getItem("storagePlatform") != null) {
@@ -398,8 +398,8 @@ function loadURL(url) {
             window.open(url, '_system');
         }
     } catch (ex) {
-        // alert(ex);
-        //     return false;
+        alert('No se puede acceder al recurso externo. Intente nuevamente');
+        // return false;
     }
     //  return false;
 }
@@ -430,7 +430,6 @@ function CargarVentanaAlerta(pTitulo, pDescripcion) {
     if (pDescripcion != '') {
         $('#divVentanaDescripcio').html(pDescripcion);
     }
-
 
     $('#divVentanaAlertaContenedor').css('display', 'block');
 }

@@ -1,23 +1,31 @@
+/*var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
+var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
+var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";*/
+
 var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:8080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:8080/Concentrador/webservices/InformeService?wsdl/";
 var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:8080/Concentrador/webservices/TelefonoService?wsdl/";
-//var wsUrlRegistracionTelefono = 'http://200.58.118.98:50002/registrationinfo/'; 
+
+//var wsUrlRegistracionTelefono = 'http://200.58.118.98:50002/registrationinfo/';
 var wsUrlRegistracionTelefono = 'http://190.210.143.156:50002/registrationinfo/';
-//
+
 var cotizacionesDestacada = null;
 var indexCotizacionesDestacada = null;
 var listaTodasCotizaciones = null;
 var listaNovedades = null;
 var listaTablaModificaciones = null;
 var listaInformes = null;
-//
+
 var isCargarCotizaciones = true;
 var isCargarNotificaciones = true;
 var isCargarInformes = true;
-//
+
 var telefonoDelUsuario = '';
 
 function cotizacion() {
@@ -65,24 +73,21 @@ function informes() {
 }
 
 function FuncionInicio() {
-    //
-    //localStorage.clear();
-    //localStorage.setItem('storagePlatform', 'Android');
-   //
     var isGuardarTelefono = false;
-    if (localStorage.getItem("storageTelefono") == null) {
-        isGuardarTelefono = isMobile();
+	if (window.localStorage) {
+		if (localStorage.getItem("storageTelefono") == null) {
+			isGuardarTelefono = isMobile();
 
-        if (!isGuardarTelefono) {
-            localStorage.setItem('storageTelefono', '');
-        }
-    }
-    if (isGuardarTelefono) {
-        window.location.href = "telefono.html";
-    } else {
-        CargarAuditoria();
-    }
-    //CargarAuditoria();
+			if (!isGuardarTelefono) {
+				localStorage.setItem('storageTelefono', '');
+			}
+		}
+		if (isGuardarTelefono) {
+			window.location.href = "telefono.html";
+		} else {
+			CargarAuditoria();
+		}
+	} // Falta definir q pasa en caso de que no haya soporte al localStorage!!!
 }
 
 function CargarParametroEntradaGuardarTelefono(pTelefono) {
@@ -97,13 +102,10 @@ function CargarParametroEntradaGuardarTelefono(pTelefono) {
         soapRequest += '</ser:guardarTelefono>';
         soapRequest += '</soapenv:Body>';
         soapRequest += '</soapenv:Envelope>';
+
         return soapRequest;
     }
-    //function make_base_auth(user, password) {
-    //  var tok = user + ':' + password;
-    //  var hash = btoa(tok);
-    //  return "Basic " + hash;
-    //}
+
 function funGuardarTelefono(pTelefono) {
     telefonoDelUsuario = pTelefono;
     $.ajax({
@@ -115,8 +117,6 @@ function funGuardarTelefono(pTelefono) {
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Password', 'pass123');
             xhr.setRequestHeader('Username', 'user');
-            //        Password: pass123 
-            //        Username: user
         },
         crossDomain: true,
         xhrFields: {
@@ -134,13 +134,10 @@ function funGuardarTelefono(pTelefono) {
 }
 
 function processErrorGuardarTelefono(data, status, req) {
-    //localStorage.setItem('storageTelefono', telefonoDelUsuario);
-    //window.location.href = "index.html";
-    processError(data, status, req);
+    window.location.href = "error.html?status=1";
 }
 
 function processSuccessGuardarTelefono(data, status, req) {
-    //alert(status);
     if (status == "success") {
         var codigoRespuesta = 1;
         $(req.responseText).find('return').each(function () {
@@ -157,22 +154,14 @@ function processSuccessGuardarTelefono(data, status, req) {
 }
 
 function CargarAuditoria() {
-    //alert('CargarAuditoria');
     listaTablaModificaciones = null;
     $.ajax({
         type: "POST",
         url: wsUrlAuditoria,
-        contentType: "application/xml; charset=utf-8", //"text/xml",
+        contentType: "application/xml; charset=utf-8",
         dataType: "xml",
         crossDomain: true,
-        xhrFields: {
-            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-            // This can be used to set the 'withCredentials' property.
-            // Set the value to 'true' if you'd like to pass cookies to the server.
-            // If this is enabled, your server must respond with the header
-            // 'Access-Control-Allow-Credentials: true'.
-            withCredentials: true
-        },
+        xhrFields: { withCredentials: true },
         data: CargarParametroEntradaAuditoria(),
         success: processSuccessAuditoria,
         error: processErrorAuditoria
@@ -181,18 +170,20 @@ function CargarAuditoria() {
 
 function processSuccessAuditoria(data, status, req) {
         if (status == "success") {
-            //alert('CargarAuditoria Ok');
-            //1:"Cotizaciones", 2:"Notificaciones", 3:"Informes"   
+            // codigoTabla == 1:"Cotizaciones", 2:"Notificaciones", 3:"Informes"   
             isCargarCotizaciones = false;
             isCargarNotificaciones = false;
             isCargarInformes = false;
             CargarResultadoAuditoriaJavascript(req.responseText);
             if (listaTablaModificaciones != null) {
+				//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
                 for (var i = 0; i < listaTablaModificaciones.length; i++) {
+					//console.log(listaTablaModificaciones[i]);
                     if (listaTablaModificaciones[i].codigoTabla == 1) { //Cotizaciones
                         //alert(listaTablaModificaciones[i].fecha);
                         //grabarStorageFechaCotizacion(listaTablaModificaciones[i].fecha);
                         if (localStorage.getItem("storageTablaModificaciones1") == null) {
+							//alert("HAY UPDATES COTIS SIN ALMACENAR");
                             isCargarCotizaciones = true;
                         } else {
                             var fechaCotizacionesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
@@ -201,13 +192,16 @@ function processSuccessAuditoria(data, status, req) {
                             var fechaCotizacionesUTC = obtenerFechaUTC(TablaModificacionesCotizaciones.fecha, TablaModificacionesCotizaciones.hora);
                             if (fechaCotizacionesNuevaUTC > fechaCotizacionesUTC) {
                                 //grabarStorageFechaCotizacion(listaTablaModificaciones[i].fecha);
+								//alert("HAY UPDATES COTIS NUEVAS");
                                 isCargarCotizaciones = true;
                             }
                         }
                         var tablaModificacionesCotizacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
                         localStorage.setItem('storageTablaModificaciones1', tablaModificacionesCotizacionesAGuardar);
-                    } else if (listaTablaModificaciones[i].codigoTabla == 2) { //Notificaciones
+                    } else 
+					if (listaTablaModificaciones[i].codigoTabla == 2) { //Notificaciones
                         if (localStorage.getItem("storageTablaModificaciones2") == null) {
+							//alert("HAY UPDATES NOTIF SIN ALMACENAR");
                             isCargarNotificaciones = true;
                         } else {
                             var fechaNotificacionesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
@@ -215,13 +209,16 @@ function processSuccessAuditoria(data, status, req) {
                             var TablaModificacionesNotificaciones = eval('(' + fechaNotificacionesGuardada + ')');
                             var fechaNotificacionesUTC = obtenerFechaUTC(TablaModificacionesNotificaciones.fecha, TablaModificacionesNotificaciones.hora);
                             if (fechaNotificacionesNuevaUTC > fechaNotificacionesUTC) {
+								//alert("HAY UPDATES NOTIF NUEVAS");
                                 isCargarNotificaciones = true;
                             }
                         }
                         var tablaModificacionesNotificacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
                         localStorage.setItem('storageTablaModificaciones2', tablaModificacionesNotificacionesAGuardar);
-                    } else if (listaTablaModificaciones[i].codigoTabla == 3) { //Informes
+                    } else
+					if (listaTablaModificaciones[i].codigoTabla == 3) { //Informes
                         if (localStorage.getItem("storageTablaModificaciones3") == null) {
+							//alert("HAY UPDATES INFORMES SIN ALMACENAR");
                             isCargarInformes = true;
                         } else {
                             var fechaInformesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
@@ -229,6 +226,7 @@ function processSuccessAuditoria(data, status, req) {
                             var TablaModificacionesInformes = eval('(' + fechaInformesGuardada + ')');
                             var fechaInformesUTC = obtenerFechaUTC(TablaModificacionesInformes.fecha, TablaModificacionesInformes.hora);
                             if (fechaInformesNuevaUTC > fechaInformesUTC) {
+								//alert("HAY UPDATES INFORMES NUEVOS");
                                 isCargarInformes = true;
                             }
                         }
@@ -236,36 +234,39 @@ function processSuccessAuditoria(data, status, req) {
                         localStorage.setItem('storageTablaModificaciones3', tablaModificacionesInformesAGuardar);
                     }
                 }
-            }
-            if (!isCargarCotizaciones) {
-                if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
-                    isCargarCotizaciones = true;
-                } else {
-                    var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-                    cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
-                }
-            }
-            if (!isCargarNotificaciones) {
-                if (localStorage.getItem("storageListaNovedades") == null) {
-                    isCargarNotificaciones = true;
-                } else {
-                    var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-                    listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-                }
-            }
-            if (!isCargarInformes) {
-                if (localStorage.getItem("storageListaInformes") == null) {
-                    isCargarInformes = true;
-                } else {
-                    var listaInformesGuardada = localStorage.getItem("storageListaInformes");
-                    listaInformes = eval('(' + listaInformesGuardada + ')');
-                }
-            }
+				// NO hay updates o lo nuevo ya se tiene guardado, obtener la info desde lo almacenado
+				// Hay que tener en cuenta q si NO hay soporte al Local Storage,
+				// al startup de la app esto debe dar error porque NO hay nada almacenado
+				if (!isCargarCotizaciones) {
+					if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
+						isCargarCotizaciones = true;
+					} else {
+						var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+						cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+					}
+				}
+				if (!isCargarNotificaciones) {
+					if (localStorage.getItem("storageListaNovedades") == null) {
+						isCargarNotificaciones = true;
+					} else {
+						var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
+						listaNovedades = eval('(' + listaNovedadesGuardada + ')');
+					}
+				}
+				if (!isCargarInformes) {
+					if (localStorage.getItem("storageListaInformes") == null) {
+						isCargarInformes = true;
+					} else {
+						var listaInformesGuardada = localStorage.getItem("storageListaInformes");
+						listaInformes = eval('(' + listaInformesGuardada + ')');
+					}
+				}
+			}
+
             $.when(CargaCotizacionDestacada(), CargaNovedades(), CargaTodasCotizaciones(), CargaUltimoInforme()).done(funDoneAjax);
         }
     }
-    //armarPagina se ejecuta solo si se obtienen las respuestas exitosas
-    // a las dos requests.
+
 function funDoneAjax(a, b, c, d) {
     // a es un array con los argumentos que recibiria de la primer request,
     // b lo mismo pero para la segunda request.
@@ -295,24 +296,15 @@ function CargarResultadoAuditoriaJavascript(pXML) {
     });
 }
 
-
 function CargaCotizacionDestacada() {
-    //alert('CargaCotizacionDestacada');
     if (isCargarCotizaciones) {
         $.ajax({
             type: "POST",
             url: wsUrlCotizacion,
-            contentType: "application/xml; charset=utf-8", //"text/xml",
+            contentType: "application/xml; charset=utf-8",
             dataType: "xml",
             crossDomain: true,
-            xhrFields: {
-                // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-                // This can be used to set the 'withCredentials' property.
-                // Set the value to 'true' if you'd like to pass cookies to the server.
-                // If this is enabled, your server must respond with the header
-                // 'Access-Control-Allow-Credentials: true'.
-                withCredentials: true
-            },
+            xhrFields: { withCredentials: true },
             //data: CargarParametroEntradaCotizaciones(1, 14, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessCotizacionDestacada,
@@ -327,42 +319,96 @@ function processSuccessCotizacionDestacada(data, status, req) {
         if (status == "success") {
             CargarResultadoCotizacionDestacadoJavascript(req.responseText);
         }
-    }
-    /* Inicio Error */
+}
+	
+function loadInfoOffline(loadAuditInfo, loadNews) {
+	if (loadAuditInfo) {
+		if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
+			processError(data, status, req);
+			return;
+		} else {
+			var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+			cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+		}
+		if (localStorage.getItem("storageListaTodasCotizaciones") == null) {
+			processError(data, status, req);
+			return;
+		} else {
+			var listaTodasCotizacionesGuardada = localStorage.getItem("storageListaTodasCotizaciones");
+			listaTodasCotizaciones = eval('(' + listaTodasCotizacionesGuardada + ')');
+		}
+
+		if (localStorage.getItem("storageTablaModificaciones1") == null) {
+			processError(data, status, req);
+			return;
+		} else {
+			var tablaModificaciones1Guardada = localStorage.getItem("storageTablaModificaciones1");
+			listaTablaModificaciones = eval('(' + tablaModificaciones1Guardada + ')');
+		}
+
+		CargarCotizacionesDestacadaHtml();
+	}
+
+	if (loadNews) {
+		if (localStorage.getItem("storageListaInformes") == null) {
+			processError(data, status, req);
+			return;
+		} else {
+			var listaInformesGuardada = localStorage.getItem("storageListaInformes");
+			listaInformes = eval('(' + listaInformesGuardada + ')');
+		}
+
+		if (localStorage.getItem("storageListaNovedades") == null) {
+			processError(data, status, req);
+			return;
+		} else {
+			var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
+			listaNovedades = eval('(' + listaNovedadesGuardada + ')');
+		}
+
+		CargarNovedadesHtml();
+	}
+}
+/* Inicio Error */
 function processError(data, status, req) {
     //OcultarDivBloqueo();
     window.location.href = "error.html";
 }
-
 function processErrorAuditoria(data, status, req) {
     //alert('CargarAuditoria Error');
-    processError(data, status, req);
+	if (window.localStorage) {
+		loadInfoOffline(true, true);
+	} else {
+		processError(data, status, req);
+	}
 }
-
 function processErrorCotizacionDestacada(data, status, req) {
-    processError(data, status, req);
+	if (window.localStorage) {
+		loadInfoOffline(true, false);
+	} else {
+		processError(data, status, req);
+	}
 }
-
 function processErrorCargaConIndiceDetalleCotizacion(data, status, req) {
     processError(data, status, req);
 }
-
 function processErrorCotizacionHistoricaConIndiceDetacado(data, status, req) {
     processError(data, status, req);
 }
-
 function processErrorNovedades(data, status, req) {
-    processError(data, status, req);
+	if (window.localStorage) {
+		loadInfoOffline(false, true);
+	} else {
+		processError(data, status, req);
+	}
 }
-
 function processErrorTodasCotizaciones(data, status, req) {
     processError(data, status, req);
 }
-
 function processErrorUltimoInforme(data, status, req) {
         processError(data, status, req);
-    }
-    /* Fin Error */
+}
+/* Fin Error */
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
     cotizacionesDestacada = [];
     $(pXML).find('cotizaciones').each(function () {

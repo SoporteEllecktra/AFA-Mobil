@@ -126,7 +126,6 @@ $(document).ready(function () {
         soapRequest += '</soapenv:Body>';
         soapRequest += '</soapenv:Envelope>';
 
-
         $.ajax({
             type: "POST",
             url: wsUrl,

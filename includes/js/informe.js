@@ -25,7 +25,7 @@ function CargarPantallaCompletaInformeHtml() {
             //informesHtml += '<a href="javascript:loadURL(\'' + listaInformes[i].url + '\');" >';
             informesHtml += '<div class="btnDescargarPDF" >';
             informesHtml += '<img class="cssImgDescargarPDF" alt="descargar" src="img/material/ampliarAbajo.svg" />';
-            informesHtml += ' &nbsp;&nbsp;DESCARGAR EN ARCHIVO';
+            informesHtml += ' &nbsp;&nbsp;VER MAS';
             //informesHtml += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
             informesHtml += '</div>';
             //informesHtml += '</a>';

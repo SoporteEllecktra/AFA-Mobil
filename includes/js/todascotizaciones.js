@@ -22,14 +22,13 @@ function CargarTodasCotizacionesHtml() {
         resultadoDiv += '<div class="col-xs-10 cssColTodasCotizacionesTitulo">';
         resultadoDiv += 'Cotizaciones';
         resultadoDiv += '</div>';
-        //
+
         resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenVerMasCotizacionesAbajo()"
         //resultadoDiv += '<img src="img/material/ampliarAbajo.svg" alt="ampliar bajo" class="cssImgAmpliar" onclick="onclickFullScreenVerMasCotizacionesAbajo()"/>';
         resultadoDiv += '<input type="button" class="cssImgImputButtonAchicar"  onclick="onclickFullScreenVerMasCotizacionesAbajo(); return false;"/>';
         resultadoDiv += '</div>';
-        //
-        resultadoDiv += '</div>';
 
+        resultadoDiv += '</div>';
 
         resultadoDiv += '<div id="divRowTodasCotizacionesEncabezado" class="row cssTodasCotizacionesEncabezado">';
         resultadoDiv += '<div class="col-xs-3">';
@@ -46,7 +45,6 @@ function CargarTodasCotizacionesHtml() {
         resultadoDiv += '</div>';
         resultadoDiv += '</div>';
 
-        //
         var cantValorMonedaTodasCotizaciones = 0;
         for (var i = 0; i < listaTodasCotizaciones.length; i++) {
             var cantValorMonedaAUXTodasCotizaciones = listaTodasCotizaciones[i].abreviaturaMoneda.length + String(listaTodasCotizaciones[i].valorString).length;
@@ -54,7 +52,7 @@ function CargarTodasCotizacionesHtml() {
                 cantValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones;
             }
         }
-        //
+
         resultadoDiv += '<div id="divParteScrollTodasCotizaciones">'; // parte scroll
         var indexTodasCotizaciones = -1;
         $(listaTodasCotizaciones).each(function () {

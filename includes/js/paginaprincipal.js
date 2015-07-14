@@ -7,18 +7,18 @@ $(document).ready(function () {
         pagination: '.swiper-pagination',
         paginationClickable: true
     });
-    
+
     CargaDeLosDatosPrevioTelefono();
 });
+
 $(document).ajaxStop(function () {
     finCargarInicial();
-    //CargarVentanaAlerta("e.payload.title22","ere erter r tertert tert rtert etre rterterte ertert t retretert reterter dfgdgdfg gergert fer terret  gfdgfgdfg ereter dgfdgfdg ertertreerr");
 });
 
 function CargaDeLosDatosPrevioTelefono() {
     //alert(localStorage.getItem("storagePlatform"));
     //localStorage.setItem('storagePlatform', 'Android');
-    if (localStorage.getItem("storagePlatform") == null) {
+    if (localStorage.getItem("storagePlatform") == null) { // No hay nada guardado en el LocalStorage de la app
         setTimeout(function () {
             CargaDeLosDatosPrevioTelefono();
         }, 100);
@@ -29,27 +29,27 @@ function CargaDeLosDatosPrevioTelefono() {
         } else {
             varParametroUrl = localStorage.getItem("storageIndexVolver");
         }
+		// Startup de la app
         if (varParametroUrl == '') {
             MostrarDivBloqueo();
             FuncionInicio();
         } else if (varParametroUrl == '1') {
-            //
+			// Una vez abierta la app, navegación entre las diferentes pantallas (cuando se usa libreria.js::RedireccionarPagIndex())
             localStorage.setItem('storageIndexVolver', '');
-            //
             if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
-
+				alert('storageListaCotizacionesDestacada is null');
             } else {
                 var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
                 cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
             }
             if (localStorage.getItem("storageListaNovedades") == null) {
-
+				alert('storageListaNovedades is null');
             } else {
                 var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
                 listaNovedades = eval('(' + listaNovedadesGuardada + ')');
             }
             if (localStorage.getItem("storageListaInformes") == null) {
-
+				alert('storageListaInformes is null');
             } else {
                 var listaInformesGuardada = localStorage.getItem("storageListaInformes");
                 listaInformes = eval('(' + listaInformesGuardada + ')');
@@ -159,6 +159,10 @@ function onclikAcodeon() {
 }
 
 function CargarCotizacionesDestacadaHtml() {
+	if (cotizacionesDestacada == null || (cotizacionesDestacada != null && cotizacionesDestacada.length == 0)) {
+		processError('', '', '');
+		return;
+	}
     var resultadoDiv = '';
     resultadoDiv += '<div class="row cssDestacadoEncabezado ">';
     resultadoDiv += '<div class="col-xs-4">';
@@ -183,7 +187,6 @@ function CargarCotizacionesDestacadaHtml() {
     //alert(cantValorMoneda);
     $(cotizacionesDestacada).each(function () {
         index++;
-
 
         resultadoDiv += '<div class="accordion-group" onclick="onclikAcodeon()">';
         resultadoDiv += '<div class="accordion-heading cssAccordion-heading ">';
@@ -228,7 +231,7 @@ function CargarCotizacionesDestacadaHtml() {
         resultadoDiv += '</div>'; //'<div class="accordion-heading">';
         resultadoDiv += '<div class="accordion-body collapse" id="collapse' + index + '" style="height: 0px;">';
         resultadoDiv += '<div class="accordion-inner">';
-        // detallle
+        // detalle
         var cantValorMonedaDetalle = 0;
         for (var iDetalleMoneda = 0; iDetalleMoneda < this.listaDetalle.length; iDetalleMoneda++) {
             var cantValorMonedaDetalleAUX = this.listaDetalle[iDetalleMoneda].abreviaturaMoneda.length + String(this.listaDetalle[iDetalleMoneda].valorString).length;
@@ -278,7 +281,7 @@ function CargarCotizacionesDestacadaHtml() {
             resultadoDiv += '</div>'; // '<div class="row">';
         }
         resultadoDiv += '</div>'; // '<div class="container">';
-        // fin detallle
+        // fin detalle
         resultadoDiv += '</div>'; //'<div class="accordion-inner">';
         resultadoDiv += '</div>'; //'<div class="accordion-body collapse" id="collapse' + index + '" style="height: 0px;">';
 
@@ -473,91 +476,86 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         //           $('#swiper-slide2').width('100%');
         //        }, 200); 
     }
-    //alert('AA');
 }
 
 function CargarNovedadesHtml() {
-    var resultadoDiv = '';
-    if (listaNovedades != null) {
+	if (listaNovedades == null || (listaNovedades != null && listaNovedades.length == 0)) {
+		processError('', '', '');
+	}
+    var resultadoDiv = '<div id="divRowParteScrollNovedades">'; // parte scroll      
+	var indiceNovedades = -1;
+	$(listaNovedades).each(function () {
+		indiceNovedades++;
+		resultadoDiv += '<div class="row">';
+		resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
+		if (this.url != '') {
+			resultadoDiv += '<a href="javascript:loadURL(\'' + this.url + '\');" >';
+			resultadoDiv += '<img src="img/material/icono-doc-link.svg" alt="novedades" class="cssImgNovedades" />';
+			resultadoDiv += '</a>';
+		} else {
+			resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
+		}
+		resultadoDiv += '</div>';
+		//
+		resultadoDiv += '<div class="col-xs-11 ">';
+		//
+		// Primer fila novedades
+		resultadoDiv += '<div class="row">';
+		resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
+		resultadoDiv += this.titulo;
+		resultadoDiv += '</div>';
+		resultadoDiv += '</div>';
+		// fin  Primer fila novedades
+		resultadoDiv += '<div class="row ">';
+		//            resultadoDiv += '<div class="col-xs-3 cssNovedadesFecha">';//col-sm-3
+		//            resultadoDiv += obtenerFechaMostrar(this.fecha);
+		//            resultadoDiv += '</div>';
+		//            resultadoDiv += '<div class="col-xs-9 cssNovedadesCategoria">';//col-sm-9
+		//            resultadoDiv += this.descripcionCategoria;
+		//            resultadoDiv += '</div>';
+		resultadoDiv += '<div class="col-xs-12">';
+		resultadoDiv += '<table>';
+		resultadoDiv += '<tr>';
+		resultadoDiv += '<td>';
+		resultadoDiv += '<div class="cssNovedadesFecha">';
+		resultadoDiv += obtenerFechaMostrar(this.fecha);
+		resultadoDiv += '</div>';
+		resultadoDiv += '</td>';
+		resultadoDiv += '<td>';
+		resultadoDiv += '<div class="cssNovedadesCategoria">';
+		resultadoDiv += this.descripcionCategoria;
+		resultadoDiv += '</div>';
+		resultadoDiv += '</td>';
+		resultadoDiv += '</table>';
+		resultadoDiv += '</tr>';
+		resultadoDiv += '</div>';
+		//
+		resultadoDiv += '</div>';
+		resultadoDiv += '<div class="row">';
+		resultadoDiv += '<div class="col-xs-12 cssNovedadesDescripcion">';
+		resultadoDiv += this.descripcion;
+		resultadoDiv += '</div>';
+		resultadoDiv += '</div>';
+		//
+		resultadoDiv += '</div>';
+		//
+	});
+	resultadoDiv += '</div>'; // fin parte scroll
 
-        resultadoDiv += '<div id="divRowParteScrollNovedades">'; // parte scroll      
-        var indiceNovedades = -1;
-        $(listaNovedades).each(function () {
-            indiceNovedades++;
-            resultadoDiv += '<div class="row">';
-            resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
-            if (this.url != '') {
-                resultadoDiv += '<a href="javascript:loadURL(\'' + this.url + '\');" >';
-                resultadoDiv += '<img src="img/material/icono-doc-link.svg" alt="novedades" class="cssImgNovedades" />';
-                resultadoDiv += '</a>';
-            } else {
-                resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
-            }
-            resultadoDiv += '</div>';
-            //
-            resultadoDiv += '<div class="col-xs-11 ">';
-            //
-            // Primer fila novedades
-            resultadoDiv += '<div class="row">';
-            resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
-            resultadoDiv += this.titulo;
-            resultadoDiv += '</div>';
-            resultadoDiv += '</div>';
-            // fin  Primer fila novedades
-            resultadoDiv += '<div class="row ">';
-            //            resultadoDiv += '<div class="col-xs-3 cssNovedadesFecha">';//col-sm-3
-            //            resultadoDiv += obtenerFechaMostrar(this.fecha);
-            //            resultadoDiv += '</div>';
-            //            resultadoDiv += '<div class="col-xs-9 cssNovedadesCategoria">';//col-sm-9
-            //            resultadoDiv += this.descripcionCategoria;
-            //            resultadoDiv += '</div>';
-            resultadoDiv += '<div class="col-xs-12">';
-            resultadoDiv += '<table>';
-            resultadoDiv += '<tr>';
-            resultadoDiv += '<td>';
-            resultadoDiv += '<div class="cssNovedadesFecha">';
-            resultadoDiv += obtenerFechaMostrar(this.fecha);
-            resultadoDiv += '</div>';
-            resultadoDiv += '</td>';
-            resultadoDiv += '<td>';
-            resultadoDiv += '<div class="cssNovedadesCategoria">';
-            resultadoDiv += this.descripcionCategoria;
-            resultadoDiv += '</div>';
-            resultadoDiv += '</td>';
-            resultadoDiv += '</table>';
-            resultadoDiv += '</tr>';
-            resultadoDiv += '</div>';
-            //
-            resultadoDiv += '</div>';
-            resultadoDiv += '<div class="row">';
-            resultadoDiv += '<div class="col-xs-12 cssNovedadesDescripcion">';
-            resultadoDiv += this.descripcion;
-            resultadoDiv += '</div>';
-            resultadoDiv += '</div>';
-            //
-            resultadoDiv += '</div>';
-            //
-        });
-        resultadoDiv += '</div>'; // fin parte scroll   
-    }
+	if (listaNovedades.length > 0) {
 
-    if (listaNovedades != null) {
-        if (listaNovedades.length > 0) {
-
-            var indexSlide1 = -1;
-            for (var i = 0; i < swiper.slides.length; i++) {
-                if (swiper.slides[i].id == 'swiper-slide1') {
-                    indexSlide1 = i;
-                }
-            }
-            if (indexSlide1 == -1) {
-                swiper.appendSlide('<div id="swiper-slide1" class="swiper-slide">' + resultadoDiv + '</div>');
-            } else {
-                $('#swiper-slide1').html(resultadoDiv);
-            }
-        }
-    }
-
+		var indexSlide1 = -1;
+		for (var i = 0; i < swiper.slides.length; i++) {
+			if (swiper.slides[i].id == 'swiper-slide1') {
+				indexSlide1 = i;
+			}
+		}
+		if (indexSlide1 == -1) {
+			swiper.appendSlide('<div id="swiper-slide1" class="swiper-slide">' + resultadoDiv + '</div>');
+		} else {
+			$('#swiper-slide1').html(resultadoDiv);
+		}
+	}
     //    var isTimeoutInformeCierreMercado = true;
     //    if (listaInformes != null) {
     //        if (listaInformes.length > 0) {
@@ -579,8 +577,8 @@ function CargarInformeHtml() {
         //alert(listaInformes[i].titulo);
         informesHtml += '<div id="divInformeTitulo" class="cssInformeTitulo">' + listaInformes[i].titulo + '</div>';
         informesHtml += '<div id="divInformeFecha" class="cssInformeFecha">' + obtenerFechaMostrar(listaInformes[i].fecha) + '</div>';
-        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto + '</div>'
-            //informesHtml += ;+ '<br/>' + '<a href="javascript:loadURL(\''+ 'http://www.agirregabiria.net/g/sylvainaitor/principito.pdf' +'\');" >pdf </a>' 
+        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto + '</div>';
+        //informesHtml += ;+ '<br/>' + '<a href="javascript:loadURL(\''+ 'http://www.ejemplo.com/archivo.pdf' +'\');" >pdf </a>' 
         break;
     }
     return informesHtml;
