@@ -442,8 +442,9 @@ function onclickActualizar() {
     $('#divFondoBloqueo').css('opacity', '0.8');
     // localStorage.clear();
     //localStorage.setItem('storagePlatform', 'Android');
-    MostrarDivBloqueo();
-    CargarAuditoria();
+    //MostrarDivBloqueo();
+    window.location.href = "index.html";
+    //CargarAuditoria();
 }
 
 function onclickActualizarNoIndex() {
