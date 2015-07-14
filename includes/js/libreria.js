@@ -421,7 +421,6 @@ function btnCerrarAlerta() {
 }
 
 function CargarVentanaAlerta(pTitulo, pDescripcion) {
-
     $('#divVentanaTitulo').html('');
     $('#divVentanaDescripcio').html('');
     if (pTitulo != '') {
