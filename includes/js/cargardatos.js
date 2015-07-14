@@ -178,6 +178,7 @@ function processSuccessAuditoria(data, status, req) {
             if (listaTablaModificaciones != null) {
 				//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
                 for (var i = 0; i < listaTablaModificaciones.length; i++) {
+					//alert(i+1);
 					//console.log(listaTablaModificaciones[i]);
                     if (listaTablaModificaciones[i].codigoTabla == 1) { //Cotizaciones
                         //alert(listaTablaModificaciones[i].fecha);
@@ -411,6 +412,8 @@ function processErrorUltimoInforme(data, status, req) {
 /* Fin Error */
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
     cotizacionesDestacada = [];
+	var maxUtcValue = 0;
+	var maxDate = '';
     $(pXML).find('cotizaciones').each(function () {
         var obj = new cotizacion();
         obj.fechaCotizacion = $(this).find('fechaCotizacion').text();
@@ -428,10 +431,18 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
         obj.variacion = $(this).find('variacion').text();
         cotizacionesDestacada.push(obj);
+
+		var fechaData = obj.fechaCotizacion.split(' ');
+		var newUtcValue = obtenerFechaUTC(fechaData[0], fechaData[1]);
+		if (newUtcValue > maxUtcValue) {
+			maxUtcValue = newUtcValue;
+			maxDate = obj.fechaCotizacion;
+		}
     });
+
     if (cotizacionesDestacada.length > 0) {
         // Inicio Cargar Fecha Actual
-        grabarStorageFechaCotizacion(obtenerFechaMostrarDsdCotizacionesDestacada(cotizacionesDestacada[0].fechaCotizacion));
+        grabarStorageFechaCotizacion(obtenerFechaMostrarDsdCotizacionesDestacada(maxDate));
         // Fin Cargar Fecha Actual
         indexCotizacionesDestacada = 0;
         CargaConIndiceDetalleCotizacion(indexCotizacionesDestacada);
