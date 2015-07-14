@@ -21,7 +21,7 @@ function CargaDeLosDatosPrevioTelefono() {
     if (localStorage.getItem("storagePlatform") == null) { // No hay nada guardado en el LocalStorage de la app
         setTimeout(function () {
             CargaDeLosDatosPrevioTelefono();
-        }, 100);
+        }, 50);
     } else {
         var varParametroUrl = '';
         if (localStorage.getItem("storageIndexVolver") == null) {
