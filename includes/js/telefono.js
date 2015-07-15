@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    // localStorage.clear();
-    //localStorage.setItem('storagePlatform', 'Android');
     var isVolverIndex = true;
     if (localStorage.getItem("storageTelefono") == null) {
         isVolverIndex = false;

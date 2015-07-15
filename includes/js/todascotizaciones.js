@@ -1,11 +1,15 @@
 $(document).ready(function () {
     MostrarDivBloqueo();
     CargarHtmlFechaMenuPrincipal();
-    var listaTodasCotizacionesGuardada = localStorage.getItem("storageListaTodasCotizaciones");
-    listaTodasCotizaciones = eval('(' + listaTodasCotizacionesGuardada + ')');
-    CargarTodasCotizacionesHtml();
-    OcultarDivBloqueo();
-    onresizeBody();
+	if (localStorage.getItem("storageListaTodasCotizaciones")) {
+		var listaTodasCotizacionesGuardada = localStorage.getItem("storageListaTodasCotizaciones");
+		listaTodasCotizaciones = eval('(' + listaTodasCotizacionesGuardada + ')');
+		CargarTodasCotizacionesHtml();
+		OcultarDivBloqueo();
+		onresizeBody();
+	} else {
+		processError('', '', '');
+	}
 });
 
 function onresizeBody() {
@@ -71,7 +75,6 @@ function CargarTodasCotizacionesHtml() {
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesPrecio">';
             //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
-
             //var cantValorMonedaAUXTodasCotizaciones = this.abreviaturaMoneda.length + String(this.valorString).length;
             //var strCantValorMonedaTodasCotizaciones = '';
             //            if (cantValorMonedaAUXTodasCotizaciones < cantValorMonedaTodasCotizaciones) {

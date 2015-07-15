@@ -49,14 +49,7 @@ function CargarTodasNovedadesHtml() {
                 resultadoDiv += '</div>';
             }
             resultadoDiv += '</div>';
-            // fin  Primer fila novedades
             resultadoDiv += '<div class="row ">';
-            //            resultadoDiv += '<div class="col-sm-2 cssNovedadesFecha">';
-            //            resultadoDiv += obtenerFechaMostrar(this.fecha);
-            //            resultadoDiv += '</div>';
-            //            resultadoDiv += '<div class="col-sm-10 cssNovedadesCategoria">';
-            //            resultadoDiv += this.descripcionCategoria;
-            //            resultadoDiv += '</div>';
 
             resultadoDiv += '<div class="col-xs-12">';
             resultadoDiv += '<table>';
@@ -81,10 +74,7 @@ function CargarTodasNovedadesHtml() {
             resultadoDiv += this.descripcion;
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
-            //
             resultadoDiv += '</div>';
-            //
-
         });
 
     }

@@ -1,4 +1,3 @@
-//////////////////
 var pushNotification;
 
 function infoRegistracion() {
@@ -18,13 +17,11 @@ function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
         type: 'GET',
         data: {},
         success: function (data) {
-            //called when successful
             //  alert(data);
         },
         error: function (e) {
-            //called when there is an error
-            //  alert('CargaDatosTel:' + e);
             //window.location.href = "error.html";
+			processEroor('', '', '');
         }
     });
 }
@@ -37,11 +34,8 @@ function onDeviceReady() {
 
     // Depending on the device, a few examples are:
     //   - "Android"
-    //   - "BlackBerry 10"
     //   - "iOS"
     //   - "WinCE"
-    //   - "Tizen"
-
     if (device.platform == 'android' || device.platform == 'Android') {
         try {
             pushNotification.register(successHandler, errorHandler, {
@@ -50,9 +44,10 @@ function onDeviceReady() {
                 "ecb": "onNotification"
             });
         } catch (err) {
-            var txt = "There was an error on this page.\n\n";
-            txt += "Error description: " + err.message + "\n\n";
+            var txt = "Error al registrar el dispositivo Android.";
+            //txt += "Error description: " + err.message + "\n\n";
             alert(txt);
+			processError('', '', '');
         }
     } else if (device.platform == 'iOS') {
         try {
@@ -65,7 +60,8 @@ function onDeviceReady() {
             }); // required!
         } catch (err) {
             //alert('pushNotificationiOS - error');
-            alert('pushNotificationiOS - error: ' + err.message);
+            alert('Error al registrar el dispositivo iOS.');
+			processError('', '', '');
         }
     } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
         //var channelName = '34923EIGApp.EIGPush';
@@ -77,18 +73,16 @@ function onDeviceReady() {
                     "channelName": channelName,
                     "ecb": "onNotificationWP8",
                     "uccb": "channelHandler",
-                    "errcb": "jsonErrorHandler"
+                    "errcb": "wpnErrorHandler"
                 });
         } catch (err) {
-            alert(err.message);
+            alert('Error al registrar el dispositivo.');
+			processError('', '', '');
         }
     }
     objDatosTelefono.uuid = device.uuid;
     //alert(device.platform);
-    if (localStorage.getItem("storagePlatform") == null) {
-        localStorage.setItem('storagePlatform', device.platform);
-    }
-
+    localStorage.setItem('storagePlatform', device.platform);
 }
 
 function successHandler(result) {
@@ -107,76 +101,66 @@ function onNotification(e) {
                 objDatosTelefono.regid = e.regid;
                 objDatosTelefono.type = 'gcm';
                 var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
-                LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
 
+				LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
             }
             break;
 
         case 'message':
-            // this is the actual push notification. its format depends on the data model from the push server
-            //alert('message = ' + e.message + ' msgcnt = ' + e.msgcnt);
-
-            // alert(e.message); //'mensaje = ' 
-            //CargarVentanaAlerta('', JSON.stringify(e));
-            if (e.message != '') {
+            if (e.message.length > 0) {
                 CargarVentanaAlerta(e.payload.title, e.message);
             }
             break;
 
         case 'error':
-            alert('GCM error = ' + e.msg);
+            alert('GCM Notification error = ' + e.msg);
+			processError('', '', '');
             break;
 
         default:
             alert('An unknown GCM event has occurred');
+			processError('', '', '');
             // break;
         }
     }
-    /// inicio iOS
 
 function onNotificationAPN(event) {
-
-    //    if (event.alert) {
-    //        navigator.notification.alert(event.alert);
-    //    }
-    if (event.body) {
+    if (event.body && event.body.length > 0) {
         CargarVentanaAlerta(event.title, event.body);
     }
     if (event.sound) {
         var snd = new Media(event.sound);
         snd.play();
     }
-
     if (event.badge) {
         pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
     }
 }
 
 function tokenHandler(result) {
-        // Your iOS push server needs to know the token before it can push to this device
-        // here is where you might want to send it the token for later use.
-        //alert('device token = ' + result);
-        objDatosTelefono.regid = result;
-        objDatosTelefono.type = 'apn';
-        var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
+	// Your iOS push server needs to know the token before it can push to this device
+	// here is where you might want to send it the token for later use.
+	//alert('device token = ' + result);
+	objDatosTelefono.regid = result;
+	objDatosTelefono.type = 'apn';
+	var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
 
-        LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
-    }
-    /// fin iOS
+	LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
+}
 
-/// inicio WP8
 function channelHandler(event) {
     //objDatosTelefono.regid = event.uri;    
     objDatosTelefono.regid = event.uri.replace(/\//g, 'ELLECKTRACODE');
     objDatosTelefono.type = 'mpn';
     var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
-    LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
+
+	LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
     //alert(event.uri);
 }
 
 //handle MPNS notifications for WP8
 function onNotificationWP8(e) {
-        if (e.jsonContent) {
+        if (e.jsonContent && e.jsonContent["wp:Text2"].length > 0) {
             CargarVentanaAlerta(e.jsonContent["wp:Text1"], e.jsonContent["wp:Text2"]);
         }
         if (e.type == "toast" && e.jsonContent) {
@@ -186,27 +170,14 @@ function onNotificationWP8(e) {
                 "NavigationUri": e.jsonContent["wp:Param"]
             });
         }
-        if (e.type == "raw" && e.jsonContent) {
+        if (e.type == "raw" && e.jsonContent && e.jsonContent.Body.length > 0) {
             //alert(JSON.stringify(e));
             //alert(e.jsonContent.Body);
             CargarVentanaAlerta(JSON.stringify(e), e.jsonContent.Body);
         }
     }
-    //function onNotificationWP8(e) {
-    //    if (e.type == "toast" && e.jsonContent) {
-    //        pushNotification.showToastNotification(successHandler, errorHandler,
-    //        {
-    //            "Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
-    //        });
-    //    }
-    //    if (e.type == "raw" && e.jsonContent) {
-    //        alert(e.jsonContent.Body);
-    //    }
-    //}
-function jsonErrorHandler(error) {
-        //$("#app-status-ul").append('<li style="color:red;">error:' + error.code + '</li>');
-        //    $("#app-status-ul").append('<li style="color:red;">error:' + error.message + '</li>');
-        alert('jsonErrorHandler' + error.message);
-    }
-    /// fin WP8
-    /////////////////
+
+function wpnErrorHandler(error) {
+    alert('Error al registrar el dispositivo Windows Phone.');
+	processError('', '', '');
+}

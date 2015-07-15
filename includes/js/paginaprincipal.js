@@ -74,7 +74,6 @@ function CargaDeLosDatosPrevioTelefono() {
     }
 }
 
-
 var isMoverAmpliar = false;
 var cantNN = 0;
 

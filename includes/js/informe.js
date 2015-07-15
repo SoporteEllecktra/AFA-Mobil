@@ -15,12 +15,6 @@ function CargarPantallaCompletaInformeHtml() {
         informesHtml += '<div id="divInformeFecha" class="cssInformeFecha">' + obtenerFechaMostrar(listaInformes[i].fecha) + '</div>';
         informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto;
         if (listaInformes[i].url != '') {
-            //            var strUrl = listaInformes[i].url;
-            //            if (/http:/.test(strUrl)) {
-            //
-            //            } else {
-            //                strUrl = 'http://' + strUrl;
-            //            }
             informesHtml += '<div id="divInformeUrl" class="cssInformeUrl" onclick="onclickDescargarPDF(\'' + listaInformes[i].url + '\');">'; //+ 
             //informesHtml += '<a href="javascript:loadURL(\'' + listaInformes[i].url + '\');" >';
             informesHtml += '<div class="btnDescargarPDF" >';
