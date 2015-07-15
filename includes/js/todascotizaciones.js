@@ -45,13 +45,14 @@ function CargarTodasCotizacionesHtml() {
         resultadoDiv += '</div>';
         resultadoDiv += '</div>';
 
-        var cantValorMonedaTodasCotizaciones = 0;
+		// No se usa la variable cantValorMonedaTodasCotizaciones, NO vale la pena recorrer listaTodasCotizaciones
+        /*var cantValorMonedaTodasCotizaciones = 0;
         for (var i = 0; i < listaTodasCotizaciones.length; i++) {
             var cantValorMonedaAUXTodasCotizaciones = listaTodasCotizaciones[i].abreviaturaMoneda.length + String(listaTodasCotizaciones[i].valorString).length;
             if (cantValorMonedaTodasCotizaciones < cantValorMonedaAUXTodasCotizaciones) {
                 cantValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones;
             }
-        }
+        }*/
 
         resultadoDiv += '<div id="divParteScrollTodasCotizaciones">'; // parte scroll
         var indexTodasCotizaciones = -1;
@@ -71,17 +72,17 @@ function CargarTodasCotizacionesHtml() {
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesPrecio">';
             //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
 
-            var cantValorMonedaAUXTodasCotizaciones = this.abreviaturaMoneda.length + String(this.valorString).length;
-            var strCantValorMonedaTodasCotizaciones = '';
+            //var cantValorMonedaAUXTodasCotizaciones = this.abreviaturaMoneda.length + String(this.valorString).length;
+            //var strCantValorMonedaTodasCotizaciones = '';
             //            if (cantValorMonedaAUXTodasCotizaciones < cantValorMonedaTodasCotizaciones) {
             //                for (var iValorMonedaTodasCotizaciones = cantValorMonedaAUXTodasCotizaciones; iValorMonedaTodasCotizaciones < cantValorMonedaTodasCotizaciones; iValorMonedaTodasCotizaciones++) {
             //                    strCantValorMonedaTodasCotizaciones += '&nbsp;' + '&nbsp;';
             //                }
             //            }
-            resultadoDiv += strCantValorMonedaTodasCotizaciones + this.abreviaturaMoneda + ' ' + this.valorString;
+            resultadoDiv += /*strCantValorMonedaTodasCotizaciones + */this.abreviaturaMoneda + ' ' + this.valorString;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesObservacion">';
-            resultadoDiv += this.observacion;
+            resultadoDiv += this.observacion + ' - Fecha: ' + this.fechaCotizacion;
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });

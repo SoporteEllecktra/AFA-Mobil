@@ -406,12 +406,6 @@ function loadURL(url) {
 function RedireccionarPagIndex() {
     localStorage.setItem('storageIndexVolver', '1');
     window.history.go(-1);
-    //    if (device.platform == 'android' || device.platform == 'Android' || device.platform == 'iOS') {
-    //        window.location.href = "index.html?r=1";
-    //    } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
-    //        //window.location.href = "index.html?r=1";
-    //     
-    //    }
 }
 
 /*Inicio Ventana alerta*/
@@ -436,14 +430,11 @@ function CargarVentanaAlerta(pTitulo, pDescripcion) {
 
 /* Inicio Actualizar */
 function onclickActualizar() {
-    //$('.cssCalendario').css('','');
-    //alert('Ok');
     $('#divFondoBloqueo').css('opacity', '0.8');
-    // localStorage.clear();
-    //localStorage.setItem('storagePlatform', 'Android');
-    //MostrarDivBloqueo();
-    window.location.href = "index.html";
-    //CargarAuditoria();
+    window.localStorage.clear();
+    //window.location.href = "index.html";
+	MostrarDivBloqueo();
+    CargarAuditoria();
 }
 
 function onclickActualizarNoIndex() {
