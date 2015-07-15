@@ -416,14 +416,11 @@ function btnCerrarAlerta() {
 function CargarVentanaAlerta(pTitulo, pDescripcion) {
     $('#divVentanaTitulo').html('');
     $('#divVentanaDescripcio').html('');
-    if (pTitulo != '') {
-        $('#divVentanaTitulo').html(pTitulo);
-    }
+    $('#divVentanaTitulo').html(pTitulo);
     if (pDescripcion != '') {
         $('#divVentanaDescripcio').html(pDescripcion);
-    }
-
-    $('#divVentanaAlertaContenedor').css('display', 'block');
+        $('#divVentanaAlertaContenedor').css('display', 'block');
+    }   
 }
 
 /*Fin Ventana alerta*/
