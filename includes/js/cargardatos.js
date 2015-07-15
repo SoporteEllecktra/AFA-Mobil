@@ -179,7 +179,7 @@ function processSuccessAuditoria(data, status, req) {
 				//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
                 for (var i = 0; i < listaTablaModificaciones.length; i++) {
 					//alert(i+1);
-					console.log(listaTablaModificaciones[i]);
+					//console.log(listaTablaModificaciones[i]);
                     if (listaTablaModificaciones[i].codigoTabla == 1) { // Cotizaciones
                         if (!localStorage.getItem("storageTablaModificaciones1")) {
 							//alert("HAY UPDATES COTIS SIN ALMACENAR");
