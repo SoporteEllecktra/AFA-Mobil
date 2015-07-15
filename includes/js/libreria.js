@@ -428,7 +428,7 @@ function CargarVentanaAlerta(pTitulo, pDescripcion) {
 /* Inicio Actualizar */
 function onclickActualizar() {
     $('#divFondoBloqueo').css('opacity', '0.8');
-    window.localStorage.clear();
+    //window.localStorage.clear();
     //window.location.href = "index.html";
 	MostrarDivBloqueo();
     CargarAuditoria();
