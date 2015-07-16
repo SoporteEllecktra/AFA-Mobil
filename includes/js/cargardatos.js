@@ -27,6 +27,7 @@ var isCargarNotificaciones = true;
 var isCargarInformes = true;
 
 var telefonoDelUsuario = '';
+var appVersion = 1.3;
 
 function cotizacion() {
     this.fechaCotizacion = '';
@@ -169,6 +170,14 @@ function CargarAuditoria() {
 }
 
 function processSuccessAuditoria(data, status, req) {
+	cordova.getAppVersion(function (version) {
+		version = ParseFloat(version);
+		if (window.localStorage && (version > appVersion)) {
+			alert('Version descargada = ' + version + ', version ejecutada = ' + appVersion);
+			window.localStorage.clear();
+		}
+	});
+
 	// codigoTabla == 1:"Cotizaciones", 2:"Notificaciones", 3:"Informes"   
 	isCargarCotizaciones = false;
 	isCargarNotificaciones = false;
