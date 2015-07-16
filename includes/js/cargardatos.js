@@ -170,14 +170,6 @@ function CargarAuditoria() {
 }
 
 function processSuccessAuditoria(data, status, req) {
-	cordova.getAppVersion(function (version) {
-		version = ParseFloat(version);
-		if (window.localStorage && (version > appVersion)) {
-			alert('Version descargada = ' + version + ', version ejecutada = ' + appVersion);
-			window.localStorage.clear();
-		}
-	});
-
 	// codigoTabla == 1:"Cotizaciones", 2:"Notificaciones", 3:"Informes"   
 	isCargarCotizaciones = false;
 	isCargarNotificaciones = false;
@@ -282,6 +274,17 @@ function processSuccessAuditoria(data, status, req) {
 		}
 	}
 
+	cordova.getAppVersion(function (version) {
+		version = ParseFloat(version);
+		if (version > appVersion) {
+			alert('Version descargada = ' + version + ', version ejecutada = ' + appVersion);
+			//window.localStorage.clear();
+			isCargarCotizaciones = true;
+			listaNovedades = true;
+			listaInformes = true;
+		}
+	});
+	
 	/*isCargarCotizaciones = true;
 	listaNovedades = true;
 	listaInformes = true;*/
