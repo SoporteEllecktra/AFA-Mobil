@@ -21,7 +21,7 @@ function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
         },
         error: function (e) {
             //window.location.href = "error.html";
-			processEroor('', '', '');
+			processError('', '', '');
         }
     });
 }
@@ -90,7 +90,8 @@ function successHandler(result) {
 }
 
 function errorHandler(error) {
-    alert('errorHandler: ' + error);
+    //alert('errorHandler: ' + error);
+	processError('', '', '');
 }
 
 function onNotification(e) {
@@ -113,12 +114,12 @@ function onNotification(e) {
             break;
 
         case 'error':
-            alert('GCM Notification error = ' + e.msg);
+            alert('Error al registrar el dispositivo con Android.');
 			processError('', '', '');
             break;
 
         default:
-            alert('An unknown GCM event has occurred');
+            alert('Error al registrar el dispositivo con Android.');
 			processError('', '', '');
             // break;
         }
@@ -178,6 +179,6 @@ function onNotificationWP8(e) {
     }
 
 function wpnErrorHandler(error) {
-    alert('Error al registrar el dispositivo Windows Phone.');
+    alert('Error al registrar el dispositivo con Windows Phone.');
 	processError('', '', '');
 }
