@@ -487,6 +487,7 @@ function loadXMLDoc(xml) {
 
 	xhttp.open("GET", xml, false);
 	xhttp.send();
+
 	return xhttp.responseXML;
 }
 
@@ -497,6 +498,6 @@ function getAppVersion() {
     $(xmlDoc).find('widget').each(function () {
 		version = parseFloat($(this).attr('version'));
     });
-	
+	alert(version);
 	return version;
 }

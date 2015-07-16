@@ -51,6 +51,7 @@
     <!-- 
 	<gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media" />
+   <gap:plugin name="org.apache.cordova.file-transfer" />
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.contacts" />
 	<gap:plugin name="org.apache.cordova.dialogs" /> 
@@ -69,7 +70,6 @@
     <gap:plugin name="org.apache.cordova.vibration" />
 
     <gap:plugin name="org.apache.cordova.file" />
-    <gap:plugin name="org.apache.cordova.file-transfer" />
 
     <icon src="img/Iconos/IOS6_57X57.png" gap:platform="ios" width="57" height="57" />
     <icon src="img/Iconos/IOS6_72X72.png" gap:platform="ios" width="72" height="72" />
