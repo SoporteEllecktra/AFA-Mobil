@@ -516,12 +516,14 @@ function onFSSuccess(fs) {
 	doReadFile();
 }
 
-function readFile(f) {
+function readFile(file) {
 	reader = new FileReader();
 	reader.onloadend = function(e) {
-		alert("Contenido " + e.target.result);
+		//alert("Contenido " + e.target.result);
+		var xmlData = $(reader.result);
+		alert("Contenido " + xmlData);
 	}
-	reader.readAsText(f);
+	reader.readAsText(file);
 }
 
 function doReadFile() {

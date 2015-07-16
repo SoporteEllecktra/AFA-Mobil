@@ -11,7 +11,8 @@ $(document).ready(function () {
 	if (!swiper) {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 	} else {
-		CargaDeLosDatosPrevioTelefono();
+		document.addEventListener("deviceready", CargaDeLosDatosPrevioTelefono, true);
+		//CargaDeLosDatosPrevioTelefono();
 	}
 });
 
@@ -20,6 +21,8 @@ $(document).ajaxStop(function () {
 });
 
 function CargaDeLosDatosPrevioTelefono() {
+	onDeviceReadyFSLoad();
+
     if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
         setTimeout(function () {
             CargaDeLosDatosPrevioTelefono();
