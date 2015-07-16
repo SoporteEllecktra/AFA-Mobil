@@ -491,13 +491,39 @@ function loadXMLDoc(xml) {
 	return xhttp.responseXML;
 }
 
-function getAppVersion() {
-	var xmlDoc = loadXMLDoc("config.xml");
+/*function getAppVersion() {
+	//var xmlDoc = loadXMLDoc("config.xml");
 	var version = 0;
 
     $(xmlDoc).find('widget').each(function () {
 		version = parseFloat($(this).attr('version'));
     });
-	alert(version);
+
 	return version;
+}*/
+
+var fileSystem;
+function onDeviceReadyFSLoad() {
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onError);
+}
+
+function onError() {
+	appVersion = 0;
+}
+
+function onFSSuccess(fs) {
+	fileSystem = fs;
+	doReadFile();
+}
+
+function readFile(f) {
+	reader = new FileReader();
+	reader.onloadend = function(e) {
+		alert("Contenido " + e.target.result);
+	}
+	reader.readAsText(f);
+}
+
+function doReadFile() {
+	fileSystem.root.getFile("config.xml", { create: true }, readFile, onError);
 }
