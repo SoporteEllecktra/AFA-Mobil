@@ -85,7 +85,7 @@ function CargarTodasCotizacionesHtml() {
             resultadoDiv += /*strCantValorMonedaTodasCotizaciones + */this.abreviaturaMoneda + ' ' + this.valorString;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-3 cssTodasCotizacionesObservacion">';
-            resultadoDiv += this.observacion + ' - Fecha: ' + this.fechaCotizacion;
+            resultadoDiv += this.observacion;
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });
