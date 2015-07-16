@@ -275,17 +275,13 @@ function processSuccessAuditoria(data, status, req) {
 
 	var version = getAppVersion();
 	if (version > appVersion) {
-		alert('Version descargada = ' + version + ', version ejecutada = ' + appVersion);
+		//alert('Version descargada = ' + version + ', version ejecutada = ' + appVersion);
 		//window.localStorage.clear();
 		isCargarCotizaciones = true;
 		listaNovedades = true;
 		listaInformes = true;
 	}
 
-	
-	/*isCargarCotizaciones = true;
-	listaNovedades = true;
-	listaInformes = true;*/
 	//$.when(
 	CargaCotizacionDestacada(); 
 	CargaNovedades(); 

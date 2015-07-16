@@ -476,7 +476,7 @@ function isValidDate(date) {
 }
 
 /******** App Version Management ********/
-var appVersion = 1.4;
+var appVersion = 1.5;
 
 function loadXMLDoc(xml) {
 	if (window.XMLHttpRequest) {
