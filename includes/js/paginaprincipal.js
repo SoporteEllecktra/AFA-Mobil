@@ -12,9 +12,8 @@ $(document).ready(function () {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 	} else {
 
-getAppVersion(function(version) {
-    console.log('Native App Version: ' + version);
-	alert('Native App Version: ' + version);
+cordova.getAppVersion(function (version) {
+    alert(version);
 });
 
 		CargaDeLosDatosPrevioTelefono();
