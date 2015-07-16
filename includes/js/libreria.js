@@ -444,3 +444,33 @@ function RedireccionarPagIndexActualizar() {
 }
 
 /* Fin Actualizar */
+
+/* Dates functions */
+function validateDateFormat(date) {
+      var RegExPattern = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/;
+      if ((date.match(RegExPattern)) && (date != '')) {
+            return true;
+      } else {
+            return false;
+      }
+}
+
+function checkDate(date) {
+        var dateParts = date.split("/");
+        var d = dateParts[0];
+        var m = dateParts[1];
+        var y = dateParts[2];
+        return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
+}
+
+function isValidDate(date) {
+	if(validateDateFormat(date)) {
+		if(checkDate(date)) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		  return false;
+	}
+}

@@ -13,7 +13,7 @@
         <img src="img/material/Logo.svg" alt="afa" class="cssLogoAfaError" />
         <div class="divDescripcionError" style="font-size: 1.2em;">
             <span>No est&aacute; disponible el servicio en este momento. Compruebe su conexi&oacute;n e intente nuevamente.</span>
-			<div id="update_icon_container" style="margin-top: 20px;display: none;">
+			<div id="update_icon_container" style="margin-top: 20px;">
 				<img src="img/material/icono-actualizar.svg" class="cssCalendario" style="cursor:pointer;" onclick="tryUpdate();" />&nbsp;
 				&nbsp;<span onclick="tryUpdate();" style="cursor:pointer;padding: 3px;border: 1px black solid;border-radius: 3px;">Actualizar Ahora</span>
 			</div>
@@ -36,38 +36,8 @@
     </div>
     <!--    Fin Ventana alerta-->
 	<script type="text/javascript">
-		function getParam(param) { //$_GET(param)
-			var url = document.URL;
-			url = String(url.match(/\?+.+/));
-			url = url.replace("?", "");
-			url = url.split("&");
-
-			/* 
-			Recorrer el array url
-			obtener el valor y dividirlo en dos partes a través del signo = 
-			0 = parametro
-			1 = valor
-			Si el parámetro existe devolver su valor
-			*/
-			x = 0;
-			while (x < url.length) {
-				p = url[x].split("=");
-				if (p[0] == param) {
-					return decodeURIComponent(p[1]);
-				}
-				x++;
-			}
-			return '';
-		}
 		function tryUpdate() {
 			window.location.href = "index.html";
-		}
-
-		var status_param = getParam('status');
-		if (status_param == '1') {
-			document.getElementById('update_icon_container').style.display = 'none';
-		} else {
-			document.getElementById('update_icon_container').style.display = 'block';
 		}
 	</script>
 </body>
