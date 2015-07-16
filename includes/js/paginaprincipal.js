@@ -11,6 +11,12 @@ $(document).ready(function () {
 	if (!swiper) {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 	} else {
+
+getAppVersion(function(version) {
+    console.log('Native App Version: ' + version);
+	alert('Native App Version: ' + version);
+});
+
 		CargaDeLosDatosPrevioTelefono();
 	}
 });
@@ -18,14 +24,6 @@ $(document).ready(function () {
 $(document).ajaxStop(function () {
     finCargarInicial();
 });
-
-function onDeviceReady1() {
-    alert('onDeviceReady');
-			var manifestInterface = {};
-		manifestInterface = window.plugins.version.getVersion();
-		console.log(manifestInterface);
-		alert("Version number = " + manifestInterface.ver);		
-}
 
 function CargaDeLosDatosPrevioTelefono() {
     if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
@@ -41,7 +39,6 @@ function CargaDeLosDatosPrevioTelefono() {
         if (varParametroUrl === '') {
             MostrarDivBloqueo(); // in libreria.js
             FuncionInicio(); // in cargardatos.js
-			document.addEventListener('deviceready', onDeviceReady1, true);
         } else if (varParametroUrl == '1') {
 			// Una vez abierta la app, navegación entre las diferentes pantallas (cuando se usa libreria.js::RedireccionarPagIndex())
             localStorage.setItem('storageIndexVolver', '');
