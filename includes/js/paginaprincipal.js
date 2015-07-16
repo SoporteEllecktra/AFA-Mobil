@@ -11,11 +11,6 @@ $(document).ready(function () {
 	if (!swiper) {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 	} else {
-
-cordova.getAppVersion(function (version) {
-    alert(version);
-});
-
 		CargaDeLosDatosPrevioTelefono();
 	}
 });

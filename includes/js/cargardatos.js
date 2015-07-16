@@ -27,7 +27,6 @@ var isCargarNotificaciones = true;
 var isCargarInformes = true;
 
 var telefonoDelUsuario = '';
-var appVersion = 1.3;
 
 function cotizacion() {
     this.fechaCotizacion = '';
@@ -274,16 +273,15 @@ function processSuccessAuditoria(data, status, req) {
 		}
 	}
 
-	cordova.getAppVersion(function (version) {
-		version = ParseFloat(version);
-		if (version > appVersion) {
-			alert('Version descargada = ' + version + ', version ejecutada = ' + appVersion);
-			//window.localStorage.clear();
-			isCargarCotizaciones = true;
-			listaNovedades = true;
-			listaInformes = true;
-		}
-	});
+	var version = getAppVersion();
+	if (version > appVersion) {
+		alert('Version descargada = ' + version + ', version ejecutada = ' + appVersion);
+		//window.localStorage.clear();
+		isCargarCotizaciones = true;
+		listaNovedades = true;
+		listaInformes = true;
+	}
+
 	
 	/*isCargarCotizaciones = true;
 	listaNovedades = true;

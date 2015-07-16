@@ -474,3 +474,29 @@ function isValidDate(date) {
 		  return false;
 	}
 }
+
+/******** App Version Management ********/
+var appVersion = 1.4;
+
+function loadXMLDoc(xml) {
+	if (window.XMLHttpRequest) {
+		xhttp=new XMLHttpRequest();
+	} else {
+		xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xhttp.open("GET", xml, false);
+	xhttp.send();
+	return xhttp.responseXML;
+}
+
+function getAppVersion() {
+	var xmlDoc = loadXMLDoc("config.xml");
+	var version = 0;
+
+    $(xmlDoc).find('widget').each(function () {
+		version = parseFloat($(this).attr('version'));
+    });
+	
+	return version;
+}
