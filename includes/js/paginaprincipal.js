@@ -24,6 +24,7 @@ $(document).ajaxStop(function () {
 function CargaDeLosDatosPrevioTelefono() {
 	// Intentar hasta que se dispare el evento deviceReady del core de phonegap
     if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
+		MostrarDivBloqueo();
         setTimeout(function () {
             CargaDeLosDatosPrevioTelefono();
         }, 100);
