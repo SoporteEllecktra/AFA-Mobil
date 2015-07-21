@@ -12,9 +12,9 @@ $(document).ready(function () {
 	if (!swiper) {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 		processError('', '', '');
-	} //else if (!isMobile()) {
-		//CargaDeLosDatosPrevioTelefono();
-	//}
+	} else {
+		CargaDeLosDatosPrevioTelefono();
+	}
 });
 
 $(document).ajaxStop(function () {
@@ -23,11 +23,11 @@ $(document).ajaxStop(function () {
 
 function CargaDeLosDatosPrevioTelefono() {
 	// Intentar hasta que se dispare el evento deviceReady del core de phonegap
-    /*if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
+    if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
         setTimeout(function () {
             CargaDeLosDatosPrevioTelefono();
         }, 100);
-    } else {*/
+    } else {
         var varParametroUrl = '';
         if (window.localStorage && localStorage.getItem("storageIndexVolver")) {
             varParametroUrl = localStorage.getItem("storageIndexVolver");
