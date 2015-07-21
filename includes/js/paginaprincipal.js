@@ -2,6 +2,7 @@ var swiper = null;
 var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 
+// Main point
 $(document).ready(function () {
     swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
@@ -10,9 +11,9 @@ $(document).ready(function () {
 
 	if (!swiper) {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
+		processError('', '', '');
 	} else {
-		document.addEventListener("deviceready", CargaDeLosDatosPrevioTelefono, true);
-		//CargaDeLosDatosPrevioTelefono();
+		CargaDeLosDatosPrevioTelefono();
 	}
 });
 
@@ -21,15 +22,14 @@ $(document).ajaxStop(function () {
 });
 
 function CargaDeLosDatosPrevioTelefono() {
-	onDeviceReadyFSLoad();
-
-    if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
+	// Intentar hasta que se dispare el evento deviceReady del core de phonegap
+    /*if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
         setTimeout(function () {
             CargaDeLosDatosPrevioTelefono();
         }, 100);
-    } else {
+    } else {*/
         var varParametroUrl = '';
-        if (localStorage.getItem("storageIndexVolver")) {
+        if (window.localStorage && localStorage.getItem("storageIndexVolver")) {
             varParametroUrl = localStorage.getItem("storageIndexVolver");
         }
 		// Startup de la app
@@ -38,7 +38,11 @@ function CargaDeLosDatosPrevioTelefono() {
             FuncionInicio(); // in cargardatos.js
         } else if (varParametroUrl == '1') {
 			// Una vez abierta la app, navegación entre las diferentes pantallas (cuando se usa libreria.js::RedireccionarPagIndex())
-            localStorage.setItem('storageIndexVolver', '');
+            if (window.localStorage) {
+				localStorage.setItem('storageIndexVolver', '');
+			} else {
+				processError('', '', '');
+			}
             if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
 				//alert('storageListaCotizacionesDestacada is null');
 				processError('', '', '');
@@ -74,7 +78,7 @@ function CargaDeLosDatosPrevioTelefono() {
         } else if (varParametroUrl == '2') {
             onclickActualizar();
         }
-    }
+    //}
 }
 
 var isMoverAmpliar = false;
@@ -470,9 +474,6 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         porcentajeArriba = 0.55;
         porcentajeAbajo = 0.45;
         onresizeBody();
-        //         setTimeout(function () {
-        //           $('#swiper-slide2').width('100%');
-        //        }, 200); 
     }
 }
 
@@ -494,9 +495,7 @@ function CargarNovedadesHtml() {
 			resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
 		}
 		resultadoDiv += '</div>';
-		//
 		resultadoDiv += '<div class="col-xs-11 ">';
-		//
 		// Primer fila novedades
 		resultadoDiv += '<div class="row">';
 		resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
@@ -527,16 +526,15 @@ function CargarNovedadesHtml() {
 		resultadoDiv += '</table>';
 		resultadoDiv += '</tr>';
 		resultadoDiv += '</div>';
-		//
+
 		resultadoDiv += '</div>';
 		resultadoDiv += '<div class="row">';
 		resultadoDiv += '<div class="col-xs-12 cssNovedadesDescripcion">';
 		resultadoDiv += this.descripcion;
 		resultadoDiv += '</div>';
 		resultadoDiv += '</div>';
-		//
+
 		resultadoDiv += '</div>';
-		//
 	});
 	resultadoDiv += '</div>'; // fin parte scroll
 
@@ -591,7 +589,6 @@ function onclickFullScreenCotizacionesHistorica() {
 }
 
 function onclickFullScreenButtonAmpliar() {
-
     if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
         window.location.href = "novedades.html";
     } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide2') {

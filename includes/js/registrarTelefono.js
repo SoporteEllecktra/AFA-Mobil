@@ -27,7 +27,7 @@ function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
 }
 
 function onDeviceReady() {
-    //alert('onDeviceReady');
+    alert('onDeviceReady');
     objDatosTelefono = new infoRegistracion();
     pushNotification = window.plugins.pushNotification;
     objDatosTelefono.platform = device.platform;
@@ -81,7 +81,7 @@ function onDeviceReady() {
         }
     }
     objDatosTelefono.uuid = device.uuid;
-    //alert(device.platform);
+    alert(device.platform);
     localStorage.setItem('storagePlatform', device.platform);
 }
 
@@ -159,7 +159,7 @@ function channelHandler(event) {
     //alert(event.uri);
 }
 
-//handle MPNS notifications for WP8
+// Handler MPNS notifications for WP8
 function onNotificationWP8(e) {
         if (e.jsonContent && e.jsonContent["wp:Text2"].length > 0) {
             CargarVentanaAlerta(e.jsonContent["wp:Text1"], e.jsonContent["wp:Text2"]);

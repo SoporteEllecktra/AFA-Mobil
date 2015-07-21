@@ -41,7 +41,7 @@ function toString00(pNro) {
 function isMobile() {
     var resultado = false;
     var varPlatform = '';
-    if (window.localStorage && localStorage.getItem("storagePlatform") != null && localStorage.getItem("storagePlatform")  != '') {
+    if (window.localStorage && localStorage.getItem("storagePlatform") && localStorage.getItem("storagePlatform")  != '') {
         varPlatform = localStorage.getItem("storagePlatform");
     } else {
         return false;
@@ -139,7 +139,7 @@ function obtenerStorageFechaMenuPrincipal() {
     if (window.localStorage) {
         resultado = obtenerFechaMostrarMenuInicio(localStorage.getItem('storageFechaCotizaciones'));
     } else {
-        resultado = parseInt(getItemApplicationStorage('storageFechaCotizaciones'));
+        resultado = obtenerFechaMostrarMenuInicio(getItemApplicationStorage('storageFechaCotizaciones'));
     }
     return resultado;
 }
@@ -280,49 +280,41 @@ function onErrorCopy(ex) {
 }
 
 function shareNuevo(expr) {
-    // alert('Ok');
     try {
         cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
     } catch (exx) {
-
+		alert('Su sistema no permite compartir contenido de esta aplicación.');
     }
     var varPlatform = '';
-    if (localStorage.getItem("storagePlatform") != null) {
+    if (window.localStorage && localStorage.getItem("storagePlatform")) {
         varPlatform = localStorage.getItem("storagePlatform");
     }
+	if (!window.plugins) {
+		return;
+	}
     if (varPlatform == 'WinCE' || varPlatform == 'Win32NT') {
         window.plugins.socialsharing.share(ObtenerTxtCompartirCotizacionesDestacada(), null, null, null);
-        //window.plugins.socialsharing.share(ObtenerTxtCompartirCotizacionesDestacada());
     } else {
         window.plugins.socialsharing.share(ObtenerTxtCompartirCotizacionesDestacada());
     }
 }
 
 function share(expr) {
-    //window.plugins.copy(ObtenerTxtCompartirCotizacionesDestacada());
-    //cordova.plugins.clipboard.copy(ObtenerTxtCompartirCotizacionesDestacada());
     try {
         cordova.exec(onSuccessCopy, onErrorCopy, "Clipboard", "copy", [ObtenerTxtCompartirCotizacionesDestacada()]);
     } catch (exx) {
-
+		alert('Hubo un problema al compartir contenido. Intente nuevamente.');
     }
     switch (expr) {
     case "Twitter":
-        //window.plugins.socialsharing.shareViaTwitter(ObtenerTxtCompartirCotizacionesDestacada());
         window.plugins.socialsharing.shareViaTwitter('');
         break;
     case "Facebook":
         window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(ObtenerTxtCompartirCotizacionesDestacada(), null, null, ObtenerTxtCompartirCotizacionesDestacada(), function () {
-            console.log('share ok')
+            //console.log('Facebook share ok');
         }, function (errormsg) {
             alert(errormsg)
         });
-
-        //window.plugins.socialsharing.shareViaFacebook( ObtenerTxtCompartirCotizacionesDestacada(), 'http://www.kellerhoff.com.ar/img/logo.png' , 'http://www.phonegapspain.com', function() {alert('Ok');}, function(errormsg){alert('Error');}); 
-        //window.plugins.socialsharing.shareViaFacebook(ObtenerTxtCompartirCotizacionesDestacada(), null, null, function () { /*alert('Ok');*/ }, function (errormsg) { /*alert('Error');*/ });
-        //window.plugins.socialsharing.shareViaFacebook('Afa facebook','http://www.kellerhoff.com.ar/img/logo.png','http://www.afascl.com','Paste it dude!', function() {/*alert('Ok');*/}, function(errormsg){alert('Conectar Facebook');}); 
-        //window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Afa facebook',null,null,ObtenerTxtCompartirCotizacionesDestacada(),function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
-        //window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', null /* img */, null /* url */, 'Paste it dude!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
         break;
     case "WhatsApp":
         //window.plugins.socialsharing.shareViaWhatsApp(ObtenerTxtCompartirCotizacionesDestacada(), null /* img */, null /* url */, function () { console.log('share ok') }, function (errormsg) { console.log(errormsg) });
@@ -397,7 +389,7 @@ function loadURL(url) {
             window.open(url, '_system');
         }
     } catch (ex) {
-        alert('No se puede acceder al recurso externo. Intente nuevamente');
+        alert('No se puede acceder al recurso externo. Intente nuevamente.');
         // return false;
     }
     //  return false;
@@ -428,8 +420,6 @@ function CargarVentanaAlerta(pTitulo, pDescripcion) {
 /* Inicio Actualizar */
 function onclickActualizar() {
     $('#divFondoBloqueo').css('opacity', '0.8');
-    //window.localStorage.clear();
-    //window.location.href = "index.html";
 	MostrarDivBloqueo();
     CargarAuditoria();
 }
