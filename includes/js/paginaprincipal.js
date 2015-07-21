@@ -12,9 +12,9 @@ $(document).ready(function () {
 	if (!swiper) {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 		processError('', '', '');
-	} else if(!isMobile()) {
-		CargaDeLosDatosPrevioTelefono();
-	}
+	} //else if (!isMobile()) {
+		//CargaDeLosDatosPrevioTelefono();
+	//}
 });
 
 $(document).ajaxStop(function () {
