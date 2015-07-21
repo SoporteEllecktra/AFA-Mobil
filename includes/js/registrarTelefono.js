@@ -83,6 +83,8 @@ function onDeviceReady() {
     objDatosTelefono.uuid = device.uuid;
     //alert(device.platform);
     localStorage.setItem('storagePlatform', device.platform);
+
+	CargaDeLosDatosPrevioTelefono();
 }
 
 function successHandler(result) {
