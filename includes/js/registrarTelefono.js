@@ -27,7 +27,7 @@ function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
 }
 
 function onDeviceReady() {
-    alert('onDeviceReady');
+    //alert('onDeviceReady');
     objDatosTelefono = new infoRegistracion();
     pushNotification = window.plugins.pushNotification;
     objDatosTelefono.platform = device.platform;
@@ -81,7 +81,7 @@ function onDeviceReady() {
         }
     }
     objDatosTelefono.uuid = device.uuid;
-    alert(device.platform);
+    //alert(device.platform);
     localStorage.setItem('storagePlatform', device.platform);
 }
 
