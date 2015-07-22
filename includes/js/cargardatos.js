@@ -76,7 +76,7 @@ function FuncionInicio() {
     var isGuardarTelefono = false;
 	if (window.localStorage) {
 		if (!localStorage.getItem("storageTelefono")) {
-			isGuardarTelefono = isMobile();
+			isGuardarTelefono = isPhone();
 
 			if (!isGuardarTelefono) {
 				localStorage.setItem('storageTelefono', '');
