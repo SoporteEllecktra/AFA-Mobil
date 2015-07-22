@@ -283,7 +283,7 @@ function processSuccessAuditoria(data, status, req) {
 */
 function defineLoadUpdates() {
 	var labelTableStorage = "storageTablaModificaciones";
-	var update = false;
+	var update = true;
 	//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
 	for (var i = 0; i < listaTablaModificaciones.length; i++) {
 		//alert(i+1);
@@ -322,9 +322,9 @@ function successAuditoria(data, status, req) {
 		processError('', '', '');
 	}
 
-	isCargarCotizaciones = false;
-	isCargarNotificaciones = false;
-	isCargarInformes = false;
+	isCargarCotizaciones = true;
+	isCargarNotificaciones = true;
+	isCargarInformes = true;
 
 	// Obtener las actualizaciones y analizarlas
 	CargarResultadoAuditoriaJavascript(req.responseText);
@@ -470,8 +470,11 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
 		// fechaCotizacion format: yyyy-mm-ddThh:mm:ss-xx:xx where +/-xx:xx is GMT zone time value (-03:00 for Argentina)
 		maxDate = obj.fechaCotizacion;
 		var fechaData = obj.fechaCotizacion.split('T');
-		var fecha = fechaData[0].replace(/-/g, '/');
-		var newUtcValue = obtenerFechaUTC(fecha, fechaData[1]);
+
+		var fechaPartes = fechaData[0].split('-');
+		var fecha = fechaPartes[2]+'/'+fechaPartes[1]+'/'+fechaPartes[0]; // new format: dd/mm/yyyy
+		var horaPartes = fechaData[1].split('-');
+		var newUtcValue = obtenerFechaUTC(fecha, horaPartes[0]);
 		if (newUtcValue > maxUtcValue) {
 			maxUtcValue = newUtcValue;
 			maxDate = obj.fechaCotizacion;
