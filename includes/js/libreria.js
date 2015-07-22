@@ -2,7 +2,6 @@ var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
 var applicationStorage = [];
-var isMobile = false;
 
 function getItemApplicationStorage(item_key_value) {
     for (var i = 0; i < applicationStorage.length; i++) {
@@ -473,59 +472,4 @@ function checkTime(time) {
 
 function isValidTime(time) {
 	return (validateTimeFormat(time) && checkTime(time));
-}
-
-/******** App Version Management ********/
-var appVersion = 1.5;
-
-function loadXMLDoc(xml) {
-	if (window.XMLHttpRequest) {
-		xhttp=new XMLHttpRequest();
-	} else {
-		xhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-
-	xhttp.open("GET", xml, false);
-	xhttp.send();
-
-	return xhttp.responseXML;
-}
-
-/*function getAppVersion() {
-	//var xmlDoc = loadXMLDoc("config.xml");
-	var version = 0;
-
-    $(xmlDoc).find('widget').each(function () {
-		version = parseFloat($(this).attr('version'));
-    });
-
-	return version;
-}*/
-
-var fileSystem;
-function onDeviceReadyFSLoad() {
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onError);
-}
-
-function onError() {
-	appVersion = 0;
-}
-
-function onFSSuccess(fs) {
-	fileSystem = fs;
-	doReadFile();
-}
-
-function readFile(file) {
-	reader = new FileReader();
-	reader.onloadend = function(e) {
-		//alert("Contenido " + e.target.result);
-		var xmlData = $(reader.result);
-		alert("Contenido " + xmlData);
-	}
-	reader.readAsText(file);
-}
-
-function doReadFile() {
-	fileSystem.root.getFile("config.xml", { create: true }, readFile, onError);
 }

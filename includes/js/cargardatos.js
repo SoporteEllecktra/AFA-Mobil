@@ -129,13 +129,13 @@ function funGuardarTelefono(pTelefono) {
         },
         data: CargarParametroEntradaGuardarTelefono(pTelefono),
         success: processSuccessGuardarTelefono,
-        error: processErrorGuardarTelefono
+        error: processError//GuardarTelefono
     });
 }
 
-function processErrorGuardarTelefono(data, status, req) {
+/*function processErrorGuardarTelefono(data, status, req) {
     window.location.href = "error.html?status=1";
-}
+}*/
 
 function processSuccessGuardarTelefono(data, status, req) {
     if (status == "success") {
@@ -164,7 +164,7 @@ function CargarAuditoria() {
         xhrFields: { withCredentials: true },
         data: CargarParametroEntradaAuditoria(),
         success: successAuditoria,
-        error: processErrorAuditoria
+        error: processError//Auditoria
     });
 }
 /*
@@ -400,7 +400,7 @@ function CargaCotizacionDestacada() {
             //data: CargarParametroEntradaCotizaciones(1, 14, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessCotizacionDestacada,
-            error: processErrorCotizacionDestacada
+            error: processError//CotizacionDestacada
         });
     } else {
 		if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
@@ -422,6 +422,7 @@ function processError(data, status, req) {
     //OcultarDivBloqueo();
     window.location.href = "error.html";
 }
+/*
 function processErrorAuditoria(data, status, req) {
 	processError(data, status, req);
 
@@ -444,7 +445,7 @@ function processErrorTodasCotizaciones(data, status, req) {
 function processErrorUltimoInforme(data, status, req) {
         processError(data, status, req);
 }
-/* Fin Error */
+ Fin Error */
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
     cotizacionesDestacada = [];
 	var maxUtcValue = 0;
@@ -575,7 +576,7 @@ function CargaConIndiceDetalleCotizacion(pIndex) {
         //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
         data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
         success: processSuccessDetalleCotizacion,
-        error: processErrorCargaConIndiceDetalleCotizacion
+        error: processError//CargaConIndiceDetalleCotizacion
     });
 }
 
@@ -633,7 +634,7 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
         //data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 8, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
         data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 9, cotizacionesDestacada[pIndex].codigoProducto, '', ''),
         success: processSuccessCotizacionHistorica,
-        error: processErrorCotizacionHistoricaConIndiceDetacado
+        error: processError//CotizacionHistoricaConIndiceDetacado
     });
 }
 
@@ -693,7 +694,7 @@ function CargaTodasCotizaciones() {
             //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessTodasCotizaciones,
-            error: processErrorTodasCotizaciones
+            error: processError//TodasCotizaciones
         });
     }
 }
@@ -767,7 +768,7 @@ function CargaNovedades() {
             },
             data: CargarParametroEntradaNovedades('', '', ''),
             success: processSuccessNovedades,
-            error: processErrorNovedades
+            error: processError//Novedades
         });
     } else {
 		if (!localStorage.getItem("storageListaNovedades")) {
@@ -827,7 +828,7 @@ function CargaUltimoInforme() {
             },
             data: CargarParametroEntradaInforme('', '', 1),
             success: processSuccessInforme,
-            error: processErrorUltimoInforme
+            error: processError//UltimoInforme
         });
     } else {
 		if (!localStorage.getItem("storageListaInformes")) {
