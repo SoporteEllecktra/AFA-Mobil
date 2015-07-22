@@ -15,7 +15,6 @@ $(document).ready(function () {
 	} else {
 		// Define if its device is a mobile
 		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
-			alert("Es movil");
 			document.addEventListener("deviceready", onDeviceReady, false);
 		} else {
 			CargaDeLosDatosPrevioTelefono();

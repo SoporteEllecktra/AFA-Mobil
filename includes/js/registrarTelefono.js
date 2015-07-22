@@ -27,7 +27,7 @@ function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
 }
 
 function onDeviceReady() {
-    alert('onDeviceReady');
+    //alert('onDeviceReady');
     objDatosTelefono = new infoRegistracion();
     pushNotification = window.plugins.pushNotification;
     objDatosTelefono.platform = device.platform;
