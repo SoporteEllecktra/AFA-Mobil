@@ -13,7 +13,12 @@ $(document).ready(function () {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 		processError('', '', '');
 	} else {
-		CargaDeLosDatosPrevioTelefono();
+		// Define if its device is a mobile
+		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
+			document.addEventListener("deviceready", onDeviceReady, false);
+		} else {
+			CargaDeLosDatosPrevioTelefono();
+		}
 	}
 });
 
@@ -23,12 +28,12 @@ $(document).ajaxStop(function () {
 
 function CargaDeLosDatosPrevioTelefono() {
 	// Intentar hasta que se dispare el evento deviceReady del core de phonegap
-    if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
+    /*if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
 		MostrarDivBloqueo();
         setTimeout(function () {
             CargaDeLosDatosPrevioTelefono();
         }, 100);
-    } else {
+    } else {*/
         var varParametroUrl = '';
         if (window.localStorage && localStorage.getItem("storageIndexVolver")) {
             varParametroUrl = localStorage.getItem("storageIndexVolver");
@@ -79,7 +84,7 @@ function CargaDeLosDatosPrevioTelefono() {
         } else if (varParametroUrl == '2') {
             onclickActualizar();
         }
-    }
+    //}
 }
 
 var isMoverAmpliar = false;

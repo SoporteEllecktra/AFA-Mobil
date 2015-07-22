@@ -2,6 +2,7 @@ var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
 var applicationStorage = [];
+var isMobile = false;
 
 function getItemApplicationStorage(item_key_value) {
     for (var i = 0; i < applicationStorage.length; i++) {
@@ -38,7 +39,7 @@ function toString00(pNro) {
     return pNro;
 }
 
-function isMobile() {
+function isPhone() {
     var resultado = false;
     var varPlatform = '';
     if (window.localStorage && localStorage.getItem("storagePlatform") && localStorage.getItem("storagePlatform")  != '') {
