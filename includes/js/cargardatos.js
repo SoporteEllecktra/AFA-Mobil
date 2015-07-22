@@ -287,17 +287,21 @@ function defineLoadUpdates() {
 	//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
 	for (var i = 0; i < listaTablaModificaciones.length; i++) {
 		//alert(i+1);
-		console.log(listaTablaModificaciones[i]);
+		//console.log(listaTablaModificaciones[i]);
 		var tableNameKey = labelTableStorage + listaTablaModificaciones[i].codigoTabla;
 		if (!localStorage.getItem(tableNameKey)) {
 			update = true;
 			localStorage.setItem(tableNameKey, JSON.stringify(listaTablaModificaciones[i]));
 		} else {
-			var fechaNueva = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
-			var fechaGuardada = localStorage.getItem(tableNameKey);
-			var TablaModificaciones = eval('(' + fechaGuardada + ')');
-			fechaGuardada = obtenerFechaUTC(TablaModificaciones.fecha, TablaModificaciones.hora);
-			if (fechaNueva > fechaGuardada) {
+			var newDate = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
+			var updateStorage = localStorage.getItem(tableNameKey);
+			var updateStorageObject = eval('(' + updateStorage + ')');
+			storageDate = obtenerFechaUTC(updateStorageObject.fecha, updateStorageObject.hora);
+			/*var d = new Date(newDate);
+			alert('fecha Nueva => '+d);
+			d = new Date(storageDate);
+			alert('fecha Guardada => '+d);*/
+			if (newDate > storageDate) {
 				update = true;
 				localStorage.setItem(tableNameKey, JSON.stringify(listaTablaModificaciones[i]));
 			}
@@ -373,7 +377,9 @@ function CargarResultadoAuditoriaJavascript(pXML) {
 		}
 
 		obj.hora = $(this).find('hora').text();
-		if (!obj.hora || obj.hora.length == 0) {
+		if (!obj.hora || 
+			(obj.hora && obj.hora.length == 0) || 
+			(obj.hora && obj.hora.length > 0 && !isValidTime(obj.hora))) {
 			processError('', '', '');
 			return;
 		}

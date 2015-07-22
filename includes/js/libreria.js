@@ -94,10 +94,12 @@ function obtenerFechaParametroEntrada(pDia) {
 }
 
 function obtenerFechaUTC(pFecha, pHora) {
+	// date format: dd/mm/yyyy hh:mm:ss
     var fechaSplit = pFecha.split('/');
-    var anio = parseInt(fechaSplit[0]);
+    var dia = parseInt(fechaSplit[0]);
     var mes = parseInt(fechaSplit[1]) - 1;
-    var dia = parseInt(fechaSplit[2]);
+    var anio = parseInt(fechaSplit[2]);
+
     var horaSplit = pHora.split(':');
     var hora = parseInt(horaSplit[0]);
     var minuto = parseInt(horaSplit[1]);
@@ -437,32 +439,39 @@ function RedireccionarPagIndexActualizar() {
 
 /* Dates functions */
 function validateDateFormat(date) {
-      var RegExPattern = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/;
-      if ((date.match(RegExPattern)) && (date != '')) {
-            return true;
-      } else {
-            return false;
-      }
+	var regExPattern = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/;
+	return (date.match(regExPattern) && (date != ''));
 }
 
 function checkDate(date) {
-        var dateParts = date.split("/");
-        var d = dateParts[0];
-        var m = dateParts[1];
-        var y = dateParts[2];
-        return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
+	// date format: dd/mm/yyyy
+	var dateParts = date.split("/");
+	var d = parseInt(dateParts[0]);
+	var m = parseInt(dateParts[1]);
+	var y = parseInt(dateParts[2]);
+	return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
 }
 
 function isValidDate(date) {
-	if(validateDateFormat(date)) {
-		if(checkDate(date)) {
-			return true;
-		} else {
-			return false;
-		}
-	} else {
-		  return false;
-	}
+	return (validateDateFormat(date) && checkDate(date));
+}
+
+function validateTimeFormat(time) { 
+	var regExPattern = /^(0[1-9]|1\d|2[0-3]):([0-5]\d)(:([0-5]\d))?$/;
+	return (time.match(regExPattern) && (time != ''));
+}
+
+function checkTime(time) {
+	// time format: hh:mm:ss
+	var timeParts = time.split(":");
+	var h = parseInt(timeParts[0]);
+	var m = parseInt(timeParts[1]);
+	var s = parseInt(timeParts[2]);
+	return h >= 0 && h <= 23 && m >= 0 && m <= 59 && s >= 0 && s <= 59;
+}
+
+function isValidTime(time) {
+	return (validateTimeFormat(time) && checkTime(time));
 }
 
 /******** App Version Management ********/

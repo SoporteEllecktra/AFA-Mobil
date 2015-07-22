@@ -79,7 +79,7 @@ function CargaDeLosDatosPrevioTelefono() {
         } else if (varParametroUrl == '2') {
             onclickActualizar();
         }
-    //}
+    }
 }
 
 var isMoverAmpliar = false;
@@ -168,7 +168,7 @@ function onclikAcodeon() {
 }
 
 function CargarCotizacionesDestacadaHtml() {
-	if (!cotizacionesDestacada || (cotizacionesDestacada != null && cotizacionesDestacada.length == 0)) {
+	if (!cotizacionesDestacada || (cotizacionesDestacada && cotizacionesDestacada.length == 0)) {
 		processError('', '', '');
 		return;
 	}
@@ -479,7 +479,7 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
 }
 
 function CargarNovedadesHtml() {
-	if (!listaNovedades || (listaNovedades != null && listaNovedades.length == 0)) {
+	if (!listaNovedades || (listaNovedades && listaNovedades.length == 0)) {
 		processError('', '', '');
 	}
     var resultadoDiv = '<div id="divRowParteScrollNovedades">'; // parte scroll      
