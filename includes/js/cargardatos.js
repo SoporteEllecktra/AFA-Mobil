@@ -168,7 +168,7 @@ function defineLoadUpdates() {
 	//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
 	for (var i = 0; i < listaTablaModificaciones.length; i++) {
 		//alert(i+1);
-		console.log(listaTablaModificaciones[i]);
+		//console.log(listaTablaModificaciones[i]);
 		var tableNameKey = labelTableStorage + listaTablaModificaciones[i].codigoTabla;
 		if (!localStorage.getItem(tableNameKey)) {
 			update = true;
@@ -198,7 +198,7 @@ function defineLoadUpdates() {
 }
 
 function timeController(){
-	if (startTime == 15) {
+	if (startTime == startTimeOut) {
 		CargaCotizacionDestacada(); // timeOutCallbacks[0]
 		CargaNovedades(); // timeOutCallbacks[1]
 		CargaTodasCotizaciones(); // timeOutCallbacks[2]
@@ -208,7 +208,7 @@ function timeController(){
 
 	if (startTime == 1) {
 		clearTimeout(t);
-		timeOut = 1;
+		var timeOut = 1;
 		for (var i = 0; i < timeOutCallbacks.length; i++) {
 			timeOut *= parseInt(timeOutCallbacks[i]);
 		}

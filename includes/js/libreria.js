@@ -2,8 +2,8 @@ var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
 var applicationStorage = [];
-var timeOut = 1;
-var startTime = 15;
+var startTimeOut = 15;
+var startTime = startTimeOut;
 var t = 0;
 var timeOutCallbacks = [0, 0, 0, 0];
 
