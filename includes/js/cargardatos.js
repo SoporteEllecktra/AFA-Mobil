@@ -1,16 +1,16 @@
-/*var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
-var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";*/
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";
 
-var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+/*var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:8080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:8080/Concentrador/webservices/InformeService?wsdl/";
-var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:8080/Concentrador/webservices/TelefonoService?wsdl/";
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:8080/Concentrador/webservices/TelefonoService?wsdl/";*/
 
 //var wsUrlRegistracionTelefono = 'http://200.58.118.98:50002/registrationinfo/';
 var wsUrlRegistracionTelefono = 'http://190.210.143.156:50002/registrationinfo/';
@@ -167,127 +167,14 @@ function CargarAuditoria() {
         error: processError//Auditoria
     });
 }
-/*
-function processSuccessAuditoria(data, status, req) {
-	// codigoTabla == 1:"Cotizaciones", 2:"Notificaciones", 3:"Informes"   
-	isCargarCotizaciones = false;
-	isCargarNotificaciones = false;
-	isCargarInformes = false;
-	if (!req || (req && req.responseText.length == 0)) {
-		processError('', '', '');
-	}
-	CargarResultadoAuditoriaJavascript(req.responseText);
-	if (listaTablaModificaciones && (listaTablaModificaciones.length > 0)) {
-		//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
-		for (var i = 0; i < listaTablaModificaciones.length; i++) {
-			//alert(i+1);
-			console.log(listaTablaModificaciones[i]);
-			if (listaTablaModificaciones[i].codigoTabla == 1) { // Cotizaciones
-				if (!localStorage.getItem("storageTablaModificaciones1")) {
-					//alert("HAY UPDATES COTIS SIN ALMACENAR");
-					isCargarCotizaciones = true;
-					var tablaModificacionesCotizacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-					localStorage.setItem('storageTablaModificaciones1', tablaModificacionesCotizacionesAGuardar);
-				} else {
-					var fechaCotizacionesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
-					var fechaCotizacionesGuardada = localStorage.getItem("storageTablaModificaciones1");
-					var TablaModificacionesCotizaciones = eval('(' + fechaCotizacionesGuardada + ')');
-					var fechaCotizacionesUTC = obtenerFechaUTC(TablaModificacionesCotizaciones.fecha, TablaModificacionesCotizaciones.hora);
-					if (fechaCotizacionesNuevaUTC > fechaCotizacionesUTC) {
-						//alert("HAY UPDATES COTIS NUEVAS");
-						isCargarCotizaciones = true;
-						// Solo se envía un update del tipo 1
-						var tablaModificacionesCotizacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-						localStorage.setItem('storageTablaModificaciones1', tablaModificacionesCotizacionesAGuardar);
-					}
-				}
-			} else 
-			if (listaTablaModificaciones[i].codigoTabla == 2) { //Notificaciones
-				if (localStorage.getItem("storageTablaModificaciones2") == null) {
-					//alert("HAY UPDATES NOTIF SIN ALMACENAR");
-					isCargarNotificaciones = true;
-					var tablaModificacionesNotificacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-					localStorage.setItem('storageTablaModificaciones2', tablaModificacionesNotificacionesAGuardar);
-				} else {
-					var fechaNotificacionesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
-					var fechaNotificacionesGuardada = localStorage.getItem("storageTablaModificaciones2");
-					var TablaModificacionesNotificaciones = eval('(' + fechaNotificacionesGuardada + ')');
-					var fechaNotificacionesUTC = obtenerFechaUTC(TablaModificacionesNotificaciones.fecha, TablaModificacionesNotificaciones.hora);
-					if (fechaNotificacionesNuevaUTC > fechaNotificacionesUTC) {
-						//alert("HAY UPDATES NOTIF NUEVAS");
-						isCargarNotificaciones = true;
-						var tablaModificacionesNotificacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-						localStorage.setItem('storageTablaModificaciones2', tablaModificacionesNotificacionesAGuardar);
-					}
-				}
-			} else
-			if (listaTablaModificaciones[i].codigoTabla == 3) { //Informes
-				if (localStorage.getItem("storageTablaModificaciones3") == null) {
-					//alert("HAY UPDATES INFORMES SIN ALMACENAR");
-					isCargarInformes = true;
-					var tablaModificacionesInformesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-					localStorage.setItem('storageTablaModificaciones3', tablaModificacionesInformesAGuardar);
-				} else {
-					var fechaInformesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
-					var fechaInformesGuardada = localStorage.getItem("storageTablaModificaciones3");
-					var TablaModificacionesInformes = eval('(' + fechaInformesGuardada + ')');
-					var fechaInformesUTC = obtenerFechaUTC(TablaModificacionesInformes.fecha, TablaModificacionesInformes.hora);
-					if (fechaInformesNuevaUTC > fechaInformesUTC) {
-						//alert("HAY UPDATES INFORMES NUEVOS");
-						isCargarInformes = true;
-						var tablaModificacionesInformesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-						localStorage.setItem('storageTablaModificaciones3', tablaModificacionesInformesAGuardar);
-					}
-				}
-			}
-		}
-		// NO hay updates o lo nuevo ya se tiene guardado, obtener la info desde lo almacenado
-		// Hay que tener en cuenta q si NO hay soporte al Local Storage,
-		// al startup de la app esto debe dar error porque NO hay nada almacenado
-		if (!window.localStorage) {
-			processError('', '', '');
-		}
-		if (!isCargarCotizaciones) {
-			if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
-				isCargarCotizaciones = true;
-			} else {
-				var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-				cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
-			}
-		}
-		if (!isCargarNotificaciones) {
-			if (localStorage.getItem("storageListaNovedades") == null) {
-				isCargarNotificaciones = true;
-			} else {
-				var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-				listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-			}
-		}
-		if (!isCargarInformes) {
-			if (localStorage.getItem("storageListaInformes") == null) {
-				isCargarInformes = true;
-			} else {
-				var listaInformesGuardada = localStorage.getItem("storageListaInformes");
-				listaInformes = eval('(' + listaInformesGuardada + ')');
-			}
-		}
-	}
 
-	//$.when(
-	CargaCotizacionDestacada(); 
-	CargaNovedades(); 
-	CargaTodasCotizaciones(); 
-	CargaUltimoInforme();
-	//).done(funDoneAjax);
-}
-*/
 function defineLoadUpdates() {
 	var labelTableStorage = "storageTablaModificaciones";
 	var update = true;
 	//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
 	for (var i = 0; i < listaTablaModificaciones.length; i++) {
 		//alert(i+1);
-		//console.log(listaTablaModificaciones[i]);
+		console.log(listaTablaModificaciones[i]);
 		var tableNameKey = labelTableStorage + listaTablaModificaciones[i].codigoTabla;
 		if (!localStorage.getItem(tableNameKey)) {
 			update = true;
@@ -301,7 +188,7 @@ function defineLoadUpdates() {
 			alert('fecha Nueva => '+d);
 			d = new Date(storageDate);
 			alert('fecha Guardada => '+d);*/
-			if (newDate > storageDate) {
+			if (newDate != storageDate) {
 				update = true;
 				localStorage.setItem(tableNameKey, JSON.stringify(listaTablaModificaciones[i]));
 			}

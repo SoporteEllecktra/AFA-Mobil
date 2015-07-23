@@ -1,8 +1,18 @@
+/*!
+ * AFA Movil v1.5 (http://mercados.afascl.coop)
+ * @author Copyright 2015 Ellecktra
+ * @version 1.5
+ */
+ 
 var swiper = null;
 var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 
-// Main point
+/*!
+ * @brief App' main point
+ * @post Swiper object created and application render (error page or succesfull main page)
+ * 
+ */
 $(document).ready(function () {
     swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
