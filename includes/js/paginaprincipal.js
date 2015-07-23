@@ -23,6 +23,7 @@ $(document).ready(function () {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 		processError('', '', '');
 	} else {
+		MostrarDivBloqueo();
 		// Define if its device is a mobile
 		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
 			document.addEventListener("deviceready", onDeviceReady, false);
@@ -50,7 +51,7 @@ function CargaDeLosDatosPrevioTelefono() {
         }
 		// Startup de la app
         if (varParametroUrl === '') {
-            MostrarDivBloqueo(); // in libreria.js
+            //MostrarDivBloqueo(); // in libreria.js
             FuncionInicio(); // in cargardatos.js
         } else if (varParametroUrl == '1') {
 			// Una vez abierta la app, navegación entre las diferentes pantallas (cuando se usa libreria.js::RedireccionarPagIndex())
@@ -91,6 +92,7 @@ function CargaDeLosDatosPrevioTelefono() {
                 porcentajeAbajo = 0;
             }
             onresizeBody();
+			OcultarDivBloqueo();
         } else if (varParametroUrl == '2') {
             onclickActualizar();
         }

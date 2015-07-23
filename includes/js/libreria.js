@@ -2,6 +2,10 @@ var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
 var applicationStorage = [];
+var timeOut = 1;
+var startTime = 15;
+var t = 0;
+var timeOutCallbacks = [0, 0, 0, 0];
 
 function getItemApplicationStorage(item_key_value) {
     for (var i = 0; i < applicationStorage.length; i++) {
@@ -138,7 +142,7 @@ function grabarStorageFechaCotizacion(pValor) {
 
 function obtenerStorageFechaMenuPrincipal() {
     var resultado = '';
-    if (window.localStorage) {
+    if (localStorage.getItem('storageFechaCotizaciones')) {
         resultado = obtenerFechaMostrarMenuInicio(localStorage.getItem('storageFechaCotizaciones'));
     } else {
         resultado = obtenerFechaMostrarMenuInicio(getItemApplicationStorage('storageFechaCotizaciones'));
@@ -149,7 +153,7 @@ function obtenerStorageFechaMenuPrincipal() {
 function CargarHtmlFechaMenuPrincipal() {
     $('#headerFecha').html(obtenerStorageFechaMenuPrincipal());
 	$('#headerFecha').css('cursor', 'pointer');
-	$('#headerFecha').attr('onclick', 'window.location.href = "index.html"');
+	$('#headerFecha').attr('onclick', "window.location.href = 'index.html'");
 }
 
 function obtenerFechaMostrarDsdCotizacionesDestacada(pValor) {
@@ -400,6 +404,7 @@ function loadURL(url) {
 function RedireccionarPagIndex() {
     localStorage.setItem('storageIndexVolver', '1');
     window.history.go(-1);
+	//window.location.href = 'index.html';
 }
 
 /*Inicio Ventana alerta*/

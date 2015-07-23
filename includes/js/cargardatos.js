@@ -129,28 +129,22 @@ function funGuardarTelefono(pTelefono) {
         },
         data: CargarParametroEntradaGuardarTelefono(pTelefono),
         success: processSuccessGuardarTelefono,
-        error: processError//GuardarTelefono
+        error: processError
     });
 }
 
-/*function processErrorGuardarTelefono(data, status, req) {
-    window.location.href = "error.html?status=1";
-}*/
-
 function processSuccessGuardarTelefono(data, status, req) {
-    if (status == "success") {
-        var codigoRespuesta = 1;
-        $(req.responseText).find('return').each(function () {
-            codigoRespuesta = parseInt($(this).find('codigoResultado').text());
-        });
+	var codigoRespuesta = 1;
+	$(req.responseText).find('return').each(function () {
+		codigoRespuesta = parseInt($(this).find('codigoResultado').text());
+	});
 
-        if (codigoRespuesta == 0) {
-            localStorage.setItem('storageTelefono', telefonoDelUsuario);
-        }
-        $('#divFondoBloqueo').css('display', 'block');
-        window.location.href = "index.html";
-        //window.history.go(-1);
-    }
+	if (codigoRespuesta == 0) {
+		localStorage.setItem('storageTelefono', telefonoDelUsuario);
+	}
+	$('#divFondoBloqueo').css('display', 'block');
+	window.location.href = "index.html";
+	//window.history.go(-1);
 }
 
 function CargarAuditoria() {
@@ -164,7 +158,7 @@ function CargarAuditoria() {
         xhrFields: { withCredentials: true },
         data: CargarParametroEntradaAuditoria(),
         success: successAuditoria,
-        error: processError//Auditoria
+        error: processError
     });
 }
 
@@ -203,6 +197,29 @@ function defineLoadUpdates() {
 	}
 }
 
+function timeController(){
+	if (startTime == 15) {
+		CargaCotizacionDestacada(); // timeOutCallbacks[0]
+		CargaNovedades(); // timeOutCallbacks[1]
+		CargaTodasCotizaciones(); // timeOutCallbacks[2]
+		CargaUltimoInforme(); // timeOutCallbacks[3]
+	}
+	startTime--;
+
+	if (startTime == 1) {
+		clearTimeout(t);
+		timeOut = 1;
+		for (var i = 0; i < timeOutCallbacks.length; i++) {
+			timeOut *= parseInt(timeOutCallbacks[i]);
+		}
+
+		if (timeOut == 0) {
+			alert("TIMEOUT");
+			processError('', '', '');
+		}
+	}
+}
+
 function successAuditoria(data, status, req) {
 	// No se pudo traer la info auditoria de las actualizaciones
 	if (!req || (req && req.responseText.length == 0)) {
@@ -220,10 +237,7 @@ function successAuditoria(data, status, req) {
 		defineLoadUpdates();
 	}
 
-	CargaCotizacionDestacada(); 
-	CargaNovedades(); 
-	CargaTodasCotizaciones(); 
-	CargaUltimoInforme();
+	t = setInterval(timeController, 1000);
 }
 
 /*function funDoneAjax(a, b, c, d) {
@@ -287,7 +301,7 @@ function CargaCotizacionDestacada() {
             //data: CargarParametroEntradaCotizaciones(1, 14, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessCotizacionDestacada,
-            error: processError//CotizacionDestacada
+            error: processError
         });
     } else {
 		if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
@@ -309,30 +323,7 @@ function processError(data, status, req) {
     //OcultarDivBloqueo();
     window.location.href = "error.html";
 }
-/*
-function processErrorAuditoria(data, status, req) {
-	processError(data, status, req);
 
-}
-function processErrorCotizacionDestacada(data, status, req) {
-	processError(data, status, req);
-}
-function processErrorCargaConIndiceDetalleCotizacion(data, status, req) {
-    processError(data, status, req);
-}
-function processErrorCotizacionHistoricaConIndiceDetacado(data, status, req) {
-    processError(data, status, req);
-}
-function processErrorNovedades(data, status, req) {
-	processError(data, status, req);
-}
-function processErrorTodasCotizaciones(data, status, req) {
-    processError(data, status, req);
-}
-function processErrorUltimoInforme(data, status, req) {
-        processError(data, status, req);
-}
- Fin Error */
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
     cotizacionesDestacada = [];
 	var maxUtcValue = 0;
@@ -376,6 +367,8 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         indexCotizacionesDestacada = 0;
         CargaConIndiceDetalleCotizacion(indexCotizacionesDestacada);
     }
+
+	timeOutCallbacks[0] = 1;
 }
 
 function CargarParametroEntradaCotizaciones_Ordenada(pCodigoTipoCotizacion, pCodigoTipoCliente, pFechaDesde, pFechaHasta, pTipoOrden, pProductos, pPuertos, pMonedas) {
@@ -447,7 +440,6 @@ function CargarParametroEntradaCotizaciones(pCodigoTipoCotizacion, pCodigoTipoCl
     soapRequest += '</soapenv:Envelope>';
 
     return soapRequest;
-
 }
 
 function CargaConIndiceDetalleCotizacion(pIndex) {
@@ -581,21 +573,20 @@ function CargaTodasCotizaciones() {
             //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessTodasCotizaciones,
-            error: processError//TodasCotizaciones
+            error: processError
         });
     }
 }
 
 function processSuccessTodasCotizaciones(data, status, req) {
-    if (status == "success") {
-        listaTodasCotizaciones = ObtenerTodasCotizaciones(req.responseText);
-        if (window.localStorage) {
-            var listaTodasCotizacionesAGuardar = JSON.stringify(listaTodasCotizaciones);
-            localStorage.setItem('storageListaTodasCotizaciones', listaTodasCotizacionesAGuardar);
-        } else {
-			processError('', '', '');
-        }
-    }
+	listaTodasCotizaciones = ObtenerTodasCotizaciones(req.responseText);
+	if (window.localStorage) {
+		var listaTodasCotizacionesAGuardar = JSON.stringify(listaTodasCotizaciones);
+		localStorage.setItem('storageListaTodasCotizaciones', listaTodasCotizacionesAGuardar);
+		timeOutCallbacks[2] = 1;
+	} else {
+		processError('', '', '');
+	}
 }
 
 function ObtenerTodasCotizaciones(pXML) {
@@ -655,7 +646,7 @@ function CargaNovedades() {
             },
             data: CargarParametroEntradaNovedades('', '', ''),
             success: processSuccessNovedades,
-            error: processError//Novedades
+            error: processError
         });
     } else {
 		if (!localStorage.getItem("storageListaNovedades")) {
@@ -665,20 +656,21 @@ function CargaNovedades() {
 		listaNovedades = eval('(' + listaNovedadesGuardada + ')');
 
         CargarNovedadesHtml();
+		timeOutCallbacks[1] = 1;
     }
 }
 
 function processSuccessNovedades(data, status, req) {
-    if (status == "success") {
-        listaNovedades = ObtenerNovedades(req.responseText);
-        if (window.localStorage) {
-            var listaNovedadesAGuardar = JSON.stringify(listaNovedades);
-            localStorage.setItem('storageListaNovedades', listaNovedadesAGuardar);
-        } else {
-			processError('', '', '');
-        }
-        CargarNovedadesHtml();
-    }
+	listaNovedades = ObtenerNovedades(req.responseText);
+	if (window.localStorage) {
+		var listaNovedadesAGuardar = JSON.stringify(listaNovedades);
+		localStorage.setItem('storageListaNovedades', listaNovedadesAGuardar);
+	} else {
+		processError('', '', '');
+	}
+
+	CargarNovedadesHtml();
+	timeOutCallbacks[1] = 1;
 }
 
 function ObtenerNovedades(pXML) {
@@ -715,7 +707,7 @@ function CargaUltimoInforme() {
             },
             data: CargarParametroEntradaInforme('', '', 1),
             success: processSuccessInforme,
-            error: processError//UltimoInforme
+            error: processError
         });
     } else {
 		if (!localStorage.getItem("storageListaInformes")) {
@@ -723,6 +715,7 @@ function CargaUltimoInforme() {
 		}
 		var listaInformesGuardada = localStorage.getItem("storageListaInformes");
 		listaInformes = eval('(' + listaInformesGuardada + ')');
+		timeOutCallbacks[3] = 1;
 	}
 }
 
@@ -748,15 +741,14 @@ function CargarParametroEntradaInforme(pFechaDesde, pFechaHasta, pTipoConsulta) 
 }
 
 function processSuccessInforme(data, status, req) {
-    if (status == "success") {
-        listaInformes = ObtenerInforme(req.responseText);
-        if (window.localStorage) {
-            var listaInformesAGuardar = JSON.stringify(listaInformes);
-            localStorage.setItem('storageListaInformes', listaInformesAGuardar);
-        } else {
-			processError('', '', '');
-        }
-    }
+	listaInformes = ObtenerInforme(req.responseText);
+	if (window.localStorage) {
+		var listaInformesAGuardar = JSON.stringify(listaInformes);
+		localStorage.setItem('storageListaInformes', listaInformesAGuardar);
+		timeOutCallbacks[3] = 1;
+	} else {
+		processError('', '', '');
+	}
 }
 
 function ObtenerInforme(pXML) {
