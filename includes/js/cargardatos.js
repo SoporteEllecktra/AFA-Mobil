@@ -240,6 +240,13 @@ function successAuditoria(data, status, req) {
 	t = setInterval(timeController, 1000);
 }
 
+/*function funDoneAjax(a, b, c, d) {
+    // a es un array con los argumentos que recibiria de la primer request,
+    // b lo mismo pero para la segunda request.
+    //console.log(a[2].responseText);
+    //console.log(b[2].responseText);
+}*/
+
 function CargarParametroEntradaAuditoria() {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
     soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
