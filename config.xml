@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="afa.diario.afascl.coop" versionCode="5" version="1.5">
     <name>AFA Móvil</name>
-    <description>
-    </description>
-    <author href="" email="">
-    </author>
-    <access origin="*" />
-    <access origin=".*" />
-    <preference name="phonegap-version" value="3.7.0" />
+    <description></description>
+    <author href="" email=""></author>
+    <access origin="*" /><access origin=".*" />
 
+    <preference name="phonegap-version" value="3.7.0" />
     <preference name="orientation" value="portrait" />
     <preference name="fullscreen" value="true" />
     <preference name="target-device" value="universal" />
@@ -40,12 +37,10 @@
     <preference name="disable-cursor" value="true" />
     <preference name="android-windowSoftInputMode" value="adjustResize" />
 
-<!--
-    <preference name="StatusBarOverlaysWebView" value="false" />
--->
     <gap:platform name="ios" />
     <gap:platform name="android" />
     <gap:platform name="winphone" />
+
     <feature name="http://api.phonegap.com/1.0/geolocation" />
     <feature name="InAppBrowser" />
 
@@ -87,6 +82,7 @@
     <icon src="img/Iconos/WINPHONE_62X62.png" gap:platform="winphone" />
     <icon src="img/Iconos/WINPHONE_173X173.png" gap:platform="winphone" gap:role="background" />
     <icon src="img/Iconos/DEFAULT_64X64.png" />
+
     <gap:splash src="img/Splash_Screen/IPHONE_splash_screen_320x480.png" gap:platform="ios" width="320" height="480" />
     <gap:splash src="img/Splash_Screen/IPHONE_splash_screen_320x480.png" gap:platform="ios" width="480" height="320" />
     <gap:splash src="img/Splash_Screen/IPHONE_splash_screen_640x960.png" gap:platform="ios" width="640" height="960" />
