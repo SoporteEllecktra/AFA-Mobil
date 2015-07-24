@@ -1,19 +1,15 @@
 $(document).ready(function () {
     MostrarDivBloqueo();
-	if (!localStorage.getItem("storageListaTodasCotizaciones")) {
-		OcultarDivBloqueo();
-		processError('', '', '');
-		return;
-	}
-
     CargarHtmlFechaMenuPrincipal();
-
-	var listaTodasCotizacionesGuardada = localStorage.getItem("storageListaTodasCotizaciones");
-	listaTodasCotizaciones = eval('(' + listaTodasCotizacionesGuardada + ')');
-	CargarTodasCotizacionesHtml();
-
-	onresizeBody();
-	OcultarDivBloqueo();
+	if (localStorage.getItem("storageListaTodasCotizaciones")) {
+		var listaTodasCotizacionesGuardada = localStorage.getItem("storageListaTodasCotizaciones");
+		listaTodasCotizaciones = eval('(' + listaTodasCotizacionesGuardada + ')');
+		CargarTodasCotizacionesHtml();
+		OcultarDivBloqueo();
+		onresizeBody();
+	} else {
+		processError('', '', '');
+	}
 });
 
 function onresizeBody() {

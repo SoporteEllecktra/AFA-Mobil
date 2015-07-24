@@ -1,20 +1,11 @@
 $(document).ready(function () {
     MostrarDivBloqueo();
-
-	if (!localStorage.getItem("storageListaInformes")) {
-		OcultarDivBloqueo();
-		processError('', '', '');
-		return;
-	}
-
-	CargarHtmlFechaMenuPrincipal();
-
+    CargarHtmlFechaMenuPrincipal();
     var listaInformesGuardada = localStorage.getItem("storageListaInformes");
     listaInformes = eval('(' + listaInformesGuardada + ')');
     CargarPantallaCompletaInformeHtml();
-
-	onresizeBody();
     OcultarDivBloqueo();
+    onresizeBody();
 });
 
 function CargarPantallaCompletaInformeHtml() {
@@ -56,11 +47,12 @@ function onclickDescargarPDF(pUrl) {
 }
 
 function onresizeBody() {
-    var altura = ($(document).height() - ($('#header').outerHeight() + $('#StatusBar').outerHeight()));//- ($('#divInformeFecha').height() +$('#cssInformeTitulo').height())
+      var altura = ($(document).height() - ($('#header').outerHeight() + $('#StatusBar').outerHeight()));//- ($('#divInformeFecha').height() +$('#cssInformeTitulo').height())
     $('#divResultadoInforme').css('height', altura);
     $('#divInformeDescripcion').css('height', $('#divResultadoInforme').innerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight()));
 }
 
 function onclickFullScreenInformesAbajo() {
+    //  window.location.href = "index.html?r=1";
     RedireccionarPagIndex();
 }

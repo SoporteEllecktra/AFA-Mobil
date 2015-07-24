@@ -1,17 +1,14 @@
 $(document).ready(function () {
     MostrarDivBloqueo();
+    CargarHtmlFechaMenuPrincipal();
 	if (!localStorage.getItem("storageListaNovedades")) {
 		OcultarDivBloqueo();
 		processError('', '', '');
 		return;
 	}
-
-    CargarHtmlFechaMenuPrincipal();
-
     var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
     listaNovedades = eval('(' + listaNovedadesGuardada + ')');
     CargarTodasNovedadesHtml();
-
     onresizeBody();
 	OcultarDivBloqueo();
 });
