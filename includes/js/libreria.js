@@ -427,8 +427,8 @@ function CargarVentanaAlerta(pTitulo, pDescripcion) {
 
 /* Inicio Actualizar */
 function onclickActualizar() {
-    $('#divFondoBloqueo').css('opacity', '0.8');
-	MostrarDivBloqueo();
+    //$('#divFondoBloqueo').css('opacity', '0.8');
+	//MostrarDivBloqueo();
     CargarAuditoria();
 }
 

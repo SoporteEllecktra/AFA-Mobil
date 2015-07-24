@@ -12,7 +12,7 @@ $(document).ready(function () {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 		processError('', '', '');
 	} else {
-		//MostrarDivBloqueo();
+		MostrarDivBloqueo();
 		// Define if its device is a mobile
 		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
 			document.addEventListener("deviceready", onDeviceReady, false);
