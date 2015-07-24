@@ -1,14 +1,26 @@
 $(document).ready(function () {
     MostrarDivBloqueo();
-    CargarHtmlFechaMenuPrincipal();
-    var indexCotizacionDestacadaSeleccionda = obtenerStorageIndexCotizacionDestacadaSeleccionda();
-    if (localStorage["storageListaCotizacionesDestacada"]) {
-        var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-        cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+    var indexCotizacionDestacadaSeleccionada = obtenerStorageIndexCotizacionDestacadaSeleccionda();
+	if (indexCotizacionDestacadaSeleccionada == -1) {
+		OcultarDivBloqueo();
+		processError('', '', '');
+		return;
+	}
+
+    if (!localStorage["storageListaCotizacionesDestacada"]) {
+		OcultarDivBloqueo();
+		processError('', '', '');
+		return;
     }
-    CargarCotizacionesHistoricaFullscreenHtml(indexCotizacionDestacadaSeleccionda);
-    OcultarDivBloqueo();
+
+    CargarHtmlFechaMenuPrincipal();
+
+    var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+    cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+    CargarCotizacionesHistoricaFullscreenHtml(indexCotizacionDestacadaSeleccionada);
+
     onresizeBody();
+    OcultarDivBloqueo();
 });
 
 function onresizeBody() {
@@ -25,12 +37,12 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
             resultadoDiv += '<div class="col-xs-10 colHistoricoTitulo">';
             resultadoDiv += 'Cotizaci&#243;n hist&#243;rica: ' + cotizacionesDestacada[pIndex].descripcionProducto.toUpperCase();
             resultadoDiv += '</div>';
-            //
+
             resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenCotizacionesHistoricaAbajo()"
             //resultadoDiv += '<img src="img/material/ampliarAbajo.svg" alt="ampliar bajo" class="cssImgAmpliar" />';
             resultadoDiv += '<input type="button" class="cssImgImputButtonAchicar"  onclick="onclickFullScreenCotizacionesHistoricaAbajo(); return false;"/>';
             resultadoDiv += '</div>';
-            //
+ 
             resultadoDiv += '</div>';
             resultadoDiv += '<div id="divRowTodosHistoricoCotizacionesEncabezado" class="row cssHistoricoEncabezado">';
             resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoFecha">';
@@ -40,7 +52,7 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
             resultadoDiv += 'PRECIO P/TN';
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
-            //
+
             var cantValorMonedaHistorico = 0;
             for (var i = 0; i < cotizacionesDestacada[pIndex].listaHistorico.length; i++) {
                 var cantValorMonedaAUXHistorico = cotizacionesDestacada[pIndex].listaHistorico[i].abreviaturaMoneda.length + String(cotizacionesDestacada[pIndex].listaHistorico[i].valorString).length;
@@ -48,7 +60,7 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
                     cantValorMonedaHistorico = cantValorMonedaAUXHistorico;
                 }
             }
-            //
+
             resultadoDiv += '<div id="divRowParteScrollTodosHistoricoCotizaciones">'; // parte scroll
             var indexHistorico = -1;
             $(cotizacionesDestacada[pIndex].listaHistorico).each(function () {
@@ -63,16 +75,10 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
                 resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
                 resultadoDiv += '</div>';
                 resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
-                //
+
                 var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valorString).length;
                 var strCantValorMonedaHistorico = '';
-                //                if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
-                //                    for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
-                //                        strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
-                //                    }
-                //                }
-                //
-                // resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
+
                 resultadoDiv += strCantValorMonedaHistorico + this.abreviaturaMoneda + ' ' + this.valorString;
                 resultadoDiv += '</div>';
                 resultadoDiv += '</div>';
@@ -84,6 +90,5 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
 }
 
 function onclickFullScreenCotizacionesHistoricaAbajo() {
-    //  window.location.href = "index.html?r=1";
     RedireccionarPagIndex();
 }

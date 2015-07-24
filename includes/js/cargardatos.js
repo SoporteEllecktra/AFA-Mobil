@@ -129,28 +129,22 @@ function funGuardarTelefono(pTelefono) {
         },
         data: CargarParametroEntradaGuardarTelefono(pTelefono),
         success: processSuccessGuardarTelefono,
-        error: processError//GuardarTelefono
+        error: processError
     });
 }
 
-/*function processErrorGuardarTelefono(data, status, req) {
-    window.location.href = "error.html?status=1";
-}*/
-
 function processSuccessGuardarTelefono(data, status, req) {
-    if (status == "success") {
-        var codigoRespuesta = 1;
-        $(req.responseText).find('return').each(function () {
-            codigoRespuesta = parseInt($(this).find('codigoResultado').text());
-        });
+	var codigoRespuesta = 1;
+	$(req.responseText).find('return').each(function () {
+		codigoRespuesta = parseInt($(this).find('codigoResultado').text());
+	});
 
-        if (codigoRespuesta == 0) {
-            localStorage.setItem('storageTelefono', telefonoDelUsuario);
-        }
-        $('#divFondoBloqueo').css('display', 'block');
-        window.location.href = "index.html";
-        //window.history.go(-1);
-    }
+	if (codigoRespuesta == 0) {
+		localStorage.setItem('storageTelefono', telefonoDelUsuario);
+	}
+	$('#divFondoBloqueo').css('display', 'block');
+	window.location.href = "index.html";
+	//window.history.go(-1);
 }
 
 function CargarAuditoria() {
@@ -164,123 +158,10 @@ function CargarAuditoria() {
         xhrFields: { withCredentials: true },
         data: CargarParametroEntradaAuditoria(),
         success: successAuditoria,
-        error: processError//Auditoria
+        error: processError
     });
 }
-/*
-function processSuccessAuditoria(data, status, req) {
-	// codigoTabla == 1:"Cotizaciones", 2:"Notificaciones", 3:"Informes"   
-	isCargarCotizaciones = false;
-	isCargarNotificaciones = false;
-	isCargarInformes = false;
-	if (!req || (req && req.responseText.length == 0)) {
-		processError('', '', '');
-	}
-	CargarResultadoAuditoriaJavascript(req.responseText);
-	if (listaTablaModificaciones && (listaTablaModificaciones.length > 0)) {
-		//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
-		for (var i = 0; i < listaTablaModificaciones.length; i++) {
-			//alert(i+1);
-			console.log(listaTablaModificaciones[i]);
-			if (listaTablaModificaciones[i].codigoTabla == 1) { // Cotizaciones
-				if (!localStorage.getItem("storageTablaModificaciones1")) {
-					//alert("HAY UPDATES COTIS SIN ALMACENAR");
-					isCargarCotizaciones = true;
-					var tablaModificacionesCotizacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-					localStorage.setItem('storageTablaModificaciones1', tablaModificacionesCotizacionesAGuardar);
-				} else {
-					var fechaCotizacionesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
-					var fechaCotizacionesGuardada = localStorage.getItem("storageTablaModificaciones1");
-					var TablaModificacionesCotizaciones = eval('(' + fechaCotizacionesGuardada + ')');
-					var fechaCotizacionesUTC = obtenerFechaUTC(TablaModificacionesCotizaciones.fecha, TablaModificacionesCotizaciones.hora);
-					if (fechaCotizacionesNuevaUTC > fechaCotizacionesUTC) {
-						//alert("HAY UPDATES COTIS NUEVAS");
-						isCargarCotizaciones = true;
-						// Solo se envía un update del tipo 1
-						var tablaModificacionesCotizacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-						localStorage.setItem('storageTablaModificaciones1', tablaModificacionesCotizacionesAGuardar);
-					}
-				}
-			} else 
-			if (listaTablaModificaciones[i].codigoTabla == 2) { //Notificaciones
-				if (localStorage.getItem("storageTablaModificaciones2") == null) {
-					//alert("HAY UPDATES NOTIF SIN ALMACENAR");
-					isCargarNotificaciones = true;
-					var tablaModificacionesNotificacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-					localStorage.setItem('storageTablaModificaciones2', tablaModificacionesNotificacionesAGuardar);
-				} else {
-					var fechaNotificacionesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
-					var fechaNotificacionesGuardada = localStorage.getItem("storageTablaModificaciones2");
-					var TablaModificacionesNotificaciones = eval('(' + fechaNotificacionesGuardada + ')');
-					var fechaNotificacionesUTC = obtenerFechaUTC(TablaModificacionesNotificaciones.fecha, TablaModificacionesNotificaciones.hora);
-					if (fechaNotificacionesNuevaUTC > fechaNotificacionesUTC) {
-						//alert("HAY UPDATES NOTIF NUEVAS");
-						isCargarNotificaciones = true;
-						var tablaModificacionesNotificacionesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-						localStorage.setItem('storageTablaModificaciones2', tablaModificacionesNotificacionesAGuardar);
-					}
-				}
-			} else
-			if (listaTablaModificaciones[i].codigoTabla == 3) { //Informes
-				if (localStorage.getItem("storageTablaModificaciones3") == null) {
-					//alert("HAY UPDATES INFORMES SIN ALMACENAR");
-					isCargarInformes = true;
-					var tablaModificacionesInformesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-					localStorage.setItem('storageTablaModificaciones3', tablaModificacionesInformesAGuardar);
-				} else {
-					var fechaInformesNuevaUTC = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
-					var fechaInformesGuardada = localStorage.getItem("storageTablaModificaciones3");
-					var TablaModificacionesInformes = eval('(' + fechaInformesGuardada + ')');
-					var fechaInformesUTC = obtenerFechaUTC(TablaModificacionesInformes.fecha, TablaModificacionesInformes.hora);
-					if (fechaInformesNuevaUTC > fechaInformesUTC) {
-						//alert("HAY UPDATES INFORMES NUEVOS");
-						isCargarInformes = true;
-						var tablaModificacionesInformesAGuardar = JSON.stringify(listaTablaModificaciones[i]);
-						localStorage.setItem('storageTablaModificaciones3', tablaModificacionesInformesAGuardar);
-					}
-				}
-			}
-		}
-		// NO hay updates o lo nuevo ya se tiene guardado, obtener la info desde lo almacenado
-		// Hay que tener en cuenta q si NO hay soporte al Local Storage,
-		// al startup de la app esto debe dar error porque NO hay nada almacenado
-		if (!window.localStorage) {
-			processError('', '', '');
-		}
-		if (!isCargarCotizaciones) {
-			if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
-				isCargarCotizaciones = true;
-			} else {
-				var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-				cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
-			}
-		}
-		if (!isCargarNotificaciones) {
-			if (localStorage.getItem("storageListaNovedades") == null) {
-				isCargarNotificaciones = true;
-			} else {
-				var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-				listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-			}
-		}
-		if (!isCargarInformes) {
-			if (localStorage.getItem("storageListaInformes") == null) {
-				isCargarInformes = true;
-			} else {
-				var listaInformesGuardada = localStorage.getItem("storageListaInformes");
-				listaInformes = eval('(' + listaInformesGuardada + ')');
-			}
-		}
-	}
 
-	//$.when(
-	CargaCotizacionDestacada(); 
-	CargaNovedades(); 
-	CargaTodasCotizaciones(); 
-	CargaUltimoInforme();
-	//).done(funDoneAjax);
-}
-*/
 function defineLoadUpdates() {
 	var labelTableStorage = "storageTablaModificaciones";
 	var update = true;
@@ -301,7 +182,7 @@ function defineLoadUpdates() {
 			alert('fecha Nueva => '+d);
 			d = new Date(storageDate);
 			alert('fecha Guardada => '+d);*/
-			if (newDate > storageDate) {
+			if (newDate != storageDate) {
 				update = true;
 				localStorage.setItem(tableNameKey, JSON.stringify(listaTablaModificaciones[i]));
 			}
@@ -312,6 +193,28 @@ function defineLoadUpdates() {
 			case 2: listaNovedades = update; break;
 			case 3: listaInformes = update; break;
 			default: processError('', '', ''); // unknow update
+		}
+	}
+}
+
+function timeController(){
+	if (startTime == startTimeOut) {
+		CargaCotizacionDestacada(); // timeOutCallbacks[0]
+		CargaNovedades(); // timeOutCallbacks[1]
+		CargaTodasCotizaciones(); // timeOutCallbacks[2]
+		CargaUltimoInforme(); // timeOutCallbacks[3]
+	}
+	startTime--;
+
+	if (startTime == 1) {
+		clearTimeout(t);
+		var timeOut = 1;
+		for (var i = 0; i < timeOutCallbacks.length; i++) {
+			timeOut *= parseInt(timeOutCallbacks[i]);
+		}
+
+		if (timeOut == 0) {
+			processError('', '', '');
 		}
 	}
 }
@@ -333,18 +236,8 @@ function successAuditoria(data, status, req) {
 		defineLoadUpdates();
 	}
 
-	CargaCotizacionDestacada(); 
-	CargaNovedades(); 
-	CargaTodasCotizaciones(); 
-	CargaUltimoInforme();
+	t = setInterval(timeController, 1000);
 }
-
-/*function funDoneAjax(a, b, c, d) {
-    // a es un array con los argumentos que recibiria de la primer request,
-    // b lo mismo pero para la segunda request.
-    //console.log(a[2].responseText);
-    //console.log(b[2].responseText);
-}*/
 
 function CargarParametroEntradaAuditoria() {
     var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
@@ -400,7 +293,7 @@ function CargaCotizacionDestacada() {
             //data: CargarParametroEntradaCotizaciones(1, 14, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessCotizacionDestacada,
-            error: processError//CotizacionDestacada
+            error: processError
         });
     } else {
 		if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
@@ -422,30 +315,7 @@ function processError(data, status, req) {
     //OcultarDivBloqueo();
     window.location.href = "error.html";
 }
-/*
-function processErrorAuditoria(data, status, req) {
-	processError(data, status, req);
 
-}
-function processErrorCotizacionDestacada(data, status, req) {
-	processError(data, status, req);
-}
-function processErrorCargaConIndiceDetalleCotizacion(data, status, req) {
-    processError(data, status, req);
-}
-function processErrorCotizacionHistoricaConIndiceDetacado(data, status, req) {
-    processError(data, status, req);
-}
-function processErrorNovedades(data, status, req) {
-	processError(data, status, req);
-}
-function processErrorTodasCotizaciones(data, status, req) {
-    processError(data, status, req);
-}
-function processErrorUltimoInforme(data, status, req) {
-        processError(data, status, req);
-}
- Fin Error */
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
     cotizacionesDestacada = [];
 	var maxUtcValue = 0;
@@ -489,6 +359,8 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         indexCotizacionesDestacada = 0;
         CargaConIndiceDetalleCotizacion(indexCotizacionesDestacada);
     }
+
+	timeOutCallbacks[0] = 1;
 }
 
 function CargarParametroEntradaCotizaciones_Ordenada(pCodigoTipoCotizacion, pCodigoTipoCliente, pFechaDesde, pFechaHasta, pTipoOrden, pProductos, pPuertos, pMonedas) {
@@ -560,7 +432,6 @@ function CargarParametroEntradaCotizaciones(pCodigoTipoCotizacion, pCodigoTipoCl
     soapRequest += '</soapenv:Envelope>';
 
     return soapRequest;
-
 }
 
 function CargaConIndiceDetalleCotizacion(pIndex) {
@@ -694,21 +565,20 @@ function CargaTodasCotizaciones() {
             //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessTodasCotizaciones,
-            error: processError//TodasCotizaciones
+            error: processError
         });
     }
 }
 
 function processSuccessTodasCotizaciones(data, status, req) {
-    if (status == "success") {
-        listaTodasCotizaciones = ObtenerTodasCotizaciones(req.responseText);
-        if (window.localStorage) {
-            var listaTodasCotizacionesAGuardar = JSON.stringify(listaTodasCotizaciones);
-            localStorage.setItem('storageListaTodasCotizaciones', listaTodasCotizacionesAGuardar);
-        } else {
-			processError('', '', '');
-        }
-    }
+	listaTodasCotizaciones = ObtenerTodasCotizaciones(req.responseText);
+	if (window.localStorage) {
+		var listaTodasCotizacionesAGuardar = JSON.stringify(listaTodasCotizaciones);
+		localStorage.setItem('storageListaTodasCotizaciones', listaTodasCotizacionesAGuardar);
+		timeOutCallbacks[2] = 1;
+	} else {
+		processError('', '', '');
+	}
 }
 
 function ObtenerTodasCotizaciones(pXML) {
@@ -768,7 +638,7 @@ function CargaNovedades() {
             },
             data: CargarParametroEntradaNovedades('', '', ''),
             success: processSuccessNovedades,
-            error: processError//Novedades
+            error: processError
         });
     } else {
 		if (!localStorage.getItem("storageListaNovedades")) {
@@ -778,20 +648,21 @@ function CargaNovedades() {
 		listaNovedades = eval('(' + listaNovedadesGuardada + ')');
 
         CargarNovedadesHtml();
+		timeOutCallbacks[1] = 1;
     }
 }
 
 function processSuccessNovedades(data, status, req) {
-    if (status == "success") {
-        listaNovedades = ObtenerNovedades(req.responseText);
-        if (window.localStorage) {
-            var listaNovedadesAGuardar = JSON.stringify(listaNovedades);
-            localStorage.setItem('storageListaNovedades', listaNovedadesAGuardar);
-        } else {
-			processError('', '', '');
-        }
-        CargarNovedadesHtml();
-    }
+	listaNovedades = ObtenerNovedades(req.responseText);
+	if (window.localStorage) {
+		var listaNovedadesAGuardar = JSON.stringify(listaNovedades);
+		localStorage.setItem('storageListaNovedades', listaNovedadesAGuardar);
+	} else {
+		processError('', '', '');
+	}
+
+	CargarNovedadesHtml();
+	timeOutCallbacks[1] = 1;
 }
 
 function ObtenerNovedades(pXML) {
@@ -828,7 +699,7 @@ function CargaUltimoInforme() {
             },
             data: CargarParametroEntradaInforme('', '', 1),
             success: processSuccessInforme,
-            error: processError//UltimoInforme
+            error: processError
         });
     } else {
 		if (!localStorage.getItem("storageListaInformes")) {
@@ -836,6 +707,7 @@ function CargaUltimoInforme() {
 		}
 		var listaInformesGuardada = localStorage.getItem("storageListaInformes");
 		listaInformes = eval('(' + listaInformesGuardada + ')');
+		timeOutCallbacks[3] = 1;
 	}
 }
 
@@ -861,15 +733,14 @@ function CargarParametroEntradaInforme(pFechaDesde, pFechaHasta, pTipoConsulta) 
 }
 
 function processSuccessInforme(data, status, req) {
-    if (status == "success") {
-        listaInformes = ObtenerInforme(req.responseText);
-        if (window.localStorage) {
-            var listaInformesAGuardar = JSON.stringify(listaInformes);
-            localStorage.setItem('storageListaInformes', listaInformesAGuardar);
-        } else {
-			processError('', '', '');
-        }
-    }
+	listaInformes = ObtenerInforme(req.responseText);
+	if (window.localStorage) {
+		var listaInformesAGuardar = JSON.stringify(listaInformes);
+		localStorage.setItem('storageListaInformes', listaInformesAGuardar);
+		timeOutCallbacks[3] = 1;
+	} else {
+		processError('', '', '');
+	}
 }
 
 function ObtenerInforme(pXML) {

@@ -2,6 +2,11 @@ var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
 var applicationStorage = [];
+var startTimeOut = 15;
+var startTime = startTimeOut;
+var t = 0;
+var timeOutCallbacks = [0, 0, 0, 0];
+var appVersion = 1.5;
 
 function getItemApplicationStorage(item_key_value) {
     for (var i = 0; i < applicationStorage.length; i++) {
@@ -138,7 +143,7 @@ function grabarStorageFechaCotizacion(pValor) {
 
 function obtenerStorageFechaMenuPrincipal() {
     var resultado = '';
-    if (window.localStorage) {
+    if (localStorage.getItem('storageFechaCotizaciones')) {
         resultado = obtenerFechaMostrarMenuInicio(localStorage.getItem('storageFechaCotizaciones'));
     } else {
         resultado = obtenerFechaMostrarMenuInicio(getItemApplicationStorage('storageFechaCotizaciones'));
@@ -149,7 +154,7 @@ function obtenerStorageFechaMenuPrincipal() {
 function CargarHtmlFechaMenuPrincipal() {
     $('#headerFecha').html(obtenerStorageFechaMenuPrincipal());
 	$('#headerFecha').css('cursor', 'pointer');
-	$('#headerFecha').attr('onclick', 'window.location.href = "index.html"');
+	$('#headerFecha').attr('onclick', "window.location.href = 'index.html'");
 }
 
 function obtenerFechaMostrarDsdCotizacionesDestacada(pValor) {
@@ -400,6 +405,7 @@ function loadURL(url) {
 function RedireccionarPagIndex() {
     localStorage.setItem('storageIndexVolver', '1');
     window.history.go(-1);
+	//window.location.href = 'index.html';
 }
 
 /*Inicio Ventana alerta*/
@@ -472,4 +478,21 @@ function checkTime(time) {
 
 function isValidTime(time) {
 	return (validateTimeFormat(time) && checkTime(time));
+}
+
+/************************************/
+function getAppVersion() {
+	var html = '<div style="text-align: center;">';
+		html += '<div>';
+			html += '<img src="img/material/Logo.svg" title="AFA Móvil" class="cssLogoAfaModal" />';
+		html += '</div>';
+		html += '<span>';
+			html += '<b>AFA Móvil</b>';
+		html += '</span><br />';
+		html += '<span>';
+			html += 'Versión: ' + appVersion;
+		html += '</span>';
+	html += '</div>';
+
+	return html;
 }
