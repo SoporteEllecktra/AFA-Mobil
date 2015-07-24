@@ -6,9 +6,10 @@
     <title>AFA</title>
     <link rel="stylesheet" href="includes/css/bootstrap.min.css" />
     <link rel="stylesheet" href="includes/css/web.css" />
+	<script type="text/javascript" src="includes/js/libreria.js"></script>
 </head>
 
-<body>
+<body onload="setAppVersion()">
     <div class="container containerError">
         <img src="img/material/Logo.svg" alt="afa" class="cssLogoAfaError" />
         <div class="divDescripcionError" style="font-size: 1.2em;">
@@ -16,7 +17,8 @@
 			<div id="update_icon_container" style="margin-top: 20px;">
 				<img src="img/material/icono-actualizar.svg" class="cssCalendario" style="cursor:pointer;" onclick="tryUpdate();" />&nbsp;
 				&nbsp;<span onclick="tryUpdate();" style="cursor:pointer;padding: 3px;border: 1px black solid;border-radius: 3px;">Intentar nuevamente</span>
-			</div>
+			</div><br /> <br />
+			<div style="font-size: 0.8em;" id="app_version"></div>
         </div>
     </div>
 
@@ -38,6 +40,11 @@
 	<script type="text/javascript">
 		function tryUpdate() {
 			window.location.href = "index.html";
+		}
+		
+		function setAppVersion() {
+			var div = document.getElementById('app_version');
+			div.innerHTML = '<b>AFA Móvil</b>, versión: ' + appVersion;
 		}
 	</script>
 </body>
