@@ -1,18 +1,7 @@
-/*!
- * AFA Movil v1.5 (http://mercados.afascl.coop)
- * @author Copyright 2015 Ellecktra
- * @version 1.5
- */
- 
 var swiper = null;
 var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 
-/*!
- * @brief App' main point
- * @post Swiper object created and application render (error page or succesfull main page)
- * 
- */
 $(document).ready(function () {
     swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
@@ -23,7 +12,7 @@ $(document).ready(function () {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 		processError('', '', '');
 	} else {
-		MostrarDivBloqueo();
+		//MostrarDivBloqueo();
 		// Define if its device is a mobile
 		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
 			document.addEventListener("deviceready", onDeviceReady, false);
@@ -354,30 +343,37 @@ function CargarCotizacionesDestacadaHtml() {
 }
 
 function CargarDeNuevoHistorico() {
-    if (localStorage.getItem("storageIndexCotizacionDestacadaSeleccionda") == null) {} else {
-        var index = parseInt(localStorage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
-        CargarCotizacionesHistoricaHtml(index);
-    }
+    if (!localStorage.getItem("storageIndexCotizacionDestacadaSeleccionda")) {
+		processError('', '', '');
+		return;
+	}
+
+    var index = parseInt(localStorage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
+    CargarCotizacionesHistoricaHtml(index);
 }
 
 function CargarInformeCierreMercado() {
+	if (!listaInformes) {
+		processError('', '', '');
+		return;
+	}
+
     var isTimeoutInformeCierreMercado = true;
-    if (listaInformes != null) {
-        if (listaInformes.length > 0) {
-            isTimeoutInformeCierreMercado = false;
-            var indexSlide3 = -1;
-            for (var i = 0; i < swiper.slides.length; i++) {
-                if (swiper.slides[i].id == 'swiper-slide3') {
-                    indexSlide3 = i;
-                }
-            }
-            if (indexSlide3 == -1) {
-                swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
-            } else {
-                $('#swiper-slide3').html(CargarInformeHtml());
-            }
-        }
-    }
+	if (listaInformes.length > 0) {
+		isTimeoutInformeCierreMercado = false;
+		var indexSlide3 = -1;
+		for (var i = 0; i < swiper.slides.length; i++) {
+			if (swiper.slides[i].id == 'swiper-slide3') {
+				indexSlide3 = i;
+			}
+		}
+		if (indexSlide3 == -1) {
+			swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
+		} else {
+			$('#swiper-slide3').html(CargarInformeHtml());
+		}
+	}
+
     if (isTimeoutInformeCierreMercado) {
         setTimeout(function () {
             CargarInformeCierreMercado();
@@ -390,6 +386,10 @@ function onclickVerMas() {
 }
 
 function CargarCotizacionesHistoricaHtml(pIndex) {
+	if (!cotizacionesDestacada[pIndex] || (cotizacionesDestacada[pIndex] && !cotizacionesDestacada[pIndex].listaHistorico)) {
+		processError('', '', '');
+		return;
+	}
     var resultadoDiv = '';
     if (cotizacionesDestacada[pIndex].listaHistorico.length > 0) {
         resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
@@ -412,13 +412,6 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
         resultadoDiv += '</div>';
 
         resultadoDiv += '</div>'; // fin div parte fija
-        /*var cantValorMonedaHistorico = 0;
-        for (var iHistoricoMoneda = 0; iHistoricoMoneda < cotizacionesDestacada[pIndex].listaHistorico.length; iHistoricoMoneda++) {
-            var cantValorMonedaHistoricoAUX = cotizacionesDestacada[pIndex].listaHistorico[iHistoricoMoneda].abreviaturaMoneda.length + String(cotizacionesDestacada[pIndex].listaHistorico[iHistoricoMoneda].valorString).length;
-            if (cantValorMonedaHistorico < cantValorMonedaHistoricoAUX) {
-                cantValorMonedaHistorico = cantValorMonedaHistoricoAUX;
-            }
-        } */
 
         resultadoDiv += '<div id="divParteScrollCotizacionHistorica" >'; // div scroll
         var indexHistorico = -1;
@@ -433,15 +426,8 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
             resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
             resultadoDiv += '</span></div>';
             resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
-            //var cantValorMonedaAUXHistorico = this.abreviaturaMoneda.length + String(this.valorString).length;
-            //var strCantValorMonedaHistorico = '';
-            //            if (cantValorMonedaAUXHistorico < cantValorMonedaHistorico) {
-            //                for (var iValorMonedaHistorico = cantValorMonedaAUXHistorico; iValorMonedaHistorico < cantValorMonedaHistorico; iValorMonedaHistorico++) {
-            //                    strCantValorMonedaHistorico += '&nbsp;' + '&nbsp;';
-            //                }
-            //            }
-            //resultadoDiv += this.descripcionMoneda + ' ' + this.valor;
-            resultadoDiv += /* strCantValorMonedaHistorico + */this.abreviaturaMoneda + ' ' + this.valorString;
+
+            resultadoDiv += this.abreviaturaMoneda + ' ' + this.valorString;
             resultadoDiv += '</div>';
             resultadoDiv += '</div>';
         });
@@ -475,6 +461,7 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
 function CargarNovedadesHtml() {
 	if (!listaNovedades || (listaNovedades && listaNovedades.length == 0)) {
 		processError('', '', '');
+		return;
 	}
     var resultadoDiv = '<div id="divRowParteScrollNovedades">'; // parte scroll      
 	var indiceNovedades = -1;
@@ -547,22 +534,16 @@ function CargarNovedadesHtml() {
 			$('#swiper-slide1').html(resultadoDiv);
 		}
 	}
-    //    var isTimeoutInformeCierreMercado = true;
-    //    if (listaInformes != null) {
-    //        if (listaInformes.length > 0) {
-    //            isTimeoutInformeCierreMercado = false;
-    //            CargarInformeCierreMercado();
-    //        }
-    //    }
-    //    if (isTimeoutInformeCierreMercado) {
-    //        setTimeout(function () {
-    //            CargarInformeCierreMercado();
-    //        }, 500);
-    //    }
+
     CargarInformeCierreMercado();
 }
 
 function CargarInformeHtml() {
+	if (!listaInformes) {
+		processError('', '', '');
+		return;
+	}
+
     var informesHtml = '';
     for (var i = 0; i < listaInformes.length; i++) {
         //alert(listaInformes[i].titulo);
