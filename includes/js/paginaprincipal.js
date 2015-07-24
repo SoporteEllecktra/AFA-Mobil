@@ -38,57 +38,65 @@ $(document).ajaxStop(function () {
 });
 
 function CargaDeLosDatosPrevioTelefono() {
-	var varParametroUrl = '';
-	if (window.localStorage && localStorage.getItem("storageIndexVolver")) {
-		varParametroUrl = localStorage.getItem("storageIndexVolver");
-	}
-	// Startup de la app
-	if (varParametroUrl === '') {
-		//MostrarDivBloqueo(); // in libreria.js
-		FuncionInicio(); // in cargardatos.js
-	} else if (varParametroUrl == '1') {
-		// Una vez abierta la app, navegación entre las diferentes pantallas (cuando se usa libreria.js::RedireccionarPagIndex())
-		if (window.localStorage) {
-			localStorage.setItem('storageIndexVolver', '');
-		} else {
-			processError('', '', '');
-		}
-		if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
-			//alert('storageListaCotizacionesDestacada is null');
-			processError('', '', '');
-		} else {
-			var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-			cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
-		}
-		if (!localStorage.getItem("storageListaNovedades")) {
-			//alert('storageListaNovedades is null');
-			processError('', '', '');
-		} else {
-			var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-			listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-		}
-		if (!localStorage.getItem("storageListaInformes")) {
-			//alert('storageListaInformes is null');
-			processError('', '', '');
-		} else {
-			var listaInformesGuardada = localStorage.getItem("storageListaInformes");
-			listaInformes = eval('(' + listaInformesGuardada + ')');
-		}
-		CargarHtmlFechaMenuPrincipal();
-		CargarCotizacionesDestacadaHtml();
-		CargarNovedadesHtml();
-		if (listaNovedades == null) {
-			porcentajeArriba = 1;
-			porcentajeAbajo = 0;
-		} else if (listaNovedades.length == 0) {
-			porcentajeArriba = 1;
-			porcentajeAbajo = 0;
-		}
-		onresizeBody();
-		OcultarDivBloqueo();
-	} else if (varParametroUrl == '2') {
-		onclickActualizar();
-	}
+	// Intentar hasta que se dispare el evento deviceReady del core de phonegap
+    /*if (!localStorage.getItem("storagePlatform")) { // No se ha registrado esta app para notificaciones PUSH
+		MostrarDivBloqueo();
+        setTimeout(function () {
+            CargaDeLosDatosPrevioTelefono();
+        }, 100);
+    } else {*/
+        var varParametroUrl = '';
+        if (window.localStorage && localStorage.getItem("storageIndexVolver")) {
+            varParametroUrl = localStorage.getItem("storageIndexVolver");
+        }
+		// Startup de la app
+        if (varParametroUrl === '') {
+            //MostrarDivBloqueo(); // in libreria.js
+            FuncionInicio(); // in cargardatos.js
+        } else if (varParametroUrl == '1') {
+			// Una vez abierta la app, navegación entre las diferentes pantallas (cuando se usa libreria.js::RedireccionarPagIndex())
+            if (window.localStorage) {
+				localStorage.setItem('storageIndexVolver', '');
+			} else {
+				processError('', '', '');
+			}
+            if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
+				//alert('storageListaCotizacionesDestacada is null');
+				processError('', '', '');
+            } else {
+                var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+                cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+            }
+            if (!localStorage.getItem("storageListaNovedades")) {
+				//alert('storageListaNovedades is null');
+				processError('', '', '');
+            } else {
+                var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
+                listaNovedades = eval('(' + listaNovedadesGuardada + ')');
+            }
+            if (!localStorage.getItem("storageListaInformes")) {
+				//alert('storageListaInformes is null');
+				processError('', '', '');
+            } else {
+                var listaInformesGuardada = localStorage.getItem("storageListaInformes");
+                listaInformes = eval('(' + listaInformesGuardada + ')');
+            }
+            CargarHtmlFechaMenuPrincipal();
+            CargarCotizacionesDestacadaHtml();
+            CargarNovedadesHtml();
+            if (listaNovedades == null) {
+                porcentajeArriba = 1;
+                porcentajeAbajo = 0;
+            } else if (listaNovedades.length == 0) {
+                porcentajeArriba = 1;
+                porcentajeAbajo = 0;
+            }
+            onresizeBody();
+			OcultarDivBloqueo();
+        } else if (varParametroUrl == '2') {
+            onclickActualizar();
+        }
+    //}
 }
 
 var isMoverAmpliar = false;
@@ -96,6 +104,7 @@ var cantNN = 0;
 
 function onmousedownAmpliar(e) {
     isMoverAmpliar = true;
+    //return false;
 }
 
 function onmouseoverAmpliar(e) {
@@ -124,6 +133,7 @@ function onmousemoveAmpliar(e) {
 function onmouseupAmpliar(e) {
     isMoverAmpliar = false;
     cantNN = 0;
+    //return false;
 }
 
 function onresizeBody() {
@@ -226,7 +236,7 @@ function CargarCotizacionesDestacadaHtml() {
 
         resultadoDiv += '<div class="colRectanguloPrecio ' + strCssColorPrecio + '">'; // rectangulo    
         var cantValorMonedaAUX = this.abreviaturaMoneda.length + String(this.valorString).length;
-
+        //var strCantValorMoneda ='';
         var strCantValorMonedaLeft = '';
         var strCantValorMonedaRight = '';
         if (cantValorMonedaAUX < cantValorMoneda) {
@@ -245,6 +255,13 @@ function CargarCotizacionesDestacadaHtml() {
         resultadoDiv += '<div class="accordion-body collapse" id="collapse' + index + '" style="height: 0px;">';
         resultadoDiv += '<div class="accordion-inner">';
         // detalle
+        /*var cantValorMonedaDetalle = 0;
+        for (var iDetalleMoneda = 0; iDetalleMoneda < this.listaDetalle.length; iDetalleMoneda++) {
+            var cantValorMonedaDetalleAUX = this.listaDetalle[iDetalleMoneda].abreviaturaMoneda.length + String(this.listaDetalle[iDetalleMoneda].valorString).length;
+            if (cantValorMonedaDetalle < cantValorMonedaDetalleAUX) {
+                cantValorMonedaDetalle = cantValorMonedaDetalleAUX;
+            }
+        }*/
         if (this.listaDetalle.length > 0) {
             // Encabezado detalle
             resultadoDiv += '<div class="row">';
@@ -271,8 +288,15 @@ function CargarCotizacionesDestacadaHtml() {
             resultadoDiv += this.listaDetalle[iDetalle].descripcionPuerto;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetallePrecio">';
-
-            resultadoDiv += this.listaDetalle[iDetalle].abreviaturaMoneda + ' ' + this.listaDetalle[iDetalle].valorString;
+            //resultadoDiv += this.listaDetalle[iDetalle].descripcionMoneda + ' ' + this.listaDetalle[iDetalle].valor;
+            //var cantValorMonedaAUXDetalle = this.listaDetalle[iDetalle].abreviaturaMoneda.length + String(this.listaDetalle[iDetalle].valorString).length;
+            //var strCantValorMonedaDetalle = '';
+            //            if (cantValorMonedaAUXDetalle < cantValorMonedaDetalle) {
+            //                for (var iValorMonedaDetalle = cantValorMonedaAUXDetalle; iValorMonedaDetalle < cantValorMonedaDetalle; iValorMonedaDetalle++) {
+            //                    strCantValorMonedaDetalle += '&nbsp;' + '&nbsp;';
+            //                }
+            //            }
+            resultadoDiv += /* strCantValorMonedaDetalle + */this.listaDetalle[iDetalle].abreviaturaMoneda + ' ' + this.listaDetalle[iDetalle].valorString;
             resultadoDiv += '</div>';
             resultadoDiv += '<div class="col-xs-4 colDetalleObservacion">';
             resultadoDiv += this.listaDetalle[iDetalle].observacion;
@@ -345,12 +369,11 @@ function CargarCotizacionesDestacadaHtml() {
             porcentajeArriba = 1;
             porcentajeAbajo = 0;
             onresizeBody();
+            //  setTimeout(function () { onresizeBody(); }, 500);
         }
     });
     onresizeBody();
-
-	CargarHtmlFechaMenuPrincipal();
-	OcultarDivBloqueo();
+    //setTimeout(function () { onresizeBody(); }, 500);
 }
 
 function CargarDeNuevoHistorico() {
@@ -594,8 +617,8 @@ function onclickFullScreenButtonAmpliar() {
 }
 
 function finCargarInicial() {
-    //CargarHtmlFechaMenuPrincipal();
-    //OcultarDivBloqueo();
+    CargarHtmlFechaMenuPrincipal();
+    OcultarDivBloqueo();
     if (listaNovedades == null) {
         porcentajeArriba = 1;
         porcentajeAbajo = 0;
