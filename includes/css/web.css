@@ -448,7 +448,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 1000;
+    z-index: 99999;
     position: absolute;
     background-color: #ABB69C;
     background: url(../../img/material/fondo.jpg) no-repeat bottom;
@@ -457,7 +457,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff354d', end
     -o-background-size: cover;
     background-size: cover;
     opacity: 1;
-    /*0.5;*/
 }
 
 .imgFondoBloqueo {
