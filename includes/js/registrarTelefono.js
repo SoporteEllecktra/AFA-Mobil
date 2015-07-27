@@ -18,11 +18,10 @@ function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
         data: {},
         success: function (data) {
             //  alert(data);
-        }/*,
+        },
         error: function (e) {
-            //window.location.href = "error.html";
 			processError('', '', '');
-        }*/
+        }
     });
 }
 
