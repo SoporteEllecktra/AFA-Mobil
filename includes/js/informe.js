@@ -7,6 +7,10 @@ $(document).ready(function () {
 		return;
 	}
 
+	if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
+		document.addEventListener("deviceready", mobileEventsHandler, false);
+	}
+	
 	CargarHtmlFechaMenuPrincipal();
 
     var listaInformesGuardada = localStorage.getItem("storageListaInformes");

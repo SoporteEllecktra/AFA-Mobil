@@ -405,7 +405,6 @@ function loadURL(url) {
 function RedireccionarPagIndex() {
     localStorage.setItem('storageIndexVolver', '1');
     window.history.go(-1);
-	//window.location.href = 'index.html';
 }
 
 /*Inicio Ventana alerta*/
@@ -520,3 +519,17 @@ $(document).ready(function () {
 			}
     });
 });
+
+function mobileEventsHandler() {
+	document.addEventListener("backbutton", onBackKeyDown, false);
+}
+
+function onBackKeyDown() {
+	if (!localStorage.getItem('storageIndexVolver')) {
+		processError('', 1000, '');
+		return;
+	}
+
+	alert('onBackKeyDown button pressed!!!');
+	RedireccionarPagIndex();
+}
