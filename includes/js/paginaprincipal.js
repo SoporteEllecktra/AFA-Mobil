@@ -3,6 +3,7 @@ var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 
 $(document).ready(function () {
+	MostrarDivBloqueo();
     $.ajaxSetup({
         error: function( jqXHR, textStatus, errorThrown ) {
             if (jqXHR.status === 0) {
@@ -32,7 +33,6 @@ $(document).ready(function () {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 		processError('', '', '');
 	} else {
-		MostrarDivBloqueo();
 		// Define if its device is a mobile
 		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
 			document.addEventListener("deviceready", onDeviceReady, false);

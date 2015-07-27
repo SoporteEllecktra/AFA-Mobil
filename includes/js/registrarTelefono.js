@@ -18,11 +18,11 @@ function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
         data: {},
         success: function (data) {
             //  alert(data);
-        },
+        }/*,
         error: function (e) {
             //window.location.href = "error.html";
 			processError('', '', '');
-        }
+        }*/
     });
 }
 
@@ -162,22 +162,22 @@ function channelHandler(event) {
 
 // Handler MPNS notifications for WP8
 function onNotificationWP8(e) {
-        if (e.jsonContent && e.jsonContent["wp:Text2"].length > 0) {
-            CargarVentanaAlerta(e.jsonContent["wp:Text1"], e.jsonContent["wp:Text2"]);
-        }
-        if (e.type == "toast" && e.jsonContent) {
-            pushNotification.showToastNotification(successHandler, errorHandler, {
-                "Title": e.jsonContent["wp:Text1"],
-                "Subtitle": e.jsonContent["wp:Text2"],
-                "NavigationUri": e.jsonContent["wp:Param"]
-            });
-        }
-        if (e.type == "raw" && e.jsonContent && e.jsonContent.Body.length > 0) {
-            //alert(JSON.stringify(e));
-            //alert(e.jsonContent.Body);
-            CargarVentanaAlerta(JSON.stringify(e), e.jsonContent.Body);
-        }
-    }
+	if (e.jsonContent && e.jsonContent["wp:Text2"].length > 0) {
+		CargarVentanaAlerta(e.jsonContent["wp:Text1"], e.jsonContent["wp:Text2"]);
+	}
+	if (e.type == "toast" && e.jsonContent) {
+		pushNotification.showToastNotification(successHandler, errorHandler, {
+			"Title": e.jsonContent["wp:Text1"],
+			"Subtitle": e.jsonContent["wp:Text2"],
+			"NavigationUri": e.jsonContent["wp:Param"]
+		});
+	}
+	if (e.type == "raw" && e.jsonContent && e.jsonContent.Body.length > 0) {
+		//alert(JSON.stringify(e));
+		//alert(e.jsonContent.Body);
+		CargarVentanaAlerta(JSON.stringify(e), e.jsonContent.Body);
+	}
+}
 
 function wpnErrorHandler(error) {
     alert('Error al registrar el dispositivo con Windows Phone.');

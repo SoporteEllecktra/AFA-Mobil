@@ -38,8 +38,7 @@ function CargarCotizacionesHistoricaFullscreenHtml(pIndex) {
             resultadoDiv += 'Cotizaci&#243;n hist&#243;rica: ' + cotizacionesDestacada[pIndex].descripcionProducto.toUpperCase();
             resultadoDiv += '</div>';
 
-            resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >'; //onclick="onclickFullScreenCotizacionesHistoricaAbajo()"
-            //resultadoDiv += '<img src="img/material/ampliarAbajo.svg" alt="ampliar bajo" class="cssImgAmpliar" />';
+            resultadoDiv += '<div class="col-xs-2 cssAmpliarAchicar" >';
             resultadoDiv += '<input type="button" class="cssImgImputButtonAchicar"  onclick="onclickFullScreenCotizacionesHistoricaAbajo(); return false;"/>';
             resultadoDiv += '</div>';
  
