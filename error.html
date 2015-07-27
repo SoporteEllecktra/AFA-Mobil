@@ -20,6 +20,7 @@
 			</div><br /> <br />
 			<div style="font-size: 0.8em;" id="app_version"></div>
         </div>
+		<div id="error_code_div" style="display: none; position: absolute; left: 20px; bottom: 20px; font-size: 0.7em;"></div>
     </div>
 
     <!--    Inicio Ventana alerta-->
@@ -46,6 +47,58 @@
 			var div = document.getElementById('app_version');
 			div.innerHTML = '<b>AFA Móvil</b>, versión: ' + appVersion;
 		}
+
+		function getParam(param) { //$_GET(param)
+			var url = document.URL;
+			url = String(url.match(/\?+.+/));
+			url = url.replace("?", "");
+			url = url.split("&");
+
+			/* 
+				0 = parametro
+				1 = valor
+				Si el parámetro existe devolver su valor
+			*/
+			x = 0;
+			while (x < url.length) {
+				p = url[x].split("=");
+				if (p[0] == param) {
+					return decodeURIComponent(p[1]);
+				}
+				x++;
+			}
+			return '';
+		}
+		function tryUpdate() {
+			window.location.href = "index.html";
+		}
+
+		var id = parseInt(getParam('id'));
+		if (id > 0) {
+			var error_div = document.getElementById('error_code_div');
+			error_div.innerHTML = '#' + id;
+			error_div.style.display = 'block';
+		}
+	   /* Error codes table:
+	    * -1 : No important error
+	    * 50 : unknown ajax call error
+		* 100: Not connect: Verify Network. ajax call error
+		* 110: Requested page not found [404]. ajax call error
+		* 120: Internal Server Error [500]. ajax call error
+		* 130: Requested JSON parse failed. ajax call error
+		* 140: Time out error. ajax call error
+		* 150: Ajax request aborted. ajax call error
+		* 160: Uncaught Error. ajax call error
+		* 1000: Load storage error
+		* 2000: Unknow update
+		* 3000: Empty response
+		* 5000: Update loading Timeout
+		* 6000: Register mobile to cloud error
+		* 7000: Webservice device register error
+		* 8000: indexCotizacionDestacadaSeleccionada wrong
+		* 9000: Start up application error
+		*/
+	   
 	</script>
 </body>
 

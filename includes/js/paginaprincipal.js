@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 	if (!swiper) {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
-		processError('', '', '');
+		processError('', 9000, '');
 	} else {
 		// Define if its device is a mobile
 		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
@@ -41,25 +41,25 @@ function CargaDeLosDatosPrevioTelefono() {
 		if (window.localStorage) {
 			localStorage.setItem('storageIndexVolver', '');
 		} else {
-			processError('', '', '');
+			processError('', 1000, '');
 		}
 		if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
 			//alert('storageListaCotizacionesDestacada is null');
-			processError('', '', '');
+			processError('', 1000, '');
 		} else {
 			var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
 			cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
 		}
 		if (!localStorage.getItem("storageListaNovedades")) {
 			//alert('storageListaNovedades is null');
-			processError('', '', '');
+			processError('', 1000, '');
 		} else {
 			var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
 			listaNovedades = eval('(' + listaNovedadesGuardada + ')');
 		}
 		if (!localStorage.getItem("storageListaInformes")) {
 			//alert('storageListaInformes is null');
-			processError('', '', '');
+			processError('', 1000, '');
 		} else {
 			var listaInformesGuardada = localStorage.getItem("storageListaInformes");
 			listaInformes = eval('(' + listaInformesGuardada + ')');
@@ -166,7 +166,7 @@ function onclikAcodeon() {
 
 function CargarCotizacionesDestacadaHtml() {
 	if (!cotizacionesDestacada || (cotizacionesDestacada && cotizacionesDestacada.length == 0)) {
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
 	}
     var resultadoDiv = '<div class="row cssDestacadoEncabezado ">';
@@ -345,7 +345,7 @@ function CargarCotizacionesDestacadaHtml() {
 
 function CargarDeNuevoHistorico() {
     if (!localStorage.getItem("storageIndexCotizacionDestacadaSeleccionda")) {
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
 	}
 
@@ -355,7 +355,7 @@ function CargarDeNuevoHistorico() {
 
 function CargarInformeCierreMercado() {
 	if (!listaInformes) {
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
 	}
 
@@ -388,7 +388,7 @@ function onclickVerMas() {
 
 function CargarCotizacionesHistoricaHtml(pIndex) {
 	if (!cotizacionesDestacada[pIndex] || (cotizacionesDestacada[pIndex] && !cotizacionesDestacada[pIndex].listaHistorico)) {
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
 	}
     var resultadoDiv = '';
@@ -461,7 +461,7 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
 
 function CargarNovedadesHtml() {
 	if (!listaNovedades || (listaNovedades && listaNovedades.length == 0)) {
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
 	}
     var resultadoDiv = '<div id="divRowParteScrollNovedades">'; // parte scroll      
@@ -541,7 +541,7 @@ function CargarNovedadesHtml() {
 
 function CargarInformeHtml() {
 	if (!listaInformes) {
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
 	}
 

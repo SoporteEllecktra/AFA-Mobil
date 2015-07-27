@@ -2,7 +2,7 @@ $(document).ready(function () {
     MostrarDivBloqueo();
 	if (!localStorage.getItem("storageListaTodasCotizaciones")) {
 		OcultarDivBloqueo();
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
 	}
 

@@ -3,7 +3,7 @@ $(document).ready(function () {
 
 	if (!localStorage.getItem("storageListaInformes")) {
 		OcultarDivBloqueo();
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
 	}
 

@@ -3,13 +3,13 @@ $(document).ready(function () {
     var indexCotizacionDestacadaSeleccionada = obtenerStorageIndexCotizacionDestacadaSeleccionda();
 	if (indexCotizacionDestacadaSeleccionada == -1) {
 		OcultarDivBloqueo();
-		processError('', '', '');
+		processError('', 8000, '');
 		return;
 	}
 
     if (!localStorage["storageListaCotizacionesDestacada"]) {
 		OcultarDivBloqueo();
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
     }
 

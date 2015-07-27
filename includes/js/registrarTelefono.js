@@ -20,7 +20,7 @@ function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
             //  alert(data);
         },
         error: function (e) {
-			processError('', '', '');
+			processError('', 7000, '');
         }
     });
 }
@@ -45,8 +45,8 @@ function onDeviceReady() {
         } catch (err) {
             var txt = "Error al registrar el dispositivo Android.";
             //txt += "Error description: " + err.message + "\n\n";
-            alert(txt);
-			processError('', '', '');
+            //alert(txt);
+			processError('', 6000, '');
         }
     } else if (device.platform == 'iOS') {
         try {
@@ -59,8 +59,8 @@ function onDeviceReady() {
             }); // required!
         } catch (err) {
             //alert('pushNotificationiOS - error');
-            alert('Error al registrar el dispositivo iOS.');
-			processError('', '', '');
+            //alert('Error al registrar el dispositivo iOS.');
+			processError('', 6000, '');
         }
     } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
         //var channelName = '34923EIGApp.EIGPush';
@@ -75,8 +75,8 @@ function onDeviceReady() {
                     "errcb": "wpnErrorHandler"
                 });
         } catch (err) {
-            alert('Error al registrar el dispositivo.');
-			processError('', '', '');
+            //alert('Error al registrar el dispositivo.');
+			processError('', 6000, '');
         }
     }
     objDatosTelefono.uuid = device.uuid;
@@ -91,7 +91,7 @@ function successHandler(result) {
 
 function errorHandler(error) {
     //alert('errorHandler: ' + error);
-	processError('', '', '');
+	processError('', 6000, '');
 }
 
 function onNotification(e) {
@@ -114,13 +114,13 @@ function onNotification(e) {
             break;
 
         case 'error':
-            alert('Error al registrar el dispositivo con Android.');
-			processError('', '', '');
+            //alert('Error al registrar el dispositivo con Android.');
+			processError('', 6000, '');
             break;
 
         default:
-            alert('Error al registrar el dispositivo con Android.');
-			processError('', '', '');
+            //alert('Error al registrar el dispositivo con Android.');
+			processError('', 6000, '');
             // break;
         }
     }
@@ -179,6 +179,6 @@ function onNotificationWP8(e) {
 }
 
 function wpnErrorHandler(error) {
-    alert('Error al registrar el dispositivo con Windows Phone.');
-	processError('', '', '');
+    //alert('Error al registrar el dispositivo con Windows Phone.');
+	processError('', 6000, '');
 }

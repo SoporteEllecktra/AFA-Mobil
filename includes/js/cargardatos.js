@@ -128,8 +128,7 @@ function funGuardarTelefono(pTelefono) {
             withCredentials: true
         },
         data: CargarParametroEntradaGuardarTelefono(pTelefono),
-        success: processSuccessGuardarTelefono/*,
-        error: processError*/
+        success: processSuccessGuardarTelefono
     });
 }
 
@@ -157,8 +156,7 @@ function CargarAuditoria() {
         crossDomain: true,
         xhrFields: { withCredentials: true },
         data: CargarParametroEntradaAuditoria(),
-        success: successAuditoria/*,
-        error: processError*/
+        success: successAuditoria
     });
 }
 
@@ -168,7 +166,7 @@ function defineLoadUpdates() {
 	//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
 	for (var i = 0; i < listaTablaModificaciones.length; i++) {
 		//alert(i+1);
-		console.log(listaTablaModificaciones[i]);
+		//console.log(listaTablaModificaciones[i]);
 		var tableNameKey = labelTableStorage + listaTablaModificaciones[i].codigoTabla;
 		if (!localStorage.getItem(tableNameKey)) {
 			update = true;
@@ -192,7 +190,7 @@ function defineLoadUpdates() {
 			case 1: isCargarCotizaciones = update; break;
 			case 2: listaNovedades = update; break;
 			case 3: listaInformes = update; break;
-			default: processError('', '', ''); // unknow update
+			default: processError('', 2000, ''); // unknow update
 		}
 	}
 }
@@ -214,8 +212,8 @@ function timeController(){
 		}
 
 		if (timeOut == 0) {
-			alert("TIMEOUT");
-			processError('', '', '');
+			//alert("TIMEOUT");
+			processError('', 5000, '');
 		}
 	}
 }
@@ -223,7 +221,7 @@ function timeController(){
 function successAuditoria(data, status, req) {
 	// No se pudo traer la info auditoria de las actualizaciones
 	if (!req || (req && req.responseText.length == 0)) {
-		processError('', '', '');
+		processError('', 3000, '');
 	}
 
 	isCargarCotizaciones = true;
@@ -258,7 +256,7 @@ function CargarResultadoAuditoriaJavascript(pXML) {
         var obj = new modificacionesTabla();
         obj.codigoTabla = parseInt($(this).find('codigoTabla').text());
 		if (obj.codigoTabla != 1 && obj.codigoTabla != 2 && obj.codigoTabla != 3) {
-			processError('', '', '');
+			processError('', 2000, '');
 			return;
 		}
 
@@ -266,7 +264,7 @@ function CargarResultadoAuditoriaJavascript(pXML) {
 		if (!obj.fecha || 
 			(obj.fecha && obj.fecha.length == 0) || 
 			(obj.fecha && obj.fecha.length > 0 && !isValidDate(obj.fecha))) {
-			processError('', '', '');
+			processError('', 2000, '');
 			return;
 		}
 
@@ -274,7 +272,7 @@ function CargarResultadoAuditoriaJavascript(pXML) {
 		if (!obj.hora || 
 			(obj.hora && obj.hora.length == 0) || 
 			(obj.hora && obj.hora.length > 0 && !isValidTime(obj.hora))) {
-			processError('', '', '');
+			processError('', 2000, '');
 			return;
 		}
 
@@ -293,12 +291,11 @@ function CargaCotizacionDestacada() {
             xhrFields: { withCredentials: true },
             //data: CargarParametroEntradaCotizaciones(1, 14, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
-            success: processSuccessCotizacionDestacada/*,
-            error: processError*/
+            success: processSuccessCotizacionDestacada
         });
     } else {
 		if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
-			processError('', '', '');
+			processError('', 1000, '');
 		}
 		var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
 		cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
@@ -314,7 +311,11 @@ function processSuccessCotizacionDestacada(data, status, req) {
 /* Inicio Error */
 function processError(data, status, req) {
     //OcultarDivBloqueo();
-    window.location.href = "error.html";
+	var id = -1;
+	if (status > 0) {
+		id = status;
+	}
+    window.location.href = "error.html?id=" + id;
 }
 
 function CargarResultadoCotizacionDestacadoJavascript(pXML) {
@@ -447,9 +448,8 @@ function CargaConIndiceDetalleCotizacion(pIndex) {
         },
         //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
         data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
-        success: processSuccessDetalleCotizacion/*,
-        error: processError*/
-    }).fail( function(jqXHR, textStatus, errorThrown) { alert('Error de red'); });
+        success: processSuccessDetalleCotizacion
+    });
 }
 
 function processSuccessDetalleCotizacion(data, status, req) {
@@ -503,8 +503,7 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
         //"Por Fecha Descendente"
         //data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 8, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
         data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 9, cotizacionesDestacada[pIndex].codigoProducto, '', ''),
-        success: processSuccessCotizacionHistorica/*,
-        error: processError*/
+        success: processSuccessCotizacionHistorica
     }).fail( function(jqXHR, textStatus, errorThrown) { alert('Error de red'); });
 }
 
@@ -532,22 +531,19 @@ function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
 }
 
 function processSuccessCotizacionHistorica(data, status, req) {
-    if (status == "success") {
-        cotizacionesDestacada[indexCotizacionesDestacada].listaHistorico = ObtenerCotizacionHistoricaConIndiceProductoDestacado(req.responseText);
-        if ((cotizacionesDestacada.length - 1) > indexCotizacionesDestacada) {
-            indexCotizacionesDestacada++;
-            CargaCotizacionHistoricaConIndiceDetacado(indexCotizacionesDestacada);
-        } else {
-            if (window.localStorage) {
-                var cotizacionesDestacadaAGuardar = JSON.stringify(cotizacionesDestacada);
-                localStorage.setItem('storageListaCotizacionesDestacada', cotizacionesDestacadaAGuardar);
-            } else {
-				processError('', '', '');
-            }
-            CargarCotizacionesDestacadaHtml();
-            //CargaTodasCotizaciones();
-        }
-    }
+	cotizacionesDestacada[indexCotizacionesDestacada].listaHistorico = ObtenerCotizacionHistoricaConIndiceProductoDestacado(req.responseText);
+	if ((cotizacionesDestacada.length - 1) > indexCotizacionesDestacada) {
+		indexCotizacionesDestacada++;
+		CargaCotizacionHistoricaConIndiceDetacado(indexCotizacionesDestacada);
+	} else {
+		if (window.localStorage) {
+			var cotizacionesDestacadaAGuardar = JSON.stringify(cotizacionesDestacada);
+			localStorage.setItem('storageListaCotizacionesDestacada', cotizacionesDestacadaAGuardar);
+		} else {
+			processError('', 1000, '');
+		}
+		CargarCotizacionesDestacadaHtml();
+	}
 }
 
 function CargaTodasCotizaciones() {
@@ -563,9 +559,8 @@ function CargaTodasCotizaciones() {
             },
             //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
-            success: processSuccessTodasCotizaciones/*,
-            error: processError*/
-        }).fail( function(jqXHR, textStatus, errorThrown) { alert('Error de red'); });
+            success: processSuccessTodasCotizaciones
+        });
     }
 }
 
@@ -576,7 +571,7 @@ function processSuccessTodasCotizaciones(data, status, req) {
 		localStorage.setItem('storageListaTodasCotizaciones', listaTodasCotizacionesAGuardar);
 		timeOutCallbacks[2] = 1;
 	} else {
-		processError('', '', '');
+		processError('', 1000, '');
 	}
 }
 
@@ -636,12 +631,11 @@ function CargaNovedades() {
                 withCredentials: true
             },
             data: CargarParametroEntradaNovedades('', '', ''),
-            success: processSuccessNovedades/*,
-            error: processError*/
-        }).fail( function(jqXHR, textStatus, errorThrown) { alert('Error de red'); });
+            success: processSuccessNovedades
+        });
     } else {
 		if (!localStorage.getItem("storageListaNovedades")) {
-			processError('', '', '');
+			processError('', 1000, '');
 		}
 		var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
 		listaNovedades = eval('(' + listaNovedadesGuardada + ')');
@@ -657,7 +651,7 @@ function processSuccessNovedades(data, status, req) {
 		var listaNovedadesAGuardar = JSON.stringify(listaNovedades);
 		localStorage.setItem('storageListaNovedades', listaNovedadesAGuardar);
 	} else {
-		processError('', '', '');
+		processError('', 1000, '');
 	}
 
 	CargarNovedadesHtml();
@@ -697,12 +691,11 @@ function CargaUltimoInforme() {
                 withCredentials: true
             },
             data: CargarParametroEntradaInforme('', '', 1),
-            success: processSuccessInforme/*,
-            error: processError*/
+            success: processSuccessInforme
         })
     } else {
 		if (!localStorage.getItem("storageListaInformes")) {
-			processError('', '', '');
+			processError('', 1000, '');
 		}
 		var listaInformesGuardada = localStorage.getItem("storageListaInformes");
 		listaInformes = eval('(' + listaInformesGuardada + ')');
@@ -738,7 +731,7 @@ function processSuccessInforme(data, status, req) {
 		localStorage.setItem('storageListaInformes', listaInformesAGuardar);
 		timeOutCallbacks[3] = 1;
 	} else {
-		processError('', '', '');
+		processError('', 1000, '');
 	}
 }
 

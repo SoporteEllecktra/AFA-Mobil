@@ -2,7 +2,7 @@ $(document).ready(function () {
     MostrarDivBloqueo();
 	if (!localStorage.getItem("storageListaNovedades")) {
 		OcultarDivBloqueo();
-		processError('', '', '');
+		processError('', 1000, '');
 		return;
 	}
 
@@ -24,7 +24,7 @@ function onresizeBody() {
 function CargarTodasNovedadesHtml() {
     var resultadoDiv = '';
     if (!listaNovedades) {
-		processError('', '' , '');
+		processError('', 1000, '');
 	}
 	var indiceNovedades = -1;
 	$(listaNovedades).each(function () {
