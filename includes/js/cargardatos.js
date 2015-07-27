@@ -128,8 +128,8 @@ function funGuardarTelefono(pTelefono) {
             withCredentials: true
         },
         data: CargarParametroEntradaGuardarTelefono(pTelefono),
-        success: processSuccessGuardarTelefono,
-        error: processError
+        success: processSuccessGuardarTelefono/*,
+        error: processError*/
     });
 }
 
@@ -157,8 +157,8 @@ function CargarAuditoria() {
         crossDomain: true,
         xhrFields: { withCredentials: true },
         data: CargarParametroEntradaAuditoria(),
-        success: successAuditoria,
-        error: processError
+        success: successAuditoria/*,
+        error: processError*/
     });
 }
 
@@ -168,7 +168,7 @@ function defineLoadUpdates() {
 	//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
 	for (var i = 0; i < listaTablaModificaciones.length; i++) {
 		//alert(i+1);
-		//console.log(listaTablaModificaciones[i]);
+		console.log(listaTablaModificaciones[i]);
 		var tableNameKey = labelTableStorage + listaTablaModificaciones[i].codigoTabla;
 		if (!localStorage.getItem(tableNameKey)) {
 			update = true;
@@ -293,8 +293,8 @@ function CargaCotizacionDestacada() {
             xhrFields: { withCredentials: true },
             //data: CargarParametroEntradaCotizaciones(1, 14, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
-            success: processSuccessCotizacionDestacada,
-            error: processError
+            success: processSuccessCotizacionDestacada/*,
+            error: processError*/
         });
     } else {
 		if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
@@ -447,24 +447,22 @@ function CargaConIndiceDetalleCotizacion(pIndex) {
         },
         //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
         data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', cotizacionesDestacada[pIndex].codigoProducto, '', ''),
-        success: processSuccessDetalleCotizacion,
-        error: processError//CargaConIndiceDetalleCotizacion
-    });
+        success: processSuccessDetalleCotizacion/*,
+        error: processError*/
+    }).fail( function(jqXHR, textStatus, errorThrown) { alert('Error de red'); });
 }
 
 function processSuccessDetalleCotizacion(data, status, req) {
-    if (status == "success") {
-        cotizacionesDestacada[indexCotizacionesDestacada].listaDetalle = ObtenerResultadoCotizacionDetalleJavascript(req.responseText);
-        if ((cotizacionesDestacada.length - 1) > indexCotizacionesDestacada) {
-            indexCotizacionesDestacada++;
-            CargaConIndiceDetalleCotizacion(indexCotizacionesDestacada);
-        } else {
-            indexCotizacionesDestacada = 0;
-            if (cotizacionesDestacada.length > 0) {
-                CargaCotizacionHistoricaConIndiceDetacado(indexCotizacionesDestacada);
-            }
-        }
-    }
+	cotizacionesDestacada[indexCotizacionesDestacada].listaDetalle = ObtenerResultadoCotizacionDetalleJavascript(req.responseText);
+	if ((cotizacionesDestacada.length - 1) > indexCotizacionesDestacada) {
+		indexCotizacionesDestacada++;
+		CargaConIndiceDetalleCotizacion(indexCotizacionesDestacada);
+	} else {
+		indexCotizacionesDestacada = 0;
+		if (cotizacionesDestacada.length > 0) {
+			CargaCotizacionHistoricaConIndiceDetacado(indexCotizacionesDestacada);
+		}
+	}
 }
 
 function ObtenerResultadoCotizacionDetalleJavascript(pXML) {
@@ -505,9 +503,9 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
         //"Por Fecha Descendente"
         //data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 8, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
         data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 9, cotizacionesDestacada[pIndex].codigoProducto, '', ''),
-        success: processSuccessCotizacionHistorica,
-        error: processError//CotizacionHistoricaConIndiceDetacado
-    });
+        success: processSuccessCotizacionHistorica/*,
+        error: processError*/
+    }).fail( function(jqXHR, textStatus, errorThrown) { alert('Error de red'); });
 }
 
 function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
@@ -565,9 +563,9 @@ function CargaTodasCotizaciones() {
             },
             //data: CargarParametroEntradaCotizaciones(1, 11, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
-            success: processSuccessTodasCotizaciones,
-            error: processError
-        });
+            success: processSuccessTodasCotizaciones/*,
+            error: processError*/
+        }).fail( function(jqXHR, textStatus, errorThrown) { alert('Error de red'); });
     }
 }
 
@@ -638,9 +636,9 @@ function CargaNovedades() {
                 withCredentials: true
             },
             data: CargarParametroEntradaNovedades('', '', ''),
-            success: processSuccessNovedades,
-            error: processError
-        });
+            success: processSuccessNovedades/*,
+            error: processError*/
+        }).fail( function(jqXHR, textStatus, errorThrown) { alert('Error de red'); });
     } else {
 		if (!localStorage.getItem("storageListaNovedades")) {
 			processError('', '', '');
@@ -699,9 +697,9 @@ function CargaUltimoInforme() {
                 withCredentials: true
             },
             data: CargarParametroEntradaInforme('', '', 1),
-            success: processSuccessInforme,
-            error: processError
-        });
+            success: processSuccessInforme/*,
+            error: processError*/
+        })
     } else {
 		if (!localStorage.getItem("storageListaInformes")) {
 			processError('', '', '');
