@@ -2,7 +2,7 @@ var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
 var applicationStorage = [];
-var startTimeOut = 10;
+var startTimeOut = 15;
 var startTime = startTimeOut;
 var t = 0;
 var timeOutCallbacks = [0, 0, 0, 0];
@@ -22,7 +22,7 @@ function convertValorImporte(pValor) {
     var resultado = pValor.toString();
     if (resultado.indexOf('.') != -1) {
         var listaAux = resultado.split('.');
-        resultado = listaAux[0] + ',' + listaAux[1]; // toString00_decimal(listaAux[1]);
+        resultado = listaAux[0] + ',' + listaAux[1];
     } else {
 
     }

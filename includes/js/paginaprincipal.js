@@ -32,10 +32,10 @@ function CargaDeLosDatosPrevioTelefono() {
 	if (window.localStorage && localStorage.getItem("storageIndexVolver")) {
 		varParametroUrl = localStorage.getItem("storageIndexVolver");
 	}
-	// Startup de la app
+	// Startup's app
 	if (varParametroUrl === '') {
-		//MostrarDivBloqueo(); // in libreria.js
-		FuncionInicio(); // in cargardatos.js
+		//MostrarDivBloqueo(); // at libreria.js
+		FuncionInicio(); // at cargardatos.js
 	} else if (varParametroUrl == '1') {
 		// Una vez abierta la app, navegación entre las diferentes pantallas (cuando se usa libreria.js::RedireccionarPagIndex())
 		if (window.localStorage) {
