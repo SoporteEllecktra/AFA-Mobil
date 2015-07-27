@@ -427,21 +427,13 @@ function CargarVentanaAlerta(pTitulo, pDescripcion) {
 
 /* Inicio Actualizar */
 function onclickActualizar() {
-    //$('#divFondoBloqueo').css('opacity', '0.8');
-	//MostrarDivBloqueo();
-    CargarAuditoria();
-}
-
-function onclickActualizarNoIndex() {
-    RedireccionarPagIndexActualizar();
+	window.location.href = 'index.html'
 }
 
 function RedireccionarPagIndexActualizar() {
     localStorage.setItem('storageIndexVolver', '2');
     window.history.go(-1);
 }
-
-/* Fin Actualizar */
 
 /* Dates functions */
 function validateDateFormat(date) {
@@ -500,31 +492,31 @@ function getAppVersion() {
 $(document).ready(function () {
     $.ajaxSetup({
         error: function( jqXHR, textStatus, errorThrown ) {
-			var error_id = 50; // unknown
-            if (jqXHR.status === 0) {
-                //alert('Not connect: Verify Network.');
-				error_id = 100;
-            } else if (jqXHR.status == 404) {
-                //alert('Requested page not found [404]');
-				error_id = 110;
-            } else if (jqXHR.status == 500) {
-                //alert('Internal Server Error [500].');
-				error_id = 120;
-            } else if (textStatus === 'parsererror') {
-                //alert('Requested JSON parse failed.');
-				error_id = 130;
-            } else if (textStatus === 'timeout') {
-                //alert('Time out error.');
-				error_id = 140;
-            } else if (textStatus === 'abort') {
-                //alert('Ajax request aborted.');
-				error_id = 150;
-            } else {
-                //alert('Uncaught Error: ' + jqXHR.responseText);
-				error_id = 160;
-           }
+				var error_id = 50; // unknown
+				if (jqXHR.status === 0) {
+					//alert('Not connect: Verify Network.');
+					error_id = 100;
+				} else if (jqXHR.status == 404) {
+					//alert('Requested page not found [404]');
+					error_id = 110;
+				} else if (jqXHR.status == 500) {
+					//alert('Internal Server Error [500].');
+					error_id = 120;
+				} else if (textStatus === 'parsererror') {
+					//alert('Requested JSON parse failed.');
+					error_id = 130;
+				} else if (textStatus === 'timeout') {
+					//alert('Time out error.');
+					error_id = 140;
+				} else if (textStatus === 'abort') {
+					//alert('Ajax request aborted.');
+					error_id = 150;
+				} else {
+					//alert('Uncaught Error: ' + jqXHR.responseText);
+					error_id = 160;
+			   }
 
-		   window.location.href = "error.html?id=" + error_id;
-        }
+			   window.location.href = "error.html?id=" + error_id;
+			}
     });
 });
