@@ -526,7 +526,7 @@ function mobileEventsHandler() {
 
 function onBackKeyDown() {
 	if (!localStorage.getItem('storageIndexVolver')) {
-		processError('', 1000, '');
+		processError('', 99999, '');
 		return;
 	}
 
