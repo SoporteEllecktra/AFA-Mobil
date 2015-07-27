@@ -2,7 +2,7 @@ var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
 var applicationStorage = [];
-var startTimeOut = 15;
+var startTimeOut = 12;
 var startTime = startTimeOut;
 var t = 0;
 var timeOutCallbacks = [0, 0, 0, 0];
@@ -525,11 +525,11 @@ function mobileEventsHandler() {
 }
 
 function onBackKeyDown() {
-	if (!localStorage.getItem('storageIndexVolver')) {
-		processError('', 99999, '');
+	if (!window.localStorage) {
+		processError('', 1000, '');
 		return;
 	}
 
-	alert('onBackKeyDown button pressed!!!');
+	//alert('onBackKeyDown button pressed!!!');
 	RedireccionarPagIndex();
 }
