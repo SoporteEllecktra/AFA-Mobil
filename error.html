@@ -6,6 +6,7 @@
     <title>AFA</title>
     <link rel="stylesheet" href="includes/css/bootstrap.min.css" />
     <link rel="stylesheet" href="includes/css/web.css" />
+    <script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="includes/js/libreria.js"></script>
 </head>
 
@@ -46,6 +47,12 @@
 		function setAppVersion() {
 			var div = document.getElementById('app_version');
 			div.innerHTML = '<b>AFA Móvil</b>, versión: ' + appVersion;
+
+			// Define if its device is a mobile
+			if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
+				document.isIndex = true;
+				document.addEventListener("deviceready", mobileEventsHandler, false);
+			}
 		}
 
 		function getParam(param) { //$_GET(param)
@@ -68,9 +75,6 @@
 				x++;
 			}
 			return '';
-		}
-		function tryUpdate() {
-			window.location.href = "index.html";
 		}
 
 		var id = parseInt(getParam('id'));
