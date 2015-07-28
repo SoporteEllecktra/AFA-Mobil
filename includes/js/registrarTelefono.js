@@ -83,7 +83,7 @@ function onDeviceReady() {
     //alert(device.platform);
     localStorage.setItem('storagePlatform', device.platform);
 
-	document.target.isIndex = true;
+	document.target = { 'isIndex': true };
 	mobileEventsHandler(document);
 
 	CargaDeLosDatosPrevioTelefono();
