@@ -165,7 +165,7 @@ function defineLoadUpdates() {
 	//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
 	for (var i = 0; i < listaTablaModificaciones.length; i++) {
 		//alert(i+1);
-		console.log(listaTablaModificaciones[i]);
+		//console.log(listaTablaModificaciones[i]);
 		var tableNameKey = labelTableStorage + listaTablaModificaciones[i].codigoTabla;
 		if (!localStorage.getItem(tableNameKey)) {
 			update = true;
@@ -196,7 +196,7 @@ function defineLoadUpdates() {
 
 function timeController(){
 	if (startTime == startTimeOut) {
-		console.log('Inicia los ' + startTimeOut + 'seg de espera de la carga')
+		//console.log('Inicia los ' + startTimeOut + 'seg de espera de la carga')
 		CargaCotizacionDestacada(); // timeOutCallbacks[0]
 		CargaNovedades(); // timeOutCallbacks[1]
 		CargaTodasCotizaciones(); // timeOutCallbacks[2]
@@ -220,7 +220,7 @@ function timeController(){
 		if (timeOut == 1) {
 			clearTimeout(t);
 			OcultarDivBloqueo();
-			console.log('Tardo en cargar la info necesaria ==> ' + startTime + 'seg');
+			//console.log('Tardo en cargar la info necesaria ==> ' + startTime + 'seg');
 		}
 	}
 }
