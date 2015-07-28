@@ -6,7 +6,6 @@
     <title>AFA</title>
     <link rel="stylesheet" href="includes/css/bootstrap.min.css" />
     <link rel="stylesheet" href="includes/css/web.css" />
-    <script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="includes/js/libreria.js"></script>
 </head>
 
@@ -43,15 +42,15 @@
 		function tryUpdate() {
 			window.location.href = "index.html";
 		}
-		
+
 		function setAppVersion() {
 			var div = document.getElementById('app_version');
 			div.innerHTML = '<b>AFA Móvil</b>, versión: ' + appVersion;
 
 			// Define if its device is a mobile
 			if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
-				document.isIndex = true;
-				document.addEventListener("deviceready", mobileEventsHandler, false);
+				document.target = { 'isIndex': true };
+				mobileEventsHandler(document);
 			}
 		}
 
@@ -61,10 +60,10 @@
 			url = url.replace("?", "");
 			url = url.split("&");
 
-			/* 
-				0 = parametro
-				1 = valor
-				Si el parámetro existe devolver su valor
+			/*
+			 * 0 = parametro
+			 * 1 = valor
+			 * Si el parámetro existe devolver su valor
 			*/
 			x = 0;
 			while (x < url.length) {
@@ -83,6 +82,7 @@
 			error_div.innerHTML = '#' + id;
 			error_div.style.display = 'block';
 		}
+
 	   /* Error codes table:
 	    * -1 : No important error
 	    * 50 : unknown ajax call error
@@ -103,7 +103,6 @@
 		* 9000: Start up application error
 		* 9999: Backbutton event error
 		*/
-	   
 	</script>
 </body>
 

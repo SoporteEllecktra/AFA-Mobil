@@ -1,4 +1,9 @@
 $(document).ready(function () {
+	if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
+		document.target = { 'isIndex': true };
+		mobileEventsHandler(document);
+	}
+
     var isVolverIndex = true;
     if (!localStorage.getItem("storageTelefono")) {
         isVolverIndex = false;

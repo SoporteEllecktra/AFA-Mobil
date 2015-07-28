@@ -2,14 +2,12 @@ var pushNotification;
 
 function infoRegistracion() {
     this.uuid = '';
-    this.type = ''; //"gcm" (Android), "apn" (iOS) y "mpn" (Windows Phone)
+    this.type = ''; // "gcm" (Android), "apn" (iOS) y "mpn" (Windows Phone)
     this.regid = '';
     this.fecha = '';
     this.platform = '';
 }
 var objDatosTelefono = null;
-
-//document.addEventListener('deviceready', onDeviceReady, true);
 
 function LlamarFuncionRegistracionTelefono(pUrlCargaDatosTel) {
     $.ajax({
@@ -38,32 +36,24 @@ function onDeviceReady() {
     if (device.platform == 'android' || device.platform == 'Android') {
         try {
             pushNotification.register(successHandler, errorHandler, {
-               // "senderID": "970066199992",
                 "senderID": "347764234854",
                 "ecb": "onNotification"
             });
         } catch (err) {
-            var txt = "Error al registrar el dispositivo Android.";
-            //txt += "Error description: " + err.message + "\n\n";
-            //alert(txt);
 			processError('', 6000, '');
         }
     } else if (device.platform == 'iOS') {
         try {
-            //alert('pushNotificationiOS');
             pushNotification.register(tokenHandler, errorHandler, {
                 "badge": "true",
                 "sound": "true",
                 "alert": "true",
                 "ecb": "onNotificationAPN"
-            }); // required!
+            });
         } catch (err) {
-            //alert('pushNotificationiOS - error');
-            //alert('Error al registrar el dispositivo iOS.');
 			processError('', 6000, '');
         }
     } else if (device.platform == 'WinCE' || device.platform == 'Win32NT') {
-        //var channelName = '34923EIGApp.EIGPush';
         var channelName = 'AFASCL.AFAMvil';
         try {
             pushNotification.register(
@@ -75,7 +65,6 @@ function onDeviceReady() {
                     "errcb": "wpnErrorHandler"
                 });
         } catch (err) {
-            //alert('Error al registrar el dispositivo.');
 			processError('', 6000, '');
         }
     }
@@ -94,40 +83,38 @@ function successHandler(result) {
 }
 
 function errorHandler(error) {
-    //alert('errorHandler: ' + error);
 	processError('', 6000, '');
 }
 
 function onNotification(e) {
-        //alert('onNotification');
-        switch (e.event) {
-        case 'registered':
-            if (e.regid.length > 0) {
-                objDatosTelefono.regid = e.regid;
-                objDatosTelefono.type = 'gcm';
-                var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
+	//alert('onNotification');
+	switch (e.event) {
+	case 'registered':
+		if (e.regid.length > 0) {
+			objDatosTelefono.regid = e.regid;
+			objDatosTelefono.type = 'gcm';
+			var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
 
-				LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
-            }
-            break;
+			LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
+		}
+		break;
 
-        case 'message':
-            if (e.message.length > 0) {
-                CargarVentanaAlerta(e.payload.title, e.message);
-            }
-            break;
+	case 'message':
+		if (e.message.length > 0) {
+			CargarVentanaAlerta(e.payload.title, e.message);
+		}
+		break;
 
-        case 'error':
-            //alert('Error al registrar el dispositivo con Android.');
-			processError('', 6000, '');
-            break;
+	case 'error':
+		//alert('Error al registrar el dispositivo con Android.');
+		processError('', 6000, '');
+		break;
 
-        default:
-            //alert('Error al registrar el dispositivo con Android.');
-			processError('', 6000, '');
-            // break;
-        }
-    }
+	default:
+		//alert('Error al registrar el dispositivo con Android.');
+		processError('', 6000, '');
+	}
+}
 
 function onNotificationAPN(event) {
     if (event.body && event.body.length > 0) {
@@ -153,9 +140,8 @@ function tokenHandler(result) {
 	LlamarFuncionRegistracionTelefono(urlCargaDatosTel);
 }
 
-function channelHandler(event) {
-    //objDatosTelefono.regid = event.uri;    
-    objDatosTelefono.regid = event.uri.replace(/\//g, 'ELLECKTRACODE');
+function channelHandler(event) {   
+    objDatosTelefono.regid = encodeURIComponent(event.uri);//replace(/\//g, 'ELLECKTRACODE');
     objDatosTelefono.type = 'mpn';
     var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
 
@@ -177,7 +163,6 @@ function onNotificationWP8(e) {
 	}
 	if (e.type == "raw" && e.jsonContent && e.jsonContent.Body.length > 0) {
 		//alert(JSON.stringify(e));
-		//alert(e.jsonContent.Body);
 		CargarVentanaAlerta(JSON.stringify(e), e.jsonContent.Body);
 	}
 }

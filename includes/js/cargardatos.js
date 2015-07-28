@@ -1,16 +1,16 @@
-var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+/*var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
-var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";*/
 
-/*var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:8080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:8080/Concentrador/webservices/InformeService?wsdl/";
-var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:8080/Concentrador/webservices/TelefonoService?wsdl/";*/
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:8080/Concentrador/webservices/TelefonoService?wsdl/";
 
 var wsUrlRegistracionTelefono = 'http://190.210.143.156:50002/registrationinfo/';
 
@@ -142,7 +142,6 @@ function processSuccessGuardarTelefono(data, status, req) {
 	}
 	$('#divFondoBloqueo').css('display', 'block');
 	window.location.href = "index.html";
-	//window.history.go(-1);
 }
 
 function CargarAuditoria() {
@@ -194,7 +193,7 @@ function defineLoadUpdates() {
 	}
 }
 
-function timeController(){
+function timeController() {
 	if (startTime == startTimeOut) {
 		//console.log('Inicia los ' + startTimeOut + 'seg de espera de la carga')
 		CargaCotizacionDestacada(); // timeOutCallbacks[0]
@@ -647,7 +646,7 @@ function CargaNovedades() {
 		listaNovedades = eval('(' + listaNovedadesGuardada + ')');
 
         CargarNovedadesHtml();
-		timeOutCallbacks[1] = 1;
+		//timeOutCallbacks[1] = 1;
     }
 }
 

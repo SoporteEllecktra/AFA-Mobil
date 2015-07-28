@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    //MostrarDivBloqueo();
 	if (!localStorage.getItem("storageListaInformes")) {
 		OcultarDivBloqueo();
 		processError('', 1000, '');

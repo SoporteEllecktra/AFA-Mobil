@@ -3,7 +3,6 @@ var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 
 $(document).ready(function () {
-	//MostrarDivBloqueo();
     swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true
@@ -62,7 +61,7 @@ function CargaDeLosDatosPrevioTelefono() {
 			var listaInformesGuardada = localStorage.getItem("storageListaInformes");
 			listaInformes = eval('(' + listaInformesGuardada + ')');
 		}
-		//CargarHtmlFechaMenuPrincipal();
+
 		CargarCotizacionesDestacadaHtml();
 		CargarNovedadesHtml();
 		if (!listaNovedades) {
@@ -530,6 +529,7 @@ function CargarNovedadesHtml() {
 	}
 
     CargarInformeCierreMercado();
+	timeOutCallbacks[1] = 1;
 }
 
 function CargarInformeHtml() {
