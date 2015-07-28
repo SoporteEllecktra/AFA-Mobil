@@ -141,7 +141,7 @@ function tokenHandler(result) {
 }
 
 function channelHandler(event) {   
-    objDatosTelefono.regid = encodeURIComponent(event.uri);//replace(/\//g, 'ELLECKTRACODE');
+    objDatosTelefono.regid = event.uri.replace(/\//g, 'ELLECKTRACODE');
     objDatosTelefono.type = 'mpn';
     var urlCargaDatosTel = wsUrlRegistracionTelefono + objDatosTelefono.uuid + '/' + objDatosTelefono.type + '/' + objDatosTelefono.regid;
 
