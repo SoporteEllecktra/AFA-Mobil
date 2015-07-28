@@ -1,16 +1,16 @@
-/*var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+var wsUrlCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
-var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";*/
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";
 
-var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+/*var wsUrlCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlCotizacionHistorico = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
 var wsUrlNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
 var wsUrlAuditoria = "http://concentrador.afascl.coop:8080/Concentrador/webservices/AuditoriaService?wsdl/";
 var wsUrlInforme = "http://concentrador.afascl.coop:8080/Concentrador/webservices/InformeService?wsdl/";
-var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:8080/Concentrador/webservices/TelefonoService?wsdl/";
+var wsUrlGuardarTelefono = "http://concentrador.afascl.coop:8080/Concentrador/webservices/TelefonoService?wsdl/";*/
 
 var wsUrlRegistracionTelefono = 'http://190.210.143.156:50002/registrationinfo/';
 
@@ -211,6 +211,7 @@ function timeController(){
 
 	if (startTime == 1) {
 		clearTimeout(t);
+		OcultarDivBloqueo();
 		if (timeOut == 0) {
 			//alert("TIMEOUT");
 			processError('', 5000, '');
@@ -219,7 +220,7 @@ function timeController(){
 		if (timeOut == 1) {
 			clearTimeout(t);
 			OcultarDivBloqueo();
-			//console.log('Tardo en cargar las cotizaciones destacadas ==> ' + startTime + 'seg');
+			//console.log('Tardo en cargar la info necesaria ==> ' + startTime + 'seg');
 		}
 	}
 }

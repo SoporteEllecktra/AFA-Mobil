@@ -74,7 +74,7 @@ function CargaDeLosDatosPrevioTelefono() {
 		}
 
 		onresizeBody();
-		//OcultarDivBloqueo();
+		OcultarDivBloqueo();
 	} else if (varParametroUrl == '2') {
 		onclickActualizar();
 	}
@@ -340,7 +340,6 @@ function CargarCotizacionesDestacadaHtml() {
 
 	CargarHtmlFechaMenuPrincipal();
 	timeOutCallbacks[0] = 1;
-	//OcultarDivBloqueo();
 }
 
 function CargarDeNuevoHistorico() {
