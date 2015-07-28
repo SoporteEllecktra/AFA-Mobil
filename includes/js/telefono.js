@@ -1,7 +1,8 @@
 $(document).ready(function () {
+	// Define if its device is a mobile
 	if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
-		document.target = { 'isIndex': true };
-		mobileEventsHandler(document);
+		document.isIndex = true;
+		document.addEventListener("deviceready", mobileEventsHandler, false);
 	}
 
     var isVolverIndex = true;
