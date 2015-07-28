@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    MostrarDivBloqueo();
+    //MostrarDivBloqueo();
     var indexCotizacionDestacadaSeleccionada = obtenerStorageIndexCotizacionDestacadaSeleccionda();
 	if (indexCotizacionDestacadaSeleccionada == -1) {
 		OcultarDivBloqueo();
@@ -14,6 +14,7 @@ $(document).ready(function () {
     }
 
 	if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
+		document.isIndex = false;
 		document.addEventListener("deviceready", mobileEventsHandler, false);
 	}
 

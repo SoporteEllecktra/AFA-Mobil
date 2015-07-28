@@ -520,8 +520,13 @@ $(document).ready(function () {
     });
 });
 
-function mobileEventsHandler() {
-	document.addEventListener("backbutton", onBackKeyDown, false);
+function mobileEventsHandler(event) {
+	alert(event.target.isIndex);
+	if (event.target.isIndex) {
+		document.addEventListener("backbutton", exitApplication, false);
+	} else {
+		document.addEventListener("backbutton", onBackKeyDown, false);
+	}
 }
 
 function onBackKeyDown() {
@@ -532,4 +537,8 @@ function onBackKeyDown() {
 
 	//alert('onBackKeyDown button pressed!!!');
 	RedireccionarPagIndex();
+}
+
+function exitApplication() {
+	navigator.app.exitApp();
 }

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    MostrarDivBloqueo();
+    //MostrarDivBloqueo();
 	if (!localStorage.getItem("storageListaTodasCotizaciones")) {
 		OcultarDivBloqueo();
 		processError('', 1000, '');
@@ -7,6 +7,7 @@ $(document).ready(function () {
 	}
 
 	if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
+		document.isIndex = false;
 		document.addEventListener("deviceready", mobileEventsHandler, false);
 	}
 

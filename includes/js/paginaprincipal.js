@@ -3,8 +3,7 @@ var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 
 $(document).ready(function () {
-	MostrarDivBloqueo();
-
+	//MostrarDivBloqueo();
     swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true
@@ -34,10 +33,9 @@ function CargaDeLosDatosPrevioTelefono() {
 	}
 	// Startup's app
 	if (varParametroUrl === '') {
-		//MostrarDivBloqueo(); // at libreria.js
 		FuncionInicio(); // at cargardatos.js
 	} else if (varParametroUrl == '1') {
-		// Una vez abierta la app, navegación entre las diferentes pantallas (cuando se usa libreria.js::RedireccionarPagIndex())
+		// Una vez abierta la app, navegación entre las diferentes pantallas hacia el index (cuando se usa libreria.js::RedireccionarPagIndex())
 		if (window.localStorage) {
 			localStorage.setItem('storageIndexVolver', '');
 		} else {
@@ -64,18 +62,19 @@ function CargaDeLosDatosPrevioTelefono() {
 			var listaInformesGuardada = localStorage.getItem("storageListaInformes");
 			listaInformes = eval('(' + listaInformesGuardada + ')');
 		}
-		CargarHtmlFechaMenuPrincipal();
+		//CargarHtmlFechaMenuPrincipal();
 		CargarCotizacionesDestacadaHtml();
 		CargarNovedadesHtml();
-		if (listaNovedades == null) {
+		if (!listaNovedades) {
 			porcentajeArriba = 1;
 			porcentajeAbajo = 0;
 		} else if (listaNovedades.length == 0) {
 			porcentajeArriba = 1;
 			porcentajeAbajo = 0;
 		}
+
 		onresizeBody();
-		OcultarDivBloqueo();
+		//OcultarDivBloqueo();
 	} else if (varParametroUrl == '2') {
 		onclickActualizar();
 	}
@@ -487,12 +486,6 @@ function CargarNovedadesHtml() {
 		resultadoDiv += '</div>';
 		// fin  Primer fila novedades
 		resultadoDiv += '<div class="row ">';
-		//            resultadoDiv += '<div class="col-xs-3 cssNovedadesFecha">';//col-sm-3
-		//            resultadoDiv += obtenerFechaMostrar(this.fecha);
-		//            resultadoDiv += '</div>';
-		//            resultadoDiv += '<div class="col-xs-9 cssNovedadesCategoria">';//col-sm-9
-		//            resultadoDiv += this.descripcionCategoria;
-		//            resultadoDiv += '</div>';
 		resultadoDiv += '<div class="col-xs-12">';
 		resultadoDiv += '<table>';
 		resultadoDiv += '<tr>';
@@ -576,8 +569,6 @@ function onclickFullScreenButtonAmpliar() {
 }
 
 function finCargarInicial() {
-    //CargarHtmlFechaMenuPrincipal();
-    //OcultarDivBloqueo();
     if (listaNovedades == null) {
         porcentajeArriba = 1;
         porcentajeAbajo = 0;
