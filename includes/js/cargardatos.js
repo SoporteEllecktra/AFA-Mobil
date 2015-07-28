@@ -165,7 +165,7 @@ function defineLoadUpdates() {
 	//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
 	for (var i = 0; i < listaTablaModificaciones.length; i++) {
 		//alert(i+1);
-		console.log(listaTablaModificaciones[i]);
+		//console.log(listaTablaModificaciones[i]);
 		var tableNameKey = labelTableStorage + listaTablaModificaciones[i].codigoTabla;
 		if (!localStorage.getItem(tableNameKey)) {
 			update = true;
@@ -196,6 +196,7 @@ function defineLoadUpdates() {
 
 function timeController(){
 	if (startTime == startTimeOut) {
+		//console.log('Inicia los ' + startTimeOut + 'seg de espera de la carga')
 		CargaCotizacionDestacada(); // timeOutCallbacks[0]
 		CargaNovedades(); // timeOutCallbacks[1]
 		CargaTodasCotizaciones(); // timeOutCallbacks[2]
@@ -203,16 +204,22 @@ function timeController(){
 	}
 	startTime--;
 
+	var timeOut = 1;
+	for (var i = 0; i < timeOutCallbacks.length; i++) {
+		timeOut *= parseInt(timeOutCallbacks[i]);
+	}
+
 	if (startTime == 1) {
 		clearTimeout(t);
-		var timeOut = 1;
-		for (var i = 0; i < timeOutCallbacks.length; i++) {
-			timeOut *= parseInt(timeOutCallbacks[i]);
-		}
-
 		if (timeOut == 0) {
 			//alert("TIMEOUT");
 			processError('', 5000, '');
+		}
+	} else {
+		if (timeOut == 1) {
+			clearTimeout(t);
+			OcultarDivBloqueo();
+			//console.log('Tardo en cargar las cotizaciones destacadas ==> ' + startTime + 'seg');
 		}
 	}
 }
@@ -230,7 +237,7 @@ function successAuditoria(data, status, req) {
 	// Obtener las actualizaciones y analizarlas
 	CargarResultadoAuditoriaJavascript(req.responseText);
 	if (listaTablaModificaciones && (listaTablaModificaciones.length > 0)) {
-		// Hay actualizaciones, definir si las mismas son mas actuales que las almacenadas
+		// Hay actualizaciones, definir si las mismas son diferentes que las almacenadas
 		defineLoadUpdates();
 	}
 
@@ -288,7 +295,6 @@ function CargaCotizacionDestacada() {
             dataType: "xml",
             crossDomain: true,
             xhrFields: { withCredentials: true },
-            //data: CargarParametroEntradaCotizaciones(1, 14, obtenerFechaParametroEntrada(0), '', '', '', ''),
             data: CargarParametroEntradaCotizaciones_Ordenada(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', ''),
             success: processSuccessCotizacionDestacada
         });
@@ -309,7 +315,6 @@ function processSuccessCotizacionDestacada(data, status, req) {
 
 /* Inicio Error */
 function processError(data, status, req) {
-    //OcultarDivBloqueo();
 	var id = -1;
 	if (status > 0) {
 		id = status;
@@ -361,7 +366,7 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         CargaConIndiceDetalleCotizacion(indexCotizacionesDestacada);
     }
 
-	timeOutCallbacks[0] = 1;
+	//timeOutCallbacks[0] = 1;
 }
 
 function CargarParametroEntradaCotizaciones_Ordenada(pCodigoTipoCotizacion, pCodigoTipoCliente, pFechaDesde, pFechaHasta, pTipoOrden, pProductos, pPuertos, pMonedas) {
@@ -492,7 +497,7 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
     $.ajax({
         type: "POST",
         url: wsUrlCotizacionHistorico,
-        contentType: "application/xml; charset=utf-8", //"text/xml",
+        contentType: "application/xml; charset=utf-8",
         dataType: "xml",
         crossDomain: true,
         xhrFields: {
@@ -503,7 +508,7 @@ function CargaCotizacionHistoricaConIndiceDetacado(pIndex) {
         //data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 8, cotizacionesDestacada[pIndex].codigoProducto, cotizacionesDestacada[pIndex].codigoPuerto, ''),
         data: CargarParametroEntradaCotizaciones_Ordenada(1, 11, obtenerFechaParametroEntrada(-10), obtenerFechaParametroEntrada(0), 9, cotizacionesDestacada[pIndex].codigoProducto, '', ''),
         success: processSuccessCotizacionHistorica
-    }).fail( function(jqXHR, textStatus, errorThrown) { alert('Error de red'); });
+    });
 }
 
 function ObtenerCotizacionHistoricaConIndiceProductoDestacado(pXML) {
@@ -541,6 +546,7 @@ function processSuccessCotizacionHistorica(data, status, req) {
 		} else {
 			processError('', 1000, '');
 		}
+
 		CargarCotizacionesDestacadaHtml();
 	}
 }

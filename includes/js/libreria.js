@@ -521,7 +521,7 @@ $(document).ready(function () {
 });
 
 function mobileEventsHandler(event) {
-	alert(event.target.isIndex);
+	//alert(event.target.isIndex);
 	if (event.target.isIndex) {
 		document.addEventListener("backbutton", exitApplication, false);
 	} else {

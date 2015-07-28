@@ -339,7 +339,8 @@ function CargarCotizacionesDestacadaHtml() {
     onresizeBody();
 
 	CargarHtmlFechaMenuPrincipal();
-	OcultarDivBloqueo();
+	timeOutCallbacks[0] = 1;
+	//OcultarDivBloqueo();
 }
 
 function CargarDeNuevoHistorico() {
