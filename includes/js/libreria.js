@@ -2,7 +2,7 @@ var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
 var applicationStorage = [];
-var startTimeOut = 12;
+var startTimeOut = 30;
 var startTime = startTimeOut;
 var t = 0;
 var timeOutCallbacks = [0, 0, 0, 0];
@@ -46,7 +46,7 @@ function toString00(pNro) {
 function isPhone() {
     var resultado = false;
     var varPlatform = '';
-    if (window.localStorage && localStorage.getItem("storagePlatform") && localStorage.getItem("storagePlatform")  != '') {
+    if (localStorage.getItem("storagePlatform") && localStorage.getItem("storagePlatform")  != '') {
         varPlatform = localStorage.getItem("storagePlatform");
     } else {
         return false;
@@ -58,6 +58,7 @@ function isPhone() {
     } else if (varPlatform == 'WinCE' || varPlatform == 'Win32NT') {
         return true;
     }
+
     return resultado;
 }
 
@@ -488,37 +489,39 @@ function getAppVersion() {
 	return html;
 }
 
-$(document).ready(function () {
-    $.ajaxSetup({
-        error: function( jqXHR, textStatus, errorThrown ) {
-				var error_id = 50; // unknown
-				if (jqXHR.status === 0) {
-					//alert('Not connect: Verify Network.');
-					error_id = 100;
-				} else if (jqXHR.status == 404) {
-					//alert('Requested page not found [404]');
-					error_id = 110;
-				} else if (jqXHR.status == 500) {
-					//alert('Internal Server Error [500].');
-					error_id = 120;
-				} else if (textStatus === 'parsererror') {
-					//alert('Requested JSON parse failed.');
-					error_id = 130;
-				} else if (textStatus === 'timeout') {
-					//alert('Time out error.');
-					error_id = 140;
-				} else if (textStatus === 'abort') {
-					//alert('Ajax request aborted.');
-					error_id = 150;
-				} else {
-					//alert('Uncaught Error: ' + jqXHR.responseText);
-					error_id = 160;
-			   }
+if (window.jQuery) {
+	$(document).ready(function () {
+		$.ajaxSetup({
+			error: function( jqXHR, textStatus, errorThrown ) {
+					var error_id = 50; // unknown
+					if (jqXHR.status === 0) {
+						//alert('Not connect: Verify Network.');
+						error_id = 100;
+					} else if (jqXHR.status == 404) {
+						//alert('Requested page not found [404]');
+						error_id = 110;
+					} else if (jqXHR.status == 500) {
+						//alert('Internal Server Error [500].');
+						error_id = 120;
+					} else if (textStatus === 'parsererror') {
+						//alert('Requested JSON parse failed.');
+						error_id = 130;
+					} else if (textStatus === 'timeout') {
+						//alert('Time out error.');
+						error_id = 140;
+					} else if (textStatus === 'abort') {
+						//alert('Ajax request aborted.');
+						error_id = 150;
+					} else {
+						//alert('Uncaught Error: ' + jqXHR.responseText);
+						error_id = 160;
+				   }
 
-			   window.location.href = "error.html?id=" + error_id;
-			}
-    });
-});
+				   window.location.href = "error.html?id=" + error_id;
+				}
+		});
+	});
+}
 
 function mobileEventsHandler(event) {
 	//alert(event.target.isIndex);
@@ -541,4 +544,56 @@ function onBackKeyDown() {
 
 function exitApplication() {
 	navigator.app.exitApp();
+}
+
+
+/*** New Functions ****/
+function getRequest(body) {
+    var soapRequest = '<?xml version="1.0" encoding="utf-8"?>';
+    soapRequest += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.afascl.coop/servicios">';
+    soapRequest += '<soapenv:Header/>';
+    soapRequest += '<soapenv:Body>';
+
+	soapRequest += body;
+
+    soapRequest += '</soapenv:Body>';
+    soapRequest += '</soapenv:Envelope>';
+
+    return soapRequest;
+}
+
+function processError(data, status, req) {
+	var id = -1;
+	if (status > 0) {
+		id = status;
+	}
+
+    window.location.href = "error.html?id=" + id;
+}
+
+function getInformationFromWS(wsURL, request, keyStorage, saveStorageFunction, renderFunction) {
+	$.ajax({
+		type: "POST",
+		url: wsURL,
+		contentType: "application/xml; charset=utf-8",
+		dataType: "xml",
+		crossDomain: true,
+		xhrFields: { withCredentials: true },
+		data: request,
+		success: function (data) {
+					saveStorageFunction(keyStorage, data);
+					renderFunction();
+		}
+	});
+}
+
+function renderInformation(informationCode, loadFromWS) {
+	switch (informationCode) {
+		case 1: renderLeadingPrices(loadFromWS[informationCode]); break; // Cotizaciones Destacadas
+		/*case 2: renderNews(); break; // Novedades
+		case 3: renderReports(); break; // Informes
+		case 4: renderHistoricalPrices(); break; // Cotizaciones Históricas
+		default: processError('', 1000, '');*/
+	}
+	
 }

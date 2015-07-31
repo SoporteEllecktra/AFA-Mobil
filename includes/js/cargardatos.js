@@ -160,11 +160,11 @@ function CargarAuditoria() {
 
 function defineLoadUpdates() {
 	var labelTableStorage = "storageTablaModificaciones";
-	var update = true;
+	var update = false;
 	//alert("HAY #UPDATES == " + listaTablaModificaciones.length);
 	for (var i = 0; i < listaTablaModificaciones.length; i++) {
 		//alert(i+1);
-		//console.log(listaTablaModificaciones[i]);
+		console.log(listaTablaModificaciones[i]);
 		var tableNameKey = labelTableStorage + listaTablaModificaciones[i].codigoTabla;
 		if (!localStorage.getItem(tableNameKey)) {
 			update = true;
@@ -173,12 +173,15 @@ function defineLoadUpdates() {
 			var newDate = obtenerFechaUTC(listaTablaModificaciones[i].fecha, listaTablaModificaciones[i].hora);
 			var updateStorage = localStorage.getItem(tableNameKey);
 			var updateStorageObject = eval('(' + updateStorage + ')');
+			console.log(tableNameKey + ' - Almacenado ==> ');console.log(updateStorageObject);
 			storageDate = obtenerFechaUTC(updateStorageObject.fecha, updateStorageObject.hora);
-			/*var d = new Date(newDate);
-			alert('fecha Nueva => '+d);
+			var d = new Date(newDate);
+			console.log('fecha Nueva => '+ d + ', stamp='+newDate);
 			d = new Date(storageDate);
-			alert('fecha Guardada => '+d);*/
+			console.log('fecha Guardada => '+d + ', stamp=' + storageDate);
+			console.log('compara fechas');
 			if (newDate != storageDate) {
+				console.log('Recargar ' + tableNameKey);
 				update = true;
 				localStorage.setItem(tableNameKey, JSON.stringify(listaTablaModificaciones[i]));
 			}
@@ -230,9 +233,9 @@ function successAuditoria(data, status, req) {
 		processError('', 3000, '');
 	}
 
-	isCargarCotizaciones = true;
-	isCargarNotificaciones = true;
-	isCargarInformes = true;
+	isCargarCotizaciones = false;
+	isCargarNotificaciones = false;
+	isCargarInformes = false;
 
 	// Obtener las actualizaciones y analizarlas
 	CargarResultadoAuditoriaJavascript(req.responseText);
@@ -241,6 +244,8 @@ function successAuditoria(data, status, req) {
 		defineLoadUpdates();
 	}
 
+	console.log('Carga cotizaciones? ' + isCargarCotizaciones + ', carga notificaciones? ' + isCargarNotificaciones + ', carga informes? ' + isCargarInformes);
+	
 	t = setInterval(timeController, 1000);
 }
 

@@ -70,12 +70,22 @@ function onDeviceReady() {
     }
     objDatosTelefono.uuid = device.uuid;
     //alert(device.platform);
+	if (!window.localStorage) {
+		processError('', 1000, '');
+	}
+
     localStorage.setItem('storagePlatform', device.platform);
 
 	document.target = { 'isIndex': true };
 	mobileEventsHandler(document);
 
-	CargaDeLosDatosPrevioTelefono();
+	if (isPhone() && (!localStorage.getItem("storageTelefono") || 
+	    (localStorage.getItem("storageTelefono") && localStorage.getItem("storageTelefono") == ''))) {
+		window.location.href = "telefono.html";
+	}
+
+	getUpdates();
+	//CargaDeLosDatosPrevioTelefono();
 }
 
 function successHandler(result) {
