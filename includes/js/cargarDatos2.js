@@ -1,19 +1,11 @@
-/*var wsCotizacion = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
-var wsCotizacionHistorico = "http://concentrador.afascl.coop:38080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
-var wsNovedades = "http://concentrador.afascl.coop:38080/Concentrador/webservices/NotificacionService?wsdl/";
-var wsAuditoria = "http://concentrador.afascl.coop:38080/Concentrador/webservices/AuditoriaService?wsdl/";
-var wsInforme = "http://concentrador.afascl.coop:38080/Concentrador/webservices/InformeService?wsdl/";
-var wsGuardarTelefono = "http://concentrador.afascl.coop:38080/Concentrador/webservices/TelefonoService?wsdl/";*/
+//var port = '38080';
+var port = '8080';
 
-var wsCotizacion = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
-var wsCotizacionHistorica = "http://concentrador.afascl.coop:8080/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
-var wsNovedades = "http://concentrador.afascl.coop:8080/Concentrador/webservices/NotificacionService?wsdl/";
-var wsAuditoria = "http://concentrador.afascl.coop:8080/Concentrador/webservices/AuditoriaService?wsdl/";
-var wsInforme = "http://concentrador.afascl.coop:8080/Concentrador/webservices/InformeService?wsdl/";
-var wsGuardarTelefono = "http://concentrador.afascl.coop:8080/Concentrador/webservices/TelefonoService?wsdl/";
-
-// Only use for PUSH Notifications
-var wsRegistracionTelefono = 'http://190.210.143.156:50002/registrationinfo/';
+var updatesURL = "http://concentrador.afascl.coop:"+port+"/Concentrador/webservices/AuditoriaService?wsdl/";
+var pricesURL = "http://concentrador.afascl.coop:"+port+"/Concentrador/webservices/CotizacionCerealPuertoService?wsdl/";
+var notificationsURL = "http://concentrador.afascl.coop:"+port+"/Concentrador/webservices/NotificacionService?wsdl/";
+var reportsURL = "http://concentrador.afascl.coop:"+port+"/Concentrador/webservices/InformeService?wsdl/";
+var savePhoneNumberURL = "http://concentrador.afascl.coop:"+port+"/Concentrador/webservices/TelefonoService?wsdl/";
 
 function updatesObject() {
     this.codigoTabla = 0;
@@ -21,10 +13,49 @@ function updatesObject() {
     this.hora = '';
 }
 
+// Definir los objetos a recuperar/almacenar con toda la info para renderizar la app
+function price() {
+    this.fechaCotizacion = '';
+    this.codigoMoneda = 0;
+    this.descripcionMoneda = '';
+    this.codigoTipoCotizacion = 0;
+    this.codigoTipoCotizacion = 0;
+    this.descripcionTipoCotizacion = '';
+    this.codigoPuerto = 0;
+    this.descripcionPuerto = '';
+    this.codigoProducto = 0;
+    this.descripcionProducto = '';
+    this.valor = 0;
+    this.valorString = '';
+    this.observacion = '';
+    this.abreviaturaMoneda = '';
+    this.variacion = '';
+    this.listaDetalle = [];
+    this.listaHistorico = [];
+}
+
+function notification() {
+    this.codigoNotificacion = 0;
+    this.fecha = '';
+    this.titulo = '';
+    this.descripcion = '';
+    this.url = '';
+    this.codigoCategoria = 0;
+    this.descripcionCategoria = '';
+}
+
+function report() {
+    this.codigoInforme = 0;
+    this.fecha = '';
+    this.titulo = '';
+    this.texto = '';
+    this.url = '';
+}
+
 function getUpdates() {
     $.ajax({
         type: "POST",
-        url: wsAuditoria,
+        url: updatesURL,
         contentType: "application/xml; charset=utf-8",
         dataType: "xml",
         crossDomain: true,
@@ -40,13 +71,20 @@ function updatesAnalizer(data, status, req) {
 		processError('', 3000, '');
 	}
 
-	// Obtener las actualizaciones como objetos y analizarlas
+	// Obtener las actualizaciones parseadas como objetos y analizarlas
 	var updates = updatesParser(req.responseText);
 	if (updates && (updates.length > 0)) {
 		// Hay actualizaciones, definir si las mismas son diferentes que las almacenadas
 		setLocalStorage(updates);
+	} else {
+		// Si no hay actualizaciones (o no llegan) ==> entonces renderizar la app con lo que esta almacenado
+		var loadFromWS = [];
+		loadFromWS.push(false);
+		for (var i = 1; i < 5; i++) {
+			loadFromWS.push(false);
+			loadInformation(i, loadFromWS);
+		}
 	}
-	//t = setInterval(timeController, 1000);
 }
 
 function updatesParser(xmlText) {
@@ -84,7 +122,7 @@ function updatesParser(xmlText) {
 
 // Just update the keys to be updated in the localStorage, the idea is to minimize calls to the outside
 function setLocalStorage(updates) {
-	var labelTableStorage = "storageTablaModificaciones";
+	var labelTableStorage = "updatesInfo";
 	var loadFromWS = [];
 	loadFromWS.push(false);
 	//alert("HAY #UPDATES == " + updates.length);
@@ -97,52 +135,28 @@ function setLocalStorage(updates) {
 			localStorage.setItem(tableNameKey, JSON.stringify(updates[i]));
 			loadFromWS[updates[i].codigoTabla] = true;
 		} else {
-			var newDate = obtenerFechaUTC(updates[i].fecha, updates[i].hora);
+			var newDate = (updates[i].fecha + updates[i].hora);
 			var updateStorage = localStorage.getItem(tableNameKey);
 			var updateStorageObject = eval('(' + updateStorage + ')');
-			//console.log(tableNameKey + ' - Almacenado ==> ');console.log(updateStorageObject);
-			storageDate = obtenerFechaUTC(updateStorageObject.fecha, updateStorageObject.hora);
-			/*var d = new Date(newDate);
-			console.log('fecha Nueva => '+ d + ', stamp='+newDate);
-			d = new Date(storageDate);
-			console.log('fecha Guardada => '+d + ', stamp=' + storageDate);
-			console.log('compara fechas');*/
+			console.log(tableNameKey + ' - Almacenado ==> ');console.log(updateStorageObject);
+			storageDate = (updateStorageObject.fecha + updateStorageObject.hora);
+			
+			console.log('fecha Nueva => '+newDate);
+			console.log('fecha Guardada => '+storageDate);
+			console.log('compara fechas');
 			if (newDate != storageDate) {
-				//console.log('Recargar ' + tableNameKey);
+				console.log('Recargar ' + tableNameKey);
 				localStorage.setItem(tableNameKey, JSON.stringify(updates[i]));
 				loadFromWS[updates[i].codigoTabla] = true;
 			}
 		}
 	}
 
-	$.when(renderInformation(1, loadFromWS),
-		   renderInformation(2, loadFromWS)
+	console.log(loadFromWS);
+	$.when(loadInformation(1, loadFromWS),
+		   loadInformation(2, loadFromWS)
 		  ).done(function() {
-			  renderInformation(4, loadFromWS);
-			  renderInformation(3, loadFromWS);
+			  loadInformation(4, loadFromWS);
+			  loadInformation(3, loadFromWS);
 		  });
 }
-
-/*function timeController() {
-	startTime--;
-
-	var timeOut = 1;
-	for (var i = 0; i < timeOutCallbacks.length; i++) {
-		timeOut *= parseInt(timeOutCallbacks[i]);
-	}
-
-	if (startTime == 1) {
-		clearTimeout(t);
-		OcultarDivBloqueo();
-		if (timeOut == 0) {
-			//alert("TIMEOUT");
-			processError('', 5000, '');
-		}
-	} else {
-		if (timeOut == 1) {
-			clearTimeout(t);
-			OcultarDivBloqueo();
-			console.log('Tardo en cargar la info necesaria ==> ' + startTime + 'seg');
-		}
-	}
-}*/

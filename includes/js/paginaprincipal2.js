@@ -14,6 +14,10 @@ OcultarDivBloqueo();
 	} else {
 		// Define if its device is a mobile
 		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
+			if (window.localStorage) {
+				localStorage.setItem('deviceready', 'no');
+			}
+
 			document.addEventListener("deviceready", onDeviceReady, false);
 		} else {
 			getUpdates();
@@ -21,158 +25,18 @@ OcultarDivBloqueo();
 	}
 });
 
-$(document).ajaxStop(function () {
-    //finCargarInicial();
-});
-
-function CargaDeLosDatosPrevioTelefono() {
-	var varParametroUrl = '';
-	if (window.localStorage && localStorage.getItem("storageIndexVolver")) {
-		varParametroUrl = localStorage.getItem("storageIndexVolver");
-	}
-	// Startup's app
-	if (varParametroUrl === '') {
-		FuncionInicio(); // at cargardatos.js
-	} else if (varParametroUrl == '1') {
-		// Una vez abierta la app, navegación entre las diferentes pantallas hacia el index (cuando se usa libreria.js::RedireccionarPagIndex())
-		if (window.localStorage) {
-			localStorage.setItem('storageIndexVolver', '');
-		} else {
-			processError('', 1000, '');
-		}
-		if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
-			//alert('storageListaCotizacionesDestacada is null');
-			processError('', 1000, '');
-		} else {
-			var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-			cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
-		}
-		if (!localStorage.getItem("storageListaNovedades")) {
-			//alert('storageListaNovedades is null');
-			processError('', 1000, '');
-		} else {
-			var listaNovedadesGuardada = localStorage.getItem("storageListaNovedades");
-			listaNovedades = eval('(' + listaNovedadesGuardada + ')');
-		}
-		if (!localStorage.getItem("storageListaInformes")) {
-			//alert('storageListaInformes is null');
-			processError('', 1000, '');
-		} else {
-			var listaInformesGuardada = localStorage.getItem("storageListaInformes");
-			listaInformes = eval('(' + listaInformesGuardada + ')');
-		}
-
-		CargarCotizacionesDestacadaHtml();
-		CargarNovedadesHtml();
-		if (!listaNovedades) {
-			porcentajeArriba = 1;
-			porcentajeAbajo = 0;
-		} else if (listaNovedades.length == 0) {
-			porcentajeArriba = 1;
-			porcentajeAbajo = 0;
-		}
-
-		onresizeBody();
-		OcultarDivBloqueo();
-	} else if (varParametroUrl == '2') {
-		onclickActualizar();
-	}
-}
-
-var isMoverAmpliar = false;
-var cantNN = 0;
-
-function onmousedownAmpliar(e) {
-    isMoverAmpliar = true;
-}
-
-function onmouseoverAmpliar(e) {
-    isMoverAmpliar = false;
-    cantNN = 0;
-}
-
-function onmousemoveAmpliar(e) {
-    if (isMoverAmpliar) {
-        if (cantNN == 0) {
-            cantNN = e.clientY;
-        } else {
-            if (cantNN < e.clientY) {
-                porcentajeArriba = porcentajeArriba + 0.001;
-                porcentajeAbajo = porcentajeAbajo - 0.001;
-            } else {
-                porcentajeArriba = porcentajeArriba - 0.001;
-                porcentajeAbajo = porcentajeAbajo + 0.001;
-            }
-            cantNN = e.clientY;
-            onresizeBody();
-        }
-    }
-}
-
-function onmouseupAmpliar(e) {
-    isMoverAmpliar = false;
-    cantNN = 0;
-}
-
-function onresizeBody() {
-    var altura = ($(document).height() - ($('#header').outerHeight() + $('#StatusBar').outerHeight()));
-    var alturaCotizacionesDestacada = altura * porcentajeArriba; //0.55;
-    // incio redondear para abajo
-    var arrAlturaCotizacionesDestacada = alturaCotizacionesDestacada.toString().split(".");
-    var enteroAlturaCotizacionesDestacada = 0;
-    var decimalAlturaCotizacionesDestacada = 0;
-    if (arrAlturaCotizacionesDestacada.length == 2) {
-        enteroAlturaCotizacionesDestacada = parseInt(arrAlturaCotizacionesDestacada[0]);
-        decimalAlturaCotizacionesDestacada = parseInt(arrAlturaCotizacionesDestacada[1]);
-    } else {
-        enteroAlturaCotizacionesDestacada = parseInt(arrAlturaCotizacionesDestacada[0]);
-    }
-    // fin redondear para abajo
-    var alturaParteAbajo = altura * porcentajeAbajo; // 0.45;
-    // incio redondear para arriba
-    var arrAlturaParteAbajo = alturaParteAbajo.toString().split(".");
-    var enteroAlturaParteAbajo = 0;
-    var decimalAlturaParteAbajo = 0;
-    if (arrAlturaParteAbajo.length == 2) {
-        enteroAlturaParteAbajo = parseInt(arrAlturaParteAbajo[0]);
-        decimalAlturaParteAbajo = parseInt(arrAlturaParteAbajo[1]);
-    } else {
-        enteroAlturaParteAbajo = parseInt(arrAlturaParteAbajo[0]);
-    }
-    if (decimalAlturaCotizacionesDestacada > 0) {
-        enteroAlturaParteAbajo = enteroAlturaParteAbajo + 1;
-    }
-    $('#divCotizacionesDestacada').css('height', enteroAlturaCotizacionesDestacada);
-    $('#divBarraAbajo').css('height', enteroAlturaParteAbajo);
-
-    var cantPxBotonesSlider = parseInt($('.swiper-pagination').css('bottom').replace('px', '')) + $('.swiper-pagination').outerHeight() + 12; //2;+ 12
-
-    $('.swiper-slide').css('height', $('#divBarraAbajo').outerHeight());
-    var cantPaddingNovedadesSlider = 0;
-    if (document.getElementById('swiper-slide1')) {
-        cantPaddingNovedadesSlider = parseInt($('#swiper-slide1').css('padding-top').replace('px', ''));
-    }
-
-    $('#divRowParteScrollNovedades').css('height', ($('#divBarraAbajo').outerHeight() - (cantPxBotonesSlider + cantPaddingNovedadesSlider)));
-    $('#divParteScrollCotizacionHistorica').css('height', $('#divBarraAbajo').outerHeight() - ($('#divParteFijaCotizacionHistorica').outerHeight() + cantPxBotonesSlider));
-    $('#divInformeDescripcion').css('height', $('#divBarraAbajo').outerHeight() - ($('#divInformeFecha').outerHeight() + $('#divInformeTitulo').outerHeight() + cantPxBotonesSlider)); // 
-}
-
-function onclikAcodeon() {
-    //alert('Ok');
-}
-
-function CargarCotizacionesDestacadaHtml() {
-	if (!localStorage.getItem("storageListaCotizacionesDestacada")) {
+function renderLeadingPricesData() {
+	if (!localStorage.getItem("leadingPrices")) {
 			processError('', 1000, '');
 	}
-	var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
-	var cotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
+	var leadingPricesObject = localStorage.getItem("leadingPrices");
+	var leadingPrices = eval('(' + leadingPricesObject + ')');
 
-	if (!cotizacionesDestacada || (cotizacionesDestacada && cotizacionesDestacada.length == 0)) {
+	if (!leadingPrices || (leadingPrices && leadingPrices.length == 0)) {
 		processError('', 1000, '');
 		return;
 	}
+
     var resultadoDiv = '<div class="row cssDestacadoEncabezado ">';
     resultadoDiv += '<div class="col-xs-4">';
     resultadoDiv += 'PRODUCTO';
@@ -187,15 +51,15 @@ function CargarCotizacionesDestacadaHtml() {
     resultadoDiv += '<div class="accordion" id="accordion2">';
 
     var cantValorMoneda = 0;
-    for (var i = 0; i < cotizacionesDestacada.length; i++) {
-        var cantValorMonedaAUX = cotizacionesDestacada[i].abreviaturaMoneda.length + String(cotizacionesDestacada[i].valorString).length;
+    for (var i = 0; i < leadingPrices.length; i++) {
+        var cantValorMonedaAUX = leadingPrices[i].abreviaturaMoneda.length + String(leadingPrices[i].valorString).length;
         if (cantValorMoneda < cantValorMonedaAUX) {
             cantValorMoneda = cantValorMonedaAUX;
         }
     }
     //alert(cantValorMoneda);
 	var index = -1;
-    $(cotizacionesDestacada).each(function () {
+    $(leadingPrices).each(function () {
         index++;
 
         resultadoDiv += '<div class="accordion-group" onclick="onclikAcodeon()">';
@@ -295,8 +159,8 @@ function CargarCotizacionesDestacadaHtml() {
     });
     $('.collapse').on('show.bs.collapse', function (e) {
         var index = parseInt(e.target.id.replace('collapse', ''));
-        grabarStorageIndexCotizacionDestacadaSeleccionda(index);
-        CargarCotizacionesHistoricaHtml(index);
+        //grabarStorageIndexCotizacionDestacadaSeleccionda(index);
+        //CargarCotizacionesHistoricaHtml(index);
         var indexSlide2 = -1;
         for (var i = 0; i < swiper.slides.length; i++) {
             if (swiper.slides[i].id == 'swiper-slide2') {
@@ -338,10 +202,8 @@ function CargarCotizacionesDestacadaHtml() {
         } else {
             porcentajeArriba = 1;
             porcentajeAbajo = 0;
-            onresizeBody();
         }
     });
-    onresizeBody();
 
 	CargarHtmlFechaMenuPrincipal();
 	timeOutCallbacks[0] = 1;
@@ -463,14 +325,21 @@ function CargarCotizacionesHistoricaHtml(pIndex) {
     }
 }
 
-function CargarNovedadesHtml() {
-	if (!listaNovedades || (listaNovedades && listaNovedades.length == 0)) {
-		processError('', 1000, '');
-		return;
+function renderNewsData() {
+	if (!localStorage.getItem("notifications")) {
+			processError('', 1000, '');
 	}
-    var resultadoDiv = '<div id="divRowParteScrollNovedades">'; // parte scroll      
+	var notificationsObject = localStorage.getItem("notifications");
+	var notifications = eval('(' + notificationsObject + ')');
+
+    var resultadoDiv = '<div id="divRowParteScrollNovedades">'; // parte scroll
+
+	if (!notifications || (notifications && notifications.length == 0)) {
+		resultadoDiv = '';
+	}
+
 	var indiceNovedades = -1;
-	$(listaNovedades).each(function () {
+	$(notifications).each(function () {
 		indiceNovedades++;
 		resultadoDiv += '<div class="row">';
 		resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
@@ -519,7 +388,7 @@ function CargarNovedadesHtml() {
 	});
 	resultadoDiv += '</div>'; // fin parte scroll
 
-	if (listaNovedades.length > 0) {
+	if (notifications.length > 0) {
 
 		var indexSlide1 = -1;
 		for (var i = 0; i < swiper.slides.length; i++) {
@@ -534,8 +403,8 @@ function CargarNovedadesHtml() {
 		}
 	}
 
-    CargarInformeCierreMercado();
-	timeOutCallbacks[1] = 1;
+    //CargarInformeCierreMercado();
+	//timeOutCallbacks[1] = 1;
 }
 
 function CargarInformeHtml() {
@@ -574,26 +443,12 @@ function onclickFullScreenButtonAmpliar() {
     }
 }
 
-function finCargarInicial() {
-    if (listaNovedades == null) {
-        porcentajeArriba = 1;
-        porcentajeAbajo = 0;
-    } else if (listaNovedades.length == 0) {
-        porcentajeArriba = 1;
-        porcentajeAbajo = 0;
-    }
-
-    onresizeBody();
-}
-
-
-
-function CargarResultadoCotizacionDestacadoJavascript(pXML) {
-    var cotizacionesDestacada = [];
+function saveLeadingPricesData(xmlText) {
+    var leadingPrices = [];
 	var maxUtcValue = 0;
 	var maxDate = '';
-    $(pXML).find('cotizaciones').each(function () {
-        var obj = new cotizacion();
+    $(xmlText).find('cotizaciones').each(function () {
+        var obj = new price();
         obj.fechaCotizacion = $(this).find('fechaCotizacion').text();
         obj.codigoMoneda = parseInt($(this).find('codigoMoneda').text());
         obj.descripcionMoneda = $(this).find('descripcionMoneda').text();
@@ -608,7 +463,7 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
         obj.observacion = $(this).find('observacion').text();
         obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
         obj.variacion = $(this).find('variacion').text();
-        cotizacionesDestacada.push(obj);
+        leadingPrices.push(obj);
  
 		// fechaCotizacion format: yyyy-mm-ddThh:mm:ss-xx:xx where +/-xx:xx is GMT zone time value (-03:00 for Argentina)
 		maxDate = obj.fechaCotizacion;
@@ -620,61 +475,189 @@ function CargarResultadoCotizacionDestacadoJavascript(pXML) {
 		var newUtcValue = obtenerFechaUTC(fecha, horaPartes[0]);
 		if (newUtcValue > maxUtcValue) {
 			maxUtcValue = newUtcValue;
-			maxDate = obj.fechaCotizacion;
+			maxDate = fecha;
 		}
     });
 
-    if (cotizacionesDestacada.length > 0) {
-        // Inicio Cargar Fecha Actual
-        grabarStorageFechaCotizacion(obtenerFechaMostrarDsdCotizacionesDestacada(maxDate));
-        // Fin Cargar Fecha Actual
-        //indexCotizacionesDestacada = 0;
-        //CargaConIndiceDetalleCotizacion(indexCotizacionesDestacada);
-    }
-
-	//timeOutCallbacks[0] = 1;
-}
-
-
-
-
-
-function renderLeadingPrices(loadFromWS) {
-	if (loadFromWS) {
-		var body = getBodyRequestLP(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', '');
-		var request = getRequest(body);
-		getInformationFromWS(wsCotizacion, request, CargarResultadoCotizacionDestacadoJavascript, CargarCotizacionesDestacadaHtml);
+	if (window.localStorage) {
+		localStorage.setItem('leadingPrices', JSON.stringify(leadingPrices));
 	} else {
-		CargarCotizacionesDestacadaHtml();
+		processError('', 1000, '');
 	}
 }
 
-function getBodyRequestLP(pCodigoTipoCotizacion, pCodigoTipoCliente, pFechaDesde, pFechaHasta, pTipoOrden, pProductos, pPuertos, pMonedas) {
-	var soapRequest = '<ser:consultaCotizacionProductoPuertoMonedaOrdenada>';
-    if (pCodigoTipoCotizacion != '') {
-        soapRequest += '<codigoTipoCotizacion>' + pCodigoTipoCotizacion + '</codigoTipoCotizacion>';
+function saveNewsData(textXML) {
+    var notifications = [];
+    $(textXML).find('notificaciones').each(function () {
+        var obj = new notification();
+        obj.codigoNotificacion = parseInt($(this).find('codigoNotificacion').text());
+        obj.fecha = $(this).find('fecha').text();
+        obj.titulo = $(this).find('titulo').text();
+        obj.descripcion = $(this).find('descripcion ').text();
+        obj.url = $(this).find('url').text();
+        obj.codigoCategoria = parseInt($(this).find('codigoCategoria').text());
+        obj.descripcionCategoria = $(this).find('descripcionCategoria').text();
+
+        notifications.push(obj);
+    });
+
+	if (window.localStorage) {
+		localStorage.setItem('notifications', JSON.stringify(notifications));
+	} else {
+		processError('', 1000, '');
+	}
+}
+
+function renderLeadingPrices(loadFromWS) {
+	if (loadFromWS) {
+		var body = getLPBodyRequest(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', '');
+		var request = getRequest(body);
+		getInformationFromWS(pricesURL, request, saveLeadingPricesData, renderLeadingPricesData);
+	} else {
+		renderLeadingPricesData();
+	}
+}
+
+function getLPBodyRequest(priceCode, customerCode, from, to, orderType, product, port, money) {
+	var body = '<ser:consultaCotizacionProductoPuertoMonedaOrdenada>';
+
+	if (priceCode != '') {
+        body += '<codigoTipoCotizacion>' + priceCode + '</codigoTipoCotizacion>';
     }
-    if (pCodigoTipoCliente != '') {
-        soapRequest += '<codigoTipoCliente>' + pCodigoTipoCliente + '</codigoTipoCliente>';
+    if (customerCode != '') {
+        body += '<codigoTipoCliente>' + customerCode + '</codigoTipoCliente>';
     }
-    if (pFechaDesde != '') {
-        soapRequest += '<fechaDesde>' + pFechaDesde + '</fechaDesde>';
+    if (from != '') {
+        body += '<fechaDesde>' + from + '</fechaDesde>';
     }
-    if (pTipoOrden != '') {
-        soapRequest += '<tipoOrden>' + pTipoOrden + '</tipoOrden>';
+    if (orderType != '') {
+        body += '<tipoOrden>' + orderType + '</tipoOrden>';
     }
-    if (pFechaHasta != '') {
-        soapRequest += '<fechaHasta>' + pFechaHasta + '</fechaHasta>';
+    if (to != '') {
+        body += '<fechaHasta>' + to + '</fechaHasta>';
     }
-    if (pProductos != '') {
-        soapRequest += '<productos>' + pProductos + '</productos>';
+    if (product != '') {
+        body += '<productos>' + product + '</productos>';
     }
-    if (pPuertos != '') {
-        soapRequest += '<puertos>' + pPuertos + '</puertos>';
+    if (port != '') {
+        body += '<puertos>' + port + '</puertos>';
     }
-    if (pMonedas != '') {
-        soapRequest += '<monedas>' + pMonedas + '</monedas>';
+    if (money != '') {
+        body += '<monedas>' + money + '</monedas>';
     }
 
-    return soapRequest;
+	body += '</ser:consultaCotizacionProductoPuertoMonedaOrdenada>';
+
+    return body;
+}
+
+function renderNews(loadFromWS) {
+	if (loadFromWS) {
+		var body = getNewsBodyRequest('', '', '');
+		var request = getRequest(body);
+		getInformationFromWS(notificationsURL, request, saveNewsData, renderNewsData);
+	} else {
+		renderNewsData();
+	}
+}
+
+function getNewsBodyRequest(from, to, categoryCode) {
+    var body = '<ser:consultaNotificaciones>';
+
+    if (from != '') {
+        body += '<fechaDesde>' + from + '</fechaDesde>';
+    }
+    if (to != '') {
+        body += '<fechaHasta>' + to + '</fechaHasta>';
+    }
+    if (categoryCode != '') {
+        body += '<codigoCategoria>' + categoryCode + '</codigoCategoria>';
+    }
+
+    body += '</ser:consultaNotificaciones>';
+	
+	return body;
+}
+
+function saveHistoricalPrices(loadLPFromWS) {
+	if (loadLPFromWS) {
+		var body = getLPBodyRequest(1, 11, obtenerFechaParametroEntrada(0), '', '', '', '', '');
+		var request = getRequest(body);
+		getInformationFromWS(pricesURL, request, saveHistoricalLeadingPricesData, function() {;});
+	}
+}
+
+function saveHistoricalLeadingPricesData(textXML) {
+    var allLeadingPrices = [];
+    $(textXML).find('cotizaciones').each(function () {
+        var obj = new price();
+        obj.fechaCotizacion = $(this).find('fechaCotizacion').text();
+        obj.codigoMoneda = parseInt($(this).find('codigoMoneda').text());
+        obj.descripcionMoneda = $(this).find('descripcionMoneda').text();
+        obj.codigoTipoCotizacion = parseInt($(this).find('codigoTipoCotizacion').text());
+        obj.descripcionTipoCotizacion = $(this).find('descripcionTipoCotizacion').text();
+        obj.codigoPuerto = parseInt($(this).find('codigoPuerto').text());
+        obj.descripcionPuerto = $(this).find('descripcionPuerto').text();
+        obj.codigoProducto = $(this).find('codigoProducto').text();
+        obj.descripcionProducto = $(this).find('descripcionProducto').text();
+        obj.valor = parseFloat($(this).find('valor').text());
+        obj.valorString = convertValorImporte(obj.valor);
+        obj.observacion = $(this).find('observacion').text();
+        obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
+        obj.variacion = $(this).find('variacion').text();
+
+        allLeadingPrices.push(obj);
+    });
+
+	if (window.localStorage) {
+		localStorage.setItem('historicalLeadingPrices', JSON.stringify(allLeadingPrices));
+	} else {
+		processError('', 1000, '');
+	}
+}
+
+function saveReports(loadFromWS) {
+	if (loadFromWS) {
+		var body = getReportsBodyRequest('', '', 1);
+		var request = getRequest(body);
+		getInformationFromWS(reportsURL, request, saveReportsData, function() {;});
+	}
+}
+
+function getReportsBodyRequest(from, to, requestType) {
+    var body = '<ser:consultaInformes>';
+
+    if (from != '') {
+        body += '<fechaDesde>' + from + '</fechaDesde>';
+    }
+    if (to != '') {
+        body += '<fechaHasta>' + to + '</fechaHasta>';
+    }
+    if (requestType != '') {
+        body += '<tipoConsulta>' + requestType + '</tipoConsulta>';
+    }
+
+    body += '</ser:consultaInformes>';
+
+    return body;
+}
+
+function saveReportsData(textXML) {
+    var reports = [];
+    $(textXML).find('informes').each(function () {
+        var obj = new report();
+        obj.codigoInforme = parseInt($(this).find('codigoInforme').text());
+        obj.fecha = $(this).find('fecha').text();
+        obj.titulo = $(this).find('titulo').text();
+        obj.texto = $(this).find('texto').text();
+        obj.url = $(this).find('url').text();
+
+		reports.push(obj);
+    });
+
+	if (window.localStorage) {
+		localStorage.setItem('reports', JSON.stringify(reports));
+	} else {
+		processError('', 1000, '');
+	}
 }

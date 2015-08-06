@@ -84,6 +84,7 @@ function FuncionInicio() {
 		if (isGuardarTelefono) {
 			window.location.href = "telefono.html";
 		} else {
+			console.log('comienza auditoria');
 			CargarAuditoria();
 		}
 	} // Falta definir q pasa en caso de que no haya soporte al localStorage!!!
