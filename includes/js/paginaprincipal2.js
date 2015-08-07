@@ -7,7 +7,7 @@ $(document).ready(function () {
         pagination: '.swiper-pagination',
         paginationClickable: true
     });	
-
+//OcultarDivBloqueo();
 	if (!swiper) {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 		processError('', 9000, '');
