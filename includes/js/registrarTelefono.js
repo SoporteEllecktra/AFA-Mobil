@@ -29,8 +29,8 @@ function phoneRegistration(registration_url) {
 }
 
 function pushNotificationsRegistration() {
-	if (!localStorage.getItem("deviceready") || 
-		(localStorage.getItem("deviceready") && localStorage.getItem("deviceready") == 'no')) {
+	if (!storage["deviceready"] || 
+		(storage["deviceready"] && storage["deviceready"] == 'no')) {
 		return;
 	}
 
@@ -86,18 +86,14 @@ function onDeviceReady() {
     phoneData.platform = device.platform;
     phoneData.uuid = device.uuid;
 
-	if (!window.localStorage) {
-		processError('', 1000, '');
-	}
-
-    localStorage.setItem('platform', device.platform);
-	localStorage.setItem('deviceready', 'yes');
+    storage['platform'] = device.platform;
+	storage['deviceready'] = 'yes';
 
 	document.target = { 'isIndex': true };
 	mobileEventsHandler(document);
 
-	if (isPhone() && (!localStorage.getItem("phoneNumber") || 
-	    (localStorage.getItem("phoneNumber") && localStorage.getItem("phoneNumber") == ''))) {
+	if (isPhone() && (!storage["phoneNumber"] || 
+	    (storage["phoneNumber"] && storage["phoneNumber"] == ''))) {
 		window.location.href = "telefono.html";
 		return;
 	}
@@ -120,9 +116,9 @@ function onNotification(e) {
 		if (e.regid.length > 0) {
 			phoneData.regid = e.regid;
 			phoneData.type = 'gcm';
-			var urlCargaDatosTel = phoneRegistrationURL + phoneData.uuid + '/' + phoneData.type + '/' + phoneData.regid;
+			var url = phoneRegistrationURL + phoneData.uuid + '/' + phoneData.type + '/' + phoneData.regid;
 
-			phoneRegistration(urlCargaDatosTel);
+			phoneRegistration(url);
 		}
 		break;
 
@@ -162,17 +158,17 @@ function tokenHandler(result) {
 	//alert('device token = ' + result);
 	phoneData.regid = result;
 	phoneData.type = 'apn';
-	var urlCargaDatosTel = phoneRegistrationURL + phoneData.uuid + '/' + phoneData.type + '/' + phoneData.regid;
+	var url = phoneRegistrationURL + phoneData.uuid + '/' + phoneData.type + '/' + phoneData.regid;
 
-	phoneRegistration(urlCargaDatosTel);
+	phoneRegistration(url);
 }
 
 function channelHandler(event) {   
     phoneData.regid = event.uri.replace(/\//g, 'ELLECKTRACODE');
     phoneData.type = 'mpn';
-    var urlCargaDatosTel = phoneRegistrationURL + phoneData.uuid + '/' + phoneData.type + '/' + phoneData.regid;
+    var url = phoneRegistrationURL + phoneData.uuid + '/' + phoneData.type + '/' + phoneData.regid;
 
-	phoneRegistration(urlCargaDatosTel);
+	phoneRegistration(url);
     //alert(event.uri);
 }
 

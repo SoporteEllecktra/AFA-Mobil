@@ -75,7 +75,7 @@ function updatesAnalizer(data, status, req) {
 	var updates = updatesParser(req.responseText);
 	if (updates && (updates.length > 0)) {
 		// Hay actualizaciones, definir si las mismas son diferentes que las almacenadas
-		setLocalStorage(updates);
+		setstorage(updates);
 	} else {
 		// Si no hay actualizaciones (o no llegan) ==> entonces renderizar la app con lo que esta almacenado
 		var loadFromWS = [];
@@ -120,8 +120,8 @@ function updatesParser(xmlText) {
 	return updates;
 }
 
-// Just update the keys to be updated in the localStorage, the idea is to minimize calls to the outside
-function setLocalStorage(updates) {
+// Just update the keys to be updated in the storage, the idea is to minimize calls to the outside
+function setstorage(updates) {
 	var labelTableStorage = "updatesInfo";
 	var loadFromWS = [];
 	loadFromWS.push(false);
@@ -131,13 +131,13 @@ function setLocalStorage(updates) {
 		loadFromWS.push(false);
 
 		var tableNameKey = labelTableStorage + updates[i].codigoTabla;
-		if (!localStorage.getItem(tableNameKey)) {
-			localStorage.setItem(tableNameKey, JSON.stringify(updates[i]));
+		if (!storage[tableNameKey]) {
+			storage[tableNameKey] = JSON.stringify(updates[i]);
 			loadFromWS[updates[i].codigoTabla] = true;
 		} else {
 			var newDate = (updates[i].fecha + updates[i].hora);
-			var updateStorage = localStorage.getItem(tableNameKey);
-			var updateStorageObject = eval('(' + updateStorage + ')');
+			var updateStorage = storage[tableNameKey];
+			var updateStorageObject = JSON.parse(updateStorage);
 			console.log(tableNameKey + ' - Almacenado ==> ');console.log(updateStorageObject);
 			storageDate = (updateStorageObject.fecha + updateStorageObject.hora);
 			
@@ -146,7 +146,7 @@ function setLocalStorage(updates) {
 			console.log('compara fechas');
 			if (newDate != storageDate) {
 				console.log('Recargar ' + tableNameKey);
-				localStorage.setItem(tableNameKey, JSON.stringify(updates[i]));
+				storage[tableNameKey] = JSON.stringify(updates[i]);
 				loadFromWS[updates[i].codigoTabla] = true;
 			}
 		}

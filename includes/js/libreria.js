@@ -1,22 +1,20 @@
 var varNoSeEncuentraRegistro = 'No se encuentra registro.';
 var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
 
-var applicationStorage = [];
+var storage;
+try {
+    if (localStorage.getItem) {
+        storage = localStorage;
+    }
+} catch(e) {
+    storage = {};
+}
+
 var startTimeOut = 30;
 var startTime = startTimeOut;
 var t = 0;
 var timeOutCallbacks = [0, 0, 0, 0];
 var appVersion = '2.0';
-
-function getItemApplicationStorage(item_key_value) {
-    for (var i = 0; i < applicationStorage.length; i++) {
-        var item = applicationStorage[i];
-        if (item.key && item.key == item_key_value) {
-            return item.values;
-        }
-    }
-    return '';
-}
 
 function convertValorImporte(pValor) {
     var resultado = pValor.toString();
@@ -46,8 +44,8 @@ function toString00(pNro) {
 function isPhone() {
     var resultado = false;
     var varPlatform = '';
-    if (localStorage.getItem("storagePlatform") && localStorage.getItem("storagePlatform")  != '') {
-        varPlatform = localStorage.getItem("storagePlatform");
+    if (storage.getItem("storagePlatform") && localStorage.getItem("storagePlatform")  != '') {
+        varPlatform = storage.getItem("storagePlatform");
     } else {
         return false;
     }
@@ -115,39 +113,23 @@ function obtenerFechaUTC(pFecha, pHora) {
 }
 
 function grabarStorageIndexCotizacionDestacadaSeleccionda(pValor) {
-    if (window.localStorage) {
-        localStorage.setItem('storageIndexCotizacionDestacadaSeleccionda', pValor);
-    } else {
-        var item = {'key': 'storageIndexCotizacionDestacadaSeleccionda', 'values': pValor};
-        applicationStorage.push(item);
-    }
+    storage.setItem('storageIndexCotizacionDestacadaSeleccionda', pValor);
 }
 
 function obtenerStorageIndexCotizacionDestacadaSeleccionda() {
     var resultado = -1;
-    if (window.localStorage) {
-        resultado = parseInt(localStorage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
-    } else {
-        resultado = parseInt(getItemApplicationStorage('storageIndexCotizacionDestacadaSeleccionda'));
-    }
+    resultado = parseInt(storage.getItem('storageIndexCotizacionDestacadaSeleccionda'));
     return resultado;
 }
 
 function grabarStorageFechaCotizacion(pValor) {
-    if (window.localStorage) {
-        localStorage.setItem('storageFechaCotizaciones', pValor);
-    } else {
-        var item = {'key': 'storageFechaCotizaciones', 'values': pValor};
-        applicationStorage.push(item);
-    }
+    storage.setItem('storageFechaCotizaciones', pValor);
 }
 
 function obtenerStorageFechaMenuPrincipal() {
     var resultado = '';
-    if (localStorage.getItem('storageFechaCotizaciones')) {
-        resultado = obtenerFechaMostrarMenuInicio(localStorage.getItem('storageFechaCotizaciones'));
-    } else {
-        resultado = obtenerFechaMostrarMenuInicio(getItemApplicationStorage('storageFechaCotizaciones'));
+    if (storage.getItem('storageFechaCotizaciones')) {
+        resultado = obtenerFechaMostrarMenuInicio(storage.getItem('storageFechaCotizaciones'));
     }
     return resultado;
 }
@@ -294,8 +276,8 @@ function shareNuevo(expr) {
 		alert('Su sistema no permite compartir contenido de esta aplicación.');
     }
     var varPlatform = '';
-    if (window.localStorage && localStorage.getItem("storagePlatform")) {
-        varPlatform = localStorage.getItem("storagePlatform");
+    if (storage.getItem("storagePlatform")) {
+        varPlatform = storage.getItem("storagePlatform");
     }
 	if (!window.plugins) {
 		return;
@@ -361,10 +343,10 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
     strResultado += 'AFA SCL ' + fechaUltima.fecha.substring(0, 5) + ':';
 
     var listaCompartirCotizacionesDestacada = null;
-    if (localStorage.getItem("storageListaCotizacionesDestacada") == null) {
+    if (!storage.getItem("storageListaCotizacionesDestacada")) {
 
     } else {
-        var cotizacionesDestacadaGuardada = localStorage.getItem("storageListaCotizacionesDestacada");
+        var cotizacionesDestacadaGuardada = storage.getItem("storageListaCotizacionesDestacada");
         listaCompartirCotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
     }
 
@@ -384,8 +366,8 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
 function loadURL(url) {
     try {
         var varPlatform = '';
-        if (localStorage.getItem("storagePlatform") != null) {
-            varPlatform = localStorage.getItem("storagePlatform");
+        if (storage.getItem("storagePlatform")) {
+            varPlatform = storage.getItem("storagePlatform");
         }
         if (varPlatform == 'Android' || varPlatform == 'android') {
             navigator.app.loadUrl(url, {
@@ -404,7 +386,7 @@ function loadURL(url) {
 }
 
 function RedireccionarPagIndex() {
-    localStorage.setItem('storageIndexVolver', '1');
+    storage.setItem('storageIndexVolver', '1');
     window.history.go(-1);
 }
 
@@ -414,7 +396,7 @@ function onclickActualizar() {
 }
 
 function RedireccionarPagIndexActualizar() {
-    localStorage.setItem('storageIndexVolver', '2');
+    storage.setItem('storageIndexVolver', '2');
     window.history.go(-1);
 }
 
@@ -554,7 +536,7 @@ function processError(data, status, req) {
     window.location.href = "error.html?id=" + id;
 }
 
-function getInformationFromWS(wsURL, request, saveStorageFunction, renderFunction) {
+function getInformationFromWS(wsURL, request, keyStorage, saveStorageFunction, renderFunction) {
 	$.ajax({
 		type: "POST",
 		url: wsURL,
@@ -564,7 +546,7 @@ function getInformationFromWS(wsURL, request, saveStorageFunction, renderFunctio
 		xhrFields: { withCredentials: true },
 		data: request,
 		success: function (data) {
-					saveStorageFunction(data);
+					saveStorageFunction(keyStorage, data);
 					renderFunction();
 		}
 	});
@@ -575,7 +557,7 @@ function loadInformation(informationCode, loadFromWS) {
 		case 1: renderLeadingPrices(loadFromWS[informationCode]); break; // Mostrar las Cotizaciones Destacadas
 		case 2: renderNews(loadFromWS[informationCode]); break; // Mostrar las Novedades
 		case 3: saveReports(loadFromWS[informationCode]); break; // Guardar la data de los Informes
-		case 4: saveHistoricalPrices(loadFromWS[1]); break; // Guardar la data Cotizaciones Históricas
+		case 4: saveAllPrices(loadFromWS[1]); break; // Guardar la data de todas las Cotizaciones
 		default: processError('', 1000, '');
 	}
 }
