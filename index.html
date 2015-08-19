@@ -1,17 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="includes/css/web.css" />
+	<link rel="stylesheet" type="text/css" href="layout.css">
     <title>AFA</title>
-    <link rel="stylesheet" href="includes/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="includes/css/swiper.min.css" />
-    <link rel="stylesheet" href="includes/css/web.css" />
+
+	<style  type="text/css" media="all">
+		#vertical_content_wrapper {
+			position:absolute; z-index:1;
+			top:0px; bottom:0px; left:0px;
+			width:100%;
+			background:#aaa;
+			overflow:auto;
+		}
+
+		#vertical_content_scroller {
+			position:absolute; z-index:1;
+		/*	-webkit-touch-callout:none;*/
+			-webkit-tap-highlight-color:rgba(0,0,0,0);
+			width:100%;
+			padding:0;
+		}
+
+		#vertical_content_scroller ul {
+			list-style:none;
+			padding:0;
+			margin:0;
+			width:100%;
+			text-align:left;
+		}
+
+		#vertical_content_scroller li {
+			padding:0 10px;
+			height:40px;
+			line-height:40px;
+			border-bottom:1px solid #ccc;
+			border-top:1px solid #fff;
+			background-color:#fafafa;
+			font-size:14px;
+		}
+
+		#horizontal_content_wrapper {
+			position:absolute;
+			z-index:1;
+			top:0; 
+			bottom:0; 
+			left:0;
+			width:100%;
+			overflow:auto;
+		}
+
+		#horizontal_content_scroller {
+			position:absolute;
+			z-index:1;
+			-webkit-tap-highlight-color:rgba(0,0,0,0);
+			/* width:100%; */
+			width:2040px;
+			height:100%;
+			float:left;
+			padding:0;
+		}
+
+		#horizontal_content_scroller ul {
+			list-style:none;
+			display:block;
+			float:left;
+			width:100%;
+			height:100%;
+			padding:0;
+			margin:0;
+			text-align:left;
+		}
+
+		#horizontal_content_scroller li {
+			display:block;
+			vertical-align:middle;
+			float:left;
+			padding:0 10px;
+			width:80px;
+			height:100%;
+			border-left:1px solid #ccc;
+			border-right:1px solid #fff;
+			background-color:#fafafa;
+			font-size:14px;
+		}
+	</style>
 </head>
 
 <body>
-    <div class="container">
+	<div class="root">
+
         <div id="StatusBar" class="StatusBar"></div>
         <header id="header">
             <table class="cssTablaHeader">
@@ -24,8 +106,6 @@
                         </div>
                     </td>
                     <td class="cssTdHeaderDerecha">
-                        <!--   onclick="onclickCompartir();"-->
-                        <!--                        <a class="btn_rs" href="#">-->
                         <div class="btn_rs">
                             <div class="one">
                                 <div class="left">
@@ -40,29 +120,32 @@
                                 <img onclick="showWindowModal('', getAppVersion());" src="img/material/Logo.svg" alt="afa" class="cssLogoAfa" />
                             </div>
                         </div>
-                        <!--                        </a>-->
                     </td>
                 </tr>
             </table>
         </header>
-        <div id="divCotizacionesDestacada" class="row-xs-6">
-        </div>
-        <div id="divButtonAmpliar" onclick="onclickFullScreenButtonAmpliar()">
-            <img src="img/material/ampliar.svg" alt="ampliar" class="cssImgAmpliarParteAbajo" />
-        </div>
-        <div id="divBarraAbajo" class="row-xs-6">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="divFondoBloqueo">
-        <img class="imgFondoBloqueo" src="img/load_fondo_transparente.gif" alt="Cargando" title="Cargando" />
-    </div>
+		
+		<div style="position:relative;">
+			<div id="vertical" style="position:relative; background:#F00;">
+				<div id="vertical_content_wrapper">
+					<div id="vertical_content_scroller">
+						<div id="leadingPrices"></div>
+					</div>
+				</div>
+			</div>
+			<div id="horizontal" style="position:relative;">
+				<div id="horizontal_content_wrapper">
+					<div id="horizontal_content_scroller">
+							<ul id="down_list">
+								<li><div id="slider_1"></div></li>
+								<li><div id="slider_2"></div></li>
+								<li><div id="slider_3"></div></li>
+							</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <!-- <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="cordova_plugins.js"></script> -->
     <script type="text/javascript" src="includes/js/jquery-2.1.3.min.js"></script>
@@ -72,18 +155,37 @@
     <script type="text/javascript" src="includes/js/cargardatos2.js"></script>
     <script type="text/javascript" src="includes/js/paginaprincipal2.js"></script>
     <script type="text/javascript" src="includes/js/registrarTelefono.js"></script>
+    <script type="text/javascript" src="iscroll.js"></script>
+	<script type="text/javascript">
+		var vertical_scroll_object = null;
+		var horizontal_scroll_object = null;
+		function loaded() {
+			document.getElementById('vertical').style.height = parseInt(screen.availHeight * 0.50) + 'px';
+			document.getElementById('horizontal').style.height = parseInt(screen.availHeight * 0.30) + 'px';
 
-		<!-- Alert Window -->
-		<div id="window_modal_container" style="display: none;">
-			<div class="center_box">
-				<div id="window_modal_title"></div>
-				<div id="window_modal_body"></div>
-				<div>
-					<input type="button" onclick="closeWindowModal();" value="Cerrar">
-				</div>
-			</div>
-		</div>
+			/*alert('Altura destacados == ' + document.getElementById('vertical').style.height);
+			alert('Altura slider == ' + document.getElementById('horizontal').style.height);*/
+			
+			vertical_scroll_object = new iScroll('vertical_content_wrapper');
 
-	
-	</body>
+			var options = { eventPassthrough: true, scrollX: true, scrollY: false, preventDefault: false };
+			horizontal_scroll_object = new iScroll('horizontal_content_wrapper', options);
+		}
+
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		document.addEventListener('DOMContentLoaded', loaded, false);
+	</script>
+
+    <div id="modal_window_container" style="display: none;">
+        <div class="center_box">
+            <div id="modal_window_title"></div>
+            <div id="modal_window_body"></div>
+            <div>
+                <input type="button" onclick="closeWindow();" value="Cerrar">
+            </div>
+        </div>
+    </div>
+
+</body>
+
 </html>

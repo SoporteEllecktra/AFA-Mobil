@@ -499,7 +499,7 @@ function mobileEventsHandler(event) {
 
 function onBackKeyDown() {
 	if (!window.localStorage) {
-		processError('', 1000, '');
+		processError('', 1002, '');
 		return;
 	}
 
@@ -558,7 +558,7 @@ function loadInformation(informationCode, loadFromWS) {
 		case 2: renderNews(loadFromWS[informationCode]); break; // Mostrar las Novedades
 		case 3: saveReports(loadFromWS[informationCode]); break; // Guardar la data de los Informes
 		case 4: saveAllPrices(loadFromWS[1]); break; // Guardar la data de todas las Cotizaciones
-		default: processError('', 1000, '');
+		default: processError('', 1001, '');
 	}
 }
 

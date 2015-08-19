@@ -1,0 +1,106 @@
+html, body { padding: 0px; margin: 0px;}
+body { font-size: 10px; }
+
+.root { width: 100%; background: #ebebeb; }
+.header { width: 100%; height: 9.5em; background: #606966; }
+/* Scroll_V */
+.panel_destacados { width: 100%; height: 64.5em;}
+
+
+.panel_destacados .destacados { width: 100%; background: #FFFFFF;}
+.panel_destacados .destacados ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  background: #FFFFFF;}
+.panel_destacados .destacados ul li { width: 29%; padding: 2%; display: block; float: left;}
+.panel_destacados .destacados .titulo { height: 6.2em;}
+.panel_destacados .destacados .titulo .col3 { text-align: center;}
+/*
+.panel_destacados .destacados .titulo .col1 {}
+.panel_destacados .destacados .titulo .col2 {}
+*/
+
+.panel_destacados .destacados .producto { height: 11.3em; border: 0.1em solid #aeaeae; border-left: 0em; border-right: 0em; }
+.panel_destacados .destacados .producto span { display: block; width: 10em; text-align: center;}
+.panel_destacados .destacados .producto span.grey { background: #CCC; }
+.panel_destacados .destacados .producto span.green { background: #cdcdcd; }
+.panel_destacados .destacados .producto span.red { background: #ff121f; }
+
+
+/*
+.panel_destacados .destacados .producto .col1 {}
+.panel_destacados .destacados .producto .col2 {}
+.panel_destacados .destacados .producto .col3 {}
+*/
+
+.panel_destacados .detalles { width: 100%;}
+.panel_destacados .detalles ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  }
+.panel_destacados .detalles ul li { width: 29%; padding: 2%; display: block; float: left;}
+.panel_destacados .detalles .titulo { background: #d6dad9; }
+.panel_destacados .detalles .producto { background: #e7e7e7; }
+.panel_destacados .detalles .producto.par { background: #efefef; }
+
+/*
+.panel_destacados .detalles .titulo .col1 {}
+.panel_destacados .detalles .titulo .col2 {}
+.panel_destacados .detalles .titulo .col3 {}
+*/
+/*
+.panel_destacados .detalles .producto .col1 {}
+*/
+.panel_destacados .detalles .producto .col2 { font-weight: 600;}
+/*
+.panel_destacados .detalles .producto .col3 {}
+*/
+
+
+/*******/
+.btn_vermas { width: 100%; height: 11.3em; text-align: center; line-height:5; background: #ebebeb;}
+
+
+.panel_vermas { width: 100%; color: #FFFFFF; font-size: 14px; }
+.panel_vermas .head { width: 100%; height: 8.8em; background: #959595; }
+.panel_vermas .head h2 {}
+.panel_vermas .head .toggle {}
+
+.panel_vermas .head ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  }
+.panel_vermas .head ul li { width: 21%; padding: 2%; display: block; float: left;}
+.panel_vermas .head .titulo { height: 5.4em; border: 0.1em solid #aeaeae; border-left: 0em; border-right: 0em; }
+/*
+.panel_vermas .header .titulo .col1 {}
+.panel_vermas .header .titulo .col2 {}
+.panel_vermas .header .titulo .col3 {}
+.panel_vermas .header .titulo .col4 {}
+*/
+.panel_vermas .detalles ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  }
+.panel_vermas .detalles ul li { width: 21%; padding: 2%; display: block; float: left;}
+
+.panel_vermas .detalles .producto     { background: #878787; }
+.panel_vermas .detalles .producto.par { background: #959595; }
+/*
+.panel_vermas .detalles .producto .col1 {}
+.panel_vermas .detalles .producto .col2 {}
+.panel_vermas .detalles .producto .col3 {}
+.panel_vermas .detalles .producto .col4 {}
+*/
+
+/****************************************/
+
+.panel_swipper .historicas { width: 100%; color: #FFFFFF; font-size: 14px; }
+.panel_swipper .historicas .head { width: 100%; height: 8.8em; background: #959595; }
+.panel_swipper .historicas .head h2 {}
+.panel_swipper .historicas .head .toggle {}
+
+.panel_swipper .historicas .head ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  }
+.panel_swipper .historicas .head ul li { width: 46%; padding: 2%; display: block; float: left;}
+.panel_swipper .historicas .head .titulo { height: 5.4em; border: 0.1em solid #aeaeae; border-left: 0em; border-right: 0em; }
+
+.panel_swipper .historicas .head .titulo .col1 { text-align: right;}
+.panel_swipper .historicas .head .titulo .col2 { text-align: left;}
+
+.panel_swipper .historicas .detalles ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  }
+.panel_swipper .historicas .detalles ul li { width: 46%; padding: 2%; display: block; float: left;}
+
+.panel_swipper .historicas .detalles .fechaprecio     { background: #878787; }
+.panel_swipper .historicas .detalles .fechaprecio.par { background: #959595; }
+
+.panel_swipper .historicas .detalles .fechaprecio .col1 { text-align: right;}
+.panel_swipper .historicas .detalles .fechaprecio .col2 { text-align: left;}
+

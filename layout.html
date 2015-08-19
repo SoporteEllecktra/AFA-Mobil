@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="layout.css">
+    <title>AFA</title>
+    <!--
+	<style  type="text/css" media="all">
+#vertical_content_wrapper {
+	position:absolute; z-index:1;
+	top:0px; bottom:0px; left:0px;
+	width:100%;
+	background:#aaa;
+	overflow:auto;
+}
+
+#vertical_content_scroller {
+	position:absolute; z-index:1;
+/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	width:100%;
+	padding:0;
+}
+
+#vertical_content_scroller ul {
+	list-style:none;
+	padding:0;
+	margin:0;
+	width:100%;
+	text-align:left;
+}
+
+#vertical_content_scroller li {
+	padding:0 10px;
+	height:40px;
+	line-height:40px;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #fff;
+	background-color:#fafafa;
+	font-size:14px;
+}
+
+		#horizontal_content_wrapper {
+			position:absolute;
+			z-index:1;
+			top:0; 
+			bottom:0; 
+			left:0;
+			width:100%;
+			overflow:auto;
+		}
+
+		#horizontal_content_scroller {
+			position:absolute;
+			z-index:1;
+			-webkit-tap-highlight-color:rgba(0,0,0,0);
+			/* width:100%; */
+			width:2040px;
+			height:100%;
+			float:left;
+			padding:0;
+		}
+
+		#horizontal_content_scroller ul {
+			list-style:none;
+			display:block;
+			float:left;
+			width:100%;
+			height:100%;
+			padding:0;
+			margin:0;
+			text-align:left;
+		}
+
+		#horizontal_content_scroller li {
+			display:block;
+			vertical-align:middle;
+			float:left;
+			padding:0 10px;
+			width:80px;
+			height:100%;
+			border-left:1px solid #ccc;
+			border-right:1px solid #fff;
+			background-color:#fafafa;
+			font-size:14px;
+		}
+	</style>
+
+-->
+</head>
+
+<body>
+	<div class="root">
+
+		<div class="header">HEADER</div>
+		
+		<div class="panel_destacados" id="Scroll_V">
+			<div class="destacados">
+				<ul class="titulo">
+					<li class="col1">PRODUCTO</li>
+					<li class="col2">PUERTO</li>
+					<li class="col3">PRECIO P/TN</li>
+				</ul>
+				<ul class="producto">
+					<li class="col1">SOJA</li>
+					<li class="col2">VGG/V.Constitucion</li>
+					<li class="col3"><span class="red">$ 2.600</span></li>
+				</ul>
+			</div>
+			<div class="detalles">
+				<ul class="titulo">
+					<li class="col1">PUERTO</li>
+					<li class="col2">PRECIO P/TN</li>
+					<li class="col3">OBSERVACI&Oacute;N</li>
+				</ul>
+				<ul class="producto">
+					<li class="col1">VGG/V.Constitucion</li>
+					<li class="col2">$ 2.600</li>
+					<li class="col3">Entrega primer quincena marzo. Bonifica 3 u$s primer semana.</li>
+				</ul>
+				<ul class="producto par">
+					<li class="col1">San Martin</li>
+					<li class="col2">$ 5.200</li>
+					<li class="col3">san martin</li>
+				</ul>
+				<ul class="producto">
+					<li class="col1">VGG/V.Constitucion</li>
+					<li class="col2">$ 1.600</li>
+					<li class="col3">Entrega Segunda quincena septiembre. Bonifica 3 u$s primer semana.Entrega Segunda quincena septiembre. Bonifica 3 u$s primer semana.Entrega Segunda quincena septiembre. Bonifica 3 u$s primer semana.Entrega Segunda quincena septiembre. Bonifica 3 u$s primer semana.Entrega Segunda quincena septiembre. Bonifica 3 u$s primer semana.Entrega Segunda quincena septiembre. Bonifica 3 u$s primer semana.Entrega Segunda quincena septiembre. Bonifica 3 u$s primer semana.Entrega Segunda quincena septiembre. Bonifica 3 u$s primer semana.Entrega Segunda quincena septiembre. Bonifica 3 u$s primer semana.</li>
+				</ul>
+
+			</div>		
+			<div class="btn_vermas">VER M&Aacute;S</div>
+		</div><!-- /panel_destacados -->
+
+		<div class="panel_vermas" id="Scroll_V">
+			<div class="head">
+				<h2>Cotizaciones</h2>
+				<span class="toggle"></span>
+				<ul class="titulo">
+					<li class="col1">PRODUCTO</li>
+					<li class="col2">PUERTO</li>
+					<li class="col3">PRECIO P/TN</li>
+					<li class="col4">OBSERVACI&Oacute;N</li>
+				</ul>
+			</div>
+			<div class="detalles">
+				<ul class="producto">
+					<li class="col1">soja</li>
+					<li class="col2">san martin</li>
+					<li class="col3">$ 2050</li>
+					<li class="col4">Con descarga directa a puerto Con descarga directa a puerto</li>
+				</ul>
+				<ul class="producto par">
+					<li class="col1">soja</li>
+					<li class="col2">san martin</li>
+					<li class="col3">$ 2050</li>
+					<li class="col4">Con descarga directa a puerto</li>
+				</ul>
+			</div>		
+		</div><!-- /panel_vermas -->
+
+<div>&nbsp;</div>
+
+		<div class="panel_swipper" id="Scroll_H">			
+			<div class="novedades"></div>
+			<div class="informe"></div>
+			<div class="historicas">
+				<div class="head">
+					<h2>&Uacute;ltimas cotizaciones</h2>
+					<span class="toggle"></span>
+					<ul class="titulo">
+						<li class="col1">FECHA</li>
+						<li class="col2">PRECIO P/TN</li>
+					</ul>
+				</div>
+				<div class="detalles">
+					<ul class="fechaprecio">
+						<li class="col1">23/02/2015</li>
+						<li class="col2">$ 2050</li>
+					</ul>
+					<ul class="fechaprecio par">
+						<li class="col1">23/02/2015</li>
+						<li class="col2">$ 2050</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	<!--
+	<div id="container">
+		<div id="header">Fecha</div>
+
+		<div style="position:relative;height: 1000px">
+			<div style="position:relative; background:#F00; height: 500px">
+				<div id="vertical_content_wrapper">
+					<div id="vertical_content_scroller">
+						
+<div style="height: 1000px; margin: 10px; background: blue;">Fruta</div>
+					</div>
+				</div>
+			</div>
+			<div style="position:relative; background:#0F0; height: 500px">
+				<div id="horizontal_content_wrapper">
+					<div id="horizontal_content_scroller">
+							<ul id="down_list">
+								<li>Pretty col 1</li>
+								<li>Pretty col 2</li>
+								<li>Pretty col 3</li>
+							</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+-->
+
+<!--
+    <script type="text/javascript" src="iscroll.js"></script>
+	<script type="text/javascript">
+		var vertical_scroll_object = null;
+		var horizontal_scroll_object = null;
+		function loaded() {
+			vertical_scroll_object = new iScroll('vertical_content_wrapper');
+			horizontal_scroll_object = new iScroll('horizontal_content_wrapper');
+		}
+
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		document.addEventListener('DOMContentLoaded', loaded, false);
+	</script>
+-->
+
+<!--
+    <div id="modal_window_container" style="display: none;">
+        <div class="center_box">
+            <div id="modal_window_title"></div>
+            <div id="modal_window_body"></div>
+            <div>
+                <input type="button" onclick="closeWindow();" value="Cerrar">
+            </div>
+        </div>
+    </div>
+-->
+</body>
+
+</html>

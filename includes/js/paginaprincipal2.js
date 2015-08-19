@@ -3,15 +3,15 @@ var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 
 $(document).ready(function () {
-    swiper = new Swiper('.swiper-container', {
+    /*swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true
-    });	
+    });
 
 	if (!swiper) {
 		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
 		processError('', 9000, '');
-	} else {
+	} else { */
 		// Define if its device is a mobile
 		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
 			storage['deviceready'] = 'no';
@@ -19,7 +19,7 @@ $(document).ready(function () {
 		} else {
 			getUpdates();
 		}
-	}
+	//}
 });
 
 function onclikAcodeon() {
@@ -28,137 +28,65 @@ function onclikAcodeon() {
 
 function renderLeadingPricesData() {
 	if (!storage["leadingPrices"]) {
-			processError('', 1000, '');
+		processError('', 1003, '');
 	}
 	var leadingPricesObject = storage["leadingPrices"];
 	var leadingPrices = JSON.parse(leadingPricesObject);
 
 	if (!leadingPrices || (leadingPrices && leadingPrices.length == 0)) {
-		processError('', 1000, '');
+		processError('', 1004, '');
 		return;
 	}
 
-    var resultadoDiv = '<div class="row cssDestacadoEncabezado ">';
-		resultadoDiv += '<div class="col-xs-4">';
-			resultadoDiv += 'PRODUCTO';
-		resultadoDiv += '</div>';
-		resultadoDiv += '<div class="col-xs-4 cssDestacadoPuertoTitulo">';
-			resultadoDiv += 'PUERTO';
-		resultadoDiv += '</div>';
-		resultadoDiv += '<div class="col-xs-4 cssDestacadoPrecioTitulo">';
-			resultadoDiv += 'PRECIO P/TN';
-		resultadoDiv += '</div>';
-    resultadoDiv += '</div>';
+	var html = '<div class="panel_destacados" id="Scroll_V">';
+		html += '<div class="destacados">';
+			html += '<ul class="titulo">';
+				html += '<li class="col1">PRODUCTO</li>';
+				html += '<li class="col2">PUERTO</li>';
+				html += '<li class="col3">PRECIO P/TN</li>';
+			html += '</ul>';
 
-    resultadoDiv += '<div class="accordion" id="accordion2">'; // 6
-	var index = -1;
     $(leadingPrices).each(function () {
-        index++;
+		html += '<ul class="producto" onclick="alert("' + this.codigoProducto + '")">';
+			html += '<li class="col1">' + this.descripcionProducto.toUpperCase() + '</li>';
+			html += '<li class="col2">' + this.descripcionPuerto + '</li>';
 
-        resultadoDiv += '<div class="accordion-group" onclick="onclikAcodeon()">'; // 5
-			resultadoDiv += '<div class="accordion-heading cssAccordion-heading ">'; // 4
-				resultadoDiv += '<div class="accordion-toggle" href="#collapse' + this.codigoProducto + '" data-toggle="collapse" data-parent="#accordion2">'; // 3
-					resultadoDiv += '<div class="row cssDestacado">'; // 2
+			var priceClass = 'gray';
+			if (this.variacion == '-') {
+				priceClass = 'red';
+			} else if (this.variacion == '+') {
+				priceClass = 'green';
+			}
 
-						resultadoDiv += '<div class="col-xs-4 cssDestacadoDescripcionProducto">';
-							resultadoDiv += '<div class="cssDestacadoDescripcionProductoMargenes">'; // Margenes
-								resultadoDiv += this.descripcionProducto.toUpperCase();
-							resultadoDiv += '</div>'; // Fin Margenes
-						resultadoDiv += '</div>';
+			html += '<li class="col3"><span class="' + priceClass + '">' + this.abreviaturaMoneda + ' ' + this.valorString + '</span></li>';
+		html += '</ul>';
 
-						resultadoDiv += '<div class="col-xs-4 cssDestacadoDescripcionPuerto">';
-							resultadoDiv += this.descripcionPuerto;
-						resultadoDiv += '</div>';
-
-						resultadoDiv += '<div class="col-xs-4 cssDestacadoPrecio">'; // 1
-
-							var strCssColorPrecio = 'colRectanguloPrecioGris';
-							if (this.variacion == '-') {
-								strCssColorPrecio = 'colRectanguloPrecioRojo';
-							} else if (this.variacion == '+') {
-								strCssColorPrecio = 'colRectanguloPrecioVerde';
-							}
-
-							resultadoDiv += '<div class="colRectanguloPrecio ' + strCssColorPrecio + '">'; // rectangulo    
-								resultadoDiv += this.abreviaturaMoneda + ' ' + this.valorString;
-							resultadoDiv += '</div>'; // fin rectangulo
-						resultadoDiv += '</div>'; // 1
-
-					resultadoDiv += '</div>'; // 2
-				resultadoDiv += '</div>'; // 3
-			resultadoDiv += '</div>'; // 4
-			
-			resultadoDiv += '<div class="accordion-body collapse" id="collapse' + this.codigoProducto + '" style="height: 0px;"></div>';
-
-        resultadoDiv += '</div>';
+		html += '<div id="' + this.codigoProducto + '_details" class="detalles"></div>';
     });
-    // VER MAS
-    resultadoDiv += '<div class="colVerMas" onclick="onclickVerMas()">';
-    resultadoDiv += '+ VER MAS';
-    resultadoDiv += '</div>';
-    //FIN VER MAS
+	
+		html += '</div>';
+	html += '</div>';
 
-    resultadoDiv += '</div>';
-    $('#divCotizacionesDestacada').html(resultadoDiv);
+    html += '<div onclick="" class="btn_vermas">VER M&Aacute;S</div>';
 
-    $('.collapse').on('show.bs.collapse', function (e) {
-        $otherPanels = $(this).parents('.accordion-group').siblings('.accordion-group');
-        $('.collapse', $otherPanels).removeClass('in');
-    });
-    $('.collapse').on('show.bs.collapse', function (e) {
-        var productCode = parseInt(e.target.id.replace('collapse', ''));
-        renderInformationsPrices(productCode);
-        renderLastPrices(productCode);
-        var indexSlide2 = -1;
-        for (var i = 0; i < swiper.slides.length; i++) {
-            if (swiper.slides[i].id == 'swiper-slide2') {
-                indexSlide2 = i;
-            }
-        }
-        if (indexSlide2 != -1) {
-            swiper.slideTo(indexSlide2);
-        }
-    });
+    $('#leadingPrices').html(html);
 
-    $('.collapse').on('hide.bs.collapse', function (e) {
-        var indexSlide3 = -1;
-        var indexSlide2 = -1;
-        var indexSlide1 = -1;
-        for (var i = 0; i < swiper.slides.length; i++) {
-            if (swiper.slides[i].id == 'swiper-slide2') {
-                indexSlide2 = i;
-            } else if (swiper.slides[i].id == 'swiper-slide3') {
-                indexSlide3 = i;
-            } else if (swiper.slides[i].id == 'swiper-slide1') {
-                indexSlide1 = i;
-            }
-        }
-        if (indexSlide2 != -1) {
-            swiper.removeSlide(indexSlide2);
-        }
-        if (indexSlide1 != -1) {
-            swiper.slideTo(indexSlide1);
-            $('#swiper-slide1').scrollTop(0);
-        } else {
-            porcentajeArriba = 1;
-            porcentajeAbajo = 0;
-        }
-    });
-
-	CargarHtmlFechaMenuPrincipal();
-	OcultarDivBloqueo();
+    //var productCode = parseInt(e.target.id.replace('collapse', ''));
+    //renderInformationsPrices(productCode);
+    //renderLastPrices(productCode);
+	//OcultarDivBloqueo();
 	timeOutCallbacks[0] = 1;
 }
 
 function renderLastPricesData() {
 	if (!storage["lastPrices"]) {
-			processError('', 1000, '');
+			processError('', 1005, '');
 	}
 	var lastPricesObject = storage["lastPrices"];
 	var lastPrices = JSON.parse(lastPricesObject);
 
 	if (!lastPrices || (lastPrices && lastPrices.length == 0)) {
-		processError('', 1000, '');
+		processError('', 1006, '');
 		return;
 	}
 
@@ -230,13 +158,9 @@ function renderLastPricesData() {
     }
 }
 
-
-
-
-
 function CargarInformeCierreMercado() {
 	if (!listaInformes) {
-		processError('', 1000, '');
+		processError('', 1007, '');
 		return;
 	}
 
@@ -267,10 +191,9 @@ function onclickVerMas() {
     window.location.href = "todascotizaciones.html";
 }
 
-
 function renderNewsData() {
 	if (!storage["notifications"]) {
-			processError('', 1000, '');
+			processError('', 1008, '');
 	}
 	var notificationsObject = storage["notifications"];
 	var notifications = JSON.parse(notificationsObject);
@@ -331,28 +254,14 @@ function renderNewsData() {
 	});
 	resultadoDiv += '</div>'; // fin parte scroll
 
-	if (notifications.length > 0) {
-
-		var indexSlide1 = -1;
-		for (var i = 0; i < swiper.slides.length; i++) {
-			if (swiper.slides[i].id == 'swiper-slide1') {
-				indexSlide1 = i;
-			}
-		}
-		if (indexSlide1 == -1) {
-			swiper.appendSlide('<div id="swiper-slide1" class="swiper-slide">' + resultadoDiv + '</div>');
-		} else {
-			$('#swiper-slide1').html(resultadoDiv);
-		}
-	}
-
+	$('#slider_1').html(resultadoDiv);
     //CargarInformeCierreMercado();
 	//timeOutCallbacks[1] = 1;
 }
 
 function CargarInformeHtml() {
 	if (!listaInformes) {
-		processError('', 1000, '');
+		processError('', 1009, '');
 		return;
 	}
 
@@ -583,7 +492,7 @@ function renderInformationsPrices(productCode) {
 
 function renderInformationsPricesData() {
 	if (!storage["informationsPrice"]) {
-			processError('', 1000, '');
+			processError('', 1010, '');
 	}
 	var informationsPricesObject = storage["informationsPrice"];
 	var informationsPrices = JSON.parse(informationsPricesObject);
