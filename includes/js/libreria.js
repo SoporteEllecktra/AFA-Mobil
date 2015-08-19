@@ -556,7 +556,7 @@ function loadInformation(informationCode, loadFromWS) {
 	switch (informationCode) {
 		case 1: renderLeadingPrices(loadFromWS[informationCode]); break; // Mostrar las Cotizaciones Destacadas
 		case 2: renderNews(loadFromWS[informationCode]); break; // Mostrar las Novedades
-		case 3: saveReports(loadFromWS[informationCode]); break; // Guardar la data de los Informes
+		case 3: renderReports(loadFromWS[informationCode]); break; // Renderizar la data de los Informes
 		case 4: saveAllPrices(loadFromWS[1]); break; // Guardar la data de todas las Cotizaciones
 		default: processError('', 1001, '');
 	}

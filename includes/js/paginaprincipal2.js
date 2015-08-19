@@ -3,23 +3,13 @@ var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 
 $(document).ready(function () {
-    /*swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true
-    });
-
-	if (!swiper) {
-		alert("Ha ocurrido un error al ejecutar la aplicación. Contáctese con su proveedor.");
-		processError('', 9000, '');
-	} else { */
-		// Define if its device is a mobile
-		if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
-			storage['deviceready'] = 'no';
-			document.addEventListener("deviceready", onDeviceReady, false);
-		} else {
-			getUpdates();
-		}
-	//}
+	// Define if its device is a mobile
+	if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
+		storage['deviceready'] = 'no';
+		document.addEventListener("deviceready", onDeviceReady, false);
+	} else {
+		getUpdates();
+	}
 });
 
 function onclikAcodeon() {
@@ -47,11 +37,11 @@ function renderLeadingPricesData() {
 			html += '</ul>';
 
     $(leadingPrices).each(function () {
-		html += '<ul class="producto" onclick="alert("' + this.codigoProducto + '")">';
+		html += '<ul class="producto" onclick="setInformationsProduct(' + this.codigoProducto + ')">';
 			html += '<li class="col1">' + this.descripcionProducto.toUpperCase() + '</li>';
 			html += '<li class="col2">' + this.descripcionPuerto + '</li>';
 
-			var priceClass = 'gray';
+			var priceClass = 'grey';
 			if (this.variacion == '-') {
 				priceClass = 'red';
 			} else if (this.variacion == '+') {
@@ -67,15 +57,17 @@ function renderLeadingPricesData() {
 		html += '</div>';
 	html += '</div>';
 
-    html += '<div onclick="" class="btn_vermas">VER M&Aacute;S</div>';
+    html += '<div class="btn_vermas">+ VER M&Aacute;S</div>';
 
     $('#leadingPrices').html(html);
 
-    //var productCode = parseInt(e.target.id.replace('collapse', ''));
-    //renderInformationsPrices(productCode);
-    //renderLastPrices(productCode);
 	//OcultarDivBloqueo();
 	timeOutCallbacks[0] = 1;
+}
+
+function setInformationsProduct(productCode) {
+	renderInformationsPrices(productCode);
+    //renderLastPrices(productCode);
 }
 
 function renderLastPricesData() {
@@ -173,11 +165,11 @@ function CargarInformeCierreMercado() {
 				indexSlide3 = i;
 			}
 		}
-		if (indexSlide3 == -1) {
+		/*if (indexSlide3 == -1) {
 			swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
 		} else {
 			$('#swiper-slide3').html(CargarInformeHtml());
-		}
+		}*/
 	}
 
     if (isTimeoutInformeCierreMercado) {
@@ -198,68 +190,40 @@ function renderNewsData() {
 	var notificationsObject = storage["notifications"];
 	var notifications = JSON.parse(notificationsObject);
 
-    var resultadoDiv = '<div id="divRowParteScrollNovedades">'; // parte scroll
+    var html = '<div class="novedades bkg_campo">';
+		html += '<span class="toggle up"></span>';
+			html += '<ul class="news">';
 
 	if (!notifications || (notifications && notifications.length == 0)) {
-		resultadoDiv = '';
+		html = '';
 	}
 
-	var indiceNovedades = -1;
 	$(notifications).each(function () {
-		indiceNovedades++;
-		resultadoDiv += '<div class="row">';
-		resultadoDiv += '<div class="col-xs-1 cssColImgNovedades">';
-		if (this.url != '') {
-			resultadoDiv += '<a href="javascript:loadURL(\'' + this.url + '\');" >';
-			resultadoDiv += '<img src="img/material/icono-doc-link.svg" alt="novedades" class="cssImgNovedades" />';
-			resultadoDiv += '</a>';
-		} else {
-			resultadoDiv += '<img src="img/material/icono-doc.svg" alt="novedades" class="cssImgNovedades" />';
-		}
-		resultadoDiv += '</div>';
-		resultadoDiv += '<div class="col-xs-11 ">';
-		// Primer fila novedades
-		resultadoDiv += '<div class="row">';
-		resultadoDiv += '<div class="col-xs-12 cssNovedadesTitulo">';
-		resultadoDiv += this.titulo;
-		resultadoDiv += '</div>';
-		resultadoDiv += '</div>';
-		// fin  Primer fila novedades
-		resultadoDiv += '<div class="row ">';
-		resultadoDiv += '<div class="col-xs-12">';
-		resultadoDiv += '<table>';
-		resultadoDiv += '<tr>';
-		resultadoDiv += '<td>';
-		resultadoDiv += '<div class="cssNovedadesFecha">';
-		resultadoDiv += obtenerFechaMostrar(this.fecha);
-		resultadoDiv += '</div>';
-		resultadoDiv += '</td>';
-		resultadoDiv += '<td>';
-		resultadoDiv += '<div class="cssNovedadesCategoria">';
-		resultadoDiv += this.descripcionCategoria;
-		resultadoDiv += '</div>';
-		resultadoDiv += '</td>';
-		resultadoDiv += '</table>';
-		resultadoDiv += '</tr>';
-		resultadoDiv += '</div>';
-
-		resultadoDiv += '</div>';
-		resultadoDiv += '<div class="row">';
-		resultadoDiv += '<div class="col-xs-12 cssNovedadesDescripcion">';
-		resultadoDiv += this.descripcion;
-		resultadoDiv += '</div>';
-		resultadoDiv += '</div>';
-
-		resultadoDiv += '</div>';
+		html += '<li class="col1">';
+			if (this.url != '') {
+				html += '<a href="javascript:loadURL(\'' + this.url + '\');" >';
+					html += '<img src="icono-doc.png">';
+				html += '</a>';
+			} else {
+				html += '<img src="icono-doc.png">';
+			}
+		html += '</li>';
+		
+		html += '<li class="col2">';
+			html += '<h3>' + this.titulo + '</h3>';
+			html += '<span class="date">' + obtenerFechaMostrar(this.fecha) + '</span>';
+			html += '<span class="tag">' + this.descripcionCategoria + '</span>';
+			html += '<p>' + this.descripcion + '</p>';
+		html += '</li>';
 	});
-	resultadoDiv += '</div>'; // fin parte scroll
 
-	$('#slider_1').html(resultadoDiv);
-    //CargarInformeCierreMercado();
-	//timeOutCallbacks[1] = 1;
+		html += '</ul>';
+	html += '</div>';
+
+	$('#slider_1').html(html);
 }
 
-function CargarInformeHtml() {
+f/*unction CargarInformeHtml() {
 	if (!listaInformes) {
 		processError('', 1009, '');
 		return;
@@ -275,7 +239,7 @@ function CargarInformeHtml() {
         break;
     }
     return informesHtml;
-}
+}*/
 
 function onclickFullScreenNovedades() {
     window.location.href = "novedades.html";
@@ -434,12 +398,42 @@ function saveAllPrices(loadFromWS) {
 	}
 }
 
-function saveReports(loadFromWS) {
+function renderReports(loadFromWS) {
 	if (loadFromWS) {
 		var body = getReportsBodyRequest('', '', 1);
 		var request = getRequest(body);
-		getInformationFromWS(reportsURL, request, 'reports', saveReportsData, function() {;});
+		getInformationFromWS(reportsURL, request, 'reports', saveReportsData, renderReportsData);
 	}
+}
+
+function renderReportsData() {
+	if (!storage["reports"]) {
+		processError('', 1003, '');
+	}
+	var reportsObject = storage["reports"];
+	var reports = JSON.parse(reportsObject);
+
+	if (!reports) {
+		processError('', 1004, '');
+		return;
+	}
+
+	var html = '<div class="informe bkg_campo">';
+		html += '<span class="toggle up"></span>';
+			html += '<ul class="info">';
+
+    $(reports).each(function () {
+        html += '<li class="col1">';
+			html += '<h3>' + this.titulo + '</h3>';
+			html += '<div>' + obtenerFechaMostrar(this.fecha) + '</div>';
+			html += '<p>' + this.texto + '</p>';
+		html += '</li>';
+    });
+					
+		html += '</ul>';
+	html += '</div>';
+
+	$('#slider_2').html(html);
 }
 
 function getReportsBodyRequest(from, to, requestType) {
@@ -497,7 +491,7 @@ function renderInformationsPricesData() {
 	var informationsPricesObject = storage["informationsPrice"];
 	var informationsPrices = JSON.parse(informationsPricesObject);
 
-    var resultadoDiv = '<div id="divRowParteScrollNovedades">'; // parte scroll
+    var html = '<div id="divRowParteScrollNovedades">'; // parte scroll
 
 	if (!informationsPrices || (informationsPrices && informationsPrices.length == 0)) {
 		resultadoDiv = '';
