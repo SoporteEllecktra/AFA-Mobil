@@ -633,3 +633,47 @@ function togglePanelHeight(id, replace) {
 		$('#slider_1').html(slider_1);
 	}
 }
+
+// Social Sharing code
+function socialSharing() {
+	if (!window.plugins) {
+		//alert(getInformation2Share());
+		showAlertWindow('Error:', 'Su sistema no permite compartir contenido de esta aplicación.');
+		return;
+	}
+
+    try {
+        cordova.exec(function() {;}, function() {;}, "Clipboard", "copy", [getInformation2Share()]);
+    } catch (Exception) {
+		showAlertWindow('Error:', 'No se ha logrado copiar al portapeles el contenido a compartir.');
+    }
+
+    if (storage['platform'] === 'WinCE' || storage['platform'] === 'Win32NT') {
+        window.plugins.socialsharing.share(getInformation2Share(), null, null, null);
+    } else {
+        window.plugins.socialsharing.share(getInformation2Share());
+    }
+}
+
+function getInformation2Share() {
+    //AFA SCL 17/06: SOJA 2000 / 219 Jul - SORGO 1050/ 113 Jul.Ago - MAIZ 920 / 100 Ago Grado II - GIRASOL 1850 - TRIGO
+    //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'    
+   
+    var info2Share = 'AFA SCL ' + ($('#datetime_container_hidden').html()).substring(0, 5) + ':';
+
+	var leadingPricesObject = storage["leadingPrices"];
+	var leadingPrices = JSON.parse(leadingPricesObject);
+
+    if (leadingPrices) {
+        var index = 0;
+        $(leadingPrices).each(function () {
+            if (index != 0) {
+                info2Share += ' /';
+            }
+            info2Share += ' ' + this.descripcionProducto.toUpperCase() + ' ' + this.valor;
+            index++;
+        });
+    }
+
+    return info2Share;
+}

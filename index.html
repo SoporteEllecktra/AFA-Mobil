@@ -16,9 +16,10 @@
 			<div class="flt_left">
 				<div class="actualizar"><a href="#"><img src="img/icono_actualizar.png"></a></div>
 				<div id="datetime_container" class="fecha"></div>
+				<div id="datetime_container_hidden" style="display: none;"></div>
 			</div>
 			<div class="flt_right">
-				<div class="compartir"><a href="#"><img src="img/compartir.png"></a></div>
+				<div class="compartir" onclick="socialSharing();"><a href="#"><img src="img/compartir.png"></a></div>
 				<div class="logo" onclick="showAlertWindow('', getAppVersion());"><a href="#"><img src="img/logoafa.png"></a></div>
 			</div>
 		</div>
@@ -36,13 +37,13 @@
 					<div id="horizontal_content_scroller">
 						<ul>
 							<li>
-								<div id="slider_1" class="panel_swipper" id="Scroll_H"></div>
+								<div id="slider_1" style="float:left;" class="panel_swipper" id="Scroll_H"></div>
 							</li>
 							<li>
-								<div id="slider_2" class="panel_swipper"></div>
+								<div id="slider_2" style="float:left;" class="panel_swipper"></div>
 							</li>
 							<li>
-								<div id="slider_3" class="panel_swipper"></div>
+								<div id="slider_3" style="float:left;" class="panel_swipper"></div>
 							</li>
 						</ul>
 					</div>

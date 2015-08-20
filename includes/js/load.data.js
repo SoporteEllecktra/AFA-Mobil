@@ -128,6 +128,7 @@ function updatesParser(xmlText) {
 	
 	if (maxDate !== '') {
 		$('#datetime_container').html(verboseDate(maxDate));
+		$('#datetime_container_hidden').html(maxDate);
 	}
 
 	return updates;

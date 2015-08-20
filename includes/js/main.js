@@ -417,7 +417,7 @@ function saveReports(loadFromWS) {
 
 function renderReportsData() {
 	if (slider_2 !== '') {
-		$('#slider_2').html(slider_2);
+		$('#slider_1').html(slider_2);
 		return;
 	}
 
@@ -433,7 +433,7 @@ function renderReportsData() {
 	}
 
 	var html = '<div class="informe bkg_campo">';
-		html += '<span class="toggle up"></span>';
+		html += '<span id="reports_panel" onclick="togglePanelHeight(this.id, false);" class="toggle up"></span>';
 			html += '<ul class="info">';
 
     $(reports).each(function () {
@@ -538,8 +538,14 @@ function renderInformationsPricesData() {
 	        // fin detalle
 	html += '</div>';
 
-	$('#' + productCode + '_details').toggle('fast');
-	$('#' + productCode + '_details').html(html);
+	var element = $('#' + productCode + '_details');
+	if (element.css('display') === 'none') {
+		element.css("display", "block");
+	} else {
+		element.css("display", "none");
+	}
+
+	element.html(html);
 }
 
 // swipe effect all compatibility webkit mobiles
@@ -547,27 +553,32 @@ var direction = "";
 var currentPage = 1;
 var swipeElement = document.getElementById('horizontal_content_scroller');
 var mc = new Hammer(swipeElement);
-mc.on("release dragleft dragright swipeleft swiperight dragstart", function(event) {
-    direction = event.gesture.direction;
-});
-
-mc.on("release dragleft dragright swipeleft swiperight dragend", function(event) {
-    switch (direction) {
-        case "left": slideToLeft(); break;
-        case "right": slideToRight(); break;
+var x = 0;
+mc.on('panright panleft', function(event) {
+	console.log(event.deltaX);
+    if (event.deltaX < -100) {
+		slideToLeft();
+	} else if (event.deltaX > 100) {
+		slideToRight();
 	}
-    direction = "";
+
+	/*if (event.deltaX !== x) {
+		swipeElement.style.transform = 'translateX(' + event.deltaX + 'px)';
+		x = event.deltaX;
+	} else {
+		swipeElement.style.transform = 'translateX(0px)';
+	}*/
 });
 
 function slideToLeft() {
 	if (currentPage === 1) {
 		renderReportsData();
 
-		$('#slider_2').html(slider_2);
+		$('#slider_1').html(slider_2);
 		currentPage = 2;
 	} else if (currentPage === 2) {
 		if (slider_3 !== '') {
-			$('#slider_3').html(slider_3);
+			$('#slider_1').html(slider_3);
 			currentPage = 3;
 		} else {
 			$('#slider_1').html(slider_1);
@@ -582,12 +593,12 @@ function slideToLeft() {
 function slideToRight() {
 	if (currentPage === 1) {
 		if (slider_3 !== '') {
-			$('#slider_3').html(slider_3);
+			$('#slider_1').html(slider_3);
 			currentPage = 3;
 		} else {
 			renderReportsData();
 
-			$('#slider_2').html(slider_2);
+			$('#slider_1').html(slider_2);
 			currentPage = 2;
 		}
 	} else if (currentPage === 2) {
@@ -595,7 +606,7 @@ function slideToRight() {
 	} if (currentPage === 3) {
 		renderReportsData();
 
-		$('#slider_2').html(slider_2);
+		$('#slider_1').html(slider_2);
 		currentPage = 2;
 	}
 
