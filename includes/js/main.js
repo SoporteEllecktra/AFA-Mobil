@@ -1,4 +1,4 @@
-var swiper = null;
+var swipe = null;
 var porcentajeArriba = 0.55;
 var porcentajeAbajo = 0.45;
 
@@ -11,10 +11,6 @@ $(document).ready(function () {
 		getUpdates();
 	}
 });
-
-function onclikAcodeon() {
-    //alert('Ok');
-}
 
 function renderLeadingPricesData() {
 	if (!storage["leadingPrices"]) {
@@ -51,18 +47,15 @@ function renderLeadingPricesData() {
 			html += '<li class="col3"><span class="' + priceClass + '">' + this.abreviaturaMoneda + ' ' + this.valorString + '</span></li>';
 		html += '</ul>';
 
-		html += '<div id="' + this.codigoProducto + '_details" class="detalles"></div>';
+		html += '<div id="' + this.codigoProducto + '_details" style="display: none;"></div>';
     });
 	
 		html += '</div>';
 	html += '</div>';
 
-    html += '<div class="btn_vermas">+ VER M&Aacute;S</div>';
+    html += '<div onclick="renderAllPricesData()" class="btn_vermas">+ VER M&Aacute;S</div>';
 
     $('#leadingPrices').html(html);
-
-	//OcultarDivBloqueo();
-	timeOutCallbacks[0] = 1;
 }
 
 function setInformationsProduct(productCode) {
@@ -70,15 +63,64 @@ function setInformationsProduct(productCode) {
     //renderLastPrices(productCode);
 }
 
+// VER MAS section
+function renderAllPricesData() {
+	if (!storage["allPrices"]) {
+		processError('', 1005, '');
+	}
+	var allPricesObject = storage["allPrices"];
+	var allPrices = JSON.parse(allPricesObject);
+
+	if (!allPrices || (allPrices && allPrices.length == 0)) {
+		processError('', 1006, '');
+		return;
+	}
+
+	var html = '<div class="panel_vermas">';
+		html += '<div class="head">';
+			html += '<h2>Cotizaciones</h2>';
+			html += '<span id="all_prices" onclick="togglePanelHeight(this.id, true);" class="toggle up"></span>';
+			html += '<ul class="titulo">';
+				html += '<li class="col1">PRODUCTO</li>';
+				html += '<li class="col2">PUERTO</li>';
+				html += '<li class="col3">PRECIO P/TN</li>';
+				html += '<li class="col4">OBSERVACI&Oacute;N</li>';
+			html += '</ul>';
+
+			html += '<div class="detalles bkg_campo">';
+
+	var iPrices = 0;
+    $(allPrices).each(function () {
+		var className = (iPrices % 2 == 0) ? ' par' : '';
+		
+		html += '<ul class="producto' + className + '">';
+		html += '<ul class="producto" onclick="setInformationsProduct(' + this.codigoProducto + ')">';
+			html += '<li class="col1">' + this.descripcionProducto.toUpperCase() + '</li>';
+			html += '<li class="col2">' + this.descripcionPuerto + '</li>';
+			html += '<li class="col3">' + this.abreviaturaMoneda + ' ' + this.valorString + '</li>';
+			html += '<li class="col4">' + this.observacion + '</li>';
+		html += '</ul>';
+
+		iPrices++;
+    });
+
+			html += '</div>';
+		html += '</div>';
+	html += '</div>';
+
+    $('#slider_1').html(html);
+	togglePanelHeight('all_prices', false);
+}
+
 function renderLastPricesData() {
 	if (!storage["lastPrices"]) {
-			processError('', 1005, '');
+			processError('', 1007, '');
 	}
 	var lastPricesObject = storage["lastPrices"];
 	var lastPrices = JSON.parse(lastPricesObject);
 
 	if (!lastPrices || (lastPrices && lastPrices.length == 0)) {
-		processError('', 1006, '');
+		processError('', 1008, '');
 		return;
 	}
 
@@ -115,7 +157,7 @@ function renderLastPricesData() {
             }
             resultadoDiv += '<div class="row cssHistorico ' + strHtmlColorFondo + '">';
             resultadoDiv += '<div class="col-xs-6 colHistoricoFecha"><span style="opacity:1;">';
-            resultadoDiv += obtenerFechaMostrar(this.fechaCotizacion);
+            resultadoDiv += dateFormat(this.fechaCotizacion);
             resultadoDiv += '</span></div>';
             resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
 
@@ -152,7 +194,7 @@ function renderLastPricesData() {
 
 function CargarInformeCierreMercado() {
 	if (!listaInformes) {
-		processError('', 1007, '');
+		processError('', 1009, '');
 		return;
 	}
 
@@ -179,19 +221,20 @@ function CargarInformeCierreMercado() {
     }
 }
 
-function onclickVerMas() {
-    window.location.href = "todascotizaciones.html";
-}
-
 function renderNewsData() {
+	if (slider_1 !== '') {
+		$('#slider_1').html(slider_1);
+		return;
+	}
+
 	if (!storage["notifications"]) {
-			processError('', 1008, '');
+			processError('', 1010, '');
 	}
 	var notificationsObject = storage["notifications"];
 	var notifications = JSON.parse(notificationsObject);
 
     var html = '<div class="novedades bkg_campo">';
-		html += '<span class="toggle up"></span>';
+		html += '<span id="news_panel" onclick="togglePanelHeight(this.id, false);" class="toggle up"></span>';
 			html += '<ul class="news">';
 
 	if (!notifications || (notifications && notifications.length == 0)) {
@@ -202,16 +245,16 @@ function renderNewsData() {
 		html += '<li class="col1">';
 			if (this.url != '') {
 				html += '<a href="javascript:loadURL(\'' + this.url + '\');" >';
-					html += '<img src="icono-doc.png">';
+					html += '<img src="img/icono-doc.png">';
 				html += '</a>';
 			} else {
-				html += '<img src="icono-doc.png">';
+				html += '<img src="img/icono-doc.png">';
 			}
 		html += '</li>';
 		
 		html += '<li class="col2">';
 			html += '<h3>' + this.titulo + '</h3>';
-			html += '<span class="date">' + obtenerFechaMostrar(this.fecha) + '</span>';
+			html += '<span class="date">' + dateFormat(this.fecha) + '</span>';
 			html += '<span class="tag">' + this.descripcionCategoria + '</span>';
 			html += '<p>' + this.descripcion + '</p>';
 		html += '</li>';
@@ -219,44 +262,10 @@ function renderNewsData() {
 
 		html += '</ul>';
 	html += '</div>';
+	
+	slider_1 = html;
 
 	$('#slider_1').html(html);
-}
-
-f/*unction CargarInformeHtml() {
-	if (!listaInformes) {
-		processError('', 1009, '');
-		return;
-	}
-
-    var informesHtml = '';
-    for (var i = 0; i < listaInformes.length; i++) {
-        //alert(listaInformes[i].titulo);
-        informesHtml += '<div id="divInformeTitulo" class="cssInformeTitulo">' + listaInformes[i].titulo + '</div>';
-        informesHtml += '<div id="divInformeFecha" class="cssInformeFecha">' + obtenerFechaMostrar(listaInformes[i].fecha) + '</div>';
-        informesHtml += '<div id="divInformeDescripcion" class="cssInformeDescripcion">' + listaInformes[i].texto + '</div>';
-        //informesHtml += ;+ '<br/>' + '<a href="javascript:loadURL(\''+ 'http://www.ejemplo.com/archivo.pdf' +'\');" >pdf </a>' 
-        break;
-    }
-    return informesHtml;
-}*/
-
-function onclickFullScreenNovedades() {
-    window.location.href = "novedades.html";
-}
-
-function onclickFullScreenCotizacionesHistorica() {
-    window.location.href = "todascotizacioneshistorica.html";
-}
-
-function onclickFullScreenButtonAmpliar() {
-    if (swiper.slides[swiper.activeIndex].id == 'swiper-slide1') {
-        window.location.href = "novedades.html";
-    } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide2') {
-        window.location.href = "todascotizacioneshistorica.html";
-    } else if (swiper.slides[swiper.activeIndex].id == 'swiper-slide3') {
-        window.location.href = "informe.html";
-    }
 }
 
 function savePricesData(keyStorage, xmlText) {
@@ -398,15 +407,20 @@ function saveAllPrices(loadFromWS) {
 	}
 }
 
-function renderReports(loadFromWS) {
+function saveReports(loadFromWS) {
 	if (loadFromWS) {
 		var body = getReportsBodyRequest('', '', 1);
 		var request = getRequest(body);
-		getInformationFromWS(reportsURL, request, 'reports', saveReportsData, renderReportsData);
+		getInformationFromWS(reportsURL, request, 'reports', saveReportsData, function() {;});
 	}
 }
 
 function renderReportsData() {
+	if (slider_2 !== '') {
+		$('#slider_2').html(slider_2);
+		return;
+	}
+
 	if (!storage["reports"]) {
 		processError('', 1003, '');
 	}
@@ -425,13 +439,15 @@ function renderReportsData() {
     $(reports).each(function () {
         html += '<li class="col1">';
 			html += '<h3>' + this.titulo + '</h3>';
-			html += '<div>' + obtenerFechaMostrar(this.fecha) + '</div>';
+			html += '<div>' + dateFormat(this.fecha) + '</div>';
 			html += '<p>' + this.texto + '</p>';
 		html += '</li>';
     });
 					
 		html += '</ul>';
 	html += '</div>';
+	
+	slider_2 = html;
 
 	$('#slider_2').html(html);
 }
@@ -484,6 +500,7 @@ function renderInformationsPrices(productCode) {
 	getInformationFromWS(pricesURL, request, 'informationsPrice', savePricesData, renderInformationsPricesData);
 }
 
+var scroller = null;
 function renderInformationsPricesData() {
 	if (!storage["informationsPrice"]) {
 			processError('', 1010, '');
@@ -491,59 +508,95 @@ function renderInformationsPricesData() {
 	var informationsPricesObject = storage["informationsPrice"];
 	var informationsPrices = JSON.parse(informationsPricesObject);
 
-    var html = '<div id="divRowParteScrollNovedades">'; // parte scroll
-
+    var html = '<div class="detalles">';
+		html += '<ul class="titulo">';
+			html += '<li class="col1">PUERTO</li>';
+			html += '<li class="col2">PRECIO P/TN</li>';
+			html += '<li class="col3">OBSERVACI&Oacute;N</li>';
+		html += '</ul>';
+	
 	if (!informationsPrices || (informationsPrices && informationsPrices.length == 0)) {
-		resultadoDiv = '';
+		html = '<div class="detalles">';
 	}
 
-			resultadoDiv += '<div class="accordion-inner">';
+	var productCode = informationsPrices[0].codigoProducto;
 
-					resultadoDiv += '<div class="row">';
-
-						resultadoDiv += '<div class="row cssDetalleEncabezado">';
-							resultadoDiv += '<div class="col-xs-4">';
-								resultadoDiv += 'PUERTO';
-							resultadoDiv += '</div>';
-							resultadoDiv += '<div class="col-xs-4">';
-								resultadoDiv += 'PRECIO P/TN';
-							resultadoDiv += '</div>';
-							resultadoDiv += '<div class="col-xs-4">';
-								resultadoDiv += 'OBSERVACI&#211;N';
-							resultadoDiv += '</div>';
-						resultadoDiv += '</div>';
-						
-		// fin Encabezado detalle
-        var iDetalle = 0;
-		var productCode = informationsPrices[0].codigoProducto;
-
+	var iDetalle = 0;
+	var className = '';
 	$(informationsPrices).each(function () {
-            var strHtmlColorFondo = '';
-            if (iDetalle % 2 != 0) {
-                strHtmlColorFondo = ' cssDetalleImpar ';
-            }
-            resultadoDiv += '<div class="row cssDetalle' + strHtmlColorFondo + '">';
-            resultadoDiv += '<div class="col-xs-4 colDetalleDescripcionPuerto">';
-            resultadoDiv += this.descripcionPuerto;
-            resultadoDiv += '</div>';
-            resultadoDiv += '<div class="col-xs-4 colDetallePrecio">';
+		className = (iDetalle % 2 == 0) ? ' par' : '';
 
-            resultadoDiv += this.abreviaturaMoneda + ' ' + this.valorString;
-            resultadoDiv += '</div>';
-            resultadoDiv += '<div class="col-xs-4 colDetalleObservacion">';
-            resultadoDiv += this.observacion;
-            resultadoDiv += '</div>';
-            resultadoDiv += '</div>';
-			
-        resultadoDiv += '</div>';
+		html += '<ul class="producto' + className + '">';
+			html += '<li class="col1">' + this.descripcionPuerto + '</li>'
+			html += '<li class="col2">' + this.abreviaturaMoneda + ' ' + this.valorString + '</li>';
+			html += '<li class="col3">' + this.observacion + '</li>';
+		html += '</ul>';
+
 		iDetalle++;
 	});
 
 	        // fin detalle
-	resultadoDiv += '</div>';
-	resultadoDiv += '</div>';
-	
-	$('#collapse' + productCode).html(resultadoDiv);
-	
-	
+	html += '</div>';
+
+	$('#' + productCode + '_details').toggle('fast');
+	$('#' + productCode + '_details').html(html);
+}
+
+// swipe effect all compatibility webkit mobiles
+var direction = "";
+var currentPage = 1;
+var swipeElement = document.getElementById('horizontal_content_scroller');
+var mc = new Hammer(swipeElement);
+mc.on("release dragleft dragright swipeleft swiperight dragstart", function(event) {
+    direction = event.gesture.direction;
+});
+
+mc.on("release dragleft dragright swipeleft swiperight dragend", function(event) {
+    switch (direction) {
+        case "left": slideToLeft(); break;
+        case "right": slideToRight(); break;
+	}
+    direction = "";
+});
+
+function slideToLeft() {
+	if (currentPage === 1) {
+		renderReportsData();
+
+		$('#slider_2').html(slider_2);
+		currentPage = 2;
+	} else if (currentPage === 2) {
+		if (slider_3 !== '') {
+			$('#slider_3').html(slider_3);
+			currentPage = 3;
+		} else {
+			$('#slider_1').html(slider_1);
+			currentPage = 1;
+		}
+	} else if (currentPage === 3) {
+		$('#slider_1').html(slider_1);
+		currentPage = 1;
+	}
+}
+
+function slideToRight() {
+	if (currentPage === 1) {
+		if (slider_3 !== '') {
+			$('#slider_3').html(slider_3);
+			currentPage = 3;
+		} else {
+			renderReportsData();
+
+			$('#slider_2').html(slider_2);
+			currentPage = 2;
+		}
+	} else if (currentPage === 2) {
+		$('#slider_1').html(slider_1);
+	} if (currentPage === 3) {
+		renderReportsData();
+
+		$('#slider_2').html(slider_2);
+		currentPage = 2;
+	}
+
 }

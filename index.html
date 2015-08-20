@@ -5,80 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<link rel="stylesheet" type="text/css" href="layout.css">
+	<link rel="stylesheet" type="text/css" href="includes/css/layout.css">
     <title>AFA</title>
-
-	<style  type="text/css" media="all">
-		#vertical_content_wrapper {
-			position:absolute; z-index:1;
-			top:0px; bottom:0px; left:0px;
-			width:100%;
-			background:#aaa;
-			overflow:auto;
-		}
-
-		#vertical_content_scroller {
-			position:absolute; z-index:1;
-		/*	-webkit-touch-callout:none;*/
-			-webkit-tap-highlight-color:rgba(0,0,0,0);
-			width:100%;
-			padding:0;
-		}
-
-		#vertical_content_scroller ul {
-			list-style:none;
-			padding:0;
-			margin:0;
-			width:100%;
-			text-align:left;
-		}
-
-		#vertical_content_scroller li {
-			padding:0 10px;
-			height:40px;
-			line-height:40px;
-			border-bottom:1px solid #ccc;
-			border-top:1px solid #fff;
-			background-color:#fafafa;
-			font-size:14px;
-		}
-
-		#horizontal_content_wrapper {
-			position:absolute;
-			z-index:1;
-			top:0; 
-			bottom:0; 
-			left:0;
-			width:100%;
-			overflow:auto;
-		}
-
-		#horizontal_content_scroller {
-			position:absolute;
-			z-index:1;
-			-webkit-tap-highlight-color:rgba(0,0,0,0);
-			
-			height:100%;
-			float:left;
-			padding:0;
-		}
-
-		#horizontal_content_scroller ul {
-			list-style:none;
-			display:block;
-			float:left;
-			height:100%;
-			padding:0;
-			margin:0;
-		}
-
-		#horizontal_content_scroller li {
-			display:block;
-			vertical-align:middle;
-			float:left;
-			height:100%;
-		}
-	</style>
 </head>
 
 <body>
@@ -86,12 +14,12 @@
 
 		<div class="header">
 			<div class="flt_left">
-				<div class="actualizar"><a href="#"><img src="icono_actualizar.png"></a></div>
-				<div class="fecha">19 de agosto del 2015</div>
+				<div class="actualizar"><a href="#"><img src="img/icono_actualizar.png"></a></div>
+				<div id="datetime_container" class="fecha"></div>
 			</div>
 			<div class="flt_right">
-				<div class="compartir"><a href="#"><img src="compartir.png"></a></div>
-				<div class="logo"><a href="#"><img src="logoafa.png"></a></div>
+				<div class="compartir"><a href="#"><img src="img/compartir.png"></a></div>
+				<div class="logo" onclick="showAlertWindow('', getAppVersion());"><a href="#"><img src="img/logoafa.png"></a></div>
 			</div>
 		</div>
 		
@@ -106,32 +34,46 @@
 			<div id="horizontal" style="position:relative;">
 				<div id="horizontal_content_wrapper">
 					<div id="horizontal_content_scroller">
-							<ul id="down_list" class="panel_swipper">
-								<li><div id="slider_1"></div></li>
-								<li><div id="slider_2"></div></li>
-								<li><div id="slider_3"></div></li>
-							</ul>
+						<ul>
+							<li>
+								<div id="slider_1" class="panel_swipper" id="Scroll_H"></div>
+							</li>
+							<li>
+								<div id="slider_2" class="panel_swipper"></div>
+							</li>
+							<li>
+								<div id="slider_3" class="panel_swipper"></div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="cordova_plugins.js"></script>
+
     <script type="text/javascript" src="includes/js/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="includes/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="includes/js/swiper.min.js"></script>
-    <script type="text/javascript" src="includes/js/libreria.js"></script>
-    <script type="text/javascript" src="includes/js/cargardatos2.js"></script>
-    <script type="text/javascript" src="includes/js/paginaprincipal2.js"></script>
-    <script type="text/javascript" src="includes/js/registrarTelefono.js"></script>
-    <script type="text/javascript" src="iscroll.js"></script>
+    <script type="text/javascript" src="includes/js/iscroll.js"></script>
+	<script type="text/javascript" src="includes/js/fastclick.js"></script>
+	<script type="text/javascript" src="includes/js/hammer.min.js"></script>
+	<!--<script type="text/javascript" src="includes/js/touch-emulator.js"></script> -->
+
+    <script type="text/javascript" src="includes/js/afa.api.js"></script>
+    <script type="text/javascript" src="includes/js/load.data.js"></script>
+    <script type="text/javascript" src="includes/js/main.js"></script>
+    <script type="text/javascript" src="includes/js/phone.register.js"></script>
+
 	<script type="text/javascript">
+		//TouchEmulator();
+
 		var vertical_scroll_object = null;
 		var horizontal_scroll_object = null;
 		function loaded() {
-			document.getElementById('vertical').style.height = parseInt(screen.availHeight * 0.50) + 'px';
-			var slider_height = parseInt(screen.availHeight * 0.30);
+			// 25 + 28 = 53px = header height
+			document.getElementById('vertical').style.height = parseInt(screen.availHeight * 0.60) - 28 + 'px';
+			var slider_height = parseInt(screen.availHeight * 0.30) - 25;
 			document.getElementById('horizontal').style.height = slider_height + 'px';
 
 			//document.getElementById('horizontal_content_scroller').style.width = screen.width + 'px';
@@ -141,21 +83,25 @@
 			alert('Altura slider == ' + document.getElementById('horizontal').style.height);*/
 			
 			vertical_scroll_object = new iScroll('vertical_content_wrapper');
-
-			var options = { eventPassthrough: true, scrollX: true, scrollY: false, preventDefault: false };
-			horizontal_scroll_object = new iScroll('horizontal_content_wrapper', options);
+			horizontal_scroll_object = new iScroll('horizontal_content_wrapper');
 		}
 
-		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-		document.addEventListener('DOMContentLoaded', loaded, false);
+		if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+
+			document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+			document.addEventListener('DOMContentLoaded', loaded, false);
+		}
 	</script>
 
-    <div id="modal_window_container" style="display: none;">
+    <div id="window_modal_container" style="display: none;">
         <div class="center_box">
-            <div id="modal_window_title"></div>
-            <div id="modal_window_body"></div>
+            <div id="window_modal_title"></div>
+            <div id="window_modal_body"></div>
             <div>
-                <input type="button" onclick="closeWindow();" value="Cerrar">
+                <input type="button" onclick="closeAlertWindow();" value="Cerrar">
             </div>
         </div>
     </div>

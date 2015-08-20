@@ -89,6 +89,8 @@ function updatesAnalizer(data, status, req) {
 
 function updatesParser(xmlText) {
     var updates = [];
+	var maxDate = '';
+	var miliseconds = 0;
 	// Object updates format: {codigoTabla: 1|2|3, fecha: "dd/mm/yyyy", hora: "hh:mm:ss"}
     $(xmlText).find('modificaciones').each(function () {
         var obj = new updatesObject();
@@ -114,8 +116,19 @@ function updatesParser(xmlText) {
 			return;
 		}
 
+		var newMiliseconds = str2Time(obj.fecha, obj.hora);
+
+		if (newMiliseconds > miliseconds) {
+			miliseconds = newMiliseconds;
+			maxDate = obj.fecha;
+		}
+
         updates.push(obj);
     });
+	
+	if (maxDate !== '') {
+		$('#datetime_container').html(verboseDate(maxDate));
+	}
 
 	return updates;
 }
@@ -127,7 +140,7 @@ function setstorage(updates) {
 	loadFromWS.push(false);
 	//alert("HAY #UPDATES == " + updates.length);
 	for (var i = 0; i < updates.length; i++) {
-		console.log(updates[i]);
+		//console.log(updates[i]);
 		loadFromWS.push(false);
 
 		var tableNameKey = labelTableStorage + updates[i].codigoTabla;
@@ -138,21 +151,21 @@ function setstorage(updates) {
 			var newDate = (updates[i].fecha + updates[i].hora);
 			var updateStorage = storage[tableNameKey];
 			var updateStorageObject = JSON.parse(updateStorage);
-			console.log(tableNameKey + ' - Almacenado ==> ');console.log(updateStorageObject);
+			//console.log(tableNameKey + ' - Almacenado ==> ');//console.log(updateStorageObject);
 			storageDate = (updateStorageObject.fecha + updateStorageObject.hora);
 			
-			console.log('fecha Nueva => '+newDate);
-			console.log('fecha Guardada => '+storageDate);
-			console.log('compara fechas');
+			//console.log('fecha Nueva => '+newDate);
+			//console.log('fecha Guardada => '+storageDate);
+			//console.log('compara fechas');
 			if (newDate != storageDate) {
-				console.log('Recargar ' + tableNameKey);
+				//console.log('Recargar ' + tableNameKey);
 				storage[tableNameKey] = JSON.stringify(updates[i]);
 				loadFromWS[updates[i].codigoTabla] = true;
 			}
 		}
 	}
 
-	console.log(loadFromWS);
+	//console.log(loadFromWS);
 	$.when(loadInformation(1, loadFromWS),
 		   loadInformation(2, loadFromWS)
 		  ).done(function() {

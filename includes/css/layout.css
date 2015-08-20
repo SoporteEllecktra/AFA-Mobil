@@ -1,44 +1,44 @@
 @font-face {
     font-family: 'open_sansregular';
-    src: url('webfont/opensans-regular-webfont.eot');
-    src: url('webfont/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('webfont/opensans-regular-webfont.woff2') format('woff2'),
-         url('webfont/opensans-regular-webfont.woff') format('woff'),
-         url('webfont/opensans-regular-webfont.ttf') format('truetype'),
-         url('webfont/opensans-regular-webfont.svg#open_sansregular') format('svg');
+    src: url('../../webfont/opensans-regular-webfont.eot');
+    src: url('../../webfont/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../webfont/opensans-regular-webfont.woff2') format('woff2'),
+         url('../../webfont/opensans-regular-webfont.woff') format('woff'),
+         url('../../webfont/opensans-regular-webfont.ttf') format('truetype'),
+         url('../../webfont/opensans-regular-webfont.svg#open_sansregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'open_sanssemibold';
-    src: url('webfont/opensans-semibold-webfont.eot');
-    src: url('webfont/opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('webfont/opensans-semibold-webfont.woff2') format('woff2'),
-         url('webfont/opensans-semibold-webfont.woff') format('woff'),
-         url('webfont/opensans-semibold-webfont.ttf') format('truetype'),
-         url('webfont/opensans-semibold-webfont.svg#open_sanssemibold') format('svg');
+    src: url('../../webfont/opensans-semibold-webfont.eot');
+    src: url('../../webfont/opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../webfont/opensans-semibold-webfont.woff2') format('woff2'),
+         url('../../webfont/opensans-semibold-webfont.woff') format('woff'),
+         url('../../webfont/opensans-semibold-webfont.ttf') format('truetype'),
+         url('../../webfont/opensans-semibold-webfont.svg#open_sanssemibold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'open_sansbold';
-    src: url('webfont/opensans-bold-webfont.eot');
-    src: url('webfont/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('webfont/opensans-bold-webfont.woff2') format('woff2'),
-         url('webfont/opensans-bold-webfont.woff') format('woff'),
-         url('webfont/opensans-bold-webfont.ttf') format('truetype'),
-         url('webfont/opensans-bold-webfont.svg#open_sansbold') format('svg');
+    src: url('../../webfont/opensans-bold-webfont.eot');
+    src: url('../../webfont/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../webfont/opensans-bold-webfont.woff2') format('woff2'),
+         url('../../webfont/opensans-bold-webfont.woff') format('woff'),
+         url('../../webfont/opensans-bold-webfont.ttf') format('truetype'),
+         url('../../webfont/opensans-bold-webfont.svg#open_sansbold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'open_sanslight';
-    src: url('webfont/opensans-light-webfont.eot');
-    src: url('webfont/opensans-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('webfont/opensans-light-webfont.woff2') format('woff2'),
-         url('webfont/opensans-light-webfont.woff') format('woff'),
-         url('webfont/opensans-light-webfont.ttf') format('truetype'),
-         url('webfont/opensans-light-webfont.svg#open_sanslight') format('svg');
+    src: url('../../webfont/opensans-light-webfont.eot');
+    src: url('../../webfont/opensans-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../webfont/opensans-light-webfont.woff2') format('woff2'),
+         url('../../webfont/opensans-light-webfont.woff') format('woff'),
+         url('../../webfont/opensans-light-webfont.ttf') format('truetype'),
+         url('../../webfont/opensans-light-webfont.svg#open_sanslight') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -51,14 +51,14 @@ html, body {
 }
 
 body { font-size: 10px; padding-top: 53px}
-a, img { padding: 0; margin: 0;}
+a, img { padding: 0px; margin: 0px;}
 img { display: block; }
 
-h2 {padding: .5em 2%; margin: 0}
+h2 {padding: 0.5em 2%; margin: 0px}
 
 
 .root { width: 100%; background: #ebebeb; }
-.header { width: 100%; background: #606966; padding: 0; margin: 0; position: fixed; top: 0; left: 0; z-index: 100; box-shadow: 0 0 3em rgba(0,0,0,.25);}
+.header { width: 100%; background: #606966; padding: 0px; margin: 0px; position: fixed; top: 0px; left: 0px; z-index: 100; box-shadow: 0 0 3em rgba(0,0,0,0.25);}
 .flt_left{float: left;}
 .flt_right{float: right;}
 
@@ -66,7 +66,7 @@ h2 {padding: .5em 2%; margin: 0}
 .header .fecha { color: #fff; line-height: 53px; font-size: 1.3em; padding-left: .5em;}
 
 .header .compartir, .header .logo {float: left;}
-.header .logo a {float: left; padding: 0 .5em 0 0; background: #fff;}
+.header .logo a {float: left; padding: 0 0.5em 0 0; background: #fff;}
 .header .compartir {background-color:#606966;}
 .header .compartir:hover {background-color:#4e5756;}
 
@@ -85,7 +85,7 @@ h2 {padding: .5em 2%; margin: 0}
 .destacados li.col3 {width: 30%!important; text-align: center;}
 
 .panel_destacados .destacados .producto { border: 0.1em solid #aeaeae; border-left: 0em; border-right: 0em; }
-.panel_destacados .destacados .producto span { display: block;text-align: center; margin: 0 auto; width: 5em; padding: .5em .25em; color: #fff; border-radius: .4em; font-size: 1.5em; font-family: 'open_sansbold';}
+.panel_destacados .destacados .producto span { display: block;text-align: center; margin: 0px auto; width: 5em; padding: 0.5em 0.25em; color: #fff; border-radius: 0.4em; font-size: 1.5em; font-family: 'open_sansbold';}
 .panel_destacados .destacados .producto span.grey {background-color: #CCC;}
 .panel_destacados .destacados .producto span.green {background-color: #4cd98b; background-image: linear-gradient(#4cd98b, #4cd966)}
 .panel_destacados .destacados .producto span.red {background-color: #ff354d; background-image: linear-gradient(#ff354d, #ff3a31)}
@@ -94,10 +94,10 @@ h2 {padding: .5em 2%; margin: 0}
 .panel_destacados .destacados .producto .col2 {font-size: 1.5em; font-family: 'open_sansregular';  line-height: 2.5em;}
 .panel_destacados .destacados .producto .col3 {}
 
-.panel_destacados .detalles { width: 100%; float: left;}
-.panel_destacados .detalles ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  }
-.panel_destacados .detalles ul li { width: 29%; padding: 2%; display: block; float: left;}
-.panel_destacados .detalles .titulo { background: #d6dad9; }
+.panel_destacados div .detalles { width: 100%; float: left;}
+.panel_destacados div .detalles ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  }
+.panel_destacados div .detalles ul li { width: 29%; padding: 2%; display: block; float: left;}
+.panel_destacados div .detalles .titulo { background: #d6dad9; }
 
 /*
 .panel_destacados .detalles .titulo .col1 {}
@@ -107,7 +107,7 @@ h2 {padding: .5em 2%; margin: 0}
 /*
 .panel_destacados .detalles .producto .col1 {}
 */
-.panel_destacados .detalles .producto .col2 { font-weight: 600;}
+.panel_destacados div .detalles .producto .col2 { font-weight: 600;}
 /*
 .panel_destacados .detalles .producto .col3 {}
 */
@@ -140,7 +140,7 @@ h2 {padding: .5em 2%; margin: 0}
 */
 /****************************************/
 
-.bkg_campo { background: #959595 url(fondo2.jpg); background-repeat: no-repeat; background-attachment: fixed; background-position: bottom center;}
+.bkg_campo { background: #959595 url('../../img/fondo2.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-position: bottom center;}
 
 
 /****************************************/
@@ -160,7 +160,7 @@ h2 {padding: .5em 2%; margin: 0}
 
 .panel_destacados .par { background: #ddd;}
 
-.bkg_campo .par { background: url(bkg_claro.png);}
+.bkg_campo .par { background: url('../../img/bkg_claro.png');}
 
 
 .panel_swipper .historicas .detalles .fechaprecio .col1 { text-align: right;}
@@ -181,8 +181,6 @@ h2 {padding: .5em 2%; margin: 0}
 .panel_swipper .novedades .news .col2 p { display: block; float: left;}
 
 
-
-
 /*************************************/
 
 .panel_swipper .informe { width: 100%; position: relative; color: #FFFFFF; font-size: 14px; float: left;}
@@ -195,7 +193,91 @@ h2 {padding: .5em 2%; margin: 0}
 
 
 .toggle { display: block; width: 2.6em; height: 2.6em; position: absolute; top: 0.3em;  right: 0.3em;  }
-.toggle.up   { background: url(up.png) no-repeat; background-position: center;}
-.toggle.down { background: url(down.png) no-repeat; background-position: center;}
+.toggle.up   { background: url('../../img/up.png') no-repeat; background-position: center;}
+.toggle.down { background: url('../../img/down.png') no-repeat; background-position: center;}
 
+#window_modal_container{ position: absolute; top:0; left: 0; width: 100%; height: 100%;z-index: 5555;background: rgba(60, 68, 79, 0.9); display: none; }
+.center_box {
+  background: #fff;
+  border-radius: 0.2em;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  /*margin: -15% 0 0 -25%;*/
+  padding: 1.5em;
+  box-shadow: 0px 0px 80px 0px rgba(29,33,39,1);
+  border: 1px solid rgba(255,255,255,.2);
+}
+#window_modal_title { font-weight: 600;font-size: 1.3em;}
 
+.center_box input[type=button] {
+  color: #fff;
+  background: #000;
+  border: 0.2em solid rgba(24, 28, 33,.6);
+  border-radius: 0.2em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: background .5s;
+  padding: .5em;
+  margin:1.5em auto 0 auto;
+  width: 100%;
+}
+
+.cssLogoAfaModal {
+    width: 6.6em;
+    height: 6.6em;
+}
+
+#vertical_content_wrapper {
+	position:absolute; z-index:1;
+	top:0px; bottom:0px; left:0px;
+	width:100%;
+	background:#aaa;
+	overflow:auto;
+}
+
+#vertical_content_scroller {
+	position:absolute; z-index:1;
+/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	width:100%;
+	padding:0;
+}
+
+#horizontal_content_wrapper {
+	position:absolute;
+	z-index:1;
+	top:0; 
+	bottom:0; 
+	left:0;
+	width:100%;
+	overflow:auto;
+}
+
+#horizontal_content_scroller {
+	position:absolute;
+	z-index:1;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	
+	height:100%;
+	float:left;
+	padding:0;
+}
+
+#horizontal_content_scroller ul {
+	list-style:none;
+	display:block;
+	float:left;
+	height:100%;
+	padding:0;
+	margin:0;
+}
+
+#horizontal_content_scroller li {
+	display:block;
+	vertical-align:middle;
+	float:left;
+	height:100%;
+}

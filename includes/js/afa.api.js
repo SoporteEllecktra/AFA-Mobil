@@ -10,11 +10,16 @@ try {
     storage = {};
 }
 
-var startTimeOut = 30;
+/*var startTimeOut = 30;
 var startTime = startTimeOut;
-var t = 0;
-var timeOutCallbacks = [0, 0, 0, 0];
+var t = 0;*/
 var appVersion = '2.0';
+
+var slider_1 = '';
+var slider_2 = '';
+var slider_3 = '';
+
+var months = ['', 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
 function convertValorImporte(pValor) {
     var resultado = pValor.toString();
@@ -338,15 +343,15 @@ function ObtenerTxtCompartirCotizacionesDestacada() {
     //AFA SCL 17/06: SOJA 2000 / 219 Jul - SORGO 1050/ 113 Jul.Ago - MAIZ 920 / 100 Ago Grado II - GIRASOL 1850 - TRIGO
     var strResultado = '';
     //'AFA SCL 08/04: SOJA 1930 / 220 May - SORGO 1030/ 117 May - MAIZ 960 c.desc / 1000 s.desc / 114 May - GIRASOL s/c - ARVEJA USD 180 // Más información en www.afascl.coop'    
-    var fechaUltima = eval('(' + localStorage.getItem("storageTablaModificaciones1") + ')');
+    var fechaUltima = eval('(' + localStorage.getItem("updatesInfo1") + ')');
     var listaFecha = fechaUltima.fecha.split('/');
     strResultado += 'AFA SCL ' + fechaUltima.fecha.substring(0, 5) + ':';
 
     var listaCompartirCotizacionesDestacada = null;
-    if (!storage.getItem("storageListaCotizacionesDestacada")) {
+    if (!storage.getItem("leadingPrices")) {
 
     } else {
-        var cotizacionesDestacadaGuardada = storage.getItem("storageListaCotizacionesDestacada");
+        var cotizacionesDestacadaGuardada = storage.getItem("leadingPrices");
         listaCompartirCotizacionesDestacada = eval('(' + cotizacionesDestacadaGuardada + ')');
     }
 
@@ -437,10 +442,40 @@ function isValidTime(time) {
 	return (validateTimeFormat(time) && checkTime(time));
 }
 
+function dateFormat(date) {
+    var dateData = date.substring(0, 10).split('-');
+
+	return (dateData[2] + '/' + dateData[1] + '/' + dateData[0]);
+}
+
+function verboseDate(date) {
+	// date format: dd/mm/yyyy
+	var dateParts = date.split("/");
+	var d = dateParts[0];
+	var m = parseInt(dateParts[1]);
+	var y = dateParts[2];
+
+	return (d + ' de ' + months[m] + ' de ' + y);
+}
+
+function str2Time(date, hours) {
+    var dateData = date.split('/');
+    var day = parseInt(dateData[0]);
+    var month = parseInt(dateData[1]) - 1;
+    var year = parseInt(dateData[2]);
+
+    var hourData = hours.split(':');
+    var hour = parseInt(hourData[0]);
+    var minutes = parseInt(hourData[1]);
+    var seconds = parseInt(hourData[2]);
+
+    return (Date.UTC(year, month, day, hour, minutes, seconds, 0));
+}
+
 /************************************/
 function getAppVersion() {
 	var html = '<div style="text-align: center;">';
-		html += '<div>';
+		html += '<div style="margin-left: 43%;">';
 			html += '<img src="img/material/Logo.svg" title="AFA Móvil" class="cssLogoAfaModal" />';
 		html += '</div>';
 		html += '<span>';
@@ -556,13 +591,13 @@ function loadInformation(informationCode, loadFromWS) {
 	switch (informationCode) {
 		case 1: renderLeadingPrices(loadFromWS[informationCode]); break; // Mostrar las Cotizaciones Destacadas
 		case 2: renderNews(loadFromWS[informationCode]); break; // Mostrar las Novedades
-		case 3: renderReports(loadFromWS[informationCode]); break; // Renderizar la data de los Informes
+		case 3: saveReports(loadFromWS[informationCode]); break; // Renderizar la data de los Informes
 		case 4: saveAllPrices(loadFromWS[1]); break; // Guardar la data de todas las Cotizaciones
 		default: processError('', 1001, '');
 	}
 }
 
-function showWindowModal(title, body) {
+function showAlertWindow(title, body) {
     $('#window_modal_title').html(title);
     $('#window_modal_body').html(body);
     if (body != '') {
@@ -570,6 +605,31 @@ function showWindowModal(title, body) {
     }
 }
 
-function closeWindowModal() {
+function closeAlertWindow() {
     $('#window_modal_container').css('display', 'none');
+}
+
+function togglePanelHeight(id, replace) {
+	// full screen values
+	var verticalHeight = parseInt(document.getElementById('vertical').style.height);
+	var horizontalHeight = 0;
+	var classNameValue = '';
+	if (verticalHeight > 0) {
+		verticalHeight = 0;
+		horizontalHeight = parseInt(screen.availHeight) - 53;
+		classNameValue = 'toggle down';
+	} else {
+		verticalHeight = parseInt(screen.availHeight * 0.60) - 28;
+		horizontalHeight = parseInt(screen.availHeight * 0.30) - 25;
+		classNameValue = 'toggle up';
+	}
+
+	document.getElementById('vertical').style.height = verticalHeight + 'px';
+	document.getElementById('horizontal').style.height = horizontalHeight + 'px';
+
+	document.getElementById(id).className = classNameValue;
+
+	if (replace) {
+		$('#slider_1').html(slider_1);
+	}
 }
