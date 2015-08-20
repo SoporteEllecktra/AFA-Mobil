@@ -87,14 +87,13 @@ function renderAllPricesData() {
 				html += '<li class="col4">OBSERVACI&Oacute;N</li>';
 			html += '</ul>';
 
-			html += '<div class="detalles bkg_campo">';
+			html += '<div class="detalles">';
 
 	var iPrices = 0;
     $(allPrices).each(function () {
 		var className = (iPrices % 2 == 0) ? ' par' : '';
 		
-		html += '<ul class="producto' + className + '">';
-		html += '<ul class="producto" onclick="setInformationsProduct(' + this.codigoProducto + ')">';
+		html += '<ul class="producto' + className + '" onclick="setInformationsProduct(' + this.codigoProducto + ')">';
 			html += '<li class="col1">' + this.descripcionProducto.toUpperCase() + '</li>';
 			html += '<li class="col2">' + this.descripcionPuerto + '</li>';
 			html += '<li class="col3">' + this.abreviaturaMoneda + ' ' + this.valorString + '</li>';
@@ -233,7 +232,7 @@ function renderNewsData() {
 	var notificationsObject = storage["notifications"];
 	var notifications = JSON.parse(notificationsObject);
 
-    var html = '<div class="novedades bkg_campo">';
+    var html = '<div class="novedades ">';
 		html += '<span id="news_panel" onclick="togglePanelHeight(this.id, false);" class="toggle up"></span>';
 			html += '<ul class="news">';
 
@@ -432,7 +431,7 @@ function renderReportsData() {
 		return;
 	}
 
-	var html = '<div class="informe bkg_campo">';
+	var html = '<div class="informe ">';
 		html += '<span id="reports_panel" onclick="togglePanelHeight(this.id, false);" class="toggle up"></span>';
 			html += '<ul class="info">';
 

@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<div class="root">
+	<div class="root bkg_campo">
 
 		<div class="header">
 			<div class="flt_left">
@@ -24,28 +24,32 @@
 			</div>
 		</div>
 		
-		<div style="position:relative;">
-			<div id="vertical" style="position:relative; background:#F00;">
-				<div id="vertical_content_wrapper">
-					<div id="vertical_content_scroller">
-						<div id="leadingPrices"></div>
+		<div>
+			<div style="position:relative;">
+				<div id="vertical" style="background:#F00;">
+					<div id="vertical_content_wrapper">
+						<div id="vertical_content_scroller">
+							<div id="leadingPrices"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div id="horizontal" style="position:relative;">
-				<div id="horizontal_content_wrapper">
-					<div id="horizontal_content_scroller">
-						<ul>
-							<li>
-								<div id="slider_1" style="float:left;" class="panel_swipper" id="Scroll_H"></div>
-							</li>
-							<li>
-								<div id="slider_2" style="float:left;" class="panel_swipper"></div>
-							</li>
-							<li>
-								<div id="slider_3" style="float:left;" class="panel_swipper"></div>
-							</li>
-						</ul>
+			<div style="position:relative;">
+				<div id="horizontal">
+					<div id="horizontal_content_wrapper">
+						<div id="horizontal_content_scroller">
+							<ul>
+								<li>
+									<div id="slider_1" style="float:left;" class="panel_swipper" id="Scroll_H"></div>
+								</li>
+								<li>
+									<div id="slider_2" style="float:left;" class="panel_swipper"></div>
+								</li>
+								<li>
+									<div id="slider_3" style="float:left;" class="panel_swipper"></div>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -73,18 +77,19 @@
 		var horizontal_scroll_object = null;
 		function loaded() {
 			// 25 + 28 = 53px = header height
-			document.getElementById('vertical').style.height = parseInt(screen.availHeight * 0.60) - 28 + 'px';
-			var slider_height = parseInt(screen.availHeight * 0.30) - 25;
+			var height = $(document).height();
+			document.getElementById('vertical').style.height = parseInt(height * 0.70) - 28 + 'px';
+			var slider_height = parseInt(height * 0.30) - 25;
 			document.getElementById('horizontal').style.height = slider_height + 'px';
 
-			//document.getElementById('horizontal_content_scroller').style.width = screen.width + 'px';
+			//document.getElementById('vertical_content_scroller').style.width = (document.getElementById('vertical').style.height * 10) + 'px';
 			document.getElementById('horizontal_content_scroller').style.height = (slider_height * 10) + 'px';
 
-			/*alert('Altura destacados == ' + document.getElementById('vertical').style.height);
-			alert('Altura slider == ' + document.getElementById('horizontal').style.height);*/
-			
-			vertical_scroll_object = new iScroll('vertical_content_wrapper');
-			horizontal_scroll_object = new iScroll('horizontal_content_wrapper');
+			//alert('Altura destacados == ' + document.getElementById('vertical').style.height);
+			//alert('Altura slider == ' + document.getElementById('horizontal').style.height);
+			var options = { mouseWheel: false, scrollbars: false };
+			vertical_scroll_object = new iScroll('vertical_content_wrapper', options);
+			horizontal_scroll_object = new iScroll('horizontal_content_wrapper', options);
 		}
 
 		if ('addEventListener' in document) {

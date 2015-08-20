@@ -89,8 +89,7 @@ function updatesAnalizer(data, status, req) {
 
 function updatesParser(xmlText) {
     var updates = [];
-	var maxDate = '';
-	var miliseconds = 0;
+	var pricesDate = '';
 	// Object updates format: {codigoTabla: 1|2|3, fecha: "dd/mm/yyyy", hora: "hh:mm:ss"}
     $(xmlText).find('modificaciones').each(function () {
         var obj = new updatesObject();
@@ -116,20 +115,16 @@ function updatesParser(xmlText) {
 			return;
 		}
 
-		var newMiliseconds = str2Time(obj.fecha, obj.hora);
 
-		if (newMiliseconds > miliseconds) {
-			miliseconds = newMiliseconds;
-			maxDate = obj.fecha;
+		if (obj.codigoTabla === 1) {
+			pricesDate = obj.fecha;
 		}
 
         updates.push(obj);
     });
-	
-	if (maxDate !== '') {
-		$('#datetime_container').html(verboseDate(maxDate));
-		$('#datetime_container_hidden').html(maxDate);
-	}
+
+	$('#datetime_container').html(verboseDate(pricesDate));
+	$('#datetime_container_hidden').html(pricesDate);
 
 	return updates;
 }
