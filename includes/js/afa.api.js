@@ -614,13 +614,14 @@ function togglePanelHeight(id, replace) {
 	var verticalHeight = parseInt(document.getElementById('vertical').style.height);
 	var horizontalHeight = 0;
 	var classNameValue = '';
+	var height = $(document).height();
 	if (verticalHeight > 0) {
 		verticalHeight = 0;
-		horizontalHeight = parseInt(screen.availHeight) - 53;
+		horizontalHeight = parseInt(height) - 53;
 		classNameValue = 'toggle down';
 	} else {
-		verticalHeight = parseInt(screen.availHeight * 0.60) - 28;
-		horizontalHeight = parseInt(screen.availHeight * 0.30) - 25;
+		verticalHeight = parseInt(height * 0.70) - 28;
+		horizontalHeight = parseInt(height * 0.30) - 25;
 		classNameValue = 'toggle up';
 	}
 

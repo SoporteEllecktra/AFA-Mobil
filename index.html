@@ -26,10 +26,14 @@
 		
 		<div>
 			<div style="position:relative;">
-				<div id="vertical" style="background:#F00;">
+				<div id="vertical">
 					<div id="vertical_content_wrapper">
 						<div id="vertical_content_scroller">
-							<div id="leadingPrices"></div>
+							<ul>
+								<li>
+									<div id="leadingPrices"></div>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -82,12 +86,12 @@
 			var slider_height = parseInt(height * 0.30) - 25;
 			document.getElementById('horizontal').style.height = slider_height + 'px';
 
-			//document.getElementById('vertical_content_scroller').style.width = (document.getElementById('vertical').style.height * 10) + 'px';
+			document.getElementById('vertical_content_scroller').style.width = (document.getElementById('vertical').style.height * 10) + 'px';
 			document.getElementById('horizontal_content_scroller').style.height = (slider_height * 10) + 'px';
 
 			//alert('Altura destacados == ' + document.getElementById('vertical').style.height);
 			//alert('Altura slider == ' + document.getElementById('horizontal').style.height);
-			var options = { mouseWheel: false, scrollbars: false };
+			var options = { mouseWheel: false, scrollbars: false, click: true, momentum: false, snap: true };
 			vertical_scroll_object = new iScroll('vertical_content_wrapper', options);
 			horizontal_scroll_object = new iScroll('horizontal_content_wrapper', options);
 		}
