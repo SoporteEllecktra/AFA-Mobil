@@ -555,7 +555,7 @@ var swipeElement = document.getElementById('horizontal_content_scroller');
 var mc = new Hammer(swipeElement);
 var x = 0;
 mc.on('panright panleft', function(event) {
-	console.log(event.deltaX);
+	//console.log(event.deltaX);
     if (event.deltaX < -100) {
 		slideToLeft();
 	} else if (event.deltaX > 100) {
