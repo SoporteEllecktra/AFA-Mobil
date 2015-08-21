@@ -31,7 +31,7 @@
 						<div id="vertical_content_scroller">
 							<ul>
 								<li>
-									<div id="leadingPrices"></div>
+									<div id="leadingPrices" style="float:left; z-index: 10;"></div>
 								</li>
 							</ul>
 						</div>
@@ -59,47 +59,12 @@
 
     <script type="text/javascript" src="includes/js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="includes/js/iscroll.js"></script>
-	<!--<script type="text/javascript" src="includes/js/fastclick.js"></script>-->
 	<script type="text/javascript" src="includes/js/hammer.min.js"></script>
-	<!--<script type="text/javascript" src="includes/js/touch-emulator.js"></script> -->
 
     <script type="text/javascript" src="includes/js/afa.api.js"></script>
     <script type="text/javascript" src="includes/js/load.data.js"></script>
     <script type="text/javascript" src="includes/js/main.js"></script>
     <script type="text/javascript" src="includes/js/phone.register.js"></script>
-
-	<script type="text/javascript">
-		//TouchEmulator();
-
-		var vertical_scroll_object = null;
-		var horizontal_scroll_object = null;
-		function loaded() {
-			// 25 + 28 = 53px = header height
-			var height = $(document).height();
-			var verticalHeight = parseInt(height * 0.70) - 28;
-			document.getElementById('vertical').style.height = verticalHeight + 'px';
-			var sliderHeight = parseInt(height * 0.30) - 25;
-			document.getElementById('horizontal').style.height = sliderHeight + 'px';
-
-			document.getElementById('vertical_content_scroller').style.height = verticalHeight + 'px';
-			document.getElementById('horizontal_content_scroller').style.height = sliderHeight + 'px';
-
-			//alert('Altura destacados == ' + document.getElementById('vertical').style.height);
-			//alert('Altura slider == ' + document.getElementById('horizontal').style.height);
-			var options = { hScrollbar: false, vScrollbar: false, click: true, tap: true };
-			vertical_scroll_object = new iScroll('vertical_content_wrapper', options);
-			horizontal_scroll_object = new iScroll('horizontal_content_wrapper', options);
-		}
-
-		if ('addEventListener' in document) {
-			/*document.addEventListener('DOMContentLoaded', function() {
-				FastClick.attach(document.body);
-			}, false);*/
-
-			document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-			document.addEventListener('DOMContentLoaded', loaded, false);
-		}
-	</script>
 
     <div id="window_modal_container" style="display: none;">
         <div class="center_box">

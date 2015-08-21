@@ -1,4 +1,32 @@
+function setInitialScrolling() {
+	// 25 + 28 = 53px = header height
+	var height = $(document).height();
+	var verticalHeight = parseInt(height * 0.70) - 28;
+	document.getElementById('vertical').style.height = verticalHeight + 'px';
+	var sliderHeight = parseInt(height * 0.30) - 25;
+	document.getElementById('horizontal').style.height = sliderHeight + 'px';
+
+	document.getElementById('vertical_content_scroller').style.height = verticalHeight + 'px';
+	document.getElementById('horizontal_content_scroller').style.height = sliderHeight + 'px';
+
+	//alert('Altura destacados == ' + document.getElementById('vertical').style.height);
+	//alert('Altura slider == ' + document.getElementById('horizontal').style.height);
+	var options = { hScrollbar: false, vScrollbar: false, click: false, tap: false };
+	vertical_scroll_object = new iScroll('vertical_content_wrapper', options);
+	horizontal_scroll_object = new iScroll('horizontal_content_wrapper', options);
+}
+
 $(document).ready(function () {
+	if ('addEventListener' in document) {
+		/*document.addEventListener('DOMContentLoaded', function() {
+			FastClick.attach(document.body);
+		}, false);*/
+
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	}
+
+	setInitialScrolling();
+
 	// Define if its device is a mobile
 	if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
 		storage['deviceready'] = 'no';
@@ -158,8 +186,7 @@ function renderLastPricesData() {
 	slider_3 = html;
 
 	$('#slider').html(html);
-	currentPage = 2;
-	slideToLeft();
+	toSlide(3);
 
 	resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
 }
@@ -498,7 +525,7 @@ function renderInformationsPricesData() {
 			resetPanelHeight('vertical', 0, 'vertical_content_scroller', vertical_scroll_object);
 		}
 
-		slideToLeft();
+		toSlide(1);
 		resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
 	}
 }
@@ -509,63 +536,97 @@ var currentPage = 1;
 var swipeElement = document.getElementById('horizontal_content_scroller');
 var mc = new Hammer(swipeElement);
 
+var swipeOffset = parseInt($(document).width() * 0.2);
+var div = document.getElementById('slider');
+
 mc.on('panright panleft', function(event) {
-	// Deactive swipe on full screen div container
+	// Deactive swipe effect on full screen div container
 	if (fullScreen) {
 		resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
 		horizontal_scroll_object.scrollTo(0, 0);
 		return; 
 	}
-	//console.log(event.deltaX);
-    if (event.deltaX < -120) {
-		slideToLeft();
-		resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
-		horizontal_scroll_object.scrollTo(0, 0);
-	} else if (event.deltaX > 120) {
-		slideToRight();
-		resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
-		horizontal_scroll_object.scrollTo(0, 0);
+
+	//console.log('delta: ' + event.deltaX);
+	//console.log('width: '+swipeOffset);
+	if(Math.abs(event.deltaX) > swipeOffset) {
+		event.preventDefault();
+		if(event.deltaX > 0) {
+			slideToRight();
+			resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
+			horizontal_scroll_object.scrollTo(0, 0);
+
+			if (typeof div.style.transform != 'undefined') {
+				div.style.transform = 'translateX(0px)';
+			}
+		} else {
+			slideToLeft();
+			resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
+			horizontal_scroll_object.scrollTo(0, 0);
+
+			if (typeof div.style.transform != 'undefined') {
+				div.style.transform = 'translateX(0px)';
+			}
+		}
+
+		horizontal_scroll_object.refresh();
+		return;
+	}
+
+	if (typeof div.style.transform != 'undefined') {
+		div.style.transform = 'translateX(' + event.deltaX + 'px)';
 	}
 });
 
-function slideToLeft() {
-	if (currentPage === 1) {
-		renderReportsData();
+function toSlide(page) {
+	$('#slider').html('');
+	switch (page) {
+		case 1: $('#slider').html(slider_1);
+				break;
+		case 2: $('#slider').html(slider_2);
+				break;
+		case 3: $('#slider').html(slider_3);
+				break;
+		default: $('#slider').html(slider_1);
+				break;
+	}
 
-		$('#slider').html(slider_2);
-		currentPage = 2;
-	} else if (currentPage === 2) {
-		if (slider_3 !== '') {
-			$('#slider').html(slider_3);
-			currentPage = 3;
-		} else {
-			$('#slider').html(slider_1);
-			currentPage = 1;
-		}
-	} else if (currentPage === 3) {
-		$('#slider').html(slider_1);
-		currentPage = 1;
+	currentPage = page;
+}
+
+function slideToLeft() {
+	switch (currentPage) {
+		case 1: renderReportsData();
+				toSlide(2);
+				break;
+		case 2:
+				if (slider_3 !== '') {
+					toSlide(3);
+				} else {
+					toSlide(1);
+				}
+		case 3: toSlide(1);
+				break;
+		default: toSlide(1);
 	}
 }
 
 function slideToRight() {
-	if (currentPage === 1) {
-		if (slider_3 !== '') {
-			$('#slider').html(slider_3);
-			currentPage = 3;
-		} else {
-			renderReportsData();
-
-			$('#slider').html(slider_2);
-			currentPage = 2;
-		}
-	} else if (currentPage === 2) {
-		$('#slider').html(slider_1);
-		currentPage = 1;
-	} if (currentPage === 3) {
-		renderReportsData();
-
-		$('#slider').html(slider_2);
-		currentPage = 2;
+	switch (currentPage) {
+		case 1: 
+				if (slider_3 !== '') {
+					toSlide(3);
+				} else {
+					renderReportsData();
+					toSlide(2);
+				}
+				break;
+		case 2: toSlide(1);
+				break;
+		case 3:
+				renderReportsData();
+				toSlide(2);
+				break;
+		default: toSlide(1);
 	}
 }

@@ -62,7 +62,7 @@ h2 {padding: 0.5em 2%; margin: 0px}
 .flt_right{float: right;}
 
 .header .actualizar, .header .fecha { float: left;}
-.header .fecha { color: #fff; line-height: 53px; font-size: 1.2em; padding-left: 5px;}
+.header .fecha { color: #fff; line-height: 53px; font-size: 1.3em; padding-left: 0.5em;}
 
 .header .compartir, .header .logo {float: left;}
 .header .logo a {float: left; padding: 0 0.2em 0 0; background: #fff;}
@@ -81,10 +81,6 @@ h2 {padding: 0.5em 2%; margin: 0px}
 .panel_destacados .destacados ul.titulo { border: 0.1em solid #aeaeae; border-left: 0em; border-right: 0em; border-top: 0em; }
 
 
-.destacados li.col1 {width: 23%!important;}
-.destacados li.col2 {width: 35%!important;}
-.destacados li.col3 {width: 30%!important; text-align: center;}
-
 .panel_destacados .destacados .producto { border: 0.1em solid #aeaeae; border-left: 0em; border-right: 0em; border-top: 0em; }
 .panel_destacados .destacados .producto span { display: block;text-align: center; margin: 0px auto; width: 5em; padding: 0.5em 0.25em; color: #fff; border-radius: 0.4em; font-size: 1.5em; font-family: 'open_sansbold';}
 .panel_destacados .destacados .producto span.grey {background-color: #CCC;}
@@ -95,12 +91,14 @@ h2 {padding: 0.5em 2%; margin: 0px}
 .panel_destacados .destacados .producto .col2 {font-size: 1.5em; font-family: 'open_sansregular';  line-height: 2.5em;}
 .panel_destacados .destacados .producto .col3 {}
 
-.panel_destacados .details .detalles { width: 100%; float: left;}
-.panel_destacados .details .detalles ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  }
-.panel_destacados .details .detalles ul li { width: 29%; padding: 2%; display: block; float: left;}
-.panel_destacados .details .detalles .titulo { background: #d6dad9; }
+.panel_destacados .detalles { width: 100%; float: left;}
+.panel_destacados .detalles ul { width: 100%; display: block; float: left; padding: 0px; margin: 0px;  }
+.panel_destacados .detalles ul li { width: 29%; padding: 2%; display: block; float: left;}
+.panel_destacados .detalles .titulo { background: #d6dad9; }
 
-.panel_destacados .details .detalles .producto .col2 { font-weight: 600;}
+.panel_destacados .details .producto .col1 { font-size: 10px; font-family: 'open_sansregular', Arial, Helvetica, sans-serif; font-weight: normal; }
+.panel_destacados .details .producto .col2{ font-size: 10px; font-family: 'open_sansregular', Arial, Helvetica, sans-serif; font-weight: 600; }
+.panel_destacados .details .producto .col3{ font-size: 10px; font-family: 'open_sansregular', Arial, Helvetica, sans-serif; font-weight: normal; }
 
 
 /*******/
@@ -250,7 +248,7 @@ h2 {padding: 0.5em 2%; margin: 0px}
 	margin:0;
 }
 
-#vertical_content_scroller li {
+#vertical_content_scroller > ul > li {
 	display:block;
 	vertical-align:middle;
 	float:left;
@@ -286,7 +284,7 @@ h2 {padding: 0.5em 2%; margin: 0px}
 	margin:0;
 }
 
-#horizontal_content_scroller li {
+#horizontal_content_scroller > ul > li {
 	display:block;
 	vertical-align:middle;
 	float:left;

@@ -1,5 +1,5 @@
-var varNoSeEncuentraRegistro = 'No se encuentra registro.';
-var varNoSeEncuentraRegistroHistorica = 'No se encuentra cotización histórica.';
+var vertical_scroll_object = null;
+var horizontal_scroll_object = null;
 
 var storage;
 try {
@@ -268,9 +268,8 @@ function togglePanelHeight(id, replace) {
 
 	if (replace) {
 		$('#slider').html(slider_1);
+		resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
 	}
-
-	resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
 }
 
 function resetPanelHeight(elementId1, valueAdded, panelId, scrollerObject) {
