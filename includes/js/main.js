@@ -1,7 +1,3 @@
-var swipe = null;
-var porcentajeArriba = 0.55;
-var porcentajeAbajo = 0.45;
-
 $(document).ready(function () {
 	// Define if its device is a mobile
 	if (navigator.userAgent.match(/(Mobile|iPhone|iPod|iPad|Android|BlackBerry)/)) {
@@ -32,22 +28,23 @@ function renderLeadingPricesData() {
 				html += '<li class="col3">PRECIO P/TN</li>';
 			html += '</ul>';
 
+	var priceClass = '';
     $(leadingPrices).each(function () {
 		html += '<ul class="producto" onclick="setInformationsProduct(' + this.codigoProducto + ')">';
 			html += '<li class="col1">' + this.descripcionProducto.toUpperCase() + '</li>';
 			html += '<li class="col2">' + this.descripcionPuerto + '</li>';
 
-			var priceClass = 'grey';
-			if (this.variacion == '-') {
+			priceClass = 'grey';
+			if (this.variacion === '-') {
 				priceClass = 'red';
-			} else if (this.variacion == '+') {
+			} else if (this.variacion === '+') {
 				priceClass = 'green';
 			}
 
 			html += '<li class="col3"><span class="' + priceClass + '">' + this.abreviaturaMoneda + ' ' + this.valorString + '</span></li>';
 		html += '</ul>';
 
-		html += '<div id="' + this.codigoProducto + '_details" style="display: none;"></div>';
+		html += '<div class="details inactive" id="' + this.codigoProducto + '_details" style="display: none;"></div>';
     });
 	
 		html += '</div>';
@@ -55,12 +52,15 @@ function renderLeadingPricesData() {
 
     html += '<div onclick="renderAllPricesData()" class="btn_vermas">+ VER M&Aacute;S</div>';
 
-    $('#leadingPrices').html(html);
+	var element = $('#leadingPrices');
+    element.html(html);
+
+	//resetPanelHeight('vertical', element.height(), 'vertical_content_scroller', vertical_scroll_object);
 }
 
 function setInformationsProduct(productCode) {
 	renderInformationsPrices(productCode);
-    //renderLastPrices(productCode);
+    renderLastPrices(productCode);
 }
 
 // VER MAS section
@@ -87,11 +87,12 @@ function renderAllPricesData() {
 				html += '<li class="col4">OBSERVACI&Oacute;N</li>';
 			html += '</ul>';
 
-			html += '<div class="detalles">';
+			html += '<div class="detalles bkg_campo">';
 
 	var iPrices = 0;
+	var className = '';
     $(allPrices).each(function () {
-		var className = (iPrices % 2 == 0) ? ' par' : '';
+		className = (iPrices % 2 == 0) ? ' par' : '';
 		
 		html += '<ul class="producto' + className + '" onclick="setInformationsProduct(' + this.codigoProducto + ')">';
 			html += '<li class="col1">' + this.descripcionProducto.toUpperCase() + '</li>';
@@ -107,7 +108,7 @@ function renderAllPricesData() {
 		html += '</div>';
 	html += '</div>';
 
-    $('#slider_1').html(html);
+    $('#slider').html(html);
 	togglePanelHeight('all_prices', false);
 }
 
@@ -123,106 +124,49 @@ function renderLastPricesData() {
 		return;
 	}
 
-    var resultadoDiv = '';
-    if (lastPrices.length > 0) {
-        resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
-        resultadoDiv += '<div class="row">';
-        resultadoDiv += '<div class="col-xs-11 colHistoricoTitulo">';
-        resultadoDiv += 'Ultimas cotizaciones: ' + lastPrices[0].descripcionProducto.toUpperCase();
-        resultadoDiv += '</div>';
-        //
-        resultadoDiv += '<div class="col-xs-1 cssAmpliarAchicar" >'; // onclick="onclickFullScreenCotizacionesHistorica()"
-        resultadoDiv += '</div>';
-        //
-        resultadoDiv += '</div>';
-        resultadoDiv += '<div class="row cssHistoricoEncabezado">';
-        resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoFecha">';
-        resultadoDiv += 'FECHA';
-        resultadoDiv += '</div>';
-        resultadoDiv += '<div class="col-xs-6 colHistoricoEncabezadoPrecio">';
-        resultadoDiv += 'PRECIO P/TN';
-        resultadoDiv += '</div>';
-        resultadoDiv += '</div>';
+    var html = '<div class="historicas bkg_campo">';
+		html += '<div class="head">';
+			html += '<h2>&Uacute;ltimas cotizaciones';
+			if (lastPrices.length > 0) { html += ': ' + lastPrices[0].descripcionProducto.toUpperCase(); }
+			html += '</h2>';
+			html += '<span id="last_prices_panel" onclick="togglePanelHeight(this.id, false);" class="toggle up"></span>';
+			html += '<ul class="titulo">';
+				html += '<li class="col1">FECHA</li>';
+				html += '<li class="col2">PRECIO P/TN</li>';
+			html += '</ul>';
+		html += '</div>';
 
-        resultadoDiv += '</div>'; // fin div parte fija
+		html += '<div class="detalles">';
 
-        resultadoDiv += '<div id="divParteScrollCotizacionHistorica" >'; // div scroll
-        var indexHistorico = -1;
+        var iPrices = -1;
+		var className = '';
         $(lastPrices).each(function () {
-            indexHistorico++;
-            var strHtmlColorFondo = '';
-            if (indexHistorico % 2 == 0) {
-                strHtmlColorFondo = ' cssHistoricoImpar ';
-            }
-            resultadoDiv += '<div class="row cssHistorico ' + strHtmlColorFondo + '">';
-            resultadoDiv += '<div class="col-xs-6 colHistoricoFecha"><span style="opacity:1;">';
-            resultadoDiv += dateFormat(this.fechaCotizacion);
-            resultadoDiv += '</span></div>';
-            resultadoDiv += '<div class="col-xs-6 colHistoricoPrecio">';
+            className = (iPrices % 2 === 0) ? ' par' : '';
 
-            resultadoDiv += this.abreviaturaMoneda + ' ' + this.valorString;
-            resultadoDiv += '</div>';
-            resultadoDiv += '</div>';
+			html += '<ul class="fechaprecio' + className + '">';
+				html += '<li class="col1">' + dateFormat(this.fechaCotizacion) + '</li>';
+				html += '<li class="col2">' + this.abreviaturaMoneda + ' ' + this.valorString + '</li>';
+			html += '</ul>';
+
+			iPrices++;
         });
-        resultadoDiv += '</div>'; // fin div scroll
-    } else {
-        resultadoDiv += '<div id="divParteFijaCotizacionHistorica" >'; // div parte fija
-        resultadoDiv += '<div class="divNoSeEncuentraRegistro" >'; // 
-        resultadoDiv += 'NADAAAAA';
-        resultadoDiv += '</div>'; // 
-        resultadoDiv += '</div>'; // fin div scroll
-    }
-    var isAgregarSlides2 = true;
-    for (var i = 0; i < swiper.slides.length; i++) {
-        if (swiper.slides[i].id == 'swiper-slide2') {
-            isAgregarSlides2 = false;
-            break;
-        }
-    }
-    if (isAgregarSlides2) {
-        swiper.appendSlide('<div id="swiper-slide2" class="swiper-slide">' + resultadoDiv + '</div>');
-    } else {
-        $('#swiper-slide2').html(resultadoDiv);
-    }
-    if (lastPrices.length > 0) {
-        porcentajeArriba = 0.55;
-        porcentajeAbajo = 0.45;
-        //onresizeBody();
-    }
-}
 
-function CargarInformeCierreMercado() {
-	if (!listaInformes) {
-		processError('', 1009, '');
-		return;
-	}
+		html += '</div>';
+		html += '</div>';
+	html += '</div>';
 
-    var isTimeoutInformeCierreMercado = true;
-	if (listaInformes.length > 0) {
-		isTimeoutInformeCierreMercado = false;
-		var indexSlide3 = -1;
-		for (var i = 0; i < swiper.slides.length; i++) {
-			if (swiper.slides[i].id == 'swiper-slide3') {
-				indexSlide3 = i;
-			}
-		}
-		/*if (indexSlide3 == -1) {
-			swiper.appendSlide('<div id="swiper-slide3" class="swiper-slide">' + CargarInformeHtml() + '</div>');
-		} else {
-			$('#swiper-slide3').html(CargarInformeHtml());
-		}*/
-	}
+	slider_3 = html;
 
-    if (isTimeoutInformeCierreMercado) {
-        setTimeout(function () {
-            CargarInformeCierreMercado();
-        }, 115);
-    }
+	$('#slider').html(html);
+	currentPage = 2;
+	slideToLeft();
+
+	resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
 }
 
 function renderNewsData() {
 	if (slider_1 !== '') {
-		$('#slider_1').html(slider_1);
+		$('#slider').html(slider_1);
 		return;
 	}
 
@@ -261,16 +205,15 @@ function renderNewsData() {
 
 		html += '</ul>';
 	html += '</div>';
-	
+
 	slider_1 = html;
 
-	$('#slider_1').html(html);
+	$('#slider').html(html);
+	resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
 }
 
 function savePricesData(keyStorage, xmlText) {
     var prices = [];
-	var maxUtcValue = 0;
-	var maxDate = '';
 
     $(xmlText).find('cotizaciones').each(function () {
         var obj = new price();
@@ -288,22 +231,8 @@ function savePricesData(keyStorage, xmlText) {
         obj.observacion = $(this).find('observacion').text();
         obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
         obj.variacion = $(this).find('variacion').text();
-        prices.push(obj);
- 
-		if (keyStorage == 'leadingPrices') {
-			// fechaCotizacion format: yyyy-mm-ddThh:mm:ss-xx:xx where +/-xx:xx is GMT zone time value (-03:00 for Argentina)
-			maxDate = obj.fechaCotizacion;
-			var fechaData = obj.fechaCotizacion.split('T');
 
-			var fechaPartes = fechaData[0].split('-');
-			var fecha = fechaPartes[2]+'/'+fechaPartes[1]+'/'+fechaPartes[0]; // new format: dd/mm/yyyy
-			var horaPartes = fechaData[1].split('-');
-			var newUtcValue = obtenerFechaUTC(fecha, horaPartes[0]);
-			if (newUtcValue > maxUtcValue) {
-				maxUtcValue = newUtcValue;
-				maxDate = fecha;
-			}
-		}
+		prices.push(obj);
     });
 
 	storage[keyStorage] = JSON.stringify(prices);
@@ -416,7 +345,7 @@ function saveReports(loadFromWS) {
 
 function renderReportsData() {
 	if (slider_2 !== '') {
-		$('#slider_1').html(slider_2);
+		$('#slider').html(slider_2);
 		return;
 	}
 
@@ -431,7 +360,7 @@ function renderReportsData() {
 		return;
 	}
 
-	var html = '<div class="informe ">';
+	var html = '<div class="informe">';
 		html += '<span id="reports_panel" onclick="togglePanelHeight(this.id, false);" class="toggle up"></span>';
 			html += '<ul class="info">';
 
@@ -448,7 +377,8 @@ function renderReportsData() {
 	
 	slider_2 = html;
 
-	$('#slider_2').html(html);
+	$('#slider').html(html);
+	resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
 }
 
 function getReportsBodyRequest(from, to, requestType) {
@@ -499,7 +429,6 @@ function renderInformationsPrices(productCode) {
 	getInformationFromWS(pricesURL, request, 'informationsPrice', savePricesData, renderInformationsPricesData);
 }
 
-var scroller = null;
 function renderInformationsPricesData() {
 	if (!storage["informationsPrice"]) {
 			processError('', 1010, '');
@@ -520,10 +449,10 @@ function renderInformationsPricesData() {
 
 	var productCode = informationsPrices[0].codigoProducto;
 
-	var iDetalle = 0;
+	var iDetalle = -1;
 	var className = '';
 	$(informationsPrices).each(function () {
-		className = (iDetalle % 2 == 0) ? ' par' : '';
+		className = (iDetalle % 2 === 0) ? ' par' : '';
 
 		html += '<ul class="producto' + className + '">';
 			html += '<li class="col1">' + this.descripcionPuerto + '</li>'
@@ -534,17 +463,44 @@ function renderInformationsPricesData() {
 		iDetalle++;
 	});
 
-	        // fin detalle
 	html += '</div>';
 
 	var element = $('#' + productCode + '_details');
-	if (element.css('display') === 'none') {
-		element.css("display", "block");
-	} else {
-		element.css("display", "none");
-	}
 
-	element.html(html);
+	if (element.css('display') === 'none') {
+		element.html(html);
+
+		$('.active').each(function () { 
+			$(this).html(''); 
+			$(this).hide();
+
+			$(this).removeClass('active');
+			$(this).addClass('inactive');
+		});
+		if (element.hasClass('inactive')) { 
+			element.removeClass('inactive');
+			element.addClass('active');
+		}
+
+		element.css("display", "block");
+
+		resetPanelHeight('vertical', (iDetalle*90), 'vertical_content_scroller', vertical_scroll_object);
+	} else {
+		if (element.hasClass('active')) {
+			element.removeClass('active');
+			element.addClass('inactive');
+		}
+
+		element.css("display", "none");
+
+		if ($('.active').length === 0) {
+			vertical_scroll_object.scrollTo( 0, 0);
+			resetPanelHeight('vertical', 0, 'vertical_content_scroller', vertical_scroll_object);
+		}
+
+		slideToLeft();
+		resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
+	}
 }
 
 // swipe effect all compatibility webkit mobiles
@@ -552,39 +508,42 @@ var direction = "";
 var currentPage = 1;
 var swipeElement = document.getElementById('horizontal_content_scroller');
 var mc = new Hammer(swipeElement);
-var x = 0;
-mc.on('panright panleft', function(event) {
-	//console.log(event.deltaX);
-    if (event.deltaX < -100) {
-		slideToLeft();
-	} else if (event.deltaX > 100) {
-		slideToRight();
-	}
 
-	/*if (event.deltaX !== x) {
-		swipeElement.style.transform = 'translateX(' + event.deltaX + 'px)';
-		x = event.deltaX;
-	} else {
-		swipeElement.style.transform = 'translateX(0px)';
-	}*/
+mc.on('panright panleft', function(event) {
+	// Deactive swipe on full screen div container
+	if (fullScreen) {
+		resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
+		horizontal_scroll_object.scrollTo(0, 0);
+		return; 
+	}
+	//console.log(event.deltaX);
+    if (event.deltaX < -120) {
+		slideToLeft();
+		resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
+		horizontal_scroll_object.scrollTo(0, 0);
+	} else if (event.deltaX > 120) {
+		slideToRight();
+		resetPanelHeight('slider', 0, 'horizontal_content_scroller', horizontal_scroll_object);
+		horizontal_scroll_object.scrollTo(0, 0);
+	}
 });
 
 function slideToLeft() {
 	if (currentPage === 1) {
 		renderReportsData();
 
-		$('#slider_1').html(slider_2);
+		$('#slider').html(slider_2);
 		currentPage = 2;
 	} else if (currentPage === 2) {
 		if (slider_3 !== '') {
-			$('#slider_1').html(slider_3);
+			$('#slider').html(slider_3);
 			currentPage = 3;
 		} else {
-			$('#slider_1').html(slider_1);
+			$('#slider').html(slider_1);
 			currentPage = 1;
 		}
 	} else if (currentPage === 3) {
-		$('#slider_1').html(slider_1);
+		$('#slider').html(slider_1);
 		currentPage = 1;
 	}
 }
@@ -592,21 +551,21 @@ function slideToLeft() {
 function slideToRight() {
 	if (currentPage === 1) {
 		if (slider_3 !== '') {
-			$('#slider_1').html(slider_3);
+			$('#slider').html(slider_3);
 			currentPage = 3;
 		} else {
 			renderReportsData();
 
-			$('#slider_1').html(slider_2);
+			$('#slider').html(slider_2);
 			currentPage = 2;
 		}
 	} else if (currentPage === 2) {
-		$('#slider_1').html(slider_1);
+		$('#slider').html(slider_1);
+		currentPage = 1;
 	} if (currentPage === 3) {
 		renderReportsData();
 
-		$('#slider_1').html(slider_2);
+		$('#slider').html(slider_2);
 		currentPage = 2;
 	}
-
 }

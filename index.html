@@ -13,7 +13,7 @@
 	<div class="root bkg_campo">
 
 		<div class="header">
-			<div class="flt_left">
+			<div class="flt_left" onclick="reload();">
 				<div class="actualizar"><a href="#"><img src="img/icono_actualizar.png"></a></div>
 				<div id="datetime_container" class="fecha"></div>
 				<div id="datetime_container_hidden" style="display: none;"></div>
@@ -44,13 +44,7 @@
 						<div id="horizontal_content_scroller">
 							<ul>
 								<li>
-									<div id="slider_1" style="float:left;" class="panel_swipper" id="Scroll_H"></div>
-								</li>
-								<li>
-									<div id="slider_2" style="float:left;" class="panel_swipper"></div>
-								</li>
-								<li>
-									<div id="slider_3" style="float:left;" class="panel_swipper"></div>
+									<div id="slider" style="float:left; z-index: 100;" class="panel_swipper" id="Scroll_H"></div>
 								</li>
 							</ul>
 						</div>
@@ -65,7 +59,7 @@
 
     <script type="text/javascript" src="includes/js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="includes/js/iscroll.js"></script>
-	<script type="text/javascript" src="includes/js/fastclick.js"></script>
+	<!--<script type="text/javascript" src="includes/js/fastclick.js"></script>-->
 	<script type="text/javascript" src="includes/js/hammer.min.js"></script>
 	<!--<script type="text/javascript" src="includes/js/touch-emulator.js"></script> -->
 
@@ -82,24 +76,25 @@
 		function loaded() {
 			// 25 + 28 = 53px = header height
 			var height = $(document).height();
-			document.getElementById('vertical').style.height = parseInt(height * 0.70) - 28 + 'px';
-			var slider_height = parseInt(height * 0.30) - 25;
-			document.getElementById('horizontal').style.height = slider_height + 'px';
+			var verticalHeight = parseInt(height * 0.70) - 28;
+			document.getElementById('vertical').style.height = verticalHeight + 'px';
+			var sliderHeight = parseInt(height * 0.30) - 25;
+			document.getElementById('horizontal').style.height = sliderHeight + 'px';
 
-			document.getElementById('vertical_content_scroller').style.width = (document.getElementById('vertical').style.height * 10) + 'px';
-			document.getElementById('horizontal_content_scroller').style.height = (slider_height * 10) + 'px';
+			document.getElementById('vertical_content_scroller').style.height = verticalHeight + 'px';
+			document.getElementById('horizontal_content_scroller').style.height = sliderHeight + 'px';
 
 			//alert('Altura destacados == ' + document.getElementById('vertical').style.height);
 			//alert('Altura slider == ' + document.getElementById('horizontal').style.height);
-			var options = { mouseWheel: false, scrollbars: false, click: true, momentum: false, snap: true };
+			var options = { hScrollbar: false, vScrollbar: false, click: true, tap: true };
 			vertical_scroll_object = new iScroll('vertical_content_wrapper', options);
 			horizontal_scroll_object = new iScroll('horizontal_content_wrapper', options);
 		}
 
 		if ('addEventListener' in document) {
-			document.addEventListener('DOMContentLoaded', function() {
+			/*document.addEventListener('DOMContentLoaded', function() {
 				FastClick.attach(document.body);
-			}, false);
+			}, false);*/
 
 			document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 			document.addEventListener('DOMContentLoaded', loaded, false);

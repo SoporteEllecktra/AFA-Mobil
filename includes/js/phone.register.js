@@ -94,7 +94,7 @@ function onDeviceReady() {
 
 	if (isPhone() && (!storage["phoneNumber"] || 
 	    (storage["phoneNumber"] && storage["phoneNumber"] == ''))) {
-		window.location.href = "telefono.html";
+		window.location.href = "phone_register.html";
 		return;
 	}
 
@@ -124,7 +124,7 @@ function onNotification(e) {
 
 	case 'message':
 		if (e.message.length > 0) {
-			showWindowModal(e.payload.title, e.message);
+			showAlertWindow(e.payload.title, e.message);
 		}
 		break;
 
@@ -141,7 +141,7 @@ function onNotification(e) {
 
 function onNotificationAPN(event) {
     if (event.body && event.body.length > 0) {
-        showWindowModal(event.title, event.body);
+        showAlertWindow(event.title, event.body);
     }
     if (event.sound) {
         var snd = new Media(event.sound);
@@ -175,7 +175,7 @@ function channelHandler(event) {
 // Handler MPNS notifications for WP8
 function onNotificationWP8(e) {
 	if (e.jsonContent && e.jsonContent["wp:Text2"].length > 0) {
-		showWindowModal(e.jsonContent["wp:Text1"], e.jsonContent["wp:Text2"]);
+		showAlertWindow(e.jsonContent["wp:Text1"], e.jsonContent["wp:Text2"]);
 	}
 	if (e.type == "toast" && e.jsonContent) {
 		pushNotification.showToastNotification(successHandler, errorHandler, {
@@ -186,7 +186,7 @@ function onNotificationWP8(e) {
 	}
 	if (e.type == "raw" && e.jsonContent && e.jsonContent.Body.length > 0) {
 		//alert(JSON.stringify(e));
-		showWindowModal(JSON.stringify(e), e.jsonContent.Body);
+		showAlertWindow(JSON.stringify(e), e.jsonContent.Body);
 	}
 }
 

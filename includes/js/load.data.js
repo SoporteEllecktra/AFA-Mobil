@@ -75,7 +75,7 @@ function updatesAnalizer(data, status, req) {
 	var updates = updatesParser(req.responseText);
 	if (updates && (updates.length > 0)) {
 		// Hay actualizaciones, definir si las mismas son diferentes que las almacenadas
-		setstorage(updates);
+		setStorage(updates);
 	} else {
 		// Si no hay actualizaciones (o no llegan) ==> entonces renderizar la app con lo que esta almacenado
 		var loadFromWS = [];
@@ -130,7 +130,7 @@ function updatesParser(xmlText) {
 }
 
 // Just update the keys to be updated in the storage, the idea is to minimize calls to the outside
-function setstorage(updates) {
+function setStorage(updates) {
 	var labelTableStorage = "updatesInfo";
 	var loadFromWS = [];
 	loadFromWS.push(false);
