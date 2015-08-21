@@ -227,7 +227,7 @@ function savePricesData(keyStorage, xmlText) {
         obj.codigoProducto = $(this).find('codigoProducto').text();
         obj.descripcionProducto = $(this).find('descripcionProducto').text();
         obj.valor = parseFloat($(this).find('valor').text());
-        obj.valorString = convertValorImporte(obj.valor);
+        obj.valorString = (obj.valor).toString().replace('.', ',');
         obj.observacion = $(this).find('observacion').text();
         obj.abreviaturaMoneda = $(this).find('abreviaturaMoneda').text();
         obj.variacion = $(this).find('variacion').text();
@@ -258,7 +258,7 @@ function saveNewsData(keyStorage, textXML) {
 
 function renderLeadingPrices(loadFromWS) {
 	if (loadFromWS) {
-		var body = getPricesBodyRequest(1, 14, obtenerFechaParametroEntrada(0), '', '', '', '', '');
+		var body = getPricesBodyRequest(1, 14, formatDate4Query(0), '', '', '', '', '');
 		var request = getRequest(body);
 		getInformationFromWS(pricesURL, request, 'leadingPrices', savePricesData, renderLeadingPricesData);
 	} else {
@@ -329,7 +329,7 @@ function getNewsBodyRequest(from, to, categoryCode) {
 
 function saveAllPrices(loadFromWS) {
 	if (loadFromWS) {
-		var body = getPricesBodyRequest(1, 11, obtenerFechaParametroEntrada(0), '', '', '', '', '');
+		var body = getPricesBodyRequest(1, 11, formatDate4Query(0), '', '', '', '', '');
 		var request = getRequest(body);
 		getInformationFromWS(pricesURL, request, 'allPrices', savePricesData, function() {;});
 	}
@@ -417,14 +417,14 @@ function saveReportsData(keyStorage, textXML) {
 
 // Esta parte es la reactiva----on demand web services
 function renderLastPrices(productCode) {
-	var body = getPricesBodyRequest(1, 11, obtenerFechaParametroEntrada(-15), obtenerFechaParametroEntrada(0), 9, productCode, '', '');
+	var body = getPricesBodyRequest(1, 11, formatDate4Query(-15), formatDate4Query(0), 9, productCode, '', '');
 	var request = getRequest(body);
 	getInformationFromWS(pricesURL, request, 'lastPrices', savePricesData, renderLastPricesData);
 }
 
 
 function renderInformationsPrices(productCode) {
-	var body = getPricesBodyRequest(1, 11, obtenerFechaParametroEntrada(0), '', '', productCode, '', '');
+	var body = getPricesBodyRequest(1, 11, formatDate4Query(0), '', '', productCode, '', '');
 	var request = getRequest(body);
 	getInformationFromWS(pricesURL, request, 'informationsPrice', savePricesData, renderInformationsPricesData);
 }
